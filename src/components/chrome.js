@@ -18,7 +18,7 @@ const Chrome = () => {
       href="https://chrome.google.com/webstore/detail/stylebot/oiaejidbmkiecgbjeifoejpgmdaleoha"
       target="_blank"
       rel="noreferrer"
-      className="chrome-install-link"
+      className="download-link"
     >
       <img
         src={chromeImg}
@@ -26,9 +26,7 @@ const Chrome = () => {
         style={{ height: "45px", marginRight: "10px", marginBottom: 0 }}
       />
 
-      <div style={{ height: "45px", lineHeight: "45px" }}>
-        Stylebot for Chrome
-      </div>
+      <div style={{ height: "45px", lineHeight: "45px" }}>Chrome</div>
     </a>
   )
 }
