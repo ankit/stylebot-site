@@ -11,8 +11,6 @@ The [stylebot.dev](https://stylebot.dev) site for the Stylebot browser extension
 - `scripts/` — `check-messages.ts`, `extension-terms.ts` and `migrate-messages.ts`, for the catalogs; `extension-strings.json` is a snapshot of the extension's strings, refreshed with `yarn sync:extension-strings`
 - `public/` — copied as is; `CNAME` keeps the stylebot.dev domain on GitHub Pages
 
-The gallery for gallery.stylebot.dev will live in this repo too; see "Layout" in the README. Keep the header, footer, layouts, menus and i18n free of landing-page specifics.
-
 ## Commands
 
 - `yarn dev` — dev server
