@@ -4,10 +4,10 @@
  * With --glossary <code>, prints those strings and their translations instead.
  */
 import { readFileSync, readdirSync } from 'node:fs';
-import { createRequire } from 'node:module';
 
-const { parseLocaleConfig } = createRequire(import.meta.url)(
-  '../../scripts/lib/parse-locale-config.js',
+// The extension's strings, from `node scripts/sync-extension-strings.ts`.
+const extensionStrings: Record<string, Record<string, string>> = JSON.parse(
+  readFileSync(new URL('extension-strings.json', import.meta.url), 'utf8'),
 );
 
 const CATALOGS = ['site', 'demo'];
@@ -21,7 +21,6 @@ const EXCEPTIONS = [
 ];
 
 const i18n = new URL('../src/i18n/', import.meta.url);
-const configs = new URL('../../src/assets/_locales/', import.meta.url);
 
 type Leaves = Map<string, string>;
 
@@ -47,17 +46,14 @@ const load = async (locale: string) => {
   return all;
 };
 
-const config = (locale: string): Record<string, string> => {
-  const [lang, region] = locale.split('-');
-  const file = region ? `${lang}_${region.toUpperCase()}` : lang;
-  const raw = readFileSync(new URL(`${file}.config`, configs), 'utf8');
-  const { messages } = parseLocaleConfig(raw);
-  return Object.fromEntries(
-    Object.entries(messages).map(([key, { message }]: [string, any]) => [
-      key,
-      message,
-    ]),
-  );
+const config = (locale: string) => {
+  if (!extensionStrings[locale]) {
+    console.error(
+      `No extension strings for ${locale}; run node scripts/sync-extension-strings.ts`,
+    );
+    process.exit(1);
+  }
+  return extensionStrings[locale];
 };
 
 const normalize = (s: string) => s.replace(/\.\.\.$/, '…');
@@ -81,11 +77,11 @@ const errors: string[] = [];
 
 for (const locale of locales) {
   const translated = await load(locale);
-  const extension = config(locale);
+  const messages = config(locale);
   for (const [path, text] of english) {
     const keys = extensionKeys.get(text);
     if (!keys) continue;
-    const expected = keys.map((key) => extension[key]).filter(Boolean);
+    const expected = keys.map((key) => messages[key]).filter(Boolean);
     if (glossary) {
       console.log(
         `${path}  ${JSON.stringify(text)} => ${expected.map((e) => JSON.stringify(e)).join(' / ')}  (@${keys.join(', @')})`,
