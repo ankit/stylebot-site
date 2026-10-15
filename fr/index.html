@@ -2839,7 +2839,7 @@ table#hnmain {
   display: none;
 }
 
-#hnmain td[bgcolor=&quot;#ff6600&quot;] &gt; table td:not(:has(.hnname)):last-child {
+#hnmain td[bgcolor=&quot;#ff6600&quot;] &gt; table td:has(.hnname) ~ td {
   position: absolute;
   right: 0;
   top: 3px;
@@ -2847,7 +2847,7 @@ table#hnmain {
   line-height: 1.4;
 }
 
-#hnmain td[bgcolor=&quot;#ff6600&quot;] &gt; table td:not(:has(.hnname)):last-child .pagetop {
+#hnmain td[bgcolor=&quot;#ff6600&quot;] &gt; table td:has(.hnname) ~ td .pagetop {
   font-size: 12px;
 }
 
@@ -2875,7 +2875,7 @@ table#hnmain {
     height: auto;
   }
 
-  #hnmain td[bgcolor=&quot;#ff6600&quot;] &gt; table td:not(:has(.hnname)):last-child {
+  #hnmain td[bgcolor=&quot;#ff6600&quot;] &gt; table td:has(.hnname) ~ td {
     position: static;
     text-align: center;
     padding: 6px 0 2px;
@@ -2897,6 +2897,44 @@ table#hnmain {
 
 td:has(&gt; .pagetop &gt; .hnname) {
   text-align: center;
+}
+
+/* Pages without the nameplate (submit, etc.) show only a page title:
+   set it as a centred section head */
+#hnmain td[bgcolor=&quot;#ff6600&quot;] .pagetop &gt; b:only-child {
+  display: block;
+  text-align: center;
+  font-family: &quot;Playfair Display&quot;;
+  font-style: italic;
+  font-weight: 700;
+  font-variant: normal;
+  font-size: 30px;
+  letter-spacing: 0;
+  line-height: 1.3;
+  padding: 4px 0;
+  color: #2e3442;
+}
+
+/* Submit form: fields fill the sheet instead of HN&#39;s 50-character boxes */
+#bigbox form:has(input[name=title]) &gt; table {
+  width: 100%;
+}
+
+#bigbox form:has(input[name=title]) &gt; table td:first-child {
+  white-space: nowrap;
+  padding-right: 12px;
+}
+
+#bigbox input[name=title],
+#bigbox input[name=url],
+#bigbox textarea[name=text] {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px 8px;
+}
+
+#bigbox textarea[name=text] {
+  min-height: 160px;
 }
 
 .pagetop a,
@@ -2996,13 +3034,7 @@ td:has(&gt; .pagetop &gt; .hnname) {
 }
 
 .titleline .sitebit,
-.titleline .sitebit a {
-  font-family: Newsreader;
-  font-style: italic;
-  font-size: 14.5px;
-  color: #7c8190;
-}
-
+.titleline .sitebit a,
 .sitestr {
   font-family: Newsreader;
   font-style: italic;
@@ -3268,7 +3300,7 @@ table#hnmain {
   display: none;
 }
 
-#hnmain td[bgcolor=&quot;#ff6600&quot;] &gt; table td:not(:has(.hnname)):last-child {
+#hnmain td[bgcolor=&quot;#ff6600&quot;] &gt; table td:has(.hnname) ~ td {
   position: absolute;
   right: 0;
   top: 3px;
@@ -3276,7 +3308,7 @@ table#hnmain {
   line-height: 1.4;
 }
 
-#hnmain td[bgcolor=&quot;#ff6600&quot;] &gt; table td:not(:has(.hnname)):last-child .pagetop {
+#hnmain td[bgcolor=&quot;#ff6600&quot;] &gt; table td:has(.hnname) ~ td .pagetop {
   font-size: 12px;
 }
 
@@ -3304,7 +3336,7 @@ table#hnmain {
     height: auto;
   }
 
-  #hnmain td[bgcolor=&quot;#ff6600&quot;] &gt; table td:not(:has(.hnname)):last-child {
+  #hnmain td[bgcolor=&quot;#ff6600&quot;] &gt; table td:has(.hnname) ~ td {
     position: static;
     text-align: center;
     padding: 6px 0 2px;
@@ -3326,6 +3358,44 @@ table#hnmain {
 
 td:has(&gt; .pagetop &gt; .hnname) {
   text-align: center;
+}
+
+/* Pages without the nameplate (submit, etc.) show only a page title:
+   set it as a centred section head */
+#hnmain td[bgcolor=&quot;#ff6600&quot;] .pagetop &gt; b:only-child {
+  display: block;
+  text-align: center;
+  font-family: &quot;Playfair Display&quot;;
+  font-style: italic;
+  font-weight: 700;
+  font-variant: normal;
+  font-size: 30px;
+  letter-spacing: 0;
+  line-height: 1.3;
+  padding: 4px 0;
+  color: #e2ddd2;
+}
+
+/* Submit form: fields fill the sheet instead of HN&#39;s 50-character boxes */
+#bigbox form:has(input[name=title]) &gt; table {
+  width: 100%;
+}
+
+#bigbox form:has(input[name=title]) &gt; table td:first-child {
+  white-space: nowrap;
+  padding-right: 12px;
+}
+
+#bigbox input[name=title],
+#bigbox input[name=url],
+#bigbox textarea[name=text] {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px 8px;
+}
+
+#bigbox textarea[name=text] {
+  min-height: 160px;
 }
 
 .pagetop a,
