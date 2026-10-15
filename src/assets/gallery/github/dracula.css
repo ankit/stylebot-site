@@ -121,10 +121,12 @@ html[data-color-mode="dark"][data-dark-theme="dark_high_contrast"] {
   /* diffs */
   --diffBlob-additionLine-bgColor: #1c3b28;
   --diffBlob-additionNum-bgColor: #2c5c3c;
-  --diffBlob-additionWord-bgColor: #2fb95566;
+  --diffBlob-additionWord-bgColor: #24603a;
+  --diffBlob-additionWord-fgColor: #f8f8f2;
   --diffBlob-deletionLine-bgColor: #3b1e21;
   --diffBlob-deletionNum-bgColor: #5c2c30;
-  --diffBlob-deletionWord-bgColor: #ff555566;
+  --diffBlob-deletionWord-bgColor: #7a2a33;
+  --diffBlob-deletionWord-fgColor: #f8f8f2;
   --diffBlob-emptyLine-bgColor: #21222c;
   --diffBlob-emptyNum-bgColor: #21222c;
   --diffBlob-hunkLine-bgColor: #2a2d42;
@@ -376,11 +378,21 @@ img.avatar,
   border-color: #ff555566;
 }
 .blob-code-addition span.x {
-  background-color: #2fb95566;
+  background-color: #24603a;
 }
 .blob-code-deletion span.x {
-  background-color: #ff555566;
+  background-color: #7a2a33;
 }
+
+/* ---- word-level highlights inside changed lines ----------------------
+   The changed-word ".x" spans used to be a translucent bright red/green,
+   and the comment rule below (".pl-c span") also caught them, painting
+   them the dim comment blue — barely legible. Give them solid, darker
+   backgrounds (tokens above) and lift comment text inside them to a
+   light blue-gray that still reads as "comment" but clears 4.5:1
+   (that rule sits after the syntax-highlighting section below).
+   --------------------------------------------------------------------- */
+
 .diffstat-block-added,
 .diffstat-block-deleted::before {
   background-color: #50fa7b;
@@ -441,6 +453,14 @@ img.avatar,
 .pl-md, .pl-mdhf { color: #ff5555; }
 .pl-ml { color: #f1fa8c; }
 .pl-mh, .pl-mh .pl-en, .pl-ms { color: #8be9fd; }
+
+/* comments inside a changed-word highlight: must come after the .pl-c
+   rule above, which has equal specificity for ".pl-c span" */
+.pl-c span.x,
+.x .pl-c,
+.x .pl-c span {
+  color: #d6dcf5;
+}
 
 /* fenced code blocks + inline code in markdown/READMEs */
 .markdown-body pre,
@@ -509,10 +529,10 @@ span.pl-corl {
 }
 
 bdi.markdown-title {
-  font-size: 18px
+  font-size: 16px
 }
 
-span.HeaderViewer-module__issueNumberText__MEUhM {
+span[class*="HeaderViewer-module__issueNumberText__"] {
   font-size: 18px;
 }
 
@@ -520,10 +540,18 @@ span.Button-label {
   color: #f8f8f2;
 }
 
-div.prc-Truncate-Truncate-2G1eo {
+div[class*="prc-Truncate-Truncate-"] {
   color: #f8f8f2;
 }
 
 bdi.f5 {
   font-size: 13px;
+}
+
+span.issueNumberText__ZPJKLj {
+  font-size: 16px;
+}
+
+bdi[class*="issueTitleContainer__"] {
+  font-size: 12px;
 }

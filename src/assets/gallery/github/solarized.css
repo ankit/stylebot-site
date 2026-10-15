@@ -358,3 +358,7 @@ a.Link--secondary:hover {
 div[class*="quick-search-overlay-module__Panel__"] {
   background-color: #eee8dc;
 }
+
+div.mt-2 span {
+  font-size: 13px;
+}

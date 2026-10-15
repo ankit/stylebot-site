@@ -1,4 +1,6 @@
 /* Hacker News: Newspaper Dark */
+@import url(https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap);
+
 @import url(https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap);
 
 @import url(https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap);
@@ -19,10 +21,17 @@ body,
 td,
 input,
 textarea {
-  font-family: 'Old Standard TT';
+  font-family: "Old Standard TT";
 }
 
 center {
+  color: #d3cfc5;
+}
+
+/* Default ink for plain links (profile pages, forms): HN's own is black.
+   :where keeps it weaker than every specific link rule below. */
+:where(#hnmain) a,
+:where(#hnmain) a:visited {
   color: #d3cfc5;
 }
 
@@ -46,20 +55,79 @@ table#hnmain {
 }
 
 /* Masthead */
-#hnmain td[bgcolor='#ff6600'] {
+#hnmain td[bgcolor="#ff6600"] {
   background: transparent;
   border-top: 1px solid #9b8f6e;
   border-bottom: 4px double #9b8f6e;
   padding: 6px 0 4px;
 }
 
-#hnmain td[bgcolor='#ff6600'] img {
+#hnmain td[bgcolor="#ff6600"] img {
   display: none;
+}
+
+/* Logged in: keep the masthead centred on the full sheet.
+   The logo cell goes, and the user/logout cell sits at the right end of the
+   dateline, out of the flow, like a paper's edition slot. */
+#hnmain td[bgcolor="#ff6600"] > table {
+  position: relative;
+}
+
+#hnmain td[bgcolor="#ff6600"] td:has(> a > img) {
+  display: none;
+}
+
+#hnmain td[bgcolor="#ff6600"] > table td:not(:has(.hnname)):last-child {
+  position: absolute;
+  right: 0;
+  top: 3px;
+  padding: 0;
+  line-height: 1.4;
+}
+
+#hnmain td[bgcolor="#ff6600"] > table td:not(:has(.hnname)):last-child .pagetop {
+  font-size: 12px;
+}
+
+/* Narrow windows: stack the masthead in one centred column
+   (dateline, nameplate, nav, then user/logout) and scale the nameplate */
+@media (max-width: 820px) {
+  table#hnmain {
+    padding: 14px 16px 20px;
+  }
+
+  #hnmain td[bgcolor="#ff6600"] > table,
+  #hnmain td[bgcolor="#ff6600"] > table > tbody {
+    display: block;
+    width: 100%;
+  }
+
+  #hnmain td[bgcolor="#ff6600"] > table tr {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* HN sets height:10px inline on the nameplate cell; as a flex item that caps it */
+  #hnmain td[bgcolor="#ff6600"] > table td {
+    height: auto;
+  }
+
+  #hnmain td[bgcolor="#ff6600"] > table td:not(:has(.hnname)):last-child {
+    position: static;
+    text-align: center;
+    padding: 6px 0 2px;
+  }
+
+  .hnname a,
+  .hnname a:visited {
+    font-size: clamp(34px, 10vw, 60px);
+  }
 }
 
 .pagetop {
   color: #a3abbc;
-  font-family: 'Old Standard TT';
+  font-family: "Old Standard TT";
   font-size: 13px;
   font-variant: small-caps;
   letter-spacing: 0.06em;
@@ -82,7 +150,7 @@ td:has(> .pagetop > .hnname) {
 
 .hnname a,
 .hnname a:visited {
-  font-family: 'Playfair Display';
+  font-family: "Playfair Display";
   font-size: 60px;
   font-weight: 900;
   font-style: italic;
@@ -93,9 +161,9 @@ td:has(> .pagetop > .hnname) {
 }
 
 .hnname::before {
-  content: 'Vol. XIX · Est. 2007 · San Francisco, California · Written in Arc';
+  content: "Vol. XIX · Est. 2007 · San Francisco, California · Written in Arc";
   display: block;
-  font-family: 'Old Standard TT';
+  font-family: "Old Standard TT";
   font-style: italic;
   font-size: 12px;
   font-weight: normal;
@@ -113,7 +181,7 @@ td:has(> .pagetop > .hnname) {
 
 .rank {
   color: #a3abbc;
-  font-family: 'Playfair Display';
+  font-family: "Playfair Display";
   font-style: italic;
   font-size: 15px;
   position: relative;
@@ -122,16 +190,34 @@ td:has(> .pagetop > .hnname) {
 
 .votearrow {
   filter: grayscale(1) invert(1) brightness(0.8);
+  margin: 0;
+}
+
+/* The link, not the arrow, holds the spacing so it has a box to ring */
+.votelinks a {
+  display: block;
+  width: fit-content;
   margin: 9px 7px 6px 4px;
 }
 
 .titleline {
   color: #d3cfc5;
+  line-height: 1.45;
+}
+
+/* Room for the domain when it wraps under a long headline */
+.titleline .sitebit {
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+.subtext {
+  padding-top: 2px;
 }
 
 .titleline > a,
 .titleline > a:visited {
-  font-family: 'Playfair Display';
+  font-family: "Playfair Display";
   font-weight: 700;
   font-size: 19px;
   line-height: 1.25;
@@ -147,19 +233,19 @@ td:has(> .pagetop > .hnname) {
   text-decoration-thickness: 1px;
 }
 
-.sitebit,
-.sitebit a,
+.titleline .sitebit,
+.titleline .sitebit a,
 .sitestr {
-  font-family: 'Old Standard TT';
+  font-family: Newsreader;
   font-style: italic;
-  font-size: 12px;
-  color: #a3abbc;
+  font-size: 14.5px;
+  color: #8a93a6;
 }
 
 .subtext,
 .subline {
-  font-family: 'Old Standard TT';
-  font-size: 12px;
+  font-family: "Old Standard TT";
+  font-size: 13.5px;
   color: #a3abbc;
 }
 
@@ -171,12 +257,12 @@ td:has(> .pagetop > .hnname) {
 .subtext a,
 .subtext a:visited,
 .score {
-  font-family: 'Old Standard TT';
+  font-family: "Old Standard TT";
   color: #a7adba;
 }
 
 .score {
-  font-size: 12px;
+  font-size: 13.5px;
   font-variant: small-caps;
   font-weight: 700;
 }
@@ -185,19 +271,43 @@ td:has(> .pagetop > .hnname) {
   font-style: italic;
 }
 
+/* Thin italic reads lighter on dark paper: give story bylines full ink */
+.subtext a.hnuser {
+  color: #d3cfc5;
+}
+
+/* New accounts: HN's green, recast as brass ink with a small "new" tag */
+.hnuser font[color="#3c963c"] {
+  color: #c2b48a;
+}
+
+.hnuser font[color="#3c963c"]::after {
+  content: "new";
+  font-style: normal;
+  font-variant: small-caps;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  margin-left: 4px;
+  padding: 0 3px 1px;
+  border: 1px solid #9b8f6e;
+  color: #c2b48a;
+  position: relative;
+  top: -1px;
+}
+
 tr.spacer {
   height: 10px;
 }
 
 a.morelink {
-  font-family: 'Playfair Display';
+  font-family: "Playfair Display";
   font-style: italic;
   font-size: 16px;
   color: #d3cfc5;
 }
 
 /* Footer */
-#hnmain tr:last-child td[bgcolor='#ff6600'] {
+#hnmain tr:last-child td[bgcolor="#ff6600"] {
   border-top: 4px double #9b8f6e;
   border-bottom: none;
   padding: 0;
@@ -205,7 +315,7 @@ a.morelink {
 
 .yclinks,
 .yclinks a {
-  font-family: 'Old Standard TT';
+  font-family: "Old Standard TT";
   font-variant: small-caps;
   font-size: 13px;
   color: #c3c8d3;
@@ -231,7 +341,7 @@ a.morelink {
 .commtext,
 .commtext a,
 .toptext {
-  font-family: 'Libre Caslon Text';
+  font-family: "Libre Caslon Text";
   font-size: 14px;
   line-height: 1.55;
   color: #d3cfc5;
@@ -256,7 +366,7 @@ a.morelink {
 
 .reply a,
 .reply a:visited {
-  font-family: 'Old Standard TT';
+  font-family: "Old Standard TT";
   font-size: 12px;
   font-variant: small-caps;
   letter-spacing: 0.05em;
@@ -272,17 +382,52 @@ a.morelink {
   font-size: 13px;
 }
 
-.fatitem .votearrow {
+.fatitem .votelinks a {
   margin: 16px 7px 6px 4px;
 }
 
-.comment-tree .votearrow {
+.comment-tree .votelinks a {
   margin: 5px 7px 6px 4px;
 }
 
 .comhead,
 .comhead a {
-  font-family: 'Old Standard TT';
+  font-family: "Old Standard TT";
   font-style: italic;
   color: #a3abbc;
+}
+
+/* Comment bylines: upright, bold and brighter than the italic meta beside them */
+.comment-tree .comhead a.hnuser {
+  font-style: normal;
+  font-weight: 700;
+  color: #e2ddd2;
+}
+
+/* Focus rings: a brass rule, like the masthead */
+td.title {
+  overflow: visible;
+  text-align: left;
+}
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+#hnmain input:focus-visible {
+  outline: 1px solid #c2b48a;
+  outline-offset: 3px;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+#hnmain input:focus,
+#hnmain textarea:focus {
+  outline: 1px solid #c2b48a;
+  outline-offset: 2px;
+  border-color: #c2b48a;
+  box-shadow: none;
+}
+
+span.pagetop a {
+  text-align: center;
 }
