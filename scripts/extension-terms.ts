@@ -3,7 +3,9 @@
  * extension's own translation, so mock UI labels match the real extension.
  * With --glossary <code>, prints those strings and their translations instead.
  */
-import { readdirSync, readFileSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
+
+import { I18N_DIR as i18n, translatedLocales } from './locales.ts';
 
 // The extension's strings, from `node scripts/sync-extension-strings.ts`.
 const extensionStrings: Record<string, Record<string, string>> = JSON.parse(
@@ -19,8 +21,6 @@ const EXCEPTIONS = [
   'demo:article.',
   'site:cli.demo.',
 ];
-
-const i18n = new URL('../src/i18n/', import.meta.url);
 
 type Leaves = Map<string, string>;
 
@@ -75,11 +75,7 @@ for (const [key, message] of Object.entries(config('en'))) {
 
 const args = process.argv.slice(2);
 const glossary = args[0] === '--glossary' ? args[1] : null;
-const locales = glossary
-  ? [glossary]
-  : readdirSync(i18n, { withFileTypes: true })
-      .filter((e) => e.isDirectory() && e.name !== 'en')
-      .map((e) => e.name);
+const locales = glossary ? [glossary] : translatedLocales();
 
 const errors: Array<string> = [];
 
