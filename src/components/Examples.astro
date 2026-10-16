@@ -6,8 +6,8 @@ import CloseIcon from '@/components/icons/CloseIcon';
 import CopyIcon from '@/components/icons/CopyIcon';
 import SbIcon from '@/components/icons/SbIcon';
 
-import { GALLERY, type GallerySite } from '@/lib/gallery';
 import { LINKS } from '@/lib/links';
+import { EXAMPLES, type ExampleSite } from '@/lib/examples';
 
 import { fmt } from '@/i18n';
 
@@ -28,11 +28,11 @@ const SOURCE_BASE = `${LINKS.siteGithub}/blob/main/src/assets/gallery/`;
 /**
  * The custom properties that crop a site's screenshots on phones.
  */
-const cropStyle = ({ phoneCrop: { x, y, width } }: GallerySite) =>
+const cropStyle = ({ phoneCrop: { x, y, width } }: ExampleSite) =>
   `--crop-x: ${x}; --crop-y: ${y}; --crop-w: ${width}`;
 
 const sites = await Promise.all(
-  GALLERY.map(async (site) => ({
+  EXAMPLES.map(async (site) => ({
     ...site,
     themes: await Promise.all(
       site.themes.map(async (theme) => ({

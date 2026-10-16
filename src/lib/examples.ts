@@ -25,7 +25,7 @@ import shotWikipediaParchment from '@/assets/gallery/wikipedia/parchment.png';
 import cssWikipediaSlate from '@/assets/gallery/wikipedia/slate.css?raw';
 import shotWikipediaSlate from '@/assets/gallery/wikipedia/slate.png';
 
-export type GalleryTheme = {
+export type ExampleTheme = {
   name: string;
   colors: [string, string];
   image: ImageMetadata;
@@ -34,7 +34,7 @@ export type GalleryTheme = {
   | { note: string; css?: never; file?: never }
 );
 
-export type GallerySite = {
+export type ExampleSite = {
   id: string;
   site: string;
   url: string;
@@ -43,10 +43,10 @@ export type GallerySite = {
    * left, top and width as fractions of the screenshot's width.
    */
   phoneCrop: { x: number; y: number; width: number };
-  themes: Array<GalleryTheme>;
+  themes: Array<ExampleTheme>;
 };
 
-export const GALLERY: Array<GallerySite> = [
+export const EXAMPLES: Array<ExampleSite> = [
   {
     id: 'wikipedia',
     site: 'Wikipedia',

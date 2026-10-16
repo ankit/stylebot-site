@@ -7,15 +7,7 @@ import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
-const SRC_FOLDERS = [
-  'layouts',
-  'components',
-  'theme',
-  'lib',
-  'i18n',
-  'assets',
-  'scripts',
-];
+const SRC_FOLDERS = ['layouts', 'components', 'theme', 'lib', 'i18n', 'assets'];
 
 export default tseslint.config(
   {
