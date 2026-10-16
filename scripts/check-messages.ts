@@ -1,83 +1,65 @@
 /**
- * Checks every translated catalog against English: the same keys and list
- * lengths, and the same {placeholders}, HTML tags and [[keys]] in each string.
- * Pass locale codes to check only those; exits non-zero on any mismatch.
+ * Checks that src/i18n/source.json matches the t() calls under src/, and
+ * that every catalog translates each message once, keeping its
+ * {placeholders}, HTML tags and [[keys]]. Pass locale codes to check only
+ * those; exits non-zero on any problem.
  */
-import { I18N_DIR as dir, translatedLocales } from './locales.ts';
+import { readFileSync } from 'node:fs';
 
-const CATALOGS = ['site', 'demo'];
+import { translatedLocales } from './locales.ts';
+import {
+  extractMessages,
+  json,
+  loadCatalog,
+  lookup,
+  SOURCE_FILE,
+} from './messages.ts';
+
 const TOKEN = /\{\w+\}|<[^>]+>|\[\[[^\]]+\]\]/g;
 
 const locales =
   process.argv.length > 2 ? process.argv.slice(2) : translatedLocales();
 
-const load = async (locale: string, catalog: string) =>
-  (await import(new URL(`${locale}/${catalog}.ts`, dir).href)).default;
-
 const tokens = (s: string) => (s.match(TOKEN) ?? []).sort().join(' ');
 
+const messages = extractMessages();
 const errors: Array<string> = [];
 
-/**
- * Compares a translated value with the English one at the same path.
- */
-function compare(en: unknown, tr: unknown, path: string) {
-  if (typeof en === 'string') {
-    if (typeof tr !== 'string') {
-      return errors.push(`${path}: not a string`);
-    }
+if (readFileSync(SOURCE_FILE, 'utf8') !== json(messages)) {
+  errors.push(
+    'src/i18n/source.json is out of date: run node scripts/extract-messages.ts',
+  );
+}
 
-    if (en === '' && tr !== '') {
-      errors.push(`${path}: should stay empty`);
-    }
+for (const locale of locales) {
+  const catalog = loadCatalog(locale);
+  const used = new Set<string>();
 
-    if (en !== '' && tr === '') {
-      errors.push(`${path}: empty`);
-    }
+  for (const m of messages) {
+    const name = m.context ? `${m.text} (${m.context})` : m.text;
+    const translation = lookup(catalog, m);
 
-    if (tokens(en) !== tokens(tr)) {
-      errors.push(`${path}: expected [${tokens(en)}], got [${tokens(tr)}]`);
-    }
+    used.add(JSON.stringify([m.text, m.context ?? null]));
 
-    return;
+    if (!translation) {
+      errors.push(`${locale}: missing ${JSON.stringify(name)}`);
+    } else if (tokens(m.text) !== tokens(translation)) {
+      errors.push(
+        `${locale}: ${JSON.stringify(name)} expected [${tokens(m.text)}], got [${tokens(translation)}]`,
+      );
+    }
   }
 
-  if (Array.isArray(en)) {
-    if (!Array.isArray(tr) || tr.length !== en.length) {
-      return errors.push(`${path}: expected a list of ${en.length}`);
-    }
+  for (const [text, entry] of Object.entries(catalog)) {
+    const contexts = typeof entry === 'object' ? Object.keys(entry) : [null];
 
-    en.forEach((v, i) => compare(v, tr[i], `${path}[${i}]`));
-
-    return;
-  }
-
-  if (en && typeof en === 'object') {
-    if (!tr || typeof tr !== 'object') {
-      return errors.push(`${path}: missing`);
-    }
-
-    const keys = new Set([...Object.keys(en), ...Object.keys(tr)]);
-
-    for (const key of keys) {
-      if (!(key in en)) {
-        errors.push(`${path}.${key}: not in English`);
-      } else {
-        compare(
-          (en as Record<string, unknown>)[key],
-          (tr as Record<string, unknown>)[key],
-          `${path}.${key}`,
+    for (const context of contexts) {
+      if (!used.has(JSON.stringify([text, context]))) {
+        errors.push(
+          `${locale}: ${JSON.stringify(text)}${context ? ` (${context})` : ''} isn't used; run node scripts/extract-messages.ts`,
         );
       }
     }
-  }
-}
-
-for (const catalog of CATALOGS) {
-  const en = await load('en', catalog);
-
-  for (const locale of locales) {
-    compare(en, await load(locale, catalog), `${locale}/${catalog}`);
   }
 }
 

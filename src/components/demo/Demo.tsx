@@ -10,8 +10,7 @@ import { currentTheme, isDarkTheme } from '@/theme';
 import { reducedMotion } from '@/lib/motion';
 
 import { fmt } from '@/i18n/format';
-
-import type { DemoMessages } from '@/i18n';
+import { type Catalog, type Translate, translator } from '@/i18n/t';
 
 import {
   DEFAULT_PROFILE,
@@ -91,15 +90,17 @@ function PickCard({ selector, dark }: { selector: string; dark: boolean }) {
  * The browser's extensions menu: made-up extensions around Stylebot, each with
  * its icon color.
  */
-function extensions(m: DemoMessages): Array<[string, string]> {
-  const other = m.browser.otherExtensions;
-
+function extensions(t: Translate): Array<[string, string]> {
   return [
-    [other.adBlocker, '#c9473f'],
-    [other.passwordManager, '#3f67c9'],
+    [
+      // i18n: Names of made-up extensions listed beside Stylebot in the browser's menu
+      t('Ad blocker'),
+      '#c9473f',
+    ],
+    [t('Password manager'), '#3f67c9'],
     ['Stylebot', ''],
-    [other.translate, '#4f8a5b'],
-    [other.webArchive, '#6b6f76'],
+    [t('Translate'), '#4f8a5b'],
+    [t('Web archive'), '#6b6f76'],
   ];
 }
 
@@ -123,7 +124,7 @@ type Props = {
   variant?: 'landing' | 'welcome';
   intro?: ComponentChildren;
   children?: ComponentChildren;
-  messages: DemoMessages;
+  strings: Catalog;
 };
 
 /**
@@ -133,8 +134,8 @@ type Props = {
  * looping.
  */
 export default class Demo extends Component<Props, State> {
-  get m() {
-    return this.props.messages;
+  get t() {
+    return translator(this.props.strings);
   }
 
   get welcome() {
@@ -142,15 +143,19 @@ export default class Demo extends Component<Props, State> {
   }
 
   get newProfile() {
+    const { t } = this;
+
     return this.state.dark
-      ? this.m.editor.newProfileDark
-      : this.m.editor.newProfile;
+      ? // i18n: The same profile's name on a dark page, where it gets a warm dark theme; matches the extension's "Night owl" suggestion
+        t('Night owl')
+      : // i18n: The name the visitor types for the profile they create, for a newspaper-like look
+        t('Newspaper');
   }
 
   get scenes(): Array<Scene> {
-    const all = scenes(this.m, this.state.dark);
+    const all = scenes(this.t, this.state.dark);
 
-    return this.welcome ? [pinScene(this.m), ...all] : all;
+    return this.welcome ? [pinScene(this.t), ...all] : all;
   }
 
   get init(): DemoState {
@@ -482,6 +487,7 @@ export default class Demo extends Component<Props, State> {
     lines: Array<Line>;
     quoteDone: Record<string, boolean>;
   } {
+    const { t } = this;
     const lines: Array<Line> = [];
     const indent =
       'padding-left:14px;margin-left:3px;border-left:1px solid var(--border)';
@@ -538,7 +544,15 @@ export default class Demo extends Component<Props, State> {
     } else if (!typed.length && !S.lookDone) {
       lines.push({
         style: '',
-        toks: [tk(`/* ${this.m.editor.code.noStyles} */`, 'com')],
+        toks: [
+          tk(
+            `/* ${
+              // i18n: Shown as a CSS comment in an empty code editor
+              t('No styles yet')
+            } */`,
+            'com',
+          ),
+        ],
       });
     }
 
@@ -643,11 +657,10 @@ export default class Demo extends Component<Props, State> {
     const step = S.lookDone ? LOOK_STEPS : S.lookStep;
     const at = (n: number) => step >= n;
     const dk = S.dark;
-    const m = this.m;
-    const { basic, presets } = m.editor;
+    const { t } = this;
     const profileName = (name: string) =>
       name === DEFAULT_PROFILE
-        ? m.editor.defaultProfile
+        ? t('Default', { context: 'profile' })
         : name === NEW_PROFILE
           ? this.newProfile
           : name;
@@ -699,7 +712,9 @@ export default class Demo extends Component<Props, State> {
     const readTog = toggle(read);
     const grayTog = toggle(S.gray);
     const selected = !S.inspecting && !!S.sel;
-    const selText = selected ? 'article h1' : m.editor.pickAnElement;
+    const selText = selected
+      ? 'article h1'
+      : t('Pick an element', { context: 'button' });
 
     const quote = `margin:4px 0 18px;transition:all .35s${
       qd.bg || at(5)
@@ -799,13 +814,17 @@ export default class Demo extends Component<Props, State> {
             }
           >
             <div class="demo-menu-head">
-              <span>{m.browser.extensions}</span>
+              <span>{t('Extensions')}</span>
             </div>
             <div class="demo-menu-note">
-              <strong>{m.browser.fullAccess}</strong>
-              <span>{m.browser.fullAccessNote}</span>
+              <strong>{t('Full access')}</strong>
+              <span>
+                {t(
+                  'These extensions can see and change information on this site.',
+                )}
+              </span>
             </div>
-            {extensions(m).map(([name, bg]) => {
+            {extensions(t).map(([name, bg]) => {
               const sb = !bg;
               const on = sb && S.pinned;
 
@@ -858,7 +877,7 @@ export default class Demo extends Component<Props, State> {
             <div class="demo-pop-sep" />
             <div style="padding:8px 6px">
               <div class="demo-pop-row">
-                <span style="flex:1;min-width:0">{m.popup.readability}</span>
+                <span style="flex:1;min-width:0">{t('Readability')}</span>
                 <span style="width:28px;height:16px;border-radius:8px;background:var(--strong);position:relative;flex:none">
                   <span style="position:absolute;top:2px;left:2px;width:12px;height:12px;border-radius:6px;background:#fff" />
                 </span>
@@ -872,7 +891,7 @@ export default class Demo extends Component<Props, State> {
                 style={`background:${S.popHover ? (S.clicking ? 'var(--track)' : 'var(--hover)') : 'var(--surface)'}`}
               >
                 <span />
-                <span style="text-align:center">{m.popup.styleThisPage}</span>
+                <span style="text-align:center">{t('Style this page')}</span>
                 <span
                   class="demo-shortcut"
                   style={`opacity:${S.popHover ? 1 : 0}`}
@@ -900,9 +919,14 @@ export default class Demo extends Component<Props, State> {
                   The Harbour Post
                 </span>
                 <span style="margin-left:auto;display:flex;flex-wrap:wrap;justify-content:flex-end;gap:4px 16px;opacity:.75;white-space:nowrap">
-                  <span>{m.article.nav.news}</span>
-                  <span>{m.article.nav.travel}</span>
-                  <span>{m.article.nav.signIn}</span>
+                  <span>
+                    {
+                      // i18n: The sample news article on the demo's page; the same story as the CLI demo's article, so translate both the same way. "The Harbour Post" is the paper's name.
+                      t('News')
+                    }
+                  </span>
+                  <span>{t('Travel')}</span>
+                  <span>{t('Sign in')}</span>
                 </span>
                 {S.inspecting && S.hover === 'header' && (
                   <PickCard selector="header.site-header" dark={dk} />
@@ -917,7 +941,7 @@ export default class Demo extends Component<Props, State> {
                       at(3) ? np.acc : 'var(--page-kicker)'
                     };transition:color .5s`}
                   >
-                    {m.article.kicker}
+                    {t('Travel · Long read')}
                   </div>
                   <div style="position:relative">
                     <h2
@@ -932,7 +956,7 @@ export default class Demo extends Component<Props, State> {
                             : ink
                       }${tr}${mark('h1')}`}
                     >
-                      {m.article.headline}
+                      {t('The quiet return of the night ferry')}
                     </h2>
                     {S.inspecting && S.hover === 'h1' && (
                       <PickCard selector="h1.headline" dark={dk} />
@@ -941,7 +965,9 @@ export default class Demo extends Component<Props, State> {
                   <div
                     style={`margin:0 0 16px;font:400 16px/1.5 ${serif};color:${muted};transition:color .5s`}
                   >
-                    {m.article.dek}
+                    {t(
+                      'Three operators are betting that travelers will trade speed for a cabin, a sea view and no airport.',
+                    )}
                   </div>
                   <div style="display:flex;align-items:center;gap:10px;margin:0 0 18px">
                     <span
@@ -952,11 +978,16 @@ export default class Demo extends Component<Props, State> {
                       ML
                     </span>
                     <span style={`font:400 12.5px/1.4 ${serif};color:${muted}`}>
-                      {m.article.byline}
+                      {
+                        // i18n: A made-up author, date and reading time; keep the name
+                        t('Marta Linde · Sep 24 · 6 min read')
+                      }
                     </span>
                   </div>
                   <p style={this.paragraph(read, serif, ink, tr)}>
-                    {m.article.paragraphs[0]}
+                    {t(
+                      'Twenty years after the last overnight crossing was cut, three operators are putting cabins back on the water. The pitch is simple: board after dinner, sleep through the crossing, and wake up in another country.',
+                    )}
                   </p>
                   <div data-t="quote" style={quote}>
                     <div
@@ -964,16 +995,23 @@ export default class Demo extends Component<Props, State> {
                         quoteFont
                       }line-height:1.45;text-wrap:pretty;color:${ink};transition:all .35s`}
                     >
-                      {m.article.quote}
+                      {t(
+                        '“Nobody books this to save time. They book it to lose a little.”',
+                      )}
                     </div>
                     <div
                       style={`margin-top:8px;font:400 12.5px/1.3 ${serif};color:${muted}`}
                     >
-                      {m.article.quoteBy}
+                      {
+                        // i18n: A made-up person; keep the name
+                        t('— Ines Varga, route planner')
+                      }
                     </div>
                   </div>
                   <p style={this.paragraph(read, serif, ink, tr)}>
-                    {m.article.paragraphs[1]}
+                    {t(
+                      'Bookings on the first reopened line sold out for the summer within a week. Most passengers are under forty, and many have never taken a sleeper of any kind. Operators say the cabins fill first, then the reclining seats, then the deck.',
+                    )}
                   </p>
                 </div>
               </div>
@@ -1080,7 +1118,7 @@ export default class Demo extends Component<Props, State> {
                             class="demo-prof-row"
                             style="padding-left:32px;color:var(--muted)"
                           >
-                            {m.editor.createProfile}
+                            {t('Create profile')}
                           </div>
                         )}
                       </div>
@@ -1148,13 +1186,13 @@ export default class Demo extends Component<Props, State> {
 
                   <div style="flex:none;display:flex;align-items:flex-end;gap:6px;padding:16px 16px 0;border-bottom:1px solid var(--border)">
                     <span data-t="tab-basic" style={tab('basic')}>
-                      {m.editor.tabs.basic}
+                      {t('Basic')}
                     </span>
                     <span data-t="tab-code" style={tab('code')}>
-                      {m.editor.tabs.code}
+                      {t('Code')}
                     </span>
                     <span data-t="tab-presets" style={tab('presets')}>
-                      {m.editor.tabs.presets}
+                      {t('Presets')}
                     </span>
                   </div>
 
@@ -1167,24 +1205,24 @@ export default class Demo extends Component<Props, State> {
                             style={`color:${hasSel ? 'var(--ink2)' : 'var(--faint)'}`}
                           >
                             <EyeOffIcon size={12} />
-                            {basic.hide}
+                            {t('Hide')}
                           </span>
                           <span
                             class="demo-small-btn"
                             style={`color:${hasSel ? 'var(--ink2)' : 'var(--faint)'}`}
                           >
-                            {basic.reset}
+                            {t('Reset')}
                           </span>
                         </div>
                         <div class="demo-card" style="padding:0 14px 8px">
                           <div style="display:flex;align-items:center;height:42px;font:600 13.5px/1 var(--ui);color:var(--ink2)">
-                            <span style="flex:1">{basic.text}</span>
+                            <span style="flex:1">{t('Text')}</span>
                             <span style="color:var(--muted);display:flex;transform:rotate(180deg)">
                               <ChevronDownIcon />
                             </span>
                           </div>
                           <div class="demo-row">
-                            <span class="demo-label">{basic.font}</span>
+                            <span class="demo-label">{t('Font')}</span>
                             <div
                               data-t="font-field"
                               class="demo-field"
@@ -1193,13 +1231,14 @@ export default class Demo extends Component<Props, State> {
                               <span class="demo-field-text">
                                 {hasSel
                                   ? serif.split(',')[0].replace(/'/g, '')
-                                  : basic.defaultFont}
+                                  : // i18n: The font picker's value when no font is set
+                                    t('Default', { context: 'font' })}
                               </span>
                               <ChevronDownIcon />
                             </div>
                           </div>
                           <div class="demo-row">
-                            <span class="demo-label">{basic.size}</span>
+                            <span class="demo-label">{t('Size')}</span>
                             <div data-t="size" style={field('size')}>
                               <span
                                 style={`flex:1;padding:0 10px;font:400 12.5px/1 var(--ui);color:${sizeSet ? 'var(--ink)' : 'var(--faint)'}`}
@@ -1210,7 +1249,7 @@ export default class Demo extends Component<Props, State> {
                             </div>
                           </div>
                           <div class="demo-row">
-                            <span class="demo-label">{basic.lineHeight}</span>
+                            <span class="demo-label">{t('Line Height')}</span>
                             <div style={field('lh')}>
                               <span style="flex:1;padding:0 10px;font:400 12.5px/1 var(--ui);color:var(--faint)">
                                 {hasSel
@@ -1221,7 +1260,7 @@ export default class Demo extends Component<Props, State> {
                             </div>
                           </div>
                           <div class="demo-row">
-                            <span class="demo-label">{basic.color}</span>
+                            <span class="demo-label">{t('Color')}</span>
                             <div data-t="color" style={field('color')}>
                               <span
                                 class="demo-swatch"
@@ -1235,7 +1274,7 @@ export default class Demo extends Component<Props, State> {
                             </div>
                           </div>
                           <div class="demo-row">
-                            <span class="demo-label">{basic.decoration}</span>
+                            <span class="demo-label">{t('Decoration')}</span>
                             <div
                               class="demo-seg"
                               style="font:400 12.5px/1 var(--ui)"
@@ -1249,11 +1288,16 @@ export default class Demo extends Component<Props, State> {
                               <span style="padding:6px 8px;text-decoration:overline">
                                 A
                               </span>
-                              <span style="padding:6px 8px">{basic.none}</span>
+                              <span style="padding:6px 8px">
+                                {
+                                  // i18n: Text decoration option: no underline, strikethrough or overline
+                                  t('None')
+                                }
+                              </span>
                             </div>
                           </div>
                           <div class="demo-row">
-                            <span class="demo-label">{basic.alignment}</span>
+                            <span class="demo-label">{t('Alignment')}</span>
                             <div class="demo-seg">
                               {[
                                 'M1 1.5h11M1 5.5h7M1 9.5h9',
@@ -1281,10 +1325,10 @@ export default class Demo extends Component<Props, State> {
                           </div>
                         </div>
                         {[
-                          basic.background,
-                          basic.box,
-                          basic.effects,
-                          basic.moreProperties,
+                          t('Background'),
+                          t('Box'),
+                          t('Effects'),
+                          t('More properties'),
                         ].map((g) => (
                           <div key={g} class="demo-card demo-group">
                             <span style="flex:1">{g}</span>
@@ -1314,30 +1358,32 @@ export default class Demo extends Component<Props, State> {
                         <div class="demo-card" style="padding:14px 16px">
                           <div style="display:flex;align-items:center;gap:12px">
                             <span style="font:600 14px/1.2 var(--ui);color:var(--ink)">
-                              {presets.readability}
+                              {t('Readability')}
                             </span>
                             <span style={readTog.track}>
                               <span style={readTog.knob} />
                             </span>
                             <span style="margin-left:auto;font:400 12px/1 var(--ui);color:var(--muted)">
-                              {presets.articlesOnly}
+                              {t('Articles only')}
                             </span>
                           </div>
                           <div class="demo-card-body">
-                            {presets.readabilityDescription}
+                            {t(
+                              "Turn this site's articles into a clean, distraction-free reading view, with your choice of theme, font, and size.",
+                            )}
                           </div>
                         </div>
                         <div class="demo-card" style="padding:14px 16px">
                           <div style="display:flex;align-items:center;gap:12px">
                             <span style="font:600 14px/1.2 var(--ui);color:var(--ink)">
-                              {presets.grayscale}
+                              {t('Grayscale')}
                             </span>
                             <span style={grayTog.track}>
                               <span style={grayTog.knob} />
                             </span>
                           </div>
                           <div class="demo-card-body">
-                            {presets.grayscaleDescription}
+                            {t('Apply grayscale to the page.')}
                           </div>
                         </div>
                       </div>
@@ -1350,10 +1396,14 @@ export default class Demo extends Component<Props, State> {
 
           <div class="demo-caption">
             <span class="demo-step-label">
-              {fmt(m.steps.counter, {
-                current: S.scene + 1,
-                total: this.scenes.length,
-              })}
+              {fmt(
+                // i18n: The current step out of the total, e.g. "2 / 6"
+                t('{current} / {total}'),
+                {
+                  current: S.scene + 1,
+                  total: this.scenes.length,
+                },
+              )}
             </span>
             <span aria-live="polite" style="flex:1;min-width:0">
               {this.keysText(S.caption, S.mac)}
@@ -1399,7 +1449,12 @@ export default class Demo extends Component<Props, State> {
           {stage}
         </div>
         <div ref={this.stepsRef} class="demo-steps-wrap" style={fitted}>
-          <div class="demo-steps-head">{m.steps.heading}</div>
+          <div class="demo-steps-head">
+            {
+              // i18n: Heading above the list of the walkthrough's steps
+              t('How it works')
+            }
+          </div>
           <ol
             class="demo-steps"
             style={
@@ -1416,7 +1471,7 @@ export default class Demo extends Component<Props, State> {
               >
                 <div
                   class="demo-step-bar"
-                  title={m.steps.jump}
+                  title={t('Jump to this point')}
                   onClick={(ev: MouseEvent) => this.seekFromBar(i, ev)}
                 >
                   <div class="demo-step-track">

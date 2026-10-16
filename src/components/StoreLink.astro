@@ -11,11 +11,11 @@ type Props = {
 
 const { index, format, class: className } = Astro.props;
 const store = STORES[BROWSERS[index]];
-const { site: t } = Astro.locals;
+const { t } = Astro.locals;
 const template = {
-  add: t.store.add,
+  add: t('Add to {store}'),
   name: '{store}',
-  reinstall: t.store.reinstall,
+  reinstall: t('Reinstall for {store}'),
 }[format];
 ---
 

@@ -3,20 +3,20 @@ import GlobeIcon from '@/components/icons/GlobeIcon';
 
 import { LOCALES, localizePath, unlocalizedPath } from '@/i18n';
 
-const { locale, site: t } = Astro.locals;
+const { locale, t } = Astro.locals;
 const path = unlocalizedPath(Astro.url.pathname);
 ---
 
 <div class="lang-menu">
   <button
     class="icon-btn"
-    aria-label={t.header.language}
+    aria-label={t('Language')}
     aria-haspopup="menu"
     aria-expanded="false"
     data-lang-toggle
   >
     <GlobeIcon />
-    <span class="tip">{t.header.language}</span>
+    <span class="tip">{t('Language')}</span>
   </button>
   <div class="lang-menu-list" role="menu" hidden>
     {LOCALES.map((l) => (

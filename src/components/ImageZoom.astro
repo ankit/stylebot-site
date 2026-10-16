@@ -1,12 +1,12 @@
 ---
 import CloseIcon from '@/components/icons/CloseIcon';
 
-const { site: t } = Astro.locals;
+const { t } = Astro.locals;
 ---
 
-<dialog class="zoom" aria-label={t.zoom.label}>
+<dialog class="zoom" aria-label={t('Enlarged screenshot')}>
   <img class="zoom-img" alt="" />
-  <button class="zoom-close" aria-label={t.zoom.close}>
+  <button class="zoom-close" aria-label={t('Close')}>
     <CloseIcon strokeWidth={1.6} />
   </button>
 </dialog>

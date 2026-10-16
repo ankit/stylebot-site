@@ -1,6 +1,5 @@
 import { fmt } from '@/i18n/format';
-
-import type { DemoMessages } from '@/i18n';
+import type { Translate } from '@/i18n/t';
 
 export type Patch = Record<string, unknown> & {
   cur?: string;
@@ -59,17 +58,24 @@ export type DemoState = typeof INIT;
 /**
  * The walkthrough's scenes, with their text from the demo messages.
  */
-export function scenes(m: DemoMessages, dark = false): Array<Scene> {
-  const { open, pick, style, profiles } = m.scenes;
-  const defaultProfile = m.editor.defaultProfile;
+export function scenes(t: Translate, dark = false): Array<Scene> {
+  const defaultProfile = t('Default', { context: 'profile' });
 
   return [
     {
-      title: open.title,
-      body: open.keysBody,
+      title: t('Open the editor'),
+      // i18n: {keys} is the keyboard shortcut, shown as Alt+Shift+M or ⌥⇧M
+      body: t('Click the icon, or press {keys}.'),
       dur: 4600,
       acts: [
-        [0, { caption: open.captions.iconThenStyle, cur: 'sbicon' }],
+        [
+          0,
+          {
+            // i18n: "Style this page" is the popup's button.
+            caption: t('Click the Stylebot icon, then Style this page.'),
+            cur: 'sbicon',
+          },
+        ],
         [1100, { click: 1, popOpen: true }],
         [1900, { cur: 'style-btn', popHover: true }],
         [
@@ -80,21 +86,23 @@ export function scenes(m: DemoMessages, dark = false): Array<Scene> {
             popHover: false,
             editorOpen: true,
             inspecting: true,
-            caption: open.captions.orKeys,
+            caption:
+              // i18n: {keys} is the keyboard shortcut, shown as Alt+Shift+M or ⌥⇧M
+              t('Or press {keys} to open it directly.'),
           },
         ],
       ],
     },
     {
-      title: pick.title,
-      body: pick.fieldsBody,
+      title: t('Pick an element', { context: 'step' }),
+      body: t('Click to select. Fields show its current styles.'),
       dur: 5000,
       acts: [
         [
           0,
           {
             inspecting: true,
-            caption: pick.captions.hoverToSee,
+            caption: t('Hover to see what can be styled.'),
             cur: 'header',
           },
         ],
@@ -108,23 +116,31 @@ export function scenes(m: DemoMessages, dark = false): Array<Scene> {
             sel: 'h1',
             hover: null,
             inspecting: false,
-            caption: pick.captions.select,
+            caption: t('Click to select. The selector fills in for you.'),
           },
         ],
-        [3500, { cur: 'font-field', caption: pick.captions.computed }],
+        [
+          3500,
+          {
+            cur: 'font-field',
+            caption: t(
+              'Each field shows the element’s current computed value.',
+            ),
+          },
+        ],
       ],
     },
     {
-      title: style.title,
-      body: style.body,
+      title: t('Style it'),
+      body: t('Use the Basic controls or write CSS.'),
       dur: 13800,
       acts: [
-        [0, { caption: style.captions.size, cur: 'size' }],
+        [0, { caption: t('Set the size…'), cur: 'size' }],
         [800, { click: 1, focus: 'size' }],
         [1200, { h1Size: 36 }],
         [1450, { h1Size: 40 }],
         [1700, { h1Size: 44 }],
-        [2400, { cur: 'color', caption: style.captions.color }],
+        [2400, { cur: 'color', caption: t('…and the color.') }],
         [3200, { click: 1, focus: 'color' }],
         [3600, { h1Color: '#b0303a' }],
         [
@@ -132,25 +148,36 @@ export function scenes(m: DemoMessages, dark = false): Array<Scene> {
           {
             focus: null,
             cur: 'tab-code',
-            caption: style.captions.plainCss,
+            caption: t('Every change is plain CSS, saved for this site.'),
           },
         ],
         [5200, { click: 1, tab: 'code' }],
-        [6200, { caption: style.captions.byHand, cur: 'code' }],
+        [6200, { caption: t('Or write CSS by hand.'), cur: 'code' }],
         [7000, { click: 1, qType: true }],
-        [10400, { cur: 'quote', caption: style.captions.live }],
+        [10400, { cur: 'quote', caption: t('The page updates as you type.') }],
       ],
     },
     {
-      title: profiles.title,
-      body: profiles.looksBody,
+      title: t('Profiles'),
+      // i18n: Also the scene's first caption
+      body: t('Save different looks for the same site.'),
       dur: 10000,
       acts: [
-        [0, { caption: profiles.looksBody, cur: 'prof-btn' }],
+        [
+          0,
+          {
+            // i18n: Also the scene's first caption
+            caption: t('Save different looks for the same site.'),
+            cur: 'prof-btn',
+          },
+        ],
         [800, { click: 1, profMenu: true }],
         [
           1600,
-          { cur: 'prof-create', caption: profiles.captions.createForLook },
+          {
+            cur: 'prof-create',
+            caption: t('Create a profile for a new look.'),
+          },
         ],
         [2300, { click: 1, profCreating: true, profType: true }],
         [
@@ -160,10 +187,18 @@ export function scenes(m: DemoMessages, dark = false): Array<Scene> {
             profile: NEW_PROFILE,
             lookDone: false,
             lookStep: 0,
-            caption: fmt(profiles.captions.created, {
-              profile: dark ? m.editor.newProfileDark : m.editor.newProfile,
-              defaultProfile,
-            }),
+            caption: fmt(
+              // i18n: {profile} is the new profile's name; {defaultProfile} is "Default"
+              t('{profile} starts clean. {defaultProfile} is still saved.'),
+              {
+                profile: dark
+                  ? // i18n: The same profile's name on a dark page, where it gets a warm dark theme; matches the extension's "Night owl" suggestion
+                    t('Night owl')
+                  : // i18n: The name the visitor types for the profile they create, for a newspaper-like look
+                    t('Newspaper'),
+                defaultProfile,
+              },
+            ),
           },
         ],
         [
@@ -179,8 +214,10 @@ export function scenes(m: DemoMessages, dark = false): Array<Scene> {
           {
             lookStep: 1,
             caption: dark
-              ? profiles.captions.darkLook
-              : profiles.captions.newspaperLook,
+              ? // i18n: On a dark page the new profile, "Night owl", gets a warm dark theme instead.
+                t('Give it a warm dark look.')
+              : // i18n: The new profile, "Newspaper", gets a newspaper-like style.
+                t('Give it a newspaper look.'),
           },
         ],
         [4900, { lookStep: 2 }],
@@ -188,7 +225,14 @@ export function scenes(m: DemoMessages, dark = false): Array<Scene> {
         [5500, { lookStep: 4 }],
         [5800, { lookStep: 5 }],
         [6100, { lookDone: true }],
-        [6800, { cur: 'prof-btn', caption: profiles.captions.switchAnytime }],
+        [
+          6800,
+          {
+            cur: 'prof-btn',
+            // i18n: "them" is the two profiles
+            caption: t('Switch between them anytime.'),
+          },
+        ],
         [7400, { click: 1, profMenu: true }],
         [8000, { cur: `prof-${DEFAULT_PROFILE}` }],
         [
@@ -197,7 +241,11 @@ export function scenes(m: DemoMessages, dark = false): Array<Scene> {
             click: 1,
             profMenu: false,
             profile: DEFAULT_PROFILE,
-            caption: fmt(profiles.captions.backToDefault, { defaultProfile }),
+            caption: fmt(
+              // i18n: {defaultProfile} is the default profile's name, "Default"
+              t('Back to {defaultProfile}. One site, two looks.'),
+              { defaultProfile },
+            ),
           },
         ],
       ],
@@ -363,15 +411,19 @@ export const LOOKS: Record<'light' | 'dark', Look> = {
 /**
  * The welcome page's first scene, pinning Stylebot to the toolbar.
  */
-export function pinScene(m: DemoMessages): Scene {
-  const { pin } = m.scenes;
-
+export function pinScene(t: Translate): Scene {
   return {
-    title: pin.title,
-    body: pin.body,
+    title: t('Pin it to the toolbar'),
+    body: t('Keep Stylebot one click away.'),
     dur: 6000,
     acts: [
-      [0, { caption: pin.captions.menu, cur: 'puzzle' }],
+      [
+        0,
+        {
+          caption: t('Stylebot starts in the extensions menu.'),
+          cur: 'puzzle',
+        },
+      ],
       [900, { click: 1, menuOpen: true }],
       [1800, { cur: 'pin' }],
       [2700, { click: 1, pinned: true }],
@@ -380,7 +432,7 @@ export function pinScene(m: DemoMessages): Scene {
         {
           menuOpen: false,
           cur: 'sbicon',
-          caption: pin.captions.pinned,
+          caption: t('Pinned. Stylebot is now in your toolbar.'),
         },
       ],
     ],

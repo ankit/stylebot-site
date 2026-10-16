@@ -5,27 +5,28 @@ import { LINKS } from '@/lib/links';
 import CliCommand from './CliCommand.astro';
 import CliDemo from './CliDemo';
 
-const {
-  path,
-  site: { cli: t },
-} = Astro.locals;
+const { path, strings, t } = Astro.locals;
 ---
 
 <section id="cli" class="section">
   <div class="section-inner cli-inner">
     <div class="cli-head">
       <div class="cli-intro">
-        <h2 class="section-title">{t.title}</h2>
-        <p>{t.body}</p>
+        <h2 class="section-title">{t('Works with your coding agent')}</h2>
+        <p>
+          {t(
+            'Stylebot has a CLI, so any agent that can run commands can restyle a site.',
+          )}
+        </p>
       </div>
       <div class="cli-setup">
         <CliCommand lines={[CLI_INSTALL]} boxed />
         <a href={path(LINKS.cli)} class="cli-guide">
-          {t.guide}
+          {t('Set up the CLI →')}
         </a>
       </div>
     </div>
-    <CliDemo client:visible messages={t.demo} />
+    <CliDemo client:visible strings={strings('components/cli/CliDemo.tsx')} />
   </div>
 </section>
 

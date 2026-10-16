@@ -3,17 +3,25 @@ import Base from '@/layouts/Base.astro';
 
 import NotFound from '@/components/NotFound';
 
-import { LOCALES, messages, type Locale, type SiteMessages } from '@/i18n';
+import { type Catalog, islandStrings, type Locale, LOCALES } from '@/i18n';
 
-const all = Object.fromEntries(
-  LOCALES.map((l) => [l.code, messages(l.code).site.notFound]),
-) as Record<Locale, SiteMessages['notFound']>;
-const t = all.en;
+const { t } = Astro.locals;
+const strings = Object.fromEntries(
+  LOCALES.map((l) => [
+    l.code,
+    islandStrings(l.code, 'components/NotFound.tsx'),
+  ]),
+) as Record<Locale, Catalog>;
 ---
 
-<Base title={t.title} description={t.description} alternates={false} noindex>
+<Base
+  title={t('Page not found')}
+  description={t("This page doesn't exist.")}
+  alternates={false}
+  noindex
+>
   <main class="nf-wrap">
-    <NotFound client:load messages={all} />
+    <NotFound client:load strings={strings} />
   </main>
 </Base>
 

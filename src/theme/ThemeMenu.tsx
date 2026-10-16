@@ -4,16 +4,21 @@ import ContrastIcon from '@/components/icons/ContrastIcon';
 
 import { track } from '@/lib/analytics';
 
-import { fmt } from '@/i18n/format';
+import { type Catalog, translator } from '@/i18n/t';
 
 import { applyTheme, currentTheme } from './state';
 import { THEME_KEYS, type ThemeKey, THEMES } from './themes';
 
 import './theme-menu.css';
 
-type Labels = { title: string; names: Record<ThemeKey, string> };
-
-export default function ThemeMenu({ labels }: { labels: Labels }) {
+export default function ThemeMenu({ strings }: { strings: Catalog }) {
+  const t = translator(strings);
+  const names: Record<ThemeKey, string> = {
+    light: t('Light'),
+    dark: t('Dark'),
+    stylebot: t('Stylebot'),
+    newsprint: t('Newsprint'),
+  };
   const [theme, setTheme] = useState<ThemeKey>('light');
   const [open, setOpen] = useState(false);
 
@@ -38,7 +43,7 @@ export default function ThemeMenu({ labels }: { labels: Labels }) {
     setOpen(false);
   };
 
-  const title = fmt(labels.title, { theme: labels.names[theme] });
+  const title = t('Theme: {theme}', { theme: names[theme] });
 
   return (
     <div class="theme-menu">
@@ -57,7 +62,7 @@ export default function ThemeMenu({ labels }: { labels: Labels }) {
           <div class="theme-menu-scrim" onClick={() => setOpen(false)} />
           <div class="theme-menu-list" role="menu">
             {THEME_KEYS.map((key) => {
-              const t = THEMES[key];
+              const colors = THEMES[key];
               const on = key === theme;
 
               return (
@@ -71,12 +76,12 @@ export default function ThemeMenu({ labels }: { labels: Labels }) {
                   <span
                     class="theme-dot"
                     style={{
-                      background: `linear-gradient(135deg,${t.surface} 0 50%,${t.acc} 50% 100%)`,
-                      boxShadow: `inset 0 0 0 1px ${t.strong}`,
+                      background: `linear-gradient(135deg,${colors.surface} 0 50%,${colors.acc} 50% 100%)`,
+                      boxShadow: `inset 0 0 0 1px ${colors.strong}`,
                     }}
                   />
-                  <span class="theme-name" style={{ fontFamily: t.ui }}>
-                    {labels.names[key]}
+                  <span class="theme-name" style={{ fontFamily: colors.ui }}>
+                    {names[key]}
                   </span>
                   <span class="theme-check">✓</span>
                 </button>

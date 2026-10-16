@@ -12,27 +12,23 @@ import LanguageMenu from './LanguageMenu.astro';
 
 type Props = { current?: 'manual'; storeCta?: boolean; install?: boolean };
 const { current, storeCta = false, install = true } = Astro.props;
-const { path, site: t } = Astro.locals;
-const themeLabels = {
-  title: t.header.theme,
-  names: t.themes,
-};
+const { path, strings, t } = Astro.locals;
 ---
 
 <header class="site-header">
   <div class="site-header-inner">
-    <Logo client:idle href={path('/')} label={t.header.home} />
+    <Logo client:idle href={path('/')} label={t('Stylebot home')} />
     <div class="header-actions">
       <LanguageMenu />
-      <ThemeMenu client:idle labels={themeLabels} />
+      <ThemeMenu client:idle strings={strings('theme/')} />
       <a
         href={path(LINKS.manual)}
         class:list={['icon-btn', { 'is-current': current === 'manual' }]}
-        aria-label={t.header.manual}
+        aria-label={t('Manual')}
         aria-current={current === 'manual' ? 'page' : undefined}
       >
         <BookIcon />
-        <span class="tip">{t.header.manual}</span>
+        <span class="tip">{t('Manual')}</span>
       </a>
       <a href={LINKS.github} class="icon-btn" aria-label="GitHub">
         <GitHubIcon />
@@ -47,7 +43,7 @@ const themeLabels = {
           />
         ) : (
           <a href={path('/#install')} class="btn btn-primary btn-sm">
-            {t.header.install}
+            {t('Install')}
           </a>
         ))}
     </div>

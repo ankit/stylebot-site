@@ -3,49 +3,74 @@ import Base from '@/layouts/Base.astro';
 
 import { LINKS } from '@/lib/links';
 
-import { fmt, localeStaticPaths, rich } from '@/i18n';
+import { localeStaticPaths, rich } from '@/i18n';
 
 export const getStaticPaths = localeStaticPaths;
 
-const {
-  site: { releases: t },
-} = Astro.locals;
-const r = t.r31;
-const title = fmt(t.title, { version: '3.1' });
+const { t } = Astro.locals;
+const title = t("What's new in {version}", { version: '3.1' });
 ---
 
-<Base title={title} description={r.description}>
+<Base
+  title={title}
+  description={t(
+    'Stylebot 3.1 adds sync and backup with Google Drive, a resizable editor and color palettes.',
+  )}
+>
   <main class="prose">
     <h1>{title}</h1>
 
-    <h2>{r.syncTitle}</h2>
+    <h2>{t('Sync and backup with Google Drive')}</h2>
     <figure>
-      <img src="/images/releases/3.1/sync.gif" height="400" alt={r.syncAlt} />
+      <img
+        src="/images/releases/3.1/sync.gif"
+        height="400"
+        alt={t('Syncing styles with Google Drive')}
+      />
     </figure>
-    {r.syncBody.map((p) => (
+    {[
+      t(
+        'Turn on and authorize sync with Google Drive from the Stylebot <strong>Options page</strong>.',
+      ),
+      t(
+        "Once it's on, click <strong>Sync Now</strong> in the popup or the Options page to sync your browser's styles with the ones backed up on Google Drive.",
+      ),
+    ].map((p) => (
       <p set:html={p} />
     ))}
 
-    <h2>{r.resizeTitle}</h2>
+    <h2>{t('Resize the Stylebot editor')}</h2>
     <figure>
       <img
         src="/images/releases/3.1/resize.gif"
         height="400"
-        alt={r.resizeAlt}
+        alt={t('Resizing the Stylebot editor')}
       />
     </figure>
-    <p>{r.resizeBody}</p>
+    <p>
+      {t(
+        "You can now resize the Stylebot editor, and optionally have the page shrink so its content doesn't sit under the editor.",
+      )}
+    </p>
 
-    <h2>{r.colorsTitle}</h2>
+    <h2>{t('Color palettes')}</h2>
     <figure>
       <img
         src="/images/releases/3.1/colors.gif"
         height="400"
-        alt={r.colorsAlt}
+        alt={t('Picking a color from a palette')}
       />
     </figure>
-    <p>{r.colorsBody}</p>
+    <p>
+      {t(
+        'An improved color picker with palettes makes it easier to pick good colors.',
+      )}
+    </p>
 
-    <h2 set:html={rich(t.bugFixes, { changelog: LINKS.changelog })} />
+    <h2
+      set:html={rich(t('And lots of <a href="{changelog}">bug fixes</a>'), {
+        changelog: LINKS.changelog,
+      })}
+    />
   </main>
 </Base>

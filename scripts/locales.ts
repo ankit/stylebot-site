@@ -2,15 +2,16 @@ import { readdirSync } from 'node:fs';
 
 export const I18N_DIR = new URL('../src/i18n/', import.meta.url);
 
+export const CATALOG_DIR = new URL('catalogs/', I18N_DIR);
+
 /**
- * Every locale with a folder in src/i18n, read from disk so a locale being
- * added is picked up before it's in LOCALES.
+ * Every locale with a catalog in src/i18n/catalogs, read from disk so a
+ * locale being added is picked up before it's in LOCALES.
  */
-export const allLocales = () =>
-  readdirSync(I18N_DIR, { withFileTypes: true })
-    .filter((e) => e.isDirectory())
-    .map((e) => e.name)
+export const translatedLocales = () =>
+  readdirSync(CATALOG_DIR)
+    .filter((name) => name.endsWith('.json'))
+    .map((name) => name.slice(0, -'.json'.length))
     .sort();
 
-export const translatedLocales = () =>
-  allLocales().filter((locale) => locale !== 'en');
+export const allLocales = () => ['en', ...translatedLocales()].sort();

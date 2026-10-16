@@ -9,18 +9,16 @@ import SbIcon from '@/components/icons/SbIcon';
 import { LINKS } from '@/lib/links';
 import { EXAMPLES, type ExampleSite } from '@/lib/examples';
 
-import { fmt } from '@/i18n';
-
-const {
-  site: { gallery: t },
-} = Astro.locals;
+const { t } = Astro.locals;
 const strings = {
-  alt: t.alt,
-  install: t.install,
-  installedAs: t.installedAs,
-  installFailed: t.installFailed,
-  copy: t.copy,
-  copied: t.copied,
+  alt: t('{site} restyled with Stylebot: {name}'),
+  install: t('Install'),
+  installedAs:
+    // i18n: {name} is the name of the profile Stylebot added the style as.
+    t('Installed as {name}'),
+  installFailed: t('Couldn’t install'),
+  copy: t('Copy CSS'),
+  copied: t('Copied'),
 };
 
 const SOURCE_BASE = `${LINKS.siteGithub}/blob/main/src/assets/gallery/`;
@@ -55,8 +53,10 @@ const sites = await Promise.all(
   <div class="section-inner">
     <div class="section-head">
       <div>
-        <h2 class="section-title">{t.title}</h2>
-        <p class="section-lede">{t.lede}</p>
+        <h2 class="section-title">{t('Styles to start from')}</h2>
+        <p class="section-lede">
+          {t('Copy one and tweak it, or start from scratch.')}
+        </p>
       </div>
     </div>
     <div class="gallery-grid">
@@ -77,17 +77,23 @@ const sites = await Promise.all(
                 data-theme={i}
                 data-full={theme.full}
                 hidden={i !== 0}
-                aria-label={fmt(t.enlarge, {
-                  site: site.site,
-                  name: theme.name,
-                })}
+                aria-label={
+                  // i18n: {site} is a website, {name} the name of one of its styles, such as Dracula.
+                  t('Enlarge {site}: {name}', {
+                    site: site.site,
+                    name: theme.name,
+                  })
+                }
               >
                 <Image
                   src={theme.image}
                   widths={[480, 720, 960, 1920]}
                   sizes="(min-width: 1180px) 360px, (min-width: 700px) 45vw, (min-width: 640px) 100vw, 260vw"
                   loading={i === 0 ? 'eager' : 'lazy'}
-                  alt={fmt(t.alt, { site: site.site, name: theme.name })}
+                  alt={t('{site} restyled with Stylebot: {name}', {
+                    site: site.site,
+                    name: theme.name,
+                  })}
                 />
               </button>
             ))}
@@ -95,22 +101,22 @@ const sites = await Promise.all(
               <button
                 class="gallery-action gallery-install"
                 data-install
-                title={t.installTitle}
+                title={t('Install in Stylebot')}
               >
                 <span class="gallery-action-idle">
                   <SbIcon size={13} />
-                  {t.install}
+                  {t('Install')}
                 </span>
                 <span class="gallery-action-ok">
                   <CheckIcon size={12} />
-                  {t.installed}
+                  {t('Installed')}
                 </span>
               </button>
               <button
                 class="gallery-action gallery-copy"
                 data-copy
-                title={t.copy}
-                aria-label={t.copy}
+                title={t('Copy CSS')}
+                aria-label={t('Copy CSS')}
               >
                 <span class="gallery-action-idle">
                   <CopyIcon />
@@ -137,7 +143,12 @@ const sites = await Promise.all(
                 </button>
               ))}
             </div>
-            <p class="gallery-hint">{fmt(t.hint, { site: site.url })}</p>
+            <p class="gallery-hint">
+              {
+                // i18n: Shown after copying a style's CSS; {site} is a website, such as github.com. "Code" is the editor tab's name in Stylebot; use the extension's own translation.
+                t('Paste it into the Code tab on {site}.', { site: site.url })
+              }
+            </p>
           </figcaption>
           {site.themes.map((theme, i) => (
             <template
@@ -155,7 +166,7 @@ const sites = await Promise.all(
   </div>
 </section>
 
-<dialog class="lightbox" aria-label={t.lightbox}>
+<dialog class="lightbox" aria-label={t('Restyled site')}>
   <div class="lightbox-body" data-close>
     <img class="lightbox-img" alt="" />
     <div class="lightbox-bar">
@@ -163,10 +174,10 @@ const sites = await Promise.all(
       <div class="lightbox-chips" />
       <span class="lightbox-note" hidden />
       <button class="lightbox-install" data-lightbox-install hidden>
-        {t.install}
+        {t('Install')}
       </button>
       <button class="lightbox-copy" data-lightbox-copy>
-        {t.copy}
+        {t('Copy CSS')}
       </button>
       {/* eslint-disable-next-line astro/jsx-a11y/anchor-is-valid -- its href is set when a theme with a source file opens */}
       <a
@@ -176,11 +187,11 @@ const sites = await Promise.all(
         rel="noopener"
         hidden
       >
-        {t.source}
+        {t('View on GitHub')}
       </a>
     </div>
   </div>
-  <button class="lightbox-close" data-close aria-label={t.close}>
+  <button class="lightbox-close" data-close aria-label={t('Close')}>
     <CloseIcon strokeWidth={1.6} />
   </button>
 </dialog>

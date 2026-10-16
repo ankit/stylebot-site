@@ -2,7 +2,6 @@ import { useEffect, useState } from 'preact/hooks';
 
 import { track } from '@/lib/analytics';
 
-import { fmt } from '@/i18n/format';
 import {
   DEFAULT_LOCALE,
   htmlLang,
@@ -10,10 +9,7 @@ import {
   localeOf,
   localizePath,
 } from '@/i18n/locales';
-
-import type { SiteMessages } from '@/i18n';
-
-type Messages = SiteMessages['notFound'];
+import { type Catalog, translator } from '@/i18n/t';
 
 const FADE_MS = 180;
 
@@ -21,12 +17,12 @@ const FADE_MS = 180;
  * A 404 page styled like a bare server error, with a button that makes it nice.
  */
 export default function NotFound({
-  messages,
+  strings,
 }: {
-  messages: Record<Locale, Messages>;
+  strings: Record<Locale, Catalog>;
 }) {
   const [locale, setLocale] = useState<Locale>(DEFAULT_LOCALE);
-  const t = messages[locale];
+  const t = translator(strings[locale]);
   const [nice, setNice] = useState(false);
   const [fading, setFading] = useState(false);
   const [path, setPath] = useState('/this-page-does-not-exist');
@@ -40,14 +36,14 @@ export default function NotFound({
     const found = localeOf(location.pathname);
 
     if (found !== DEFAULT_LOCALE) {
+      const t = translator(strings[found]);
+
       setLocale(found);
       document.documentElement.lang = htmlLang(found);
       document.documentElement.translate = false;
-      document.title = fmt('{title} - Stylebot', {
-        title: messages[found].title,
-      });
+      document.title = t('{title} - Stylebot', { title: t('Page not found') });
     }
-  }, [messages]);
+  }, [strings]);
 
   const makeNice = () => {
     setFading(true);
@@ -72,14 +68,16 @@ export default function NotFound({
   return (
     <div class="nf">
       <div class="nf-intro">
-        <h1>{t.heading}</h1>
+        <h1>{t("This page doesn't exist, and it looks terrible.")}</h1>
         {nice ? (
           <p class="nf-done" role="status">
-            {t.done}
+            {t(
+              'Much better. The page still doesn’t exist, but at least it looks good now.',
+            )}
           </p>
         ) : (
           <button class="nf-nice" disabled={fading} onClick={makeNice}>
-            {t.nice}
+            {t('✨ Just make it nice')}
           </button>
         )}
       </div>
@@ -103,10 +101,12 @@ export default function NotFound({
                 : 'padding:8px 10px;width:100%'
             };transition:opacity ${FADE_MS}ms;opacity:${fading ? 0 : 1}`}
           >
-            <h1 style={style.h1}>{t.pageTitle}</h1>
-            <p style={style.p}>{t.pageBody}</p>
+            <h1 style={style.h1}>{t('404 Not Found')}</h1>
+            <p style={style.p}>
+              {t('The requested URL was not found on this server.')}
+            </p>
             <a href={localizePath(locale, '/')} style={style.a}>
-              {t.pageLink}
+              {t('Go to the homepage')}
             </a>
             {!nice && (
               <>

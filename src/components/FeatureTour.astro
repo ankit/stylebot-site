@@ -8,20 +8,24 @@ import pick from '@/assets/tour/pick-element.webp';
 import code from '@/assets/tour/code.webp';
 import profiles from '@/assets/tour/profiles.webp';
 
-const {
-  site: {
-    home: { tour: t },
-  },
-} = Astro.locals;
+const { t } = Astro.locals;
 
 const CARDS: Array<[string, ImageMetadata]> = [
-  [t.pick, pick],
-  [t.code, code],
-  [t.profiles, profiles],
+  [t('Point at anything. Restyle it.'), pick],
+  [t('Write CSS when you want to.'), code],
+  [t('Switch looks in a click.'), profiles],
 ];
 ---
 
-<div class="tour" role="region" aria-label={t.label} tabindex="0">
+<div
+  class="tour"
+  role="region"
+  aria-label={
+    // i18n: Headlines of the swipeable feature cards on phones, each over a screenshot of the feature.
+    t('Feature tour')
+  }
+  tabindex="0"
+>
   {CARDS.map(([title, src]) => (
     <figure class="tour-card">
       <figcaption>{title}</figcaption>

@@ -5,51 +5,20 @@
  */
 import { readFileSync } from 'node:fs';
 
-import { I18N_DIR as i18n, translatedLocales } from './locales.ts';
+import { translatedLocales } from './locales.ts';
+import { extractMessages, loadCatalog, lookup } from './messages.ts';
 
 // The extension's strings, from `node scripts/sync-extension-strings.ts`.
 const extensionStrings: Record<string, Record<string, string>> = JSON.parse(
   readFileSync(new URL('extension-strings.json', import.meta.url), 'utf8'),
 );
 
-const CATALOGS = ['site', 'demo'];
-
-// Walkthrough step headings word "Pick an element" as an instruction, unlike the
-// button; the sample news article is the demo page's text, not Stylebot's UI.
+// Walkthrough step headings word "Pick an element" as an instruction, unlike
+// the button; "Sign in" is the sample news site's link, not Stylebot's UI.
 const EXCEPTIONS = [
-  'demo:scenes.pick.title',
-  'demo:article.',
-  'site:cli.demo.',
+  { text: 'Pick an element', context: 'step' },
+  { text: 'Sign in' },
 ];
-
-type Leaves = Map<string, string>;
-
-/**
- * Every string in a catalog by its dotted path, prefixed with the catalog.
- */
-function leaves(value: unknown, path: string, out: Leaves = new Map()) {
-  if (typeof value === 'string') {
-    out.set(path, value);
-  } else if (value && typeof value === 'object') {
-    for (const [key, child] of Object.entries(value)) {
-      leaves(child, `${path}${path.endsWith(':') ? '' : '.'}${key}`, out);
-    }
-  }
-
-  return out;
-}
-
-const load = async (locale: string) => {
-  const all: Leaves = new Map();
-
-  for (const catalog of CATALOGS) {
-    const url = new URL(`${locale}/${catalog}.ts`, i18n).href;
-
-    leaves((await import(url)).default, `${catalog}:`, all);
-  }
-
-  return all;
-};
 
 const config = (locale: string) => {
   if (!extensionStrings[locale]) {
@@ -64,7 +33,9 @@ const config = (locale: string) => {
 
 const normalize = (s: string) => s.replace(/\.\.\.$/, '…');
 
-const english = await load('en');
+const messages = extractMessages().filter(
+  (m) => !EXCEPTIONS.some((e) => e.text === m.text && e.context === m.context),
+);
 const extensionKeys = new Map<string, Array<string>>();
 
 for (const [key, message] of Object.entries(config('en'))) {
@@ -80,36 +51,36 @@ const locales = glossary ? [glossary] : translatedLocales();
 const errors: Array<string> = [];
 
 for (const locale of locales) {
-  const translated = await load(locale);
-  const messages = config(locale);
+  const catalog = loadCatalog(locale);
+  const strings = config(locale);
 
-  for (const [path, text] of english) {
-    const keys = extensionKeys.get(text);
+  for (const m of messages) {
+    const keys = extensionKeys.get(m.text);
 
     if (!keys) {
       continue;
     }
 
-    const expected = keys.map((key) => messages[key]).filter(Boolean);
+    const name = m.context
+      ? `${JSON.stringify(m.text)} (${m.context})`
+      : JSON.stringify(m.text);
+    const expected = keys.map((key) => strings[key]).filter(Boolean);
 
     if (glossary) {
       console.log(
-        `${path}  ${JSON.stringify(text)} => ${expected.map((e) => JSON.stringify(e)).join(' / ')}  (@${keys.join(', @')})`,
+        `${name} => ${expected.map((e) => JSON.stringify(e)).join(' / ')}  (@${keys.join(', @')})`,
       );
       continue;
     }
 
-    const actual = translated.get(path) ?? '';
+    const actual = lookup(catalog, m) ?? '';
 
-    if (
-      EXCEPTIONS.some((e) => path.startsWith(e)) ||
-      expected.some((e) => normalize(e) === actual)
-    ) {
+    if (expected.some((e) => normalize(e) === actual)) {
       continue;
     }
 
     errors.push(
-      `${locale} ${path}: ${JSON.stringify(actual)}, extension has ${expected
+      `${locale} ${name}: ${JSON.stringify(actual)}, extension has ${expected
         .map((e) => JSON.stringify(e))
         .join(' or ')} (@${keys.join(', @')})`,
     );

@@ -2,8 +2,6 @@
 import CheckIcon from '@/components/icons/CheckIcon';
 import CopyIcon from '@/components/icons/CopyIcon';
 
-import { fmt } from '@/i18n';
-
 type Props = {
   lines: Array<string>;
   copy?: boolean;
@@ -12,9 +10,7 @@ type Props = {
 };
 
 const { lines, copy = true, boxed = false, class: className } = Astro.props;
-const {
-  site: { cli: t },
-} = Astro.locals;
+const { t } = Astro.locals;
 const command = lines.join(' && ');
 ---
 
@@ -34,10 +30,13 @@ const command = lines.join(' && ');
       type="button"
       class="cli-cmd-copy"
       data-copy={command}
-      data-copy-label={t.copy}
-      data-copied-label={t.copied}
-      title={t.copy}
-      aria-label={fmt(t.copyCommand, { command })}
+      data-copy-label={t('Copy')}
+      data-copied-label={t('Copied')}
+      title={t('Copy')}
+      aria-label={
+        // i18n: {command} is a terminal command, such as npm install -g @stylebot/cli.
+        t('Copy {command}', { command })
+      }
     >
       <span class="cli-cmd-idle">
         <CopyIcon size={14} />

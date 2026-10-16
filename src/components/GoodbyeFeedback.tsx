@@ -2,9 +2,9 @@ import { useState } from 'preact/hooks';
 
 import { track } from '@/lib/analytics';
 
-import type { SiteMessages } from '@/i18n';
+import { type Catalog, translator } from '@/i18n/t';
 
-type Props = { messages: SiteMessages['goodbye']['feedback'] };
+type Props = { strings: Catalog };
 
 // Same order as `reasons` in every locale, so reports don't split by language.
 const REASON_KEYS = [
@@ -19,7 +19,16 @@ const REASON_KEYS = [
 /**
  * Optional uninstall survey: pick any reasons, add a note, and send it.
  */
-export default function GoodbyeFeedback({ messages: t }: Props) {
+export default function GoodbyeFeedback({ strings }: Props) {
+  const t = translator(strings);
+  const reasons = [
+    t('Didn’t need it anymore'),
+    t('Hard to use'),
+    t('It broke a site'),
+    t('Missing a feature'),
+    t('Too slow'),
+    t('Something else'),
+  ];
   const [picked, setPicked] = useState<Array<string>>([]);
   const [note, setNote] = useState('');
   const [sent, setSent] = useState(false);
@@ -37,7 +46,7 @@ export default function GoodbyeFeedback({ messages: t }: Props) {
 
     picked.forEach((reason) =>
       track('Uninstall reason', {
-        reason: REASON_KEYS[t.reasons.indexOf(reason)],
+        reason: REASON_KEYS[reasons.indexOf(reason)],
       }),
     );
 
@@ -49,14 +58,16 @@ export default function GoodbyeFeedback({ messages: t }: Props) {
   };
 
   if (sent) {
-    return <div class="gb-thanks">{t.thanks}</div>;
+    return (
+      <div class="gb-thanks">{t('Thanks for submitting the feedback.')}</div>
+    );
   }
 
   return (
     <div class="gb-form">
-      <div class="gb-q">{t.question}</div>
+      <div class="gb-q">{t('Why did you uninstall?')}</div>
       <div class="gb-reasons">
-        {t.reasons.map((reason) => (
+        {reasons.map((reason) => (
           <button
             key={reason}
             class={`gb-chip${picked.includes(reason) ? ' is-on' : ''}`}
@@ -69,14 +80,14 @@ export default function GoodbyeFeedback({ messages: t }: Props) {
       </div>
       <textarea
         rows={3}
-        placeholder={t.placeholder}
-        aria-label={t.placeholder}
+        placeholder={t('Anything else? (optional)')}
+        aria-label={t('Anything else? (optional)')}
         value={note}
         onInput={(e) => setNote((e.target as HTMLTextAreaElement).value)}
       />
       <div class="gb-send">
         <button class="btn btn-primary" disabled={!ready} onClick={send}>
-          {t.send}
+          {t('Send feedback')}
         </button>
       </div>
     </div>

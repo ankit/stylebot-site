@@ -3,7 +3,7 @@ import CoffeeIcon from '@/components/icons/CoffeeIcon';
 
 import { LINKS } from '@/lib/links';
 
-const { site: t } = Astro.locals;
+const { t } = Astro.locals;
 ---
 
 <footer class="site-footer">
@@ -11,10 +11,10 @@ const { site: t } = Astro.locals;
     <a href={LINKS.changelog} class="mono">
       v4
     </a>
-    <a href={LINKS.changelog}>{t.footer.changelog}</a>
+    <a href={LINKS.changelog}>{t('Changelog')}</a>
     <a href={LINKS.donate} class="coffee">
       <CoffeeIcon />
-      {t.footer.donate}
+      {t('Buy me a coffee')}
     </a>
   </div>
   <span>

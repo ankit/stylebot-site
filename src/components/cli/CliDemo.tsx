@@ -3,8 +3,7 @@ import { useEffect, useRef, useState } from 'preact/hooks';
 import { reducedMotion } from '@/lib/motion';
 
 import { fmt } from '@/i18n/format';
-
-import type { SiteMessages } from '@/i18n';
+import { type Catalog, translator } from '@/i18n/t';
 
 import './cli-demo.css';
 
@@ -33,11 +32,8 @@ const COMMANDS = [
  * A coding agent restyling a page through the CLI: a terminal running the
  * commands beside the page they change. It loops while it's on screen.
  */
-export default function CliDemo({
-  messages: t,
-}: {
-  messages: SiteMessages['cli']['demo'];
-}) {
+export default function CliDemo({ strings }: { strings: Catalog }) {
+  const t = translator(strings);
   const root = useRef<HTMLDivElement>(null);
   const [step, setStep] = useState(0);
 
@@ -98,11 +94,23 @@ export default function CliDemo({
       aria-hidden="true"
     >
       <div class="cli-term">
-        <div class="cli-term-title">{t.terminal}</div>
+        <div class="cli-term-title">
+          {
+            // i18n: An animation of a coding agent restyling a made-up news site's article.
+            t('Terminal · coding agent')
+          }
+        </div>
         <div class="cli-term-body">
           <div class="cli-term-ask">
             <span class="cli-term-caret">&gt;</span>
-            <Typer text={fmt(t.prompt, { site: SITE })} on={at(ASK)} />
+            <Typer
+              text={fmt(
+                // i18n: What the person asks the agent; {site} is the site's address.
+                t('make {site} easier to read at night'),
+                { site: SITE },
+              )}
+              on={at(ASK)}
+            />
           </div>
           {COMMANDS.map(([command, output], i) => {
             const start = COMMANDS_FROM + i * 2;
@@ -122,7 +130,7 @@ export default function CliDemo({
             );
           })}
           <div class={`cli-term-row cli-term-done${at(DONE) ? ' is-on' : ''}`}>
-            {t.done}
+            {t('Dark background, warmer text, larger serif body. Ad removed.')}
           </div>
         </div>
       </div>
@@ -130,16 +138,26 @@ export default function CliDemo({
       <div class={`cli-page${after ? ' is-after' : ''}`}>
         <div class="cli-page-bar">
           <div class="cli-page-url">{SITE}/travel/night-ferry</div>
-          <span class="cli-page-badge">{after ? t.after : t.before}</span>
+          <span class="cli-page-badge">{after ? t('After') : t('Before')}</span>
         </div>
         <div class="cli-page-body">
           <div class="cli-page-col">
-            <div class="cli-page-kicker">{t.kicker}</div>
-            <div class="cli-page-h1">{t.headline}</div>
-            <div class="cli-page-dek">{t.dek}</div>
-            <div class="cli-page-text">{t.text}</div>
+            <div class="cli-page-kicker">{t('Travel')}</div>
+            <div class="cli-page-h1">
+              {t('The quiet return of the night ferry')}
+            </div>
+            <div class="cli-page-dek">
+              {t(
+                'Three operators are betting that travelers will trade speed for a cabin, a sea view and no airport.',
+              )}
+            </div>
+            <div class="cli-page-text">
+              {t(
+                'The 22:40 from Rostock leaves without fanfare. By the time the port lights fall behind, most passengers have found their cabins and the bar has settled into a low murmur.',
+              )}
+            </div>
           </div>
-          <div class="cli-page-ad">{t.ad}</div>
+          <div class="cli-page-ad">{t('Ad')}</div>
         </div>
         <div class={`cli-page-flash${step === SCREENSHOT ? ' is-on' : ''}`} />
       </div>

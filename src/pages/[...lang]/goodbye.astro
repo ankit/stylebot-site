@@ -8,18 +8,27 @@ import { localeStaticPaths } from '@/i18n';
 
 export const getStaticPaths = localeStaticPaths;
 
-const {
-  site: { goodbye: t },
-} = Astro.locals;
+const { strings, t } = Astro.locals;
 ---
 
-<Base title={t.title} description={t.description} noindex>
+<Base
+  title={t('Goodbye')}
+  description={t('Thanks for using Stylebot.')}
+  noindex
+>
   <main class="gb">
-    <h1>{t.heading}</h1>
-    <p class="gb-lede">{t.lede}</p>
-    <GoodbyeFeedback client:visible messages={t.feedback} />
+    <h1>{t('Thanks for using Stylebot.')}</h1>
+    <p class="gb-lede">
+      {t(
+        'Your styles were removed from this browser. If you turned on sync, a backup is still in your Google Drive.',
+      )}
+    </p>
+    <GoodbyeFeedback
+      client:visible
+      strings={strings('components/GoodbyeFeedback.tsx')}
+    />
     <div class="gb-reinstall">
-      <span>{t.changedMind}</span>
+      <span>{t('Changed your mind?')}</span>
       <StoreLink index={0} format="reinstall" class="btn btn-outline" />
     </div>
   </main>

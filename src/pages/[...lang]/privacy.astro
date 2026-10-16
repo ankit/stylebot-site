@@ -1,34 +1,80 @@
 ---
 import Base from '@/layouts/Base.astro';
 
-import { DEFAULT_LOCALE, fmt, localeStaticPaths, rich } from '@/i18n';
+import { DEFAULT_LOCALE, localeStaticPaths, rich } from '@/i18n';
 
 export const getStaticPaths = localeStaticPaths;
 
-const {
-  lang,
-  locale,
-  site: { privacy: t },
-} = Astro.locals;
+const { lang, locale, t } = Astro.locals;
 
 const updated = new Intl.DateTimeFormat(lang, {
   dateStyle: 'long',
   timeZone: 'UTC',
 }).format(Date.UTC(2026, 9, 12));
 
-const sections = [t.browser, t.sync, t.cli, t.site];
+const sections = [
+  {
+    title: t('In your browser'),
+    body: [
+      t(
+        "Your styles, settings and history are saved in your browser, and uninstalling Stylebot removes them. Google Fonts and stylesheets you <code>@import</code> are downloaded from where they're hosted, which sees your IP address.",
+      ),
+    ],
+  },
+  {
+    title: t('Google Drive sync'),
+    body: [
+      t(
+        'Connecting Google Drive in Options saves your styles to a file in your own Drive. Stylebot can only see files it creates, and its access token stays in your browser. Disconnect in Options or in your <a href="https://myaccount.google.com/connections">Google account</a>.',
+      ),
+      t(
+        'Stylebot\'s use of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements.',
+      ),
+    ],
+  },
+  {
+    title: t('Command line'),
+    body: [
+      t(
+        "Turning on <q>Allow command line access</q> in Options lets apps running as you read your tabs, pages and styles, take screenshots and change your styles, over a local connection. What they read can reach the services they use, such as a coding agent's model.",
+      ),
+    ],
+  },
+  {
+    title: t('This website'),
+    body: [
+      t(
+        'stylebot.dev has no ads or cookies. GitHub Pages hosts it and keeps server logs, and Plausible counts visits and clicks without identifying you.',
+      ),
+    ],
+  },
+];
 ---
 
-<Base title={t.title} description={t.description}>
+<Base
+  title={t('Privacy', { context: 'page' })}
+  description={t(
+    'What Stylebot does with your data: no server, no account, no analytics.',
+  )}
+>
   <main class="privacy">
     <div class="privacy-intro">
-      <h1>{t.title}</h1>
-      <p>{t.lede}</p>
-      <p class="updated">{fmt(t.updated, { date: updated })}</p>
+      <h1>{t('Privacy', { context: 'page' })}</h1>
+      <p>
+        {t(
+          "Stylebot has no server, no account and no analytics, and doesn't collect, sell or share your data. It only leaves your browser when you use one of the features below.",
+        )}
+      </p>
+      <p class="updated">{t('Last updated {date}', { date: updated })}</p>
       {locale !== DEFAULT_LOCALE && (
         <p
           class="translated"
-          set:html={rich(t.translation, { original: '/privacy' })}
+          set:html={rich(
+            t(
+              'This is a translation. If it differs from the <a href="{original}">English version</a>, the English version applies.',
+            ),
+            { original: '/privacy' },
+          )}
         />
       )}
     </div>

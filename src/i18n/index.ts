@@ -1,60 +1,64 @@
-import deDemo from './de/demo';
-import deSite from './de/site';
-import enDemo from './en/demo';
-import enSite from './en/site';
-import esDemo from './es/demo';
-import esSite from './es/site';
-import frDemo from './fr/demo';
-import frSite from './fr/site';
-import idDemo from './id/demo';
-import idSite from './id/site';
-import itDemo from './it/demo';
-import itSite from './it/site';
-import jaDemo from './ja/demo';
-import jaSite from './ja/site';
-import koDemo from './ko/demo';
-import koSite from './ko/site';
-import type { Locale } from './locales';
-import ptBrDemo from './pt-br/demo';
-import ptBrSite from './pt-br/site';
-import ptPtDemo from './pt-pt/demo';
-import ptPtSite from './pt-pt/site';
-import roDemo from './ro/demo';
-import roSite from './ro/site';
-import ruDemo from './ru/demo';
-import ruSite from './ru/site';
-import viDemo from './vi/demo';
-import viSite from './vi/site';
-import zhCnDemo from './zh-cn/demo';
-import zhCnSite from './zh-cn/site';
-import zhTwDemo from './zh-tw/demo';
-import zhTwSite from './zh-tw/site';
+import de from './catalogs/de.json';
+import es from './catalogs/es.json';
+import fr from './catalogs/fr.json';
+import id from './catalogs/id.json';
+import it from './catalogs/it.json';
+import ja from './catalogs/ja.json';
+import ko from './catalogs/ko.json';
+import ptBr from './catalogs/pt-br.json';
+import ptPt from './catalogs/pt-pt.json';
+import ro from './catalogs/ro.json';
+import ru from './catalogs/ru.json';
+import vi from './catalogs/vi.json';
+import zhCn from './catalogs/zh-cn.json';
+import zhTw from './catalogs/zh-tw.json';
+import { type Locale } from './locales';
+import sourceJson from './source.json';
+import { type Catalog } from './t';
 
-export type SiteMessages = typeof enSite;
-export type DemoMessages = typeof enDemo;
-export type Messages = { site: SiteMessages; demo: DemoMessages };
+const source: Array<{ text: string; files: Array<string> }> = sourceJson;
 
-const MESSAGES: Record<Locale, Messages> = {
-  en: { site: enSite, demo: enDemo },
-  de: { site: deSite, demo: deDemo },
-  es: { site: esSite, demo: esDemo },
-  fr: { site: frSite, demo: frDemo },
-  it: { site: itSite, demo: itDemo },
-  'pt-br': { site: ptBrSite, demo: ptBrDemo },
-  'pt-pt': { site: ptPtSite, demo: ptPtDemo },
-  ro: { site: roSite, demo: roDemo },
-  id: { site: idSite, demo: idDemo },
-  vi: { site: viSite, demo: viDemo },
-  ru: { site: ruSite, demo: ruDemo },
-  ja: { site: jaSite, demo: jaDemo },
-  ko: { site: koSite, demo: koDemo },
-  'zh-cn': { site: zhCnSite, demo: zhCnDemo },
-  'zh-tw': { site: zhTwSite, demo: zhTwDemo },
+const CATALOGS: Record<Exclude<Locale, 'en'>, Catalog> = {
+  de,
+  es,
+  fr,
+  it,
+  'pt-br': ptBr,
+  'pt-pt': ptPt,
+  ro,
+  id,
+  vi,
+  ru,
+  ja,
+  ko,
+  'zh-cn': zhCn,
+  'zh-tw': zhTw,
 };
 
-export function messages(locale: Locale): Messages {
-  return MESSAGES[locale];
+export function catalog(locale: Locale): Catalog {
+  return locale === 'en' ? {} : CATALOGS[locale];
+}
+
+/**
+ * The translations an island needs: those of the messages used in files
+ * under the given paths, relative to src/, such as 'components/demo/'.
+ */
+export function islandStrings(locale: Locale, ...paths: Array<string>) {
+  const all = catalog(locale);
+  const strings: Catalog = {};
+
+  for (const { text, files } of source) {
+    if (
+      text in all &&
+      files.some((f) => paths.some((p) => f.startsWith(`src/${p}`)))
+    ) {
+      strings[text] = all[text];
+    }
+  }
+
+  return strings;
 }
 
 export * from './format';
 export * from './locales';
+export * from './t';

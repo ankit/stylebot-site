@@ -5,48 +5,76 @@ import Base from '@/layouts/Base.astro';
 
 import { LINKS } from '@/lib/links';
 
-import { fmt, localeStaticPaths, rich } from '@/i18n';
+import { localeStaticPaths, rich } from '@/i18n';
 
 import readability from '@/assets/releases/3.2/readability.png';
 import popup from '@/assets/releases/3.2/popup.png';
 
 export const getStaticPaths = localeStaticPaths;
 
-const {
-  site: { releases: t },
-} = Astro.locals;
-const r = t.r32;
-const title = fmt(t.title, { version: '3.2' });
+const { t } = Astro.locals;
+const title = t("What's new in {version}", { version: '3.2' });
 ---
 
-<Base title={title} description={r.description}>
+<Base
+  title={title}
+  description={t(
+    'Stylebot 3.2 brings faster, flicker-free styling, a redesigned Readability mode and a cleaner popup.',
+  )}
+>
   <main class="prose">
     <h1>{title}</h1>
-    <p class="lede">{r.lede}</p>
+    <p class="lede">
+      {t(
+        'Stylebot is back in active development, with more updates planned ahead.',
+      )}
+    </p>
 
-    <h2>{r.fasterTitle}</h2>
-    <p>{r.fasterBody}</p>
+    <h2>{t('Faster, flicker-free styling')}</h2>
+    <p>
+      {t(
+        'CSS is now cached and applied instantly, so pages no longer flash unstyled while your styles catch up, and everything feels snappier as a result.',
+      )}
+    </p>
 
-    <h2>{r.readabilityTitle}</h2>
+    <h2>{t('A redesigned Readability mode')}</h2>
     <figure>
-      <Image src={readability} height={400} alt={r.readabilityAlt} />
+      <Image
+        src={readability}
+        height={400}
+        alt={t("Readability mode's new inline theme and typography controls")}
+      />
     </figure>
     <ul>
-      {r.readabilityItems.map((item) => (
+      {[
+        t('Newer article-extraction algorithm, better at cleaning up pages'),
+        t('Faster activation, applying before the rest of the page loads'),
+        t('Inline customization for theme and typography'),
+        t('Smoother loading animation'),
+        t('Keyboard shortcut to toggle it'),
+      ].map((item) => (
         <li>{item}</li>
       ))}
     </ul>
 
-    <h2>{r.popupTitle}</h2>
+    <h2>{t('A cleaner popup')}</h2>
     <figure>
-      <Image src={popup} height={400} alt={r.popupAlt} />
+      <Image src={popup} height={400} alt={t("Stylebot's redesigned popup")} />
     </figure>
     <ul>
-      {r.popupItems.map((item) => (
+      {[
+        t('Fully clickable toggle rows'),
+        t('Direct settings button'),
+        t('Dark mode support'),
+      ].map((item) => (
         <li>{item}</li>
       ))}
     </ul>
 
-    <h2 set:html={rich(t.bugFixes, { changelog: LINKS.changelog })} />
+    <h2
+      set:html={rich(t('And lots of <a href="{changelog}">bug fixes</a>'), {
+        changelog: LINKS.changelog,
+      })}
+    />
   </main>
 </Base>

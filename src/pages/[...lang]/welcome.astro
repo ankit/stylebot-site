@@ -11,24 +11,29 @@ import { localeStaticPaths } from '@/i18n';
 
 export const getStaticPaths = localeStaticPaths;
 
-const {
-  path,
-  site: { welcome: t, cli },
-  demo,
-} = Astro.locals;
+const { path, strings, t } = Astro.locals;
 ---
 
-<Base title={t.title} description={t.description} install={false} noindex>
+<Base
+  title={t('Welcome')}
+  description={t('How Stylebot works, start to finish, in about a minute.')}
+  install={false}
+  noindex
+>
   <main>
     <div class="demo-wrap">
-      <Demo client:load variant="welcome" messages={demo}>
+      <Demo client:load variant="welcome" strings={strings('components/demo/')}>
         <div slot="intro" class="hero">
-          <h1>{t.heading}</h1>
+          <h1>{t('Stylebot is installed.')}</h1>
         </div>
         <div class="your-turn">
           <div class="your-turn-text">
-            <strong>{t.yourTurn}</strong>
-            <span>{t.yourTurnBody}</span>
+            <strong>{t('Your turn.')}</strong>
+            <span>
+              {t(
+                'Open any site and press the shortcut. Nothing changes until you do.',
+              )}
+            </span>
           </div>
           <span class="your-turn-keys">
             <kbd data-mac="⌥ Option">Alt</kbd>
@@ -36,7 +41,7 @@ const {
             <kbd>M</kbd>
           </span>
           <a href={path(LINKS.manual)} class="your-turn-link">
-            {t.manual}
+            {t('Manual')}
             <span>›</span>
           </a>
         </div>
@@ -45,21 +50,35 @@ const {
     <section class="agent">
       <div class="agent-inner">
         <div class="agent-text">
-          <h2>{t.agentTitle}</h2>
-          <p>{t.agentBody}</p>
+          <h2>{t('Using a coding agent?')}</h2>
+          <p>
+            {t(
+              'You can also add the Stylebot CLI, so your agent can restyle sites for you.',
+            )}
+          </p>
           <div class="agent-setup">
             <CliCommand lines={[CLI_INSTALL]} boxed />
             <a href={path(LINKS.cli)} class="agent-guide">
-              {cli.guide}
+              {t('Set up the CLI →')}
             </a>
           </div>
         </div>
         <div class="agent-term" aria-hidden="true">
-          <div class="agent-term-title">{cli.demo.terminal}</div>
+          <div class="agent-term-title">
+            {
+              // i18n: An animation of a coding agent restyling a made-up news site's article.
+              t('Terminal · coding agent')
+            }
+          </div>
           <div class="agent-term-body">
             <div class="agent-term-ask">
               <span class="agent-term-dim">&gt;</span>
-              <span>{t.agentPrompt}</span>
+              <span>
+                {
+                  // i18n: What the person asks their coding agent; Everforest is a color theme's name
+                  t('give this site an Everforest theme with nicer fonts')
+                }
+              </span>
             </div>
             <div class="agent-term-run">
               <span class="agent-term-cmd">stylebot outline 54432929</span>
@@ -71,7 +90,12 @@ const {
               </span>
               <span class="agent-term-dim">Saved · applied to 1 tab</span>
             </div>
-            <div class="agent-term-reply">{t.agentReply}</div>
+            <div class="agent-term-reply">
+              {
+                // i18n: The coding agent's reply; Lora and Newsreader are font names
+                t('Switched to Everforest colors with Lora and Newsreader.')
+              }
+            </div>
           </div>
         </div>
       </div>

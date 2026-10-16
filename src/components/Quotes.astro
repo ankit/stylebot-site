@@ -1,15 +1,13 @@
 ---
 import { LONG_QUOTE, QUOTES } from '@/lib/quotes';
 
-const {
-  site: { quotes: t },
-} = Astro.locals;
+const { t } = Astro.locals;
 ---
 
 <section id="voices" class="section">
   <div class="section-inner quotes-inner">
     <div class="section-head">
-      <h2 class="section-title">{t.title}</h2>
+      <h2 class="section-title">{t('People love Stylebot')}</h2>
     </div>
     <div class="quotes">
       {QUOTES.slice(0, 3).map((quote) => (

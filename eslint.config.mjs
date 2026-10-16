@@ -7,6 +7,11 @@ import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
+const UP_A_FOLDER = {
+  group: ['../*'],
+  message: 'Import from @/ unless the file is in the same folder.',
+};
+
 const SRC_FOLDERS = ['layouts', 'components', 'theme', 'lib', 'i18n', 'assets'];
 
 export default tseslint.config(
@@ -34,17 +39,7 @@ export default tseslint.config(
       curly: ['error', 'all'],
       eqeqeq: ['error', 'always', { null: 'ignore' }],
       'no-else-return': 'error',
-      'no-restricted-imports': [
-        'error',
-        {
-          patterns: [
-            {
-              group: ['../*'],
-              message: 'Import from @/ unless the file is in the same folder.',
-            },
-          ],
-        },
-      ],
+      'no-restricted-imports': ['error', { patterns: [UP_A_FOLDER] }],
 
       'arrow-body-style': ['error', 'as-needed'],
       'no-lonely-if': 'error',
@@ -108,6 +103,26 @@ export default tseslint.config(
     // Components carry their own styles, so their order sets the cascade.
     files: ['**/*.astro'],
     rules: { 'simple-import-sort/imports': 'off' },
+  },
+
+  {
+    // Islands run in the browser, and @/i18n carries every locale's catalog.
+    files: ['src/**/*.tsx'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: [UP_A_FOLDER],
+          paths: [
+            {
+              name: '@/i18n',
+              message: 'Import from @/i18n/t, @/i18n/format or @/i18n/locales.',
+              allowTypeImports: true,
+            },
+          ],
+        },
+      ],
+    },
   },
 
   {

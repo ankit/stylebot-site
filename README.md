@@ -16,7 +16,7 @@ yarn dev
 ```
 yarn build      # outputs to dist/
 yarn preview    # serves dist/ locally
-yarn run check  # type check, translations against English, and extension wording
+yarn run check  # type check, translations against the code, and extension wording
 ```
 
 Use `yarn run check`, not `yarn check`, which is Yarn's own command.

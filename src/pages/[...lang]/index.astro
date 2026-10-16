@@ -19,7 +19,7 @@ import { localeStaticPaths, parts } from '@/i18n';
 
 export const getStaticPaths = localeStaticPaths;
 
-const { path, lang, locale, site: t, demo } = Astro.locals;
+const { path, lang, locale, strings, t } = Astro.locals;
 
 type RestyleFont = {
   family: string;
@@ -295,7 +295,13 @@ function restyleScript(word: string): RestyleScript {
   return /[\u0100-\u024f]/u.test(word.normalize('NFC')) ? 'latin-ext' : 'latin';
 }
 
-const restyleFonts = RESTYLE_FONTS[restyleScript(t.home.titleWord)];
+const restyleFonts =
+  RESTYLE_FONTS[
+    restyleScript(
+      // i18n: A single word, ideally short: the page cycles it through decorative fonts.
+      t('Restyle'),
+    )
+  ];
 
 const restyleFamilies = restyleFonts.map(({ family, italic, weight }) => {
   const axes = italic ? 'ital@1' : weight ? `wght@${weight}` : '';
@@ -303,7 +309,10 @@ const restyleFamilies = restyleFonts.map(({ family, italic, weight }) => {
   return `family=${family.replace(/ /g, '+')}${axes && `:${axes}`}`;
 });
 
-const restyleHref = `https://fonts.googleapis.com/css2?${restyleFamilies.join('&')}&display=swap&text=${encodeURIComponent(t.home.titleWord)}`;
+const restyleHref = `https://fonts.googleapis.com/css2?${restyleFamilies.join('&')}&display=swap&text=${encodeURIComponent(
+  // i18n: A single word, ideally short: the page cycles it through decorative fonts.
+  t('Restyle'),
+)}`;
 
 const restyleLoads = restyleFonts.map(
   ({ family, italic, weight }) =>
@@ -328,7 +337,9 @@ const structuredData = {
   '@type': 'SoftwareApplication',
   name: 'Stylebot',
   url: new URL(path('/'), Astro.site).href,
-  description: t.meta.description,
+  description: t(
+    'Point at something on a page and change it. Stylebot writes the CSS and loads it every time you come back. Free and open source for Chrome, Firefox and Edge.',
+  ),
   inLanguage: lang,
   applicationCategory: 'BrowserApplication',
   operatingSystem: 'Chrome, Firefox, Edge',
@@ -350,21 +361,33 @@ const structuredData = {
   <main>
     <div class="hero">
       <h1>
-        {parts(t.home.title).map((part) =>
+        {parts(
+          // i18n: {word} is the title word ("Restyle"), a button that switches its own font each time it's clicked. Keep {word} at the start where the language allows: wider fonts grow it to the left.
+          t('{word} any website.'),
+        ).map((part) =>
           part === '{word}' ? (
             <button
               class="restyle"
               type="button"
-              title={t.home.titleWordHint}
+              title={
+                // i18n: Tooltip on the title word ("Restyle").
+                t('Click to restyle')
+              }
               data-fonts={JSON.stringify(restyleLoads)}
             >
-              {t.home.titleWord}
+              {
+                // i18n: A single word, ideally short: the page cycles it through decorative fonts.
+                t('Restyle')
+              }
               <span
                 class="restyle-cycle"
                 aria-hidden="true"
                 style={restyleVars}
               >
-                {t.home.titleWord}
+                {
+                  // i18n: A single word, ideally short: the page cycles it through decorative fonts.
+                  t('Restyle')
+                }
               </span>
             </button>
           ) : (
@@ -372,12 +395,16 @@ const structuredData = {
           ),
         )}
       </h1>
-      <p>{t.home.lede}</p>
+      <p>
+        {t(
+          'Point at something on the page and change it. Stylebot writes the CSS and loads your style every time you come back.',
+        )}
+      </p>
       <div class="cta">
         <div class="cta-row">
           <StoreLink index={0} format="add" class="btn btn-primary" />
           <span class="cta-also">
-            {parts(t.home.also).map((part) =>
+            {parts(t('Also on {first} and {second}')).map((part) =>
               part === '{first}' ? (
                 <StoreLink index={1} format="name" class="ink-link" />
               ) : part === '{second}' ? (
@@ -390,14 +417,21 @@ const structuredData = {
         </div>
         <div class="cta-desktop">
           <MonitorIcon />
-          <span set:html={t.home.desktopOnly} />
+          <span
+            set:html={
+              // i18n: Shown on phones in place of the store buttons.
+              t(
+                'Stylebot runs on <strong>Chrome, Firefox and Edge</strong> on desktop.',
+              )
+            }
+          />
         </div>
       </div>
     </div>
 
     <div class="demo-wrap">
       <div class="demo-full">
-        <Demo client:visible messages={demo} />
+        <Demo client:visible strings={strings('components/demo/')} />
       </div>
       <div class="demo-tour">
         <FeatureTour />
@@ -411,15 +445,23 @@ const structuredData = {
 
     <section id="install" class="section">
       <div class="install">
-        <h2>{t.home.installTitle}</h2>
-        <p>{t.home.installBody}</p>
+        <h2>{t('Install Stylebot', { context: 'heading' })}</h2>
+        <p>
+          {t(
+            'Free and open source since 2011. No account and no tracking. Your styles live in your browser, and the code is on GitHub.',
+          )}
+        </p>
         <div class="install-buttons">
           <StoreLink index={0} format="add" class="btn btn-primary" />
           <StoreLink index={1} format="name" class="btn btn-outline" />
           <StoreLink index={2} format="name" class="btn btn-outline" />
         </div>
         <div class="install-cli">
-          <span set:html={t.home.cli} />
+          <span
+            set:html={t(
+              'Using a coding agent? Add the <a href="#cli">CLI</a>:',
+            )}
+          />
           <CliCommand lines={[CLI_INSTALL]} boxed />
         </div>
         <Footer />

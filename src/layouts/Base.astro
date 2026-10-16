@@ -4,13 +4,7 @@ import Footer from '@/components/Footer.astro';
 
 import { ThemeHead } from '@/theme';
 
-import {
-  DEFAULT_LOCALE,
-  LOCALES,
-  fmt,
-  localizePath,
-  unlocalizedPath,
-} from '@/i18n';
+import { DEFAULT_LOCALE, LOCALES, localizePath, unlocalizedPath } from '@/i18n';
 
 import '@/styles/global.css';
 
@@ -25,11 +19,13 @@ type Props = {
   alternates?: boolean;
 };
 
-const { lang, locale, site: t } = Astro.locals;
+const { lang, locale, t } = Astro.locals;
 
 const {
   title,
-  description = t.meta.description,
+  description = t(
+    'Point at something on a page and change it. Stylebot writes the CSS and loads it every time you come back. Free and open source for Chrome, Firefox and Edge.',
+  ),
   footer = true,
   current,
   storeCta,
@@ -38,7 +34,9 @@ const {
   alternates = true,
 } = Astro.props;
 
-const fullTitle = title ? fmt(t.meta.titleSuffix, { title }) : t.meta.title;
+const fullTitle = title
+  ? t('{title} - Stylebot', { title })
+  : t('Stylebot - Restyle any website');
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const path = unlocalizedPath(Astro.url.pathname);
 const altUrl = (code: (typeof LOCALES)[number]['code']) =>
@@ -79,7 +77,10 @@ const altUrl = (code: (typeof LOCALES)[number]['code']) =>
     <meta property="og:image" content={new URL('/og.png', Astro.site)} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content={t.meta.title} />
+    <meta
+      property="og:image:alt"
+      content={t('Stylebot - Restyle any website')}
+    />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@stylebot" />
     <meta name="twitter:title" content={fullTitle} />
