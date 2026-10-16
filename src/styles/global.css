@@ -360,9 +360,6 @@ a.icon-btn:hover {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
-}
-
-.carousel {
   cursor: grab;
 }
 
@@ -498,36 +495,6 @@ a.icon-btn:hover {
   display: block;
   height: auto;
   border-radius: 8px;
-}
-
-.prose .inline-img {
-  height: 24px;
-  width: auto;
-  vertical-align: -6px;
-}
-
-.prose .toc {
-  list-style: none;
-  padding: 0;
-  margin: 32px 0 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.prose .toc a {
-  display: inline-block;
-  padding: 7px 12px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  font: 500 13px/1 var(--ui);
-  color: var(--ink2);
-}
-
-.prose .toc a:hover {
-  background: var(--hover);
-  color: var(--ink);
 }
 
 @media (max-width: 639px) {

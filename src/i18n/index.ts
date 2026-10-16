@@ -14,7 +14,7 @@ import jaDemo from './ja/demo';
 import jaSite from './ja/site';
 import koDemo from './ko/demo';
 import koSite from './ko/site';
-import { type Locale, localeOf } from './locales';
+import type { Locale } from './locales';
 import ptBrDemo from './pt-br/demo';
 import ptBrSite from './pt-br/site';
 import ptPtDemo from './pt-pt/demo';
@@ -54,15 +54,6 @@ const MESSAGES: Record<Locale, Messages> = {
 
 export function messages(locale: Locale): Messages {
   return MESSAGES[locale];
-}
-
-/**
- * The messages for the page at a URL, from its locale prefix.
- */
-export function messagesFor(url: URL) {
-  const locale = localeOf(url.pathname);
-
-  return { locale, ...messages(locale) };
 }
 
 export * from './format';

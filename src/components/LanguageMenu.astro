@@ -36,7 +36,6 @@ const path = unlocalizedPath(Astro.url.pathname);
 
 <script>
   import { track } from '../lib/analytics';
-  import { LOCALE_CHOSEN_KEY } from '../lib/locale-choice';
 
   const menu = document.querySelector<HTMLElement>('.lang-menu')!;
   const toggle = menu.querySelector<HTMLButtonElement>('[data-lang-toggle]')!;
@@ -63,12 +62,6 @@ const path = unlocalizedPath(Astro.url.pathname);
     const link = (e.target as HTMLElement).closest('a');
 
     if (link) {
-      try {
-        localStorage.setItem(LOCALE_CHOSEN_KEY, '1');
-      } catch {
-        // Storage can be blocked; the choice just isn't remembered.
-      }
-
       const target = new URL(link.href);
 
       track('Language change', {

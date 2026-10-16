@@ -66,27 +66,3 @@ export function localeStaticPaths() {
     params: { lang: code === DEFAULT_LOCALE ? undefined : code },
   }));
 }
-
-/**
- * The site locale for a BCP 47 language tag such as `de-AT` or `zh-HK`, or
- * undefined when the site isn't translated into that language.
- */
-export function matchLocale(tag: string): Locale | undefined {
-  const lower = tag.toLowerCase();
-
-  if (CODES.includes(lower)) {
-    return lower as Locale;
-  }
-
-  const [base] = lower.split('-');
-
-  if (base === 'zh') {
-    return /-(tw|hk|mo|hant)/.test(lower) ? 'zh-tw' : 'zh-cn';
-  }
-
-  if (base === 'pt') {
-    return 'pt-br';
-  }
-
-  return CODES.includes(base) ? (base as Locale) : undefined;
-}
