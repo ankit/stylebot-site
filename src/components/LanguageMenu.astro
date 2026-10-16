@@ -1,7 +1,7 @@
 ---
 import GlobeIcon from '@/components/icons/GlobeIcon';
 
-import { LOCALES, localizePath, unlocalizedPath } from '../i18n';
+import { LOCALES, localizePath, unlocalizedPath } from '@/i18n';
 
 const { locale, site: t } = Astro.locals;
 const path = unlocalizedPath(Astro.url.pathname);
@@ -36,7 +36,7 @@ const path = unlocalizedPath(Astro.url.pathname);
 </div>
 
 <script>
-  import { track } from '../lib/analytics';
+  import { track } from '@/lib/analytics';
 
   const menu = document.querySelector<HTMLElement>('.lang-menu')!;
   const toggle = menu.querySelector<HTMLButtonElement>('[data-lang-toggle]')!;

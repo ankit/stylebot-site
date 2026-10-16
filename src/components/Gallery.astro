@@ -6,9 +6,9 @@ import CloseIcon from '@/components/icons/CloseIcon';
 import CopyIcon from '@/components/icons/CopyIcon';
 import SbIcon from '@/components/icons/SbIcon';
 
-import { GALLERY, type GallerySite } from '../lib/gallery';
-import { LINKS } from '../lib/links';
-import { fmt } from '../i18n';
+import { GALLERY, type GallerySite } from '@/lib/gallery';
+import { LINKS } from '@/lib/links';
+import { fmt } from '@/i18n';
 
 const {
   site: { gallery: t },
@@ -185,8 +185,8 @@ const sites = await Promise.all(
 </dialog>
 
 <script>
-  import { fmt } from '../i18n/format';
-  import { track } from '../lib/analytics';
+  import { track } from '@/lib/analytics';
+  import { fmt } from '@/i18n/format';
 
   const COPIED_MS = 1600;
   const phone = matchMedia('(max-width: 639px)');

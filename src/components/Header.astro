@@ -6,7 +6,7 @@ import Logo from './Logo';
 import { ThemeMenu } from '@/theme';
 import StoreLink from './StoreLink.astro';
 import LanguageMenu from './LanguageMenu.astro';
-import { LINKS } from '../lib/links';
+import { LINKS } from '@/lib/links';
 
 type Props = { current?: 'manual'; storeCta?: boolean; install?: boolean };
 const { current, storeCta = false, install = true } = Astro.props;

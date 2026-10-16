@@ -37,9 +37,8 @@ export default tseslint.config(
         {
           patterns: [
             {
-              group: ['../../*'],
-              message:
-                'Import from @/ instead of going up more than one level.',
+              group: ['../*'],
+              message: 'Import from @/ unless the file is in the same folder.',
             },
           ],
         },

@@ -1,6 +1,6 @@
 ---
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
 import { ThemeHead } from '@/theme';
 import {
   DEFAULT_LOCALE,
@@ -8,9 +8,9 @@ import {
   fmt,
   localizePath,
   unlocalizedPath,
-} from '../i18n';
+} from '@/i18n';
 
-import '../styles/global.css';
+import '@/styles/global.css';
 
 type Props = {
   title?: string;

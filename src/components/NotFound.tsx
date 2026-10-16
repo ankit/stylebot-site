@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'preact/hooks';
 
-import type { SiteMessages } from '../i18n';
-import { fmt } from '../i18n/format';
+import { track } from '@/lib/analytics';
+import { fmt } from '@/i18n/format';
 import {
   DEFAULT_LOCALE,
   htmlLang,
   type Locale,
   localeOf,
   localizePath,
-} from '../i18n/locales';
-import { track } from '../lib/analytics';
+} from '@/i18n/locales';
+
+import type { SiteMessages } from '@/i18n';
 
 type Messages = SiteMessages['notFound'];
 

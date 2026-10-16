@@ -1,7 +1,7 @@
 ---
-import Base from '../layouts/Base.astro';
-import NotFound from '../components/NotFound';
-import { LOCALES, messages, type Locale, type SiteMessages } from '../i18n';
+import Base from '@/layouts/Base.astro';
+import NotFound from '@/components/NotFound';
+import { LOCALES, messages, type Locale, type SiteMessages } from '@/i18n';
 
 const all = Object.fromEntries(
   LOCALES.map((l) => [l.code, messages(l.code).site.notFound]),

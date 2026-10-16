@@ -1,7 +1,8 @@
 import { useState } from 'preact/hooks';
 
-import type { SiteMessages } from '../i18n';
-import { track } from '../lib/analytics';
+import { track } from '@/lib/analytics';
+
+import type { SiteMessages } from '@/i18n';
 
 type Props = { messages: SiteMessages['goodbye']['feedback'] };
 
