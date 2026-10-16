@@ -33,7 +33,7 @@ jobs:
         run: yarn run check
 
       - name: Check formatting
-        run: npx prettier --check "src/**/*.{ts,tsx,astro}" "scripts/*.ts" astro.config.mjs
+        run: yarn format:check
 
       - name: Build
         run: npx astro build

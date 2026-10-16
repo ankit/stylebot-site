@@ -1,0 +1,7 @@
+dist/
+dist-gallery/
+.astro/
+node_modules/
+public/
+yarn.lock
+scripts/extension-strings.json

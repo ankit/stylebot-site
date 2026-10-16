@@ -45,7 +45,14 @@ html {
   background-color: #fdf6e3;
 }
 
-.prc-Avatar-Avatar-0xaUi, .prc-Button-ButtonContent-Iohp5, .prc-Label-Label-qG-Zu, .prc-Button-Visual-YNt2F, .prc-Button-LeadingVisual-UySKu, .prc-Button-VisualWrap-E4cnq, .prc-components-Input-IwWrt, .prc-components-Chord-DdhWN {
+.prc-Avatar-Avatar-0xaUi,
+.prc-Button-ButtonContent-Iohp5,
+.prc-Label-Label-qG-Zu,
+.prc-Button-Visual-YNt2F,
+.prc-Button-LeadingVisual-UySKu,
+.prc-Button-VisualWrap-E4cnq,
+.prc-components-Input-IwWrt,
+.prc-components-Chord-DdhWN {
   font-family: JetBrains Mono;
 }
 
@@ -241,7 +248,7 @@ a.PullRequestBranchName-module__branchName__SCtl2 {
   background-color: #657b83;
 }
 
-button[data-testid="commit-row-show-description-button"] {
+button[data-testid='commit-row-show-description-button'] {
   margin-left: 10px;
 }
 
@@ -266,7 +273,7 @@ div.SectionFilterLink-module__title__VRe9O {
   font-size: 14px;
 }
 
-a[data-testid="fork-button"] {
+a[data-testid='fork-button'] {
   background-color: #eee8dc;
 }
 
@@ -286,13 +293,11 @@ article.markdown-body p {
 h2.heading-element {
   font-family: JetBrains Mono;
   font-size: 18px;
-  
 }
 
 h1.heading-element {
   font-size: 24px;
   font-family: JetBrains Mono;
-  
 }
 
 #_r_1s_ {
@@ -355,7 +360,7 @@ a.Link--secondary:hover {
   color: #586e75;
 }
 
-div[class*="quick-search-overlay-module__Panel__"] {
+div[class*='quick-search-overlay-module__Panel__'] {
   background-color: #eee8dc;
 }
 

@@ -42,17 +42,23 @@ body {
   font-family: Lora;
 }
 
-a.css-kgn7zc, section#masthead-bar-one, .Wr7_RG_floatingMiniNavCover, nav.ZcdlOG_nav, button.css-1q4czh7 {
+a.css-kgn7zc,
+section#masthead-bar-one,
+.Wr7_RG_floatingMiniNavCover,
+nav.ZcdlOG_nav,
+button.css-1q4czh7 {
   background: #f6efdd;
 }
 
-.css-cfnhvx, .css-cfnhvx p {
+.css-cfnhvx,
+.css-cfnhvx p {
   font-family: Libre Baskerville;
   color: #111111;
   line-height: 1.25;
 }
 
-.css-sarx3u, p.summary-class {
+.css-sarx3u,
+p.summary-class {
   font-family: Lora;
   color: #2b2924;
 }
@@ -62,12 +68,14 @@ main#site-content {
   margin: 0 auto;
 }
 
-.jXhsNG_gridCell.jXhsNG_dividerLeft, .TAm62a_border {
+.jXhsNG_gridCell.jXhsNG_dividerLeft,
+.TAm62a_border {
   border-color: #d6ccb0;
   border-width: 1px;
 }
 
-._5zuA3W_topDivider, .w7VYaa_topBorder {
+._5zuA3W_topDivider,
+.w7VYaa_topBorder {
   border-top: 1px solid #d6ccb0;
 }
 
@@ -76,7 +84,12 @@ header.Wr7_RG_mastheadWrapper {
   padding-bottom: 6px;
 }
 
-div.WvEB8a_signalSlotWithoutKebab p, div.WvEB8a_signalSlotWithoutKebab a p, span.css-1j306sm, p.m-9-4W_cta, figcaption.WGkc3a_promoGridCredit, figcaption.css-1p5yz2j {
+div.WvEB8a_signalSlotWithoutKebab p,
+div.WvEB8a_signalSlotWithoutKebab a p,
+span.css-1j306sm,
+p.m-9-4W_cta,
+figcaption.WGkc3a_promoGridCredit,
+figcaption.css-1p5yz2j {
   color: #4a463d;
 }
 
@@ -84,11 +97,19 @@ span.g-change-value {
   color: #2a6b2d;
 }
 
-#google-one-tap-container, #google-one-tap-prompt {
+#google-one-tap-container,
+#google-one-tap-prompt {
   display: none;
 }
 
-#top-wrapper, #ad-top, #dfp-ad-top, .ad.top-wrapper, [data-testid='top-wrapper'], [id^='google_ads_iframe'], [data-testid='StandardAd'], .NYTAppHideMasthead + div:empty {
+#top-wrapper,
+#ad-top,
+#dfp-ad-top,
+.ad.top-wrapper,
+[data-testid='top-wrapper'],
+[id^='google_ads_iframe'],
+[data-testid='StandardAd'],
+.NYTAppHideMasthead + div:empty {
   display: none;
   min-height: 0;
   height: 0;
@@ -100,7 +121,8 @@ section.Wr7_RG_mastheadSection {
   border-bottom: none;
 }
 
-section.Wr7_RG_mastheadSection button, section.Wr7_RG_mastheadSection a {
+section.Wr7_RG_mastheadSection button,
+section.Wr7_RG_mastheadSection a {
   color: #111111;
 }
 
@@ -117,10 +139,11 @@ div.e1xxpj0j1 {
 }
 
 .PMn1ia_container.PMn1ia_gradient::after {
-  background-image: linear-gradient(to right, rgba(246,239,221,0), #f6efdd);
+  background-image: linear-gradient(to right, rgba(246, 239, 221, 0), #f6efdd);
 }
 
-div:has(> .Wr7_RG_floatingMiniNav), .Wr7_RG_floatingMiniNav {
+div:has(> .Wr7_RG_floatingMiniNav),
+.Wr7_RG_floatingMiniNav {
   display: none;
 }
 
@@ -128,7 +151,12 @@ div.Wr7_RG_miniNavContainer {
   border-bottom-color: #cfc4a6;
 }
 
-div.Wr7_RG_miniNavContainer::before, div.Wr7_RG_miniNavContainer::after, nav.css-ii3p4j::before, nav.css-ii3p4j::after, ._5zuA3W_topDivider::before, ._5zuA3W_topDivider::after {
+div.Wr7_RG_miniNavContainer::before,
+div.Wr7_RG_miniNavContainer::after,
+nav.css-ii3p4j::before,
+nav.css-ii3p4j::after,
+._5zuA3W_topDivider::before,
+._5zuA3W_topDivider::after {
   border-color: #d6ccb0;
   background-color: #d6ccb0;
 }
@@ -137,7 +165,10 @@ hr.nEtvdG_hRule {
   border-top-color: #d6ccb0;
 }
 
-nav.ZcdlOG_nav::before, nav.ZcdlOG_nav::after, div.O8nPlG_storylineMenu::before, div.O8nPlG_storylineMenu::after {
+nav.ZcdlOG_nav::before,
+nav.ZcdlOG_nav::after,
+div.O8nPlG_storylineMenu::before,
+div.O8nPlG_storylineMenu::after {
   border-color: #d6ccb0;
 }
 

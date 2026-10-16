@@ -15,7 +15,7 @@ The [stylebot.dev](https://stylebot.dev) site for the Stylebot browser extension
 
 - `yarn dev` — dev server
 - `yarn run check` — type check, catalogs against English, and extension wording (not `yarn check`, Yarn's own command)
-- `npx prettier --check "src/**/*.{ts,tsx,astro}" "scripts/*.ts" astro.config.mjs` — formatting, as CI checks it
+- `yarn format` — format everything with Prettier; `yarn format:check` checks it, as CI does
 - `yarn build` — build into `dist/`
 - `yarn deploy` — build and publish to the `gh-pages` branch, which serves stylebot.dev
 

@@ -25,13 +25,20 @@
   --color-neutral: #a0a4aa;
 }
 
-html, body {
+html,
+body {
   background: #16181c;
   color: #d8d8d4;
   font-family: Libre Baskerville;
 }
 
-.mw-page-container, .vector-header-container, #vector-toc-pinned-container, #vector-appearance-pinned-container, .vector-dropdown-content, #searchform, #searchInput {
+.mw-page-container,
+.vector-header-container,
+#vector-toc-pinned-container,
+#vector-appearance-pinned-container,
+.vector-dropdown-content,
+#searchform,
+#searchInput {
   background: #16181c;
   color: #d8d8d4;
 }
@@ -42,11 +49,18 @@ header.vector-header {
   display: none;
 }
 
-#mw-content-text, .mw-body-content, .vector-menu-content, .vector-toc, .vector-pinnable-header-label {
+#mw-content-text,
+.mw-body-content,
+.vector-menu-content,
+.vector-toc,
+.vector-pinnable-header-label {
   font-family: Libre Baskerville;
 }
 
-#firstHeading, .mw-first-heading, .mw-body h2, .mw-body h3 {
+#firstHeading,
+.mw-first-heading,
+.mw-body h2,
+.mw-body h3 {
   font-family: Playfair Display;
   color: #000;
   border-bottom: 1px solid #b5ae9a;
@@ -60,7 +74,8 @@ header.vector-header {
   line-height: 1.6;
 }
 
-#mw-content-text .mw-parser-output .mw-heading2, #mw-content-text .mw-parser-output .toc {
+#mw-content-text .mw-parser-output .mw-heading2,
+#mw-content-text .mw-parser-output .toc {
   column-span: all;
 }
 
@@ -79,18 +94,21 @@ header.vector-header {
   margin: 0 0 1em 0;
 }
 
-.vector-page-toolbar, .vector-header-container {
+.vector-page-toolbar,
+.vector-header-container {
   border-bottom: 1px solid #b5ae9a;
   border-bottom-color: #343840;
 }
 
-#mw-content-text .mw-parser-output .infobox th, #mw-content-text .mw-parser-output .infobox td {
+#mw-content-text .mw-parser-output .infobox th,
+#mw-content-text .mw-parser-output .infobox td {
   background-color: transparent;
   color: #111;
   border-bottom: 1px solid #d0c9b5;
 }
 
-#mw-content-text .mw-parser-output .infobox a, #mw-content-text .mw-parser-output .infobox a span {
+#mw-content-text .mw-parser-output .infobox a,
+#mw-content-text .mw-parser-output .infobox a span {
   color: #111;
 }
 
@@ -116,7 +134,8 @@ header.vector-header {
   border: 1px solid #d0c9b5;
 }
 
-#mw-content-text .mw-parser-output .wikitable a, #mw-content-text .mw-parser-output .wikitable a span {
+#mw-content-text .mw-parser-output .wikitable a,
+#mw-content-text .mw-parser-output .wikitable a span {
   color: #111;
 }
 
@@ -125,7 +144,10 @@ header.vector-header {
   color: #000;
 }
 
-#mw-content-text .mw-parser-output .navbox, #mw-content-text .mw-parser-output .navbox-subgroup, #mw-content-text .mw-parser-output #catlinks, #catlinks {
+#mw-content-text .mw-parser-output .navbox,
+#mw-content-text .mw-parser-output .navbox-subgroup,
+#mw-content-text .mw-parser-output #catlinks,
+#catlinks {
   background-color: #efe5cc;
   color: #111;
   border: 1px solid #b5ae9a;
@@ -133,21 +155,29 @@ header.vector-header {
   column-span: all;
 }
 
-#mw-content-text .mw-parser-output .navbox-title, #mw-content-text .mw-parser-output .navbox-abovebelow, #mw-content-text .mw-parser-output .navbox-group {
+#mw-content-text .mw-parser-output .navbox-title,
+#mw-content-text .mw-parser-output .navbox-abovebelow,
+#mw-content-text .mw-parser-output .navbox-group {
   background-color: #e8dcc0;
   color: #000;
 }
 
-#mw-content-text .mw-parser-output .navbox-list, #mw-content-text .mw-parser-output .navbox-even, #mw-content-text .mw-parser-output .navbox-odd {
+#mw-content-text .mw-parser-output .navbox-list,
+#mw-content-text .mw-parser-output .navbox-even,
+#mw-content-text .mw-parser-output .navbox-odd {
   background-color: #efe5cc;
   color: #111;
 }
 
-#mw-content-text .mw-parser-output .navbox a, #mw-content-text .mw-parser-output .navbox a span, #catlinks a {
+#mw-content-text .mw-parser-output .navbox a,
+#mw-content-text .mw-parser-output .navbox a span,
+#catlinks a {
   color: #111;
 }
 
-#catlinks .mw-normal-catlinks, #catlinks ul, #catlinks li {
+#catlinks .mw-normal-catlinks,
+#catlinks ul,
+#catlinks li {
   background-color: transparent;
   color: #d8d8d4;
 }
@@ -180,39 +210,53 @@ table.box-Multiple_issues {
   border-bottom: 1px solid #b5ae9a;
 }
 
-table.box-Multiple_issues td, table.box-Multiple_issues th, table.box-Multiple_issues .ambox, table.box-Multiple_issues .mbox-text {
+table.box-Multiple_issues td,
+table.box-Multiple_issues th,
+table.box-Multiple_issues .ambox,
+table.box-Multiple_issues .mbox-text {
   background-color: transparent;
   color: #111;
   border-color: #d0c9b5;
 }
 
-table.box-Multiple_issues a, table.box-Multiple_issues a span {
+table.box-Multiple_issues a,
+table.box-Multiple_issues a span {
   color: #111;
 }
 
-table.box-Multiple_issues .mw-collapsible-text, table.box-Multiple_issues .mw-collapsible-toggle a {
+table.box-Multiple_issues .mw-collapsible-text,
+table.box-Multiple_issues .mw-collapsible-toggle a {
   color: #111;
 }
 
 div.frb-inline-bottombar {
   display: none;
-  
 }
 
 div.frb-inline-main {
   display: none;
-  
 }
 
 #mw-content-text .mw-parser-output a:not(.new) {
   color: #5c6275;
 }
 
-.vector-toc-link, #p-views a, #p-associated-pages a, #p-tb a, #p-coll-print_export a, #p-wikibase-otherprojects a, .mw-editsection a {
+.vector-toc-link,
+#p-views a,
+#p-associated-pages a,
+#p-tb a,
+#p-coll-print_export a,
+#p-wikibase-otherprojects a,
+.mw-editsection a {
   color: #5c6275;
 }
 
-#mw-content-text .mw-parser-output .infobox a, #mw-content-text .mw-parser-output .infobox a span, #mw-content-text .mw-parser-output .wikitable a, #mw-content-text .mw-parser-output .wikitable a span, #mw-content-text .mw-parser-output .navbox a, #mw-content-text .mw-parser-output .navbox a span {
+#mw-content-text .mw-parser-output .infobox a,
+#mw-content-text .mw-parser-output .infobox a span,
+#mw-content-text .mw-parser-output .wikitable a,
+#mw-content-text .mw-parser-output .wikitable a span,
+#mw-content-text .mw-parser-output .navbox a,
+#mw-content-text .mw-parser-output .navbox a span {
   color: #111;
 }
 
@@ -232,7 +276,8 @@ caption.vgr-stacked {
   background-color: #b5ae9a;
 }
 
-.mwe-popups .mwe-popups-extract::after, .mwe-popups .mwe-popups-extract:after {
+.mwe-popups .mwe-popups-extract::after,
+.mwe-popups .mwe-popups-extract:after {
   display: none;
   background: none;
 }
@@ -241,7 +286,9 @@ ol.mw-references li {
   background-color: rgba(0, 0, 0, 0);
 }
 
-#mw-content-text a[href$='.pdf'].external, #mw-content-text a[href*='.pdf#'].external, #mw-content-text a.external[href$='.PDF'] {
+#mw-content-text a[href$='.pdf'].external,
+#mw-content-text a[href*='.pdf#'].external,
+#mw-content-text a.external[href$='.PDF'] {
   filter: saturate(0.2) contrast(0.85);
   background-blend-mode: luminosity;
 }
@@ -282,7 +329,10 @@ ul.noprint {
   text-justify: none;
 }
 
-#mw-content-text .mw-parser-output table.sortable, #mw-content-text .mw-parser-output .multicol, #mw-content-text .mw-parser-output .navbox, #mw-content-text .mw-parser-output .infobox-wide {
+#mw-content-text .mw-parser-output table.sortable,
+#mw-content-text .mw-parser-output .multicol,
+#mw-content-text .mw-parser-output .navbox,
+#mw-content-text .mw-parser-output .infobox-wide {
   column-span: all;
   width: 100%;
   box-sizing: border-box;
@@ -306,7 +356,8 @@ ul.noprint {
   margin: 16px;
 }
 
-#mw-content-text .mw-parser-output .navbox, #mw-content-text .mw-parser-output .multicol {
+#mw-content-text .mw-parser-output .navbox,
+#mw-content-text .mw-parser-output .multicol {
   max-width: 100%;
   overflow-x: auto;
 }
@@ -324,39 +375,73 @@ div.navbar {
   margin-right: 12px;
 }
 
-#firstHeading, .mw-first-heading, .mw-body h2, .mw-body h3, .vector-pinnable-header-label, #mw-content-text .mw-parser-output .wikitable caption {
+#firstHeading,
+.mw-first-heading,
+.mw-body h2,
+.mw-body h3,
+.vector-pinnable-header-label,
+#mw-content-text .mw-parser-output .wikitable caption {
   color: #d4d4d0;
   border-bottom-color: #343840;
 }
 
-#mw-content-text .mw-parser-output .infobox, #mw-content-text .mw-parser-output .navbox, #mw-content-text .mw-parser-output .navbox-subgroup, #catlinks, table.box-Multiple_issues {
+#mw-content-text .mw-parser-output .infobox,
+#mw-content-text .mw-parser-output .navbox,
+#mw-content-text .mw-parser-output .navbox-subgroup,
+#catlinks,
+table.box-Multiple_issues {
   background-color: #1d2025;
   color: #d8d8d4;
   border-color: #343840;
 }
 
-#mw-content-text .mw-parser-output .infobox th, #mw-content-text .mw-parser-output .infobox td, table.box-Multiple_issues td, table.box-Multiple_issues th {
+#mw-content-text .mw-parser-output .infobox th,
+#mw-content-text .mw-parser-output .infobox td,
+table.box-Multiple_issues td,
+table.box-Multiple_issues th {
   color: #d8d8d4;
   border-color: #2c3036;
 }
 
-#mw-content-text .mw-parser-output .wikitable th, #mw-content-text .mw-parser-output .navbox-title, #mw-content-text .mw-parser-output .navbox-abovebelow, #mw-content-text .mw-parser-output .navbox-group {
+#mw-content-text .mw-parser-output .wikitable th,
+#mw-content-text .mw-parser-output .navbox-title,
+#mw-content-text .mw-parser-output .navbox-abovebelow,
+#mw-content-text .mw-parser-output .navbox-group {
   background-color: #252930;
   color: #d4d4d0;
   border-color: #343840;
 }
 
-#mw-content-text .mw-parser-output .wikitable td, #mw-content-text .mw-parser-output .navbox-list, #mw-content-text .mw-parser-output .navbox-even, #mw-content-text .mw-parser-output .navbox-odd {
+#mw-content-text .mw-parser-output .wikitable td,
+#mw-content-text .mw-parser-output .navbox-list,
+#mw-content-text .mw-parser-output .navbox-even,
+#mw-content-text .mw-parser-output .navbox-odd {
   background-color: #1d2025;
   color: #d8d8d4;
   border-color: #2c3036;
 }
 
-#mw-content-text .mw-parser-output a:not(.new), .vector-toc-link, #p-views a, #p-associated-pages a, #p-tb a, #p-coll-print_export a, #p-wikibase-otherprojects a, .mw-editsection a, .mw-jump-link {
+#mw-content-text .mw-parser-output a:not(.new),
+.vector-toc-link,
+#p-views a,
+#p-associated-pages a,
+#p-tb a,
+#p-coll-print_export a,
+#p-wikibase-otherprojects a,
+.mw-editsection a,
+.mw-jump-link {
   color: #7d90b8;
 }
 
-#mw-content-text .mw-parser-output .infobox a, #mw-content-text .mw-parser-output .infobox a span, #mw-content-text .mw-parser-output .wikitable a, #mw-content-text .mw-parser-output .wikitable a span, #mw-content-text .mw-parser-output .navbox a, #mw-content-text .mw-parser-output .navbox a span, #catlinks a, table.box-Multiple_issues a, table.box-Multiple_issues a span {
+#mw-content-text .mw-parser-output .infobox a,
+#mw-content-text .mw-parser-output .infobox a span,
+#mw-content-text .mw-parser-output .wikitable a,
+#mw-content-text .mw-parser-output .wikitable a span,
+#mw-content-text .mw-parser-output .navbox a,
+#mw-content-text .mw-parser-output .navbox a span,
+#catlinks a,
+table.box-Multiple_issues a,
+table.box-Multiple_issues a span {
   color: #8e9fc4;
 }
 
@@ -364,7 +449,8 @@ div.navbar {
   color: #a0a4aa;
 }
 
-table.vgr-aggregators caption, caption.vgr-stacked {
+table.vgr-aggregators caption,
+caption.vgr-stacked {
   background-color: #252930;
 }
 
@@ -372,14 +458,37 @@ table.vgr-aggregators caption, caption.vgr-stacked {
   filter: invert(0.85);
 }
 
-html, body, .mw-page-container, .vector-header-container, #vector-toc-pinned-container, #vector-appearance-pinned-container, .vector-dropdown-content, #searchform, #searchInput {
+html,
+body,
+.mw-page-container,
+.vector-header-container,
+#vector-toc-pinned-container,
+#vector-appearance-pinned-container,
+.vector-dropdown-content,
+#searchform,
+#searchInput {
   color: #bcbcb8;
 }
 
-#mw-content-text .mw-parser-output .infobox, #mw-content-text .mw-parser-output .navbox, #mw-content-text .mw-parser-output .navbox-subgroup, #catlinks, table.box-Multiple_issues, #mw-content-text .mw-parser-output .wikitable {
+#mw-content-text .mw-parser-output .infobox,
+#mw-content-text .mw-parser-output .navbox,
+#mw-content-text .mw-parser-output .navbox-subgroup,
+#catlinks,
+table.box-Multiple_issues,
+#mw-content-text .mw-parser-output .wikitable {
   color: #bcbcb8;
 }
 
-#mw-content-text .mw-parser-output .infobox th, #mw-content-text .mw-parser-output .infobox td, table.box-Multiple_issues td, table.box-Multiple_issues th, #mw-content-text .mw-parser-output .wikitable td, #mw-content-text .mw-parser-output .navbox-list, #mw-content-text .mw-parser-output .navbox-even, #mw-content-text .mw-parser-output .navbox-odd, #catlinks .mw-normal-catlinks, #catlinks ul, #catlinks li {
+#mw-content-text .mw-parser-output .infobox th,
+#mw-content-text .mw-parser-output .infobox td,
+table.box-Multiple_issues td,
+table.box-Multiple_issues th,
+#mw-content-text .mw-parser-output .wikitable td,
+#mw-content-text .mw-parser-output .navbox-list,
+#mw-content-text .mw-parser-output .navbox-even,
+#mw-content-text .mw-parser-output .navbox-odd,
+#catlinks .mw-normal-catlinks,
+#catlinks ul,
+#catlinks li {
   color: #bcbcb8;
 }

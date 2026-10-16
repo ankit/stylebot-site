@@ -21,7 +21,7 @@ body,
 td,
 input,
 textarea {
-  font-family: "Old Standard TT";
+  font-family: 'Old Standard TT';
 }
 
 center {
@@ -55,29 +55,29 @@ table#hnmain {
 }
 
 /* Masthead */
-#hnmain td[bgcolor="#ff6600"] {
+#hnmain td[bgcolor='#ff6600'] {
   background: transparent;
   border-top: 1px solid #9b8f6e;
   border-bottom: 4px double #9b8f6e;
   padding: 6px 0 4px;
 }
 
-#hnmain td[bgcolor="#ff6600"] img {
+#hnmain td[bgcolor='#ff6600'] img {
   display: none;
 }
 
 /* Logged in: keep the masthead centred on the full sheet.
    The logo cell goes, and the user/logout cell sits at the right end of the
    dateline, out of the flow, like a paper's edition slot. */
-#hnmain td[bgcolor="#ff6600"] > table {
+#hnmain td[bgcolor='#ff6600'] > table {
   position: relative;
 }
 
-#hnmain td[bgcolor="#ff6600"] td:has(> a > img) {
+#hnmain td[bgcolor='#ff6600'] td:has(> a > img) {
   display: none;
 }
 
-#hnmain td[bgcolor="#ff6600"] > table td:has(.hnname) ~ td {
+#hnmain td[bgcolor='#ff6600'] > table td:has(.hnname) ~ td {
   position: absolute;
   right: 0;
   top: 3px;
@@ -85,7 +85,7 @@ table#hnmain {
   line-height: 1.4;
 }
 
-#hnmain td[bgcolor="#ff6600"] > table td:has(.hnname) ~ td .pagetop {
+#hnmain td[bgcolor='#ff6600'] > table td:has(.hnname) ~ td .pagetop {
   font-size: 12px;
 }
 
@@ -96,24 +96,24 @@ table#hnmain {
     padding: 14px 16px 20px;
   }
 
-  #hnmain td[bgcolor="#ff6600"] > table,
-  #hnmain td[bgcolor="#ff6600"] > table > tbody {
+  #hnmain td[bgcolor='#ff6600'] > table,
+  #hnmain td[bgcolor='#ff6600'] > table > tbody {
     display: block;
     width: 100%;
   }
 
-  #hnmain td[bgcolor="#ff6600"] > table tr {
+  #hnmain td[bgcolor='#ff6600'] > table tr {
     display: flex;
     flex-direction: column;
     align-items: stretch;
   }
 
   /* HN sets height:10px inline on the nameplate cell; as a flex item that caps it */
-  #hnmain td[bgcolor="#ff6600"] > table td {
+  #hnmain td[bgcolor='#ff6600'] > table td {
     height: auto;
   }
 
-  #hnmain td[bgcolor="#ff6600"] > table td:has(.hnname) ~ td {
+  #hnmain td[bgcolor='#ff6600'] > table td:has(.hnname) ~ td {
     position: static;
     text-align: center;
     padding: 6px 0 2px;
@@ -127,7 +127,7 @@ table#hnmain {
 
 .pagetop {
   color: #a3abbc;
-  font-family: "Old Standard TT";
+  font-family: 'Old Standard TT';
   font-size: 13px;
   font-variant: small-caps;
   letter-spacing: 0.06em;
@@ -139,10 +139,10 @@ td:has(> .pagetop > .hnname) {
 
 /* Pages without the nameplate (submit, etc.) show only a page title:
    set it as a centred section head */
-#hnmain td[bgcolor="#ff6600"] .pagetop > b:only-child {
+#hnmain td[bgcolor='#ff6600'] .pagetop > b:only-child {
   display: block;
   text-align: center;
-  font-family: "Playfair Display";
+  font-family: 'Playfair Display';
   font-style: italic;
   font-weight: 700;
   font-variant: normal;
@@ -154,24 +154,24 @@ td:has(> .pagetop > .hnname) {
 }
 
 /* Submit form: fields fill the sheet instead of HN's 50-character boxes */
-#bigbox form:has(input[name=title]) > table {
+#bigbox form:has(input[name='title']) > table {
   width: 100%;
 }
 
-#bigbox form:has(input[name=title]) > table td:first-child {
+#bigbox form:has(input[name='title']) > table td:first-child {
   white-space: nowrap;
   padding-right: 12px;
 }
 
-#bigbox input[name=title],
-#bigbox input[name=url],
-#bigbox textarea[name=text] {
+#bigbox input[name='title'],
+#bigbox input[name='url'],
+#bigbox textarea[name='text'] {
   width: 100%;
   box-sizing: border-box;
   padding: 6px 8px;
 }
 
-#bigbox textarea[name=text] {
+#bigbox textarea[name='text'] {
   min-height: 160px;
 }
 
@@ -188,7 +188,7 @@ td:has(> .pagetop > .hnname) {
 
 .hnname a,
 .hnname a:visited {
-  font-family: "Playfair Display";
+  font-family: 'Playfair Display';
   font-size: 60px;
   font-weight: 900;
   font-style: italic;
@@ -199,9 +199,9 @@ td:has(> .pagetop > .hnname) {
 }
 
 .hnname::before {
-  content: "Vol. XIX · Est. 2007 · San Francisco, California · Written in Arc";
+  content: 'Vol. XIX · Est. 2007 · San Francisco, California · Written in Arc';
   display: block;
-  font-family: "Old Standard TT";
+  font-family: 'Old Standard TT';
   font-style: italic;
   font-size: 12px;
   font-weight: normal;
@@ -219,7 +219,7 @@ td:has(> .pagetop > .hnname) {
 
 .rank {
   color: #a3abbc;
-  font-family: "Playfair Display";
+  font-family: 'Playfair Display';
   font-style: italic;
   font-size: 15px;
   position: relative;
@@ -255,7 +255,7 @@ td:has(> .pagetop > .hnname) {
 
 .titleline > a,
 .titleline > a:visited {
-  font-family: "Playfair Display";
+  font-family: 'Playfair Display';
   font-weight: 700;
   font-size: 19px;
   line-height: 1.25;
@@ -282,7 +282,7 @@ td:has(> .pagetop > .hnname) {
 
 .subtext,
 .subline {
-  font-family: "Old Standard TT";
+  font-family: 'Old Standard TT';
   font-size: 13.5px;
   color: #a3abbc;
 }
@@ -295,7 +295,7 @@ td:has(> .pagetop > .hnname) {
 .subtext a,
 .subtext a:visited,
 .score {
-  font-family: "Old Standard TT";
+  font-family: 'Old Standard TT';
   color: #a7adba;
 }
 
@@ -315,12 +315,12 @@ td:has(> .pagetop > .hnname) {
 }
 
 /* New accounts: HN's green, recast as brass ink with a small "new" tag */
-.hnuser font[color="#3c963c"] {
+.hnuser font[color='#3c963c'] {
   color: #c2b48a;
 }
 
-.hnuser font[color="#3c963c"]::after {
-  content: "new";
+.hnuser font[color='#3c963c']::after {
+  content: 'new';
   font-style: normal;
   font-variant: small-caps;
   font-size: 11px;
@@ -338,14 +338,14 @@ tr.spacer {
 }
 
 a.morelink {
-  font-family: "Playfair Display";
+  font-family: 'Playfair Display';
   font-style: italic;
   font-size: 16px;
   color: #d3cfc5;
 }
 
 /* Footer */
-#hnmain tr:last-child td[bgcolor="#ff6600"] {
+#hnmain tr:last-child td[bgcolor='#ff6600'] {
   border-top: 4px double #9b8f6e;
   border-bottom: none;
   padding: 0;
@@ -353,7 +353,7 @@ a.morelink {
 
 .yclinks,
 .yclinks a {
-  font-family: "Old Standard TT";
+  font-family: 'Old Standard TT';
   font-variant: small-caps;
   font-size: 13px;
   color: #c3c8d3;
@@ -379,7 +379,7 @@ a.morelink {
 .commtext,
 .commtext a,
 .toptext {
-  font-family: "Libre Caslon Text";
+  font-family: 'Libre Caslon Text';
   font-size: 14px;
   line-height: 1.55;
   color: #d3cfc5;
@@ -404,7 +404,7 @@ a.morelink {
 
 .reply a,
 .reply a:visited {
-  font-family: "Old Standard TT";
+  font-family: 'Old Standard TT';
   font-size: 12px;
   font-variant: small-caps;
   letter-spacing: 0.05em;
@@ -430,7 +430,7 @@ a.morelink {
 
 .comhead,
 .comhead a {
-  font-family: "Old Standard TT";
+  font-family: 'Old Standard TT';
   font-style: italic;
   color: #a3abbc;
 }

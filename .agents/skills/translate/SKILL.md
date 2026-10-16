@@ -120,16 +120,16 @@ Claude, Gemini, OpenAI, model names (Sonnet 5, GPT-5.6 Luna…), keyboard keys
 
 Keep the meaning, translate the word:
 
-| English | Meaning in Stylebot |
-|---|---|
-| style | the CSS a user saved for one site (noun) |
-| styling | Stylebot's CSS being applied on a page |
-| selector | a CSS selector, as in CSS documentation in that language |
-| preset | a ready-made set of styles (dark mode, grayscale…) |
-| readability / reader | the reading view that strips a page to its article |
-| panel / editor | Stylebot's side panel where styles are edited |
-| Light / Dark / Sepia / System | theme names, as the OS or browser names its themes |
-| provider | an AI company whose API key the user adds |
+| English                       | Meaning in Stylebot                                      |
+| ----------------------------- | -------------------------------------------------------- |
+| style                         | the CSS a user saved for one site (noun)                 |
+| styling                       | Stylebot's CSS being applied on a page                   |
+| selector                      | a CSS selector, as in CSS documentation in that language |
+| preset                        | a ready-made set of styles (dark mode, grayscale…)       |
+| readability / reader          | the reading view that strips a page to its article       |
+| panel / editor                | Stylebot's side panel where styles are edited            |
+| Light / Dark / Sepia / System | theme names, as the OS or browser names its themes       |
+| provider                      | an AI company whose API key the user adds                |
 
 ## Finish
 
