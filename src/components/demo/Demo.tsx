@@ -5,10 +5,12 @@ import CloseIcon from '@/components/icons/CloseIcon';
 import EyeOffIcon from '@/components/icons/EyeOffIcon';
 import SbIcon from '@/components/icons/SbIcon';
 
-import type { DemoMessages } from '../../i18n';
-import { fmt } from '../../i18n/format';
-import { currentTheme } from '../../lib/theme-state';
-import { isDarkTheme } from '../../lib/themes';
+import { currentTheme } from '@/lib/theme-state';
+import { isDarkTheme } from '@/lib/themes';
+import { fmt } from '@/i18n/format';
+
+import type { DemoMessages } from '@/i18n';
+
 import {
   DEFAULT_PROFILE,
   type DemoState,

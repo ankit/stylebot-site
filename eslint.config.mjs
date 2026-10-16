@@ -32,6 +32,18 @@ export default tseslint.config(
       curly: ['error', 'all'],
       eqeqeq: ['error', 'always', { null: 'ignore' }],
       'no-else-return': 'error',
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: [
+            {
+              group: ['../../*'],
+              message:
+                'Import from @/ instead of going up more than one level.',
+            },
+          ],
+        },
+      ],
 
       'arrow-body-style': ['error', 'as-needed'],
       'no-lonely-if': 'error',
@@ -69,6 +81,9 @@ export default tseslint.config(
           groups: [
             ['^\\u0000(?!.*\\.css$)'],
             ['^node:', '^@?\\w'],
+            ['^@/layouts/', '^@/components/'],
+            ['^@/lib/', '^@/i18n(/|$)'],
+            ['^@/assets/'],
             ['^'],
             ['^\\.'],
             ['^\\u0000.*\\.css$'],

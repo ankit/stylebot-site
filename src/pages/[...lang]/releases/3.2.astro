@@ -1,10 +1,13 @@
 ---
 import { Image } from 'astro:assets';
-import Base from '../../../layouts/Base.astro';
-import { LINKS } from '../../../lib/links';
-import readability from '../../../assets/releases/3.2/readability.png';
-import popup from '../../../assets/releases/3.2/popup.png';
-import { fmt, localeStaticPaths, rich } from '../../../i18n';
+
+import Base from '@/layouts/Base.astro';
+
+import { LINKS } from '@/lib/links';
+import { fmt, localeStaticPaths, rich } from '@/i18n';
+
+import readability from '@/assets/releases/3.2/readability.png';
+import popup from '@/assets/releases/3.2/popup.png';
 
 export const getStaticPaths = localeStaticPaths;
 

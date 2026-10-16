@@ -1,23 +1,25 @@
 ---
-import Base from '../../layouts/Base.astro';
-import ImageZoom from '../../components/ImageZoom.astro';
-import Callout from '../../components/manual/Callout.astro';
-import Keys from '../../components/manual/Keys.astro';
-import Shot from '../../components/manual/Shot.astro';
-import Term from '../../components/manual/Term.astro';
-import Terms from '../../components/manual/Terms.astro';
-import basicShot from '../../assets/manual/basic-editor.webp';
-import basicDarkShot from '../../assets/manual/basic-editor-dark.webp';
-import popupProfilesShot from '../../assets/manual/popup-profiles.png';
-import popupProfilesDarkShot from '../../assets/manual/popup-profiles-dark.png';
-import syncShot from '../../assets/manual/sync.png';
-import syncDarkShot from '../../assets/manual/sync-dark.png';
-import historyShot from '../../assets/manual/history.png';
-import historyDarkShot from '../../assets/manual/history-dark.png';
-import readabilityShot from '../../assets/manual/readability.webp';
-import readabilityDarkShot from '../../assets/manual/readability-dark.webp';
-import { LINKS } from '../../lib/links';
-import { localeStaticPaths, rich } from '../../i18n';
+import Base from '@/layouts/Base.astro';
+import ImageZoom from '@/components/ImageZoom.astro';
+import Callout from '@/components/manual/Callout.astro';
+import Keys from '@/components/manual/Keys.astro';
+import Shot from '@/components/manual/Shot.astro';
+import Term from '@/components/manual/Term.astro';
+import Terms from '@/components/manual/Terms.astro';
+
+import { LINKS } from '@/lib/links';
+import { localeStaticPaths, rich } from '@/i18n';
+
+import basicShot from '@/assets/manual/basic-editor.webp';
+import basicDarkShot from '@/assets/manual/basic-editor-dark.webp';
+import popupProfilesShot from '@/assets/manual/popup-profiles.png';
+import popupProfilesDarkShot from '@/assets/manual/popup-profiles-dark.png';
+import syncShot from '@/assets/manual/sync.png';
+import syncDarkShot from '@/assets/manual/sync-dark.png';
+import historyShot from '@/assets/manual/history.png';
+import historyDarkShot from '@/assets/manual/history-dark.png';
+import readabilityShot from '@/assets/manual/readability.webp';
+import readabilityDarkShot from '@/assets/manual/readability-dark.webp';
 
 export const getStaticPaths = localeStaticPaths;
 

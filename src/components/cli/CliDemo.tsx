@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'preact/hooks';
 
-import type { SiteMessages } from '../../i18n';
-import { fmt } from '../../i18n/format';
+import { fmt } from '@/i18n/format';
+
+import type { SiteMessages } from '@/i18n';
 
 import './cli-demo.css';
 

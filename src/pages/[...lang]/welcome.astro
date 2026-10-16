@@ -1,9 +1,10 @@
 ---
-import { localeStaticPaths } from '../../i18n';
-import Base from '../../layouts/Base.astro';
-import Demo from '../../components/demo/Demo';
-import CliCommand from '../../components/cli/CliCommand.astro';
-import { CLI_PACKAGE } from '../../lib/links';
+import Base from '@/layouts/Base.astro';
+import Demo from '@/components/demo/Demo';
+import CliCommand from '@/components/cli/CliCommand.astro';
+
+import { localeStaticPaths } from '@/i18n';
+import { CLI_PACKAGE } from '@/lib/links';
 
 export const getStaticPaths = localeStaticPaths;
 

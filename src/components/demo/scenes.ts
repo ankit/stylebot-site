@@ -1,5 +1,6 @@
-import type { DemoMessages } from '../../i18n';
-import { fmt } from '../../i18n/format';
+import { fmt } from '@/i18n/format';
+
+import type { DemoMessages } from '@/i18n';
 
 export type Patch = Record<string, unknown> & {
   cur?: string;
