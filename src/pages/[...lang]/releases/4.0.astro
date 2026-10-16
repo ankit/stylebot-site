@@ -15,20 +15,14 @@ import position from '../../../assets/manual/position-menu.png';
 import positionDark from '../../../assets/manual/position-menu-dark.png';
 import history from '../../../assets/manual/history.png';
 import historyDark from '../../../assets/manual/history-dark.png';
-import {
-  fmt,
-  localeStaticPaths,
-  localizePath,
-  messagesFor,
-  rich,
-} from '../../../i18n';
+import { fmt, localeStaticPaths, rich } from '../../../i18n';
 
 export const getStaticPaths = localeStaticPaths;
 
 const {
-  locale,
+  path,
   site: { releases: t, manual: m, cli },
-} = messagesFor(Astro.url);
+} = Astro.locals;
 const r = t.r40;
 const title = fmt(t.title, { version: '4.0' });
 
@@ -129,7 +123,7 @@ const cards = [
           <p>{cli.page.lede}</p>
           <div class="release-cli-setup">
             <CliCommand lines={[`npm install -g ${CLI_PACKAGE}`]} boxed />
-            <a href={localizePath(locale, LINKS.cli)} class="btn btn-primary">
+            <a href={path(LINKS.cli)} class="btn btn-primary">
               {cli.guide}
             </a>
           </div>

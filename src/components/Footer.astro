@@ -1,8 +1,7 @@
 ---
 import { LINKS } from '../lib/links';
-import { messagesFor } from '../i18n';
 
-const { site: t } = messagesFor(Astro.url);
+const { site: t } = Astro.locals;
 ---
 
 <footer class="site-footer">

@@ -17,14 +17,14 @@ import historyDarkShot from '../../assets/manual/history-dark.png';
 import readabilityShot from '../../assets/manual/readability.webp';
 import readabilityDarkShot from '../../assets/manual/readability-dark.webp';
 import { LINKS } from '../../lib/links';
-import { localeStaticPaths, localizePath, messagesFor, rich } from '../../i18n';
+import { localeStaticPaths, rich } from '../../i18n';
 
 export const getStaticPaths = localeStaticPaths;
 
 const {
-  locale,
+  path,
   site: { manual: t },
-} = messagesFor(Astro.url);
+} = Astro.locals;
 const a = t.shortcuts.actions;
 
 const toc = Object.entries(t.toc);
@@ -175,7 +175,7 @@ const shortcutGroups = [
             <Term term={t.cli.setup}>
               <Fragment
                 set:html={rich(t.cli.setupBody, {
-                  cli: localizePath(locale, LINKS.cli),
+                  cli: path(LINKS.cli),
                 })}
               />
             </Term>

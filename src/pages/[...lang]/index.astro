@@ -10,17 +10,11 @@ import Footer from '../../components/Footer.astro';
 import FeatureTour from '../../components/FeatureTour.astro';
 import StoreLink from '../../components/StoreLink.astro';
 import { CLI_PACKAGE, LINKS, STORES } from '../../lib/links';
-import {
-  htmlLang,
-  localeStaticPaths,
-  localizePath,
-  messagesFor,
-  parts,
-} from '../../i18n';
+import { localeStaticPaths, parts } from '../../i18n';
 
 export const getStaticPaths = localeStaticPaths;
 
-const { locale, site: t, demo } = messagesFor(Astro.url);
+const { path, lang, locale, site: t, demo } = Astro.locals;
 
 type RestyleFont = {
   family: string;
@@ -328,9 +322,9 @@ const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
   name: 'Stylebot',
-  url: new URL(localizePath(locale, '/'), Astro.site).href,
+  url: new URL(path('/'), Astro.site).href,
   description: t.meta.description,
-  inLanguage: htmlLang(locale),
+  inLanguage: lang,
   applicationCategory: 'BrowserApplication',
   operatingSystem: 'Chrome, Firefox, Edge',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },

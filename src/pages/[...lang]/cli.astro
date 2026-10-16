@@ -2,7 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import CliCommand from '../../components/cli/CliCommand.astro';
 import { CLI_PACKAGE, STORES } from '../../lib/links';
-import { fmt, localeStaticPaths, messagesFor, rich } from '../../i18n';
+import { fmt, localeStaticPaths, rich } from '../../i18n';
 
 export const getStaticPaths = localeStaticPaths;
 
@@ -11,7 +11,7 @@ const {
     cli: { page: t },
     store,
   },
-} = messagesFor(Astro.url);
+} = Astro.locals;
 
 const examples = [
   ['stylebot open news.ycombinator.com', t.examples.open],

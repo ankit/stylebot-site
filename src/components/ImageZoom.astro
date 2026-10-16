@@ -1,7 +1,5 @@
 ---
-import { messagesFor } from '../i18n';
-
-const { site: t } = messagesFor(Astro.url);
+const { site: t } = Astro.locals;
 ---
 
 <dialog class="zoom" aria-label={t.zoom.label}>

@@ -1,6 +1,6 @@
 ---
 import { Check, Copy } from '../icons';
-import { fmt, messagesFor } from '../../i18n';
+import { fmt } from '../../i18n';
 
 type Props = {
   lines: Array<string>;
@@ -12,7 +12,7 @@ type Props = {
 const { lines, copy = true, boxed = false, class: className } = Astro.props;
 const {
   site: { cli: t },
-} = messagesFor(Astro.url);
+} = Astro.locals;
 const command = lines.join(' && ');
 ---
 

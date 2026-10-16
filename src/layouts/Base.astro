@@ -6,9 +6,7 @@ import {
   DEFAULT_LOCALE,
   LOCALES,
   fmt,
-  htmlLang,
   localizePath,
-  messagesFor,
   unlocalizedPath,
 } from '../i18n';
 import '../styles/global.css';
@@ -24,7 +22,7 @@ type Props = {
   alternates?: boolean;
 };
 
-const { locale, site: t } = messagesFor(Astro.url);
+const { lang, locale, site: t } = Astro.locals;
 
 const {
   title,
@@ -45,10 +43,7 @@ const altUrl = (code: (typeof LOCALES)[number]['code']) =>
 ---
 
 <!doctype html>
-<html
-  lang={htmlLang(locale)}
-  translate={locale === DEFAULT_LOCALE ? undefined : 'no'}
->
+<html lang={lang} translate={locale === DEFAULT_LOCALE ? undefined : 'no'}>
   <head>
     <meta charset="utf-8" />
     {locale !== DEFAULT_LOCALE && <meta name="google" content="notranslate" />}
@@ -74,7 +69,7 @@ const altUrl = (code: (typeof LOCALES)[number]['code']) =>
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Stylebot" />
-    <meta property="og:locale" content={htmlLang(locale).replace('-', '_')} />
+    <meta property="og:locale" content={lang.replace('-', '_')} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />

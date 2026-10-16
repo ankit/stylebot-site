@@ -1,5 +1,5 @@
 ---
-import { localeStaticPaths, localizePath, messagesFor } from '../../i18n';
+import { localeStaticPaths } from '../../i18n';
 import Base from '../../layouts/Base.astro';
 import Demo from '../../components/demo/Demo';
 import CliCommand from '../../components/cli/CliCommand.astro';
@@ -8,10 +8,10 @@ import { CLI_PACKAGE } from '../../lib/links';
 export const getStaticPaths = localeStaticPaths;
 
 const {
-  locale,
+  path,
   site: { welcome: t, cli },
   demo,
-} = messagesFor(Astro.url);
+} = Astro.locals;
 ---
 
 <Base title={t.title} description={t.description} install={false} noindex>
@@ -31,7 +31,7 @@ const {
             <kbd data-mac="⇧ Shift">Shift</kbd>
             <kbd>M</kbd>
           </span>
-          <a href={localizePath(locale, '/manual')} class="your-turn-link">
+          <a href={path('/manual')} class="your-turn-link">
             {t.manual}
             <span>›</span>
           </a>
@@ -45,7 +45,7 @@ const {
           <p>{t.agentBody}</p>
           <div class="agent-setup">
             <CliCommand lines={[`npm install -g ${CLI_PACKAGE}`]} boxed />
-            <a href={localizePath(locale, '/cli')} class="agent-guide">
+            <a href={path('/cli')} class="agent-guide">
               {cli.guide}
             </a>
           </div>

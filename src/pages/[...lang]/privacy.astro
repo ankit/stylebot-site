@@ -1,22 +1,16 @@
 ---
 import Base from '../../layouts/Base.astro';
-import {
-  DEFAULT_LOCALE,
-  fmt,
-  htmlLang,
-  localeStaticPaths,
-  messagesFor,
-  rich,
-} from '../../i18n';
+import { DEFAULT_LOCALE, fmt, localeStaticPaths, rich } from '../../i18n';
 
 export const getStaticPaths = localeStaticPaths;
 
 const {
+  lang,
   locale,
   site: { privacy: t },
-} = messagesFor(Astro.url);
+} = Astro.locals;
 
-const updated = new Intl.DateTimeFormat(htmlLang(locale), {
+const updated = new Intl.DateTimeFormat(lang, {
   dateStyle: 'long',
   timeZone: 'UTC',
 }).format(Date.UTC(2026, 9, 12));

@@ -4,11 +4,10 @@ import ThemeMenu from './ThemeMenu';
 import StoreLink from './StoreLink.astro';
 import LanguageMenu from './LanguageMenu.astro';
 import { LINKS } from '../lib/links';
-import { localizePath, messagesFor } from '../i18n';
 
 type Props = { current?: 'manual'; storeCta?: boolean; install?: boolean };
 const { current, storeCta = false, install = true } = Astro.props;
-const { locale, site: t } = messagesFor(Astro.url);
+const { path, site: t } = Astro.locals;
 const themeLabels = {
   title: t.header.theme,
   names: t.themes,
@@ -17,12 +16,12 @@ const themeLabels = {
 
 <header class="site-header">
   <div class="site-header-inner">
-    <Logo client:idle href={localizePath(locale, '/')} label={t.header.home} />
+    <Logo client:idle href={path('/')} label={t.header.home} />
     <div class="header-actions">
       <LanguageMenu />
       <ThemeMenu client:idle labels={themeLabels} />
       <a
-        href={localizePath(locale, LINKS.manual)}
+        href={path(LINKS.manual)}
         class:list={['icon-btn', { 'is-current': current === 'manual' }]}
         aria-label={t.header.manual}
         aria-current={current === 'manual' ? 'page' : undefined}
@@ -62,10 +61,7 @@ const themeLabels = {
             class="btn btn-primary btn-sm header-store"
           />
         ) : (
-          <a
-            href={localizePath(locale, '/#install')}
-            class="btn btn-primary btn-sm"
-          >
+          <a href={path('/#install')} class="btn btn-primary btn-sm">
             {t.header.install}
           </a>
         ))}

@@ -1,7 +1,7 @@
 ---
-import { LOCALES, localizePath, messagesFor, unlocalizedPath } from '../i18n';
+import { LOCALES, localizePath, unlocalizedPath } from '../i18n';
 
-const { locale, site: t } = messagesFor(Astro.url);
+const { locale, site: t } = Astro.locals;
 const path = unlocalizedPath(Astro.url.pathname);
 ---
 

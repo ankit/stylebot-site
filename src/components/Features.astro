@@ -1,11 +1,10 @@
 ---
 import CarouselNav from './CarouselNav.astro';
 import { ChevronDown } from './icons';
-import { messagesFor } from '../i18n';
 
 const {
   site: { features: t },
-} = messagesFor(Astro.url);
+} = Astro.locals;
 ---
 
 <section id="features" class="section features">

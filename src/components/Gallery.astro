@@ -4,11 +4,11 @@ import SbIcon from './SbIcon';
 import { Check, Copy } from './icons';
 import { GALLERY, type GallerySite } from '../lib/gallery';
 import { LINKS } from '../lib/links';
-import { fmt, messagesFor } from '../i18n';
+import { fmt } from '../i18n';
 
 const {
   site: { gallery: t },
-} = messagesFor(Astro.url);
+} = Astro.locals;
 const strings = {
   alt: t.alt,
   install: t.install,

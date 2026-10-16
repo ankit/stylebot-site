@@ -1,13 +1,13 @@
 ---
 import Base from '../../../layouts/Base.astro';
 import { LINKS } from '../../../lib/links';
-import { fmt, localeStaticPaths, messagesFor, rich } from '../../../i18n';
+import { fmt, localeStaticPaths, rich } from '../../../i18n';
 
 export const getStaticPaths = localeStaticPaths;
 
 const {
   site: { releases: t },
-} = messagesFor(Astro.url);
+} = Astro.locals;
 const r = t.r31;
 const title = fmt(t.title, { version: '3.1' });
 ---

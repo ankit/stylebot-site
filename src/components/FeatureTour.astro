@@ -1,7 +1,6 @@
 ---
 import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
-import { messagesFor } from '../i18n';
 import { crisp } from '../lib/screenshots';
 import pick from '../assets/tour/pick-element.webp';
 import code from '../assets/tour/code.webp';
@@ -11,7 +10,7 @@ const {
   site: {
     home: { tour: t },
   },
-} = messagesFor(Astro.url);
+} = Astro.locals;
 
 const CARDS: Array<[string, ImageMetadata]> = [
   [t.pick, pick],

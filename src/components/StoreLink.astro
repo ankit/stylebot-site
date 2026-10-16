@@ -1,6 +1,6 @@
 ---
 import { BROWSERS, STORES } from '../lib/links';
-import { fmt, messagesFor } from '../i18n';
+import { fmt } from '../i18n';
 
 type Props = {
   index: 0 | 1 | 2;
@@ -10,7 +10,7 @@ type Props = {
 
 const { index, format, class: className } = Astro.props;
 const store = STORES[BROWSERS[index]];
-const { site: t } = messagesFor(Astro.url);
+const { site: t } = Astro.locals;
 const template = {
   add: t.store.add,
   name: '{store}',

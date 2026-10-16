@@ -2,13 +2,13 @@
 import Base from '../../layouts/Base.astro';
 import GoodbyeFeedback from '../../components/GoodbyeFeedback';
 import StoreLink from '../../components/StoreLink.astro';
-import { localeStaticPaths, messagesFor } from '../../i18n';
+import { localeStaticPaths } from '../../i18n';
 
 export const getStaticPaths = localeStaticPaths;
 
 const {
   site: { goodbye: t },
-} = messagesFor(Astro.url);
+} = Astro.locals;
 ---
 
 <Base title={t.title} description={t.description} noindex>
