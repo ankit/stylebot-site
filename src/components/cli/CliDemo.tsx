@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'preact/hooks';
+
 import type { SiteMessages } from '../../i18n';
 import { fmt } from '../../i18n/format';
+
 import './cli-demo.css';
 
 const SITE = 'harbourpost.example';
@@ -39,6 +41,7 @@ export default function CliDemo({
   useEffect(() => {
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
       setStep(LAST - 1);
+
       return;
     }
 
@@ -48,11 +51,19 @@ export default function CliDemo({
       ([entry]) => {
         clearTimeout(start);
         clearInterval(timer);
-        if (!entry.isIntersecting) return;
+
+        if (!entry.isIntersecting) {
+          return;
+        }
+
         // Side by side, typing starts at once so the terminal never sits
         // empty; phones open on the page before it's restyled, for a moment.
         const phone = matchMedia(PHONE).matches;
-        if (!phone) setStep((s) => s || ASK);
+
+        if (!phone) {
+          setStep((s) => s || ASK);
+        }
+
         start = setTimeout(
           () => {
             timer = setInterval(() => setStep((s) => (s + 1) % STEPS), STEP_MS);
@@ -62,7 +73,9 @@ export default function CliDemo({
       },
       { threshold: 0.15 },
     );
+
     observer.observe(root.current!);
+
     return () => {
       observer.disconnect();
       clearTimeout(start);
@@ -90,6 +103,7 @@ export default function CliDemo({
           </div>
           {COMMANDS.map(([command, output], i) => {
             const start = COMMANDS_FROM + i * 2;
+
             return (
               <div class={`cli-term-row${at(start) ? ' is-on' : ''}`}>
                 <div class="cli-term-cmd">
@@ -140,22 +154,31 @@ function Typer({ text, on }: { text: string; on: boolean }) {
   useEffect(() => {
     if (!on) {
       setCount(0);
+
       return;
     }
+
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
       setCount(text.length);
+
       return;
     }
+
     let i = 0;
     const timer = setInterval(() => {
       i++;
       setCount(i);
-      if (i >= text.length) clearInterval(timer);
+
+      if (i >= text.length) {
+        clearInterval(timer);
+      }
     }, 14);
+
     return () => clearInterval(timer);
-  }, [on]);
+  }, [on, text.length]);
 
   const typing = on && count < text.length;
+
   return (
     <span>
       {text.slice(0, count)}

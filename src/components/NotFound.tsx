@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'preact/hooks';
+
 import type { SiteMessages } from '../i18n';
 import { fmt } from '../i18n/format';
-import { track } from '../lib/analytics';
 import {
   DEFAULT_LOCALE,
   htmlLang,
+  type Locale,
   localeOf,
   localizePath,
-  type Locale,
 } from '../i18n/locales';
+import { track } from '../lib/analytics';
 
 type Messages = SiteMessages['notFound'];
 
@@ -32,8 +33,10 @@ export default function NotFound({
     if (location.pathname !== '/404' && location.pathname !== '/404.html') {
       setPath(location.pathname);
     }
+
     track('404', { path: location.pathname });
     const found = localeOf(location.pathname);
+
     if (found !== DEFAULT_LOCALE) {
       setLocale(found);
       document.documentElement.lang = htmlLang(found);
@@ -42,7 +45,7 @@ export default function NotFound({
         title: messages[found].title,
       });
     }
-  }, []);
+  }, [messages]);
 
   const makeNice = () => {
     setFading(true);
@@ -92,12 +95,11 @@ export default function NotFound({
           style={`background:${nice ? 'var(--sunken)' : '#fff'};transition:background ${FADE_MS}ms`}
         >
           <div
-            style={
-              (nice
+            style={`${
+              nice
                 ? 'margin:auto;padding:48px 32px;text-align:left;max-width:560px;width:100%'
-                : 'padding:8px 10px;width:100%') +
-              `;transition:opacity ${FADE_MS}ms;opacity:${fading ? 0 : 1}`
-            }
+                : 'padding:8px 10px;width:100%'
+            };transition:opacity ${FADE_MS}ms;opacity:${fading ? 0 : 1}`}
           >
             <h1 style={style.h1}>{t.pageTitle}</h1>
             <p style={style.p}>{t.pageBody}</p>

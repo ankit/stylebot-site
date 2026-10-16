@@ -3,7 +3,7 @@
  * extension's own translation, so mock UI labels match the real extension.
  * With --glossary <code>, prints those strings and their translations instead.
  */
-import { readFileSync, readdirSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 
 // The extension's strings, from `node scripts/sync-extension-strings.ts`.
 const extensionStrings: Record<string, Record<string, string>> = JSON.parse(
@@ -28,21 +28,26 @@ type Leaves = Map<string, string>;
  * Every string in a catalog by its dotted path, prefixed with the catalog.
  */
 function leaves(value: unknown, path: string, out: Leaves = new Map()) {
-  if (typeof value === 'string') out.set(path, value);
-  else if (value && typeof value === 'object') {
+  if (typeof value === 'string') {
+    out.set(path, value);
+  } else if (value && typeof value === 'object') {
     for (const [key, child] of Object.entries(value)) {
       leaves(child, `${path}${path.endsWith(':') ? '' : '.'}${key}`, out);
     }
   }
+
   return out;
 }
 
 const load = async (locale: string) => {
   const all: Leaves = new Map();
+
   for (const catalog of CATALOGS) {
     const url = new URL(`${locale}/${catalog}.ts`, i18n).href;
+
     leaves((await import(url)).default, `${catalog}:`, all);
   }
+
   return all;
 };
 
@@ -53,15 +58,18 @@ const config = (locale: string) => {
     );
     process.exit(1);
   }
+
   return extensionStrings[locale];
 };
 
 const normalize = (s: string) => s.replace(/\.\.\.$/, '…');
 
 const english = await load('en');
-const extensionKeys = new Map<string, string[]>();
+const extensionKeys = new Map<string, Array<string>>();
+
 for (const [key, message] of Object.entries(config('en'))) {
   const text = normalize(message);
+
   extensionKeys.set(text, [...(extensionKeys.get(text) ?? []), key]);
 }
 
@@ -73,28 +81,37 @@ const locales = glossary
       .filter((e) => e.isDirectory() && e.name !== 'en')
       .map((e) => e.name);
 
-const errors: string[] = [];
+const errors: Array<string> = [];
 
 for (const locale of locales) {
   const translated = await load(locale);
   const messages = config(locale);
+
   for (const [path, text] of english) {
     const keys = extensionKeys.get(text);
-    if (!keys) continue;
+
+    if (!keys) {
+      continue;
+    }
+
     const expected = keys.map((key) => messages[key]).filter(Boolean);
+
     if (glossary) {
       console.log(
         `${path}  ${JSON.stringify(text)} => ${expected.map((e) => JSON.stringify(e)).join(' / ')}  (@${keys.join(', @')})`,
       );
       continue;
     }
+
     const actual = translated.get(path) ?? '';
+
     if (
       EXCEPTIONS.some((e) => path.startsWith(e)) ||
       expected.some((e) => normalize(e) === actual)
     ) {
       continue;
     }
+
     errors.push(
       `${locale} ${path}: ${JSON.stringify(actual)}, extension has ${expected
         .map((e) => JSON.stringify(e))
@@ -107,4 +124,7 @@ if (errors.length) {
   console.error(errors.join('\n'));
   process.exit(1);
 }
-if (!glossary) console.log(`Extension terms match in ${locales.join(', ')}`);
+
+if (!glossary) {
+  console.log(`Extension terms match in ${locales.join(', ')}`);
+}

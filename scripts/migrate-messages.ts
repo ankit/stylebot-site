@@ -15,6 +15,7 @@ const CATALOGS = {
   demo: 'DemoMessages',
   gallery: 'GalleryMessages',
 } as const;
+
 type Catalog = keyof typeof CATALOGS;
 
 const USAGE = `Usage: node scripts/migrate-messages.ts [--from <git ref>] [--rename <catalog>:<new.path>=<old.path>]...
@@ -27,14 +28,20 @@ const siteDir = fileURLToPath(new URL('..', import.meta.url));
 const i18n = join(siteDir, 'src/i18n');
 
 let from = 'HEAD';
-const renames: [Catalog, string, string][] = [];
+const renames: Array<[Catalog, string, string]> = [];
 const args = process.argv.slice(2);
+
 for (let i = 0; i < args.length; i++) {
-  if (args[i] === '--from') from = args[++i];
-  else if (args[i] === '--rename') {
+  if (args[i] === '--from') {
+    from = args[++i];
+  } else if (args[i] === '--rename') {
     const [, catalog, to, old] =
       /^(site|demo):([\w.]+)=([\w.]+)$/.exec(args[++i] ?? '') ?? [];
-    if (!catalog) throw new Error(USAGE);
+
+    if (!catalog) {
+      throw new Error(USAGE);
+    }
+
     renames.push([catalog as Catalog, to, old]);
   } else {
     console.error(USAGE);
@@ -49,6 +56,7 @@ const scratch = mkdtempSync(join(tmpdir(), 'stylebot-messages-'));
  */
 async function loadAt(locale: string, catalog: Catalog) {
   let source: string;
+
   try {
     source = execFileSync(
       'git',
@@ -58,8 +66,11 @@ async function loadAt(locale: string, catalog: Catalog) {
   } catch {
     return undefined;
   }
+
   const file = join(scratch, `${locale}-${catalog}.ts`);
+
   writeFileSync(file, source.replace(/^import type .*$/m, ''));
+
   return (await import(file)).default;
 }
 
@@ -69,7 +80,10 @@ const loadNow = async (locale: string, catalog: Catalog) =>
 const get = (value: unknown, path: string) =>
   path
     .split('.')
-    .reduce<any>((v, key) => (v == null ? undefined : v[key]), value);
+    .reduce<unknown>(
+      (v, key) => (v == null ? undefined : (v as Record<string, unknown>)[key]),
+      value,
+    );
 
 const same = (a: unknown, b: unknown) =>
   JSON.stringify(a)?.replace(/’/g, "'") ===
@@ -80,10 +94,15 @@ const same = (a: unknown, b: unknown) =>
  */
 const source = (catalog: Catalog, path: string) => {
   for (const [c, to, old] of renames) {
-    if (c !== catalog) continue;
-    if (path === to || path.startsWith(`${to}.`))
+    if (c !== catalog) {
+      continue;
+    }
+
+    if (path === to || path.startsWith(`${to}.`)) {
       return old + path.slice(to.length);
+    }
   }
+
   return path;
 };
 
@@ -93,14 +112,20 @@ const source = (catalog: Catalog, path: string) => {
 function serialize(value: unknown, depth: number): string {
   const pad = '  '.repeat(depth + 1);
   const end = '  '.repeat(depth);
-  if (typeof value === 'string') return JSON.stringify(value);
+
+  if (typeof value === 'string') {
+    return JSON.stringify(value);
+  }
+
   if (Array.isArray(value)) {
     return `[\n${value.map((v) => pad + serialize(v, depth + 1)).join(',\n')},\n${end}]`;
   }
+
   const entries = Object.entries(value as object).map(
     ([key, v]) =>
       `${pad}${/^[A-Za-z_$][\w$]*$/.test(key) ? key : JSON.stringify(key)}: ${serialize(v, depth + 1)}`,
   );
+
   return `{\n${entries.join(',\n')},\n${end}}`;
 }
 
@@ -109,12 +134,15 @@ const locales = readdirSync(i18n, { withFileTypes: true })
   .map((e) => e.name);
 
 const changed = new Set<string>();
-const written: string[] = [];
+const written: Array<string> = [];
 
-for (const catalog of Object.keys(CATALOGS) as Catalog[]) {
+for (const catalog of Object.keys(CATALOGS) as Array<Catalog>) {
   const oldEnglish = await loadAt('en', catalog);
   const english = await loadNow('en', catalog);
-  if (!oldEnglish) throw new Error(`No English ${catalog} catalog at ${from}`);
+
+  if (!oldEnglish) {
+    throw new Error(`No English ${catalog} catalog at ${from}`);
+  }
 
   for (const locale of locales) {
     const current = await loadNow(locale, catalog);
@@ -128,18 +156,24 @@ for (const catalog of Object.keys(CATALOGS) as Catalog[]) {
       if (typeof en === 'string' || Array.isArray(en)) {
         const old = source(catalog, path);
         const now = get(current, path);
+
         if (now !== undefined && !same(now, get(atFrom, old))) {
           if (same(now, en) && !same(get(oldEnglish, old), en)) {
             changed.add(`${catalog}:${path}`);
           }
+
           return now;
         }
+
         const translation = get(atFrom, old);
+
         if (translation !== undefined && same(get(oldEnglish, old), en)) {
           return translation;
         }
+
         changed.add(`${catalog}:${path}`);
         const before = get(oldEnglish, old);
+
         if (
           Array.isArray(en) &&
           Array.isArray(before) &&
@@ -151,8 +185,10 @@ for (const catalog of Object.keys(CATALOGS) as Catalog[]) {
             same(item, before[i]) ? translation[i] : item,
           );
         }
+
         return en;
       }
+
       return Object.fromEntries(
         Object.entries(en as object).map(([key, child]) => [
           key,
@@ -162,8 +198,13 @@ for (const catalog of Object.keys(CATALOGS) as Catalog[]) {
     };
 
     const next = build(english, '');
-    if (same(next, current)) continue;
+
+    if (same(next, current)) {
+      continue;
+    }
+
     const file = join(i18n, locale, `${catalog}.ts`);
+
     writeFileSync(
       file,
       `import type { ${CATALOGS[catalog]} } from '..';\n\nconst ${catalog}: ${CATALOGS[catalog]} = ${serialize(next, 0)};\n\nexport default ${catalog};\n`,

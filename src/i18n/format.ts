@@ -16,11 +16,13 @@ export function fmt(message: string, vars: Record<string, string | number>) {
  * The markup `Keys.astro` renders for a key combination; `kbd[data-mac]`
  * lets its script swap in macOS key names.
  */
-export function keysHtml(keys: string[], sep = '+') {
+export function keysHtml(keys: Array<string>, sep = '+') {
   const kbds = keys.map((key) => {
     const mac = MAC_KEYS[key] ? ` data-mac="${MAC_KEYS[key]}"` : '';
+
     return `<kbd${mac}>${escape(key)}</kbd>`;
   });
+
   return `<span class="keys">${kbds.join(
     `<span class="keys-sep">${escape(sep)}</span>`,
   )}</span>`;
@@ -55,5 +57,6 @@ export function plural(
   shown: string = String(count),
 ) {
   const form = new Intl.PluralRules(lang).select(count);
+
   return fmt(forms[form] ?? forms.other, { count: shown });
 }

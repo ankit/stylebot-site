@@ -1,5 +1,5 @@
 ---
-type Props = { keys: string[]; sep?: string };
+type Props = { keys: Array<string>; sep?: string };
 const { keys, sep = '+' } = Astro.props;
 
 const MAC_KEYS: Record<string, string> = { ctrl: 'cmd', alt: 'option' };

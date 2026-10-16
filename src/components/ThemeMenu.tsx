@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'preact/hooks';
-import { STORAGE_KEY, THEMES, THEME_KEYS, type ThemeKey } from '../lib/themes';
-import { currentTheme } from '../lib/theme-state';
+
 import { fmt } from '../i18n/format';
 import { track } from '../lib/analytics';
+import { currentTheme } from '../lib/theme-state';
+import { STORAGE_KEY, THEME_KEYS, type ThemeKey, THEMES } from '../lib/themes';
 
 type Labels = { title: string; names: Record<ThemeKey, string> };
 
@@ -12,20 +13,27 @@ export default function ThemeMenu({ labels }: { labels: Labels }) {
 
   useEffect(() => {
     setTheme(currentTheme());
+
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setOpen(false);
+      if (e.key === 'Escape') {
+        setOpen(false);
+      }
     };
+
     window.addEventListener('keydown', onKey);
+
     return () => window.removeEventListener('keydown', onKey);
   }, []);
 
   const pick = (key: ThemeKey) => {
     document.documentElement.dataset.theme = key;
+
     try {
       localStorage.setItem(STORAGE_KEY, key);
     } catch {
       // Storage can be unavailable (private mode); the theme still applies.
     }
+
     window.dispatchEvent(new CustomEvent('themechange', { detail: key }));
     track('Site theme', { theme: key });
     setTheme(key);
@@ -68,6 +76,7 @@ export default function ThemeMenu({ labels }: { labels: Labels }) {
             {THEME_KEYS.map((key) => {
               const t = THEMES[key];
               const on = key === theme;
+
               return (
                 <button
                   key={key}

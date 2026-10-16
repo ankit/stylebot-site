@@ -24,7 +24,7 @@ const themeLabels = {
     <Logo client:idle href={home} label={homeLabel} />
     {tag && (
       <a href={home} class="logo-tag">
-        <span class="logo-tag-rule" aria-hidden="true"></span>
+        <span class="logo-tag-rule" aria-hidden="true" />
         {tag}
       </a>
     )}
@@ -40,6 +40,7 @@ const themeLabels = {
   const header = document.querySelector('.site-header')!;
   const update = () =>
     header.classList.toggle('is-scrolled', window.scrollY > 8);
+
   window.addEventListener('scroll', update, { passive: true });
   update();
 </script>

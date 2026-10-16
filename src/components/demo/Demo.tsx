@@ -1,25 +1,27 @@
-import { Component, createRef, type ComponentChildren } from 'preact';
-import SbIcon from '../SbIcon';
-import { ChevronDown, Close, EyeOff } from '../icons';
-import './demo.css';
-import { isDarkTheme } from '../../lib/themes';
-import { currentTheme } from '../../lib/theme-state';
+import { Component, type ComponentChildren, createRef } from 'preact';
+
 import type { DemoMessages } from '../../i18n';
 import { fmt } from '../../i18n/format';
+import { currentTheme } from '../../lib/theme-state';
+import { isDarkTheme } from '../../lib/themes';
+import { ChevronDown, Close, EyeOff } from '../icons';
+import SbIcon from '../SbIcon';
 import {
   DEFAULT_PROFILE,
+  type DemoState,
   INIT,
-  LOOKS,
   LOOK_STEPS,
+  LOOKS,
   NEW_PROFILE,
+  type Patch,
+  pinScene,
   QUOTE_CSS,
   QUOTE_TOTAL,
-  pinScene,
-  scenes,
   type Scene,
-  type DemoState,
-  type Patch,
+  scenes,
 } from './scenes';
+
+import './demo.css';
 
 type State = DemoState & {
   scene: number;
@@ -43,7 +45,7 @@ type State = DemoState & {
 };
 
 type Token = { text: string; style: string };
-type Line = { style: string; toks: Token[] };
+type Line = { style: string; toks: Array<Token> };
 
 const PANE_WIDTH = 980;
 const MIN_FIT_SCALE = 0.6;
@@ -82,8 +84,9 @@ function PickCard({ selector, dark }: { selector: string; dark: boolean }) {
  * The browser's extensions menu: made-up extensions around Stylebot, each with
  * its icon color.
  */
-function extensions(m: DemoMessages): [string, string][] {
+function extensions(m: DemoMessages): Array<[string, string]> {
   const other = m.browser.otherExtensions;
+
   return [
     [other.adBlocker, '#c9473f'],
     [other.passwordManager, '#3f67c9'],
@@ -137,8 +140,9 @@ export default class Demo extends Component<Props, State> {
       : this.m.editor.newProfile;
   }
 
-  get scenes(): Scene[] {
+  get scenes(): Array<Scene> {
     const all = scenes(this.m, this.state.dark);
+
     return this.welcome ? [pinScene(this.m), ...all] : all;
   }
 
@@ -153,7 +157,7 @@ export default class Demo extends Component<Props, State> {
   belowRef = createRef<HTMLDivElement>();
   rootRef = createRef<HTMLDivElement>();
   resizeObserver?: ResizeObserver;
-  timers: ReturnType<typeof setTimeout>[] = [];
+  timers: Array<ReturnType<typeof setTimeout>> = [];
   scene = 0;
   t0 = 0;
   startId?: ReturnType<typeof setTimeout>;
@@ -195,11 +199,16 @@ export default class Demo extends Component<Props, State> {
     const pane = this.paneRef.current;
     const steps = this.stepsRef.current;
     const main = this.mainRef.current;
-    if (!stage || !pane || !steps || !main) return;
+
+    if (!stage || !pane || !steps || !main) {
+      return;
+    }
+
     const split = this.welcome && matchMedia(SPLIT_QUERY).matches;
     const full = main.clientWidth;
     let scale = Math.min(1, full / PANE_WIDTH);
     const paneWidth = full / scale;
+
     if (this.welcome) {
       const top = stage.getBoundingClientRect().top + window.scrollY;
       const below = split
@@ -207,12 +216,15 @@ export default class Demo extends Component<Props, State> {
         : steps.getBoundingClientRect().bottom -
           stage.getBoundingClientRect().bottom;
       const room = window.innerHeight - top - below - 24;
+
       scale = Math.min(
         scale,
         Math.max(MIN_FIT_SCALE, room / pane.offsetHeight),
       );
     }
+
     const width = paneWidth * scale;
+
     this.setState({
       scale,
       paneWidth,
@@ -228,18 +240,28 @@ export default class Demo extends Component<Props, State> {
     window.addEventListener('themechange', this.onTheme);
     this.fit();
     this.resizeObserver = new ResizeObserver(this.fit);
-    if (this.rootRef.current) this.resizeObserver.observe(this.rootRef.current);
-    if (this.welcome) window.addEventListener('resize', this.fit);
+
+    if (this.rootRef.current) {
+      this.resizeObserver.observe(this.rootRef.current);
+    }
+
+    if (this.welcome) {
+      window.addEventListener('resize', this.fit);
+    }
+
     const pane = this.paneRef.current;
+
     if (pane) {
       this.setState({
         cx: pane.clientWidth * 0.55,
         cy: pane.clientHeight * 0.5,
       });
     }
+
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
       return;
     }
+
     this.startId = setTimeout(() => this.play(0, 0), this.welcome ? 600 : 2300);
   }
 
@@ -263,13 +285,18 @@ export default class Demo extends Component<Props, State> {
   target(t: string) {
     const pane = this.paneRef.current;
     const el = pane?.querySelector(`[data-t="${t}"]`);
-    if (!pane || !el) return null;
+
+    if (!pane || !el) {
+      return null;
+    }
+
     const r = el.getBoundingClientRect();
     const pr = pane.getBoundingClientRect();
     const s = this.state.scale;
     const w = r.width / s;
     const h = r.height / s;
     const wide = w > 80;
+
     return {
       x: (r.left - pr.left) / s + (wide ? Math.min(w * 0.3, 140) : w / 2),
       y: (r.top - pr.top) / s + (wide ? Math.min(h * 0.5, 22) : h / 2),
@@ -278,6 +305,7 @@ export default class Demo extends Component<Props, State> {
 
   apply(patch: Patch) {
     const k = 1 / this.state.speed;
+
     if (patch.qType) {
       for (let i = 1; i <= QUOTE_TOTAL; i++) {
         this.later(i * 28 * k + Math.floor(i / 22) * 200 * k, () =>
@@ -285,40 +313,52 @@ export default class Demo extends Component<Props, State> {
         );
       }
     }
+
     if (patch.profType) {
       const name = this.newProfile;
       const step = Math.min(70, PROFILE_TYPING_MS / name.length);
+
       for (let i = 1; i <= name.length; i++) {
         this.later(i * step * k, () => this.setState({ profLen: i }));
       }
     }
+
     const next: Partial<State> = {};
+
     Object.keys(patch).forEach((key) => {
-      if (!PLAYBACK_KEYS.has(key))
+      if (!PLAYBACK_KEYS.has(key)) {
         (next as Record<string, unknown>)[key] = patch[key];
+      }
     });
+
     if (patch.cur) {
       const pt = this.target(patch.cur);
+
       if (pt) {
         next.cx = pt.x;
         next.cy = pt.y;
       }
     }
+
     if (patch.click) {
       next.clicking = true;
       next.rx = this.state.cx;
       next.ry = this.state.cy;
       this.later(180, () => this.setState({ clicking: false }));
     }
+
     this.setState(next);
   }
 
   baseline(i: number): DemoState {
     const s: Record<string, unknown> = { ...this.init };
+
     this.scenes.slice(0, i).forEach((sc) =>
       sc.acts.forEach(([, p]) =>
         Object.keys(p).forEach((key) => {
-          if (key !== 'cur' && key !== 'click') s[key] = p[key];
+          if (key !== 'cur' && key !== 'click') {
+            s[key] = p[key];
+          }
         }),
       ),
     );
@@ -331,8 +371,13 @@ export default class Demo extends Component<Props, State> {
       profCreating: false,
       profLen: 0,
     });
-    if (this.scenes.slice(0, i).some((sc) => sc.acts.some(([, p]) => p.qType)))
+
+    if (
+      this.scenes.slice(0, i).some((sc) => sc.acts.some(([, p]) => p.qType))
+    ) {
       s.qChars = QUOTE_TOTAL;
+    }
+
     return s as DemoState;
   }
 
@@ -341,6 +386,7 @@ export default class Demo extends Component<Props, State> {
     const sc = this.scenes[i];
     const k = 1 / this.state.speed;
     const dur = sc.dur * k;
+
     this.scene = i;
     this.t0 = performance.now() - from;
     this.setState({
@@ -356,13 +402,20 @@ export default class Demo extends Component<Props, State> {
     );
     sc.acts.forEach(([t, p]) => {
       const at = t * k;
-      if (at >= from) this.later(at - from, () => this.apply(p));
+
+      if (at >= from) {
+        this.later(at - from, () => this.apply(p));
+      }
     });
     this.later(dur - from, () => {
-      if (i + 1 < this.scenes.length) this.play(i + 1, 0);
-      else {
+      if (i + 1 < this.scenes.length) {
+        this.play(i + 1, 0);
+      } else {
         this.setState({ done: true, pct: 1, anim: false });
-        if (!this.welcome) this.later(2500, () => this.jump(0));
+
+        if (!this.welcome) {
+          this.later(2500, () => this.jump(0));
+        }
       }
     });
   }
@@ -383,12 +436,20 @@ export default class Demo extends Component<Props, State> {
       profType: () => ({ profLen: this.newProfile.length }),
     };
     let cur: string | null = null;
+
     sc.acts.forEach(([t, p]) => {
-      if (t * k > from) return;
+      if (t * k > from) {
+        return;
+      }
+
       Object.keys(p).forEach((key) => {
-        if (key === 'cur') cur = p.cur ?? null;
-        else if (typed[key]) Object.assign(s, typed[key]());
-        else if (key !== 'click') s[key] = p[key];
+        if (key === 'cur') {
+          cur = p.cur ?? null;
+        } else if (typed[key]) {
+          Object.assign(s, typed[key]());
+        } else if (key !== 'click') {
+          s[key] = p[key];
+        }
       });
     });
     s.clicking = false;
@@ -396,8 +457,12 @@ export default class Demo extends Component<Props, State> {
       requestAnimationFrame(() => {
         if (cur) {
           const pt = this.target(cur);
-          if (pt) this.setState({ cx: pt.x, cy: pt.y });
+
+          if (pt) {
+            this.setState({ cx: pt.x, cy: pt.y });
+          }
         }
+
         this.play(i, from);
       });
     });
@@ -406,25 +471,38 @@ export default class Demo extends Component<Props, State> {
   seekFromBar(i: number, ev: MouseEvent) {
     ev.stopPropagation();
     const r = (ev.currentTarget as HTMLElement).getBoundingClientRect();
+
     this.seek(i, Math.max(0, Math.min(0.98, (ev.clientX - r.left) / r.width)));
   }
 
-  codeLines(S: State): { lines: Line[]; quoteDone: Record<string, boolean> } {
-    const lines: Line[] = [];
+  codeLines(S: State): {
+    lines: Array<Line>;
+    quoteDone: Record<string, boolean>;
+  } {
+    const lines: Array<Line> = [];
     const indent =
       'padding-left:14px;margin-left:3px;border-left:1px solid var(--border)';
     let left = S.qChars;
     const quoteDone: Record<string, boolean> = {};
-    const typed: string[] = [];
+    const typed: Array<string> = [];
+
     QUOTE_CSS.forEach((q) => {
-      if (left <= 0) return;
+      if (left <= 0) {
+        return;
+      }
+
       const n = Math.min(left, q.txt.length);
+
       left -= q.txt.length;
       typed.push(q.txt.slice(0, n));
-      if (n === q.txt.length) quoteDone[q.k] = true;
+
+      if (n === q.txt.length) {
+        quoteDone[q.k] = true;
+      }
     });
 
-    const decls: Token[][] = [];
+    const decls: Array<Array<Token>> = [];
+
     if (S.h1Size !== 32) {
       decls.push([
         tk('font-size', 'prop'),
@@ -433,6 +511,7 @@ export default class Demo extends Component<Props, State> {
         tk(';', 'pl'),
       ]);
     }
+
     if (S.h1Color) {
       decls.push([
         tk('color', 'prop'),
@@ -445,6 +524,7 @@ export default class Demo extends Component<Props, State> {
         tk(';', 'pl'),
       ]);
     }
+
     if (decls.length) {
       lines.push({
         style: '',
@@ -458,12 +538,14 @@ export default class Demo extends Component<Props, State> {
         toks: [tk(`/* ${this.m.editor.code.noStyles} */`, 'com')],
       });
     }
+
     if (typed.length) {
       const caret = {
         text: '',
         style:
           'display:inline-block;width:1.5px;height:13px;vertical-align:-2px;margin-left:1px;background:var(--acc)',
       };
+
       lines.push({
         style: 'margin-top:10px',
         toks: [tk('blockquote ', 'sel'), tk('{', 'br')],
@@ -474,16 +556,21 @@ export default class Demo extends Component<Props, State> {
           ci < 0
             ? [tk(t, 'prop')]
             : [tk(t.slice(0, ci), 'prop'), tk(t.slice(ci), 'pl')];
-        if (i === typed.length - 1 && S.qChars < QUOTE_TOTAL) toks.push(caret);
+
+        if (i === typed.length - 1 && S.qChars < QUOTE_TOTAL) {
+          toks.push(caret);
+        }
+
         lines.push({ style: indent, toks });
       });
       lines.push({ style: '', toks: [tk('}', 'br')] });
     }
+
     return { lines, quoteDone };
   }
 
-  lookLines(css: [string, [string, string][]][]): Line[] {
-    const hex = (v: string): Token[] =>
+  lookLines(css: Array<[string, Array<[string, string]>]>): Array<Line> {
+    const hex = (v: string): Array<Token> =>
       /^#[0-9a-f]{6}$/i.test(v)
         ? [
             {
@@ -502,7 +589,8 @@ export default class Demo extends Component<Props, State> {
                     /^\d/.test(w) ? 'num' : 'val',
                   ),
             );
-    const lines: Line[] = [];
+    const lines: Array<Line> = [];
+
     css.forEach(([sel, props]) => {
       lines.push({ style: '', toks: [tk(`${sel} `, 'sel'), tk('{', 'br')] });
       props.forEach(([p, v]) =>
@@ -513,10 +601,11 @@ export default class Demo extends Component<Props, State> {
       );
       lines.push({ style: '', toks: [tk('}', 'br')] });
     });
+
     return lines;
   }
 
-  renderLines(lines: Line[]) {
+  renderLines(lines: Array<Line>) {
     return lines.map((ln, i) => (
       <div key={i} style={ln.style}>
         {ln.toks.map((t, j) => (
@@ -571,8 +660,9 @@ export default class Demo extends Component<Props, State> {
           : "'Helvetica Neue',Arial,sans-serif";
     const mark = (k: string) =>
       S.inspecting && S.hover === k
-        ? ';background-color:rgba(111,168,220,.66)' +
-          (k === 'h1' ? ';box-shadow:0 10px 0 0 rgba(246,178,107,.5)' : '')
+        ? `;background-color:rgba(111,168,220,.66)${
+            k === 'h1' ? ';box-shadow:0 10px 0 0 rgba(246,178,107,.5)' : ''
+          }`
         : '';
     const tr = ';transition:outline-color .2s';
 
@@ -585,17 +675,20 @@ export default class Demo extends Component<Props, State> {
       const on = S.tab === k;
       const first = k === 'basic';
       const inset = first ? 0 : 6;
+
       return (
         `padding:6px 6px 8px ${inset}px;font:${on ? 600 : 400} 14px/1.3 var(--ui);margin-bottom:-1px;transition:color .15s;` +
         `background:${on ? `linear-gradient(var(--acc),var(--acc)) no-repeat ${inset}px 100% / calc(100% - ${inset + 6}px) 2px` : 'none'};` +
         `color:${on ? 'var(--ink)' : 'var(--muted)'}`
       );
     };
+
     const field = (f: string) =>
-      'width:104px;height:30px;flex:none;border-radius:8px;display:flex;align-items:center;overflow:hidden;background:var(--hover);transition:box-shadow .15s;' +
-      (S.focus === f
-        ? 'box-shadow:0 0 0 1px var(--acc),0 0 0 4px rgba(42,95,214,.15)'
-        : 'box-shadow:none');
+      `width:104px;height:30px;flex:none;border-radius:8px;display:flex;align-items:center;overflow:hidden;background:var(--hover);transition:box-shadow .15s;${
+        S.focus === f
+          ? 'box-shadow:0 0 0 1px var(--acc),0 0 0 4px rgba(42,95,214,.15)'
+          : 'box-shadow:none'
+      }`;
     const toggle = (on: boolean) => ({
       track: `width:36px;height:20px;border-radius:10px;flex:none;position:relative;transition:background .2s;background:${on ? 'var(--acc)' : 'var(--strong)'}`,
       knob: `position:absolute;top:2px;left:${on ? 18 : 2}px;width:16px;height:16px;border-radius:8px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.15);transition:left .2s`,
@@ -605,16 +698,17 @@ export default class Demo extends Component<Props, State> {
     const selected = !S.inspecting && !!S.sel;
     const selText = selected ? 'article h1' : m.editor.pickAnElement;
 
-    const quote =
-      'margin:4px 0 18px;transition:all .35s' +
-      (qd.bg || at(5)
+    const quote = `margin:4px 0 18px;transition:all .35s${
+      qd.bg || at(5)
         ? `;background:${at(5) ? np.panel : 'var(--page-quote)'}`
-        : '') +
-      (qd.pad || at(5) ? ';padding:18px 20px' : '') +
-      (qd.radius || at(5) ? ';border-radius:8px' : '') +
-      (qd.border || at(5)
+        : ''
+    }${qd.pad || at(5) ? ';padding:18px 20px' : ''}${
+      qd.radius || at(5) ? ';border-radius:8px' : ''
+    }${
+      qd.border || at(5)
         ? `;border-left:3px solid ${at(5) ? np.acc : 'var(--page-kicker)'}`
-        : '');
+        : ''
+    }`;
     const quoteFont = at(5)
       ? `font-family:${serif};font-size:18px;font-style:italic;`
       : `font-family:${qd.font ? "'Lora',Georgia,serif" : serif};font-size:${qd.size ? '20px' : '16px'};font-style:${qd.size ? 'italic' : 'normal'};`;
@@ -622,17 +716,18 @@ export default class Demo extends Component<Props, State> {
     const steps = this.scenes.map((sc, i) => {
       const doneStep = S.done || i < S.scene;
       const active = !S.done && i === S.scene;
+
       return {
         title: sc.title,
         body: this.keysText(sc.body, S.mac),
         mark: doneStep ? '✓' : String(i + 1),
         state: doneStep ? 'is-done' : active ? 'is-active' : '',
-        titleStyle:
-          `font:${active ? 600 : 500} 13.5px/1.35 var(--ui);padding-top:2px;color:` +
-          (doneStep ? 'var(--muted)' : active ? 'var(--ink)' : 'var(--faint)'),
-        barStyle:
-          `height:2px;background:var(--acc);width:${doneStep ? 100 : active ? S.pct * 100 : 0}%;transition:` +
-          (active && S.anim ? `width ${S.remain}ms linear` : 'none'),
+        titleStyle: `font:${active ? 600 : 500} 13.5px/1.35 var(--ui);padding-top:2px;color:${
+          doneStep ? 'var(--muted)' : active ? 'var(--ink)' : 'var(--faint)'
+        }`,
+        barStyle: `height:2px;background:var(--acc);width:${doneStep ? 100 : active ? S.pct * 100 : 0}%;transition:${
+          active && S.anim ? `width ${S.remain}ms linear` : 'none'
+        }`,
       };
     });
 
@@ -664,9 +759,10 @@ export default class Demo extends Component<Props, State> {
             <div
               data-t="sbicon"
               style={
-                'height:28px;border-radius:14px;display:flex;align-items:center;justify-content:center;overflow:hidden;flex:none;transition:width .3s,opacity .3s,background .15s;' +
-                `width:${S.pinned ? 28 : 0}px;opacity:${S.pinned ? 1 : 0}` +
-                (S.popOpen || S.editorOpen ? ';background:var(--strong)' : '')
+                `height:28px;border-radius:14px;display:flex;align-items:center;justify-content:center;overflow:hidden;flex:none;transition:width .3s,opacity .3s,background .15s;` +
+                `width:${S.pinned ? 28 : 0}px;opacity:${S.pinned ? 1 : 0}${
+                  S.popOpen || S.editorOpen ? ';background:var(--strong)' : ''
+                }`
               }
             >
               <SbIcon size={20} nudgeX={1} />
@@ -709,6 +805,7 @@ export default class Demo extends Component<Props, State> {
             {extensions(m).map(([name, bg]) => {
               const sb = !bg;
               const on = sb && S.pinned;
+
               return (
                 <div key={name} class="demo-menu-row">
                   {sb ? (
@@ -790,15 +887,11 @@ export default class Demo extends Component<Props, State> {
             >
               <div
                 data-t="header"
-                style={
-                  'position:relative;z-index:2;display:flex;gap:16px;align-items:center;padding:14px 28px;font-size:15px;border-bottom:1px solid ' +
-                  (at(2) ? np.line : 'var(--page-line)') +
-                  ';background:' +
-                  (at(2) ? np.panel : 'var(--page-bar)') +
-                  `;color:${ink};font-family:${serif}` +
-                  tr +
-                  mark('header')
-                }
+                style={`position:relative;z-index:2;display:flex;gap:16px;align-items:center;padding:14px 28px;font-size:15px;border-bottom:1px solid ${
+                  at(2) ? np.line : 'var(--page-line)'
+                };background:${
+                  at(2) ? np.panel : 'var(--page-bar)'
+                };color:${ink};font-family:${serif}${tr}${mark('header')}`}
               >
                 <span style="font-weight:700;letter-spacing:-.01em;white-space:nowrap">
                   The Harbour Post
@@ -817,29 +910,24 @@ export default class Demo extends Component<Props, State> {
                   style={`flex:1 1 260px;min-width:0;transition:max-width .3s;max-width:${read ? '32em' : '60em'}`}
                 >
                   <div
-                    style={
-                      "margin:0 0 10px;font:700 11px/1 'Helvetica Neue',Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:" +
-                      (at(3) ? np.acc : 'var(--page-kicker)') +
-                      ';transition:color .5s'
-                    }
+                    style={`margin:0 0 10px;font:700 11px/1 'Helvetica Neue',Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:${
+                      at(3) ? np.acc : 'var(--page-kicker)'
+                    };transition:color .5s`}
                   >
                     {m.article.kicker}
                   </div>
                   <div style="position:relative">
                     <h2
                       data-t="h1"
-                      style={
-                        `margin:0 0 10px;font-family:${serif};font-weight:${at(3) ? 600 : 700};line-height:1.15;letter-spacing:${at(3) ? '-.02em' : '-.01em'};font-size:${S.h1Size}px;color:` +
-                        (at(3)
+                      style={`margin:0 0 10px;font-family:${serif};font-weight:${at(3) ? 600 : 700};line-height:1.15;letter-spacing:${at(3) ? '-.02em' : '-.01em'};font-size:${S.h1Size}px;color:${
+                        at(3)
                           ? np.head
                           : S.h1Color
                             ? dk
                               ? '#ef6b6b'
                               : S.h1Color
-                            : ink) +
-                        tr +
-                        mark('h1')
-                      }
+                            : ink
+                      }${tr}${mark('h1')}`}
                     >
                       {m.article.headline}
                     </h2>
@@ -854,11 +942,9 @@ export default class Demo extends Component<Props, State> {
                   </div>
                   <div style="display:flex;align-items:center;gap:10px;margin:0 0 18px">
                     <span
-                      style={
-                        "width:26px;height:26px;border-radius:13px;flex:none;display:flex;align-items:center;justify-content:center;font:700 10px/1 'Helvetica Neue',Arial,sans-serif;color:#fff;background:" +
-                        (at(3) ? np.avatar : '#3d5a80') +
-                        ';transition:background .5s'
-                      }
+                      style={`width:26px;height:26px;border-radius:13px;flex:none;display:flex;align-items:center;justify-content:center;font:700 10px/1 'Helvetica Neue',Arial,sans-serif;color:#fff;background:${
+                        at(3) ? np.avatar : '#3d5a80'
+                      };transition:background .5s`}
                     >
                       ML
                     </span>
@@ -871,10 +957,9 @@ export default class Demo extends Component<Props, State> {
                   </p>
                   <div data-t="quote" style={quote}>
                     <div
-                      style={
-                        quoteFont +
-                        `line-height:1.45;text-wrap:pretty;color:${ink};transition:all .35s`
-                      }
+                      style={`${
+                        quoteFont
+                      }line-height:1.45;text-wrap:pretty;color:${ink};transition:all .35s`}
                     >
                       {m.article.quote}
                     </div>
@@ -947,6 +1032,7 @@ export default class Demo extends Component<Props, State> {
                       >
                         {S.profiles.map((name) => {
                           const on = name === S.profile;
+
                           return (
                             <div
                               key={name}
@@ -1040,10 +1126,9 @@ export default class Demo extends Component<Props, State> {
                     </span>
                     <div class="demo-sel-field">
                       <span
-                        style={
-                          'flex:1;min-width:0;padding:0 12px;font:400 13px/1 var(--mono);overflow:hidden;white-space:nowrap;color:' +
-                          (selected ? 'var(--ink)' : 'var(--faint)')
-                        }
+                        style={`flex:1;min-width:0;padding:0 12px;font:400 13px/1 var(--mono);overflow:hidden;white-space:nowrap;color:${
+                          selected ? 'var(--ink)' : 'var(--faint)'
+                        }`}
                       >
                         {selText}
                       </span>
@@ -1288,12 +1373,11 @@ export default class Demo extends Component<Props, State> {
           </div>
           <div
             class="demo-ripple"
-            style={
-              `left:${S.rx}px;top:${S.ry}px;` +
-              (S.clicking
+            style={`left:${S.rx}px;top:${S.ry}px;${
+              S.clicking
                 ? 'opacity:.6;transform:scale(.4);transition:none'
-                : 'opacity:0;transform:scale(1.3);transition:opacity .45s,transform .45s')
-            }
+                : 'opacity:0;transform:scale(1.3);transition:opacity .45s,transform .45s'
+            }`}
           />
         </div>
       </div>

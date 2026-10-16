@@ -154,15 +154,16 @@ const sites = await Promise.all(
   <div class="lightbox-body" data-close>
     <img class="lightbox-img" alt="" />
     <div class="lightbox-bar">
-      <span class="lightbox-site"></span>
-      <div class="lightbox-chips"></div>
-      <span class="lightbox-note" hidden></span>
+      <span class="lightbox-site" />
+      <div class="lightbox-chips" />
+      <span class="lightbox-note" hidden />
       <button class="lightbox-install" data-lightbox-install hidden>
         {t.install}
       </button>
       <button class="lightbox-copy" data-lightbox-copy>
         {t.copy}
       </button>
+      {/* eslint-disable-next-line astro/jsx-a11y/anchor-is-valid -- its href is set when a theme with a source file opens */}
       <a
         class="lightbox-source"
         data-lightbox-source
@@ -185,7 +186,7 @@ const sites = await Promise.all(
       stroke-linecap="round"
       aria-hidden="true"
     >
-      <path d="M2.5 2.5l9 9M11.5 2.5l-9 9"></path>
+      <path d="M2.5 2.5l9 9M11.5 2.5l-9 9" />
     </svg>
   </button>
 </dialog>
@@ -247,6 +248,7 @@ const sites = await Promise.all(
       await navigator.clipboard.writeText(text);
     } catch {
       const area = document.createElement('textarea');
+
       area.value = text;
       area.style.position = 'fixed';
       area.style.opacity = '0';
@@ -259,8 +261,15 @@ const sites = await Promise.all(
 
   function installLabel(item: HTMLElement) {
     const name = installed.get(keyOf(item));
-    if (name) return fmt(strings.installedAs, { name });
-    if (failed.has(keyOf(item))) return strings.installFailed;
+
+    if (name) {
+      return fmt(strings.installedAs, { name });
+    }
+
+    if (failed.has(keyOf(item))) {
+      return strings.installFailed;
+    }
+
     return strings.install;
   }
 
@@ -272,6 +281,7 @@ const sites = await Promise.all(
     const active = activeOf(item);
     const key = keyOf(item);
     const hasCss = !noteOf(item);
+
     item.querySelectorAll<HTMLElement>('[data-open]').forEach((el) => {
       el.hidden = Number(el.dataset.theme) !== active;
     });
@@ -290,7 +300,10 @@ const sites = await Promise.all(
     item
       .querySelector('[data-install]')!
       .setAttribute('title', installLabel(item));
-    if (lightboxItem === item) renderLightbox(item);
+
+    if (lightboxItem === item) {
+      renderLightbox(item);
+    }
   }
 
   function select(item: HTMLElement, index: number) {
@@ -300,6 +313,7 @@ const sites = await Promise.all(
 
   function markCopied(item: HTMLElement) {
     const key = keyOf(item);
+
     copied.clear();
     copied.add(key);
     items.forEach(render);
@@ -323,7 +337,10 @@ const sites = await Promise.all(
   window.addEventListener('message', (e) => {
     if (e.source === window && e.data?.type === 'stylebot:pong') {
       gallery.classList.add('can-install');
-      if (lightboxItem) renderLightbox(lightboxItem);
+
+      if (lightboxItem) {
+        renderLightbox(lightboxItem);
+      }
     }
   });
   window.postMessage({ type: 'stylebot:ping' }, location.origin);
@@ -341,6 +358,7 @@ const sites = await Promise.all(
         clearTimeout(timer);
         resolve(name);
       };
+
       const onMessage = (e: MessageEvent) => {
         if (
           e.source === window &&
@@ -350,6 +368,7 @@ const sites = await Promise.all(
           done(e.data.profileName ?? null);
         }
       };
+
       const timer = setTimeout(() => done(null), INSTALL_TIMEOUT_MS);
 
       window.addEventListener('message', onMessage);
@@ -369,6 +388,7 @@ const sites = await Promise.all(
   async function installItem(item: HTMLElement) {
     const key = keyOf(item);
     const name = await requestInstall(item);
+
     track('Gallery install', {
       theme: fileOf(item),
       result: name ? 'installed' : 'failed',
@@ -391,19 +411,29 @@ const sites = await Promise.all(
    * gallery is near the viewport, so opening one shows it immediately.
    */
   const preloaded = new Set<string>();
+
   function preload(item?: HTMLElement) {
     (item ? [item] : items).forEach((el) => {
       const src = fullSrc(el);
-      if (preloaded.has(src)) return;
+
+      if (preloaded.has(src)) {
+        return;
+      }
+
       preloaded.add(src);
       const img = new Image();
+
       img.decoding = 'async';
       img.src = src;
     });
   }
+
   new IntersectionObserver(
     (entries, observer) => {
-      if (!entries.some((e) => e.isIntersecting)) return;
+      if (!entries.some((e) => e.isIntersecting)) {
+        return;
+      }
+
       observer.disconnect();
       preload();
     },
@@ -415,27 +445,37 @@ const sites = await Promise.all(
     const note = noteOf(item);
     const noteEl = dialog.querySelector<HTMLElement>('.lightbox-note')!;
     const key = keyOf(item);
+
     img.src = fullSrc(item);
     img.alt = fmt(strings.alt, { site: siteOf(item), name: nameOf(item) });
     dialog.querySelector('.lightbox-site')!.textContent = siteOf(item);
     const refocus = lightboxChips.contains(document.activeElement);
+
     lightboxChips.replaceChildren(
       ...[...item.querySelectorAll<HTMLElement>('[data-chip]')].map((chip) => {
         const copy = chip.cloneNode(true) as HTMLElement;
+
         copy.className = 'lightbox-chip';
         copy.querySelector('.gallery-dot')!.className = 'lightbox-dot';
         copy.querySelector('.gallery-name')!.className = 'lightbox-chip-name';
+
         return copy;
       }),
     );
     const source = themeData(item).dataset.source;
+
     lightboxSource.hidden = !source;
-    if (source) lightboxSource.href = source;
+
+    if (source) {
+      lightboxSource.href = source;
+    }
+
     if (refocus) {
       lightboxChips
         .querySelectorAll<HTMLElement>('[data-chip]')
         [activeOf(item)]?.focus();
     }
+
     noteEl.textContent = note ?? '';
     noteEl.hidden = !note;
     lightboxCopy.hidden = !!note;
@@ -447,11 +487,17 @@ const sites = await Promise.all(
 
   function open(item: HTMLElement) {
     // Phones show a readable crop in the card, so there's nothing to enlarge.
-    if (phone.matches) return;
+    if (phone.matches) {
+      return;
+    }
+
     lightboxItem = item;
     preload(item);
     renderLightbox(item);
-    if (!dialog.open) dialog.showModal();
+
+    if (!dialog.open) {
+      dialog.showModal();
+    }
   }
 
   items.forEach((item) => {
@@ -475,35 +521,52 @@ const sites = await Promise.all(
   lightboxChips.addEventListener('click', (e) => {
     e.stopPropagation();
     const chip = (e.target as HTMLElement).closest<HTMLElement>('[data-chip]');
-    if (chip && lightboxItem) select(lightboxItem, Number(chip.dataset.chip));
+
+    if (chip && lightboxItem) {
+      select(lightboxItem, Number(chip.dataset.chip));
+    }
   });
 
   window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && dialog.open) dialog.close();
+    if (e.key === 'Escape' && dialog.open) {
+      dialog.close();
+    }
   });
 
   dialog.addEventListener('keydown', (e) => {
-    if (!lightboxItem || (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight'))
+    if (!lightboxItem || (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight')) {
       return;
+    }
+
     e.preventDefault();
     const count = lightboxItem.querySelectorAll('[data-chip]').length;
     const dir = e.key === 'ArrowRight' ? 1 : -1;
+
     select(lightboxItem, (activeOf(lightboxItem) + dir + count) % count);
   });
 
   lightboxInstall.addEventListener('click', (e) => {
     e.stopPropagation();
-    if (lightboxItem && !noteOf(lightboxItem)) installItem(lightboxItem);
+
+    if (lightboxItem && !noteOf(lightboxItem)) {
+      installItem(lightboxItem);
+    }
   });
 
   lightboxCopy.addEventListener('click', (e) => {
     e.stopPropagation();
-    if (lightboxItem && !noteOf(lightboxItem)) copyItem(lightboxItem);
+
+    if (lightboxItem && !noteOf(lightboxItem)) {
+      copyItem(lightboxItem);
+    }
   });
 
   dialog.addEventListener('click', (e) => {
     const target = e.target as HTMLElement;
-    if (target === dialog || target.closest('[data-close]')) dialog.close();
+
+    if (target === dialog || target.closest('[data-close]')) {
+      dialog.close();
+    }
   });
 
   dialog.addEventListener('close', () => {

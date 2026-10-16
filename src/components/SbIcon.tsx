@@ -10,7 +10,7 @@ type Props = {
   nudgeY?: number;
 };
 
-const BARS: [number, number, string][] = [
+const BARS: Array<[number, number, string]> = [
   [12, 44, '#ec4d86'],
   [28, 30, '#1c9fc4'],
   [44, 36, '#e0a218'],
@@ -39,16 +39,25 @@ export default function SbIcon({
   useEffect(() => {
     if (!animate) {
       setT(null);
+
       return;
     }
+
     let raf = 0;
     const start = performance.now();
+
     const frame = (now: number) => {
       const elapsed = (now - start) / 1000;
+
       setT(elapsed);
-      if (!(once && elapsed > 1.6)) raf = requestAnimationFrame(frame);
+
+      if (!(once && elapsed > 1.6)) {
+        raf = requestAnimationFrame(frame);
+      }
     };
+
     raf = requestAnimationFrame(frame);
+
     return () => cancelAnimationFrame(raf);
   }, [animate, once]);
 
@@ -74,6 +83,7 @@ export default function SbIcon({
     >
       {BARS.map(([y, w, color], i) => {
         const k = live ? ease((tt - i * 0.14) / 0.36) : 1;
+
         return (
           <rect
             key={i}

@@ -46,16 +46,16 @@ const examples = [
   ['*', t.urls.examples.everywhere],
 ];
 
-type Shortcut = [string, string[] | null, string?];
+type Shortcut = [string, Array<string> | null, string?];
 
-const globalShortcuts: Shortcut[] = [
+const globalShortcuts: Array<Shortcut> = [
   [a.toggleEditor, ['alt', 'shift', 'M']],
   [a.toggleStyling, ['alt', 'shift', 'S']],
   [a.toggleReadability, null],
   [a.toggleGrayscale, null],
 ];
 
-const pickerShortcuts: Shortcut[] = [
+const pickerShortcuts: Array<Shortcut> = [
   [a.parent, ['↑', '←'], t.shortcuts.or],
   [a.child, ['↓', '→'], t.shortcuts.or],
   [a.select, ['enter']],
@@ -235,10 +235,16 @@ const shortcutGroups = [
 
   function onScroll() {
     let current = sections[0]?.id;
+
     for (const section of sections) {
-      if (section.getBoundingClientRect().top < 140) current = section.id;
+      if (section.getBoundingClientRect().top < 140) {
+        current = section.id;
+      }
     }
-    if (current) setActive(current);
+
+    if (current) {
+      setActive(current);
+    }
   }
 
   links.forEach((link) =>

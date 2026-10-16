@@ -1,4 +1,4 @@
-import { THEMES, type ThemeKey } from './themes';
+import { type ThemeKey, THEMES } from './themes';
 
 /**
  * The theme currently applied to <html>, set before first paint by the
@@ -6,5 +6,6 @@ import { THEMES, type ThemeKey } from './themes';
  */
 export function currentTheme(): ThemeKey {
   const key = document.documentElement.dataset.theme;
+
   return key && key in THEMES ? (key as ThemeKey) : 'light';
 }

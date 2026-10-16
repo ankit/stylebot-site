@@ -1,4 +1,6 @@
 declare global {
+  // Augmenting Window needs an interface, which types can't merge into.
+  // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
   interface Window {
     plausible?: (
       event: string,

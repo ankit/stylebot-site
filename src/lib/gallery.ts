@@ -1,28 +1,29 @@
 import type { ImageMetadata } from 'astro';
-import shotGithubSolarized from '../assets/gallery/github/solarized.png';
-import shotGithubTerminal from '../assets/gallery/github/terminal.png';
-import shotGithubDracula from '../assets/gallery/github/dracula.png';
-import shotGmail from '../assets/gallery/gmail/midnight.png';
-import shotHnNewspaper from '../assets/gallery/hn/newspaper.png';
-import shotHnNewspaperDark from '../assets/gallery/hn/newspaper-dark.png';
-import shotHnNightShift from '../assets/gallery/hn/night-shift.png';
-import shotNytimesMorning from '../assets/gallery/nytimes/morning.png';
-import shotNytimesNight from '../assets/gallery/nytimes/night.png';
-import shotNytimes from '../assets/gallery/nytimes/midnight.png';
-import shotWikipediaParchment from '../assets/gallery/wikipedia/parchment.png';
-import shotWikipediaSlate from '../assets/gallery/wikipedia/slate.png';
-import cssWikipediaParchment from '../assets/gallery/wikipedia/parchment.css?raw';
-import cssWikipediaSlate from '../assets/gallery/wikipedia/slate.css?raw';
-import cssGithubSolarized from '../assets/gallery/github/solarized.css?raw';
+
 import cssGithubDracula from '../assets/gallery/github/dracula.css?raw';
+import shotGithubDracula from '../assets/gallery/github/dracula.png';
+import cssGithubSolarized from '../assets/gallery/github/solarized.css?raw';
+import shotGithubSolarized from '../assets/gallery/github/solarized.png';
 import cssGithubTerminal from '../assets/gallery/github/terminal.css?raw';
-import cssNytimes from '../assets/gallery/nytimes/midnight.css?raw';
-import cssNytimesMorning from '../assets/gallery/nytimes/morning.css?raw';
-import cssNytimesNight from '../assets/gallery/nytimes/night.css?raw';
-import cssHnNewspaper from '../assets/gallery/hn/newspaper.css?raw';
-import cssHnNewspaperDark from '../assets/gallery/hn/newspaper-dark.css?raw';
-import cssHnNightShift from '../assets/gallery/hn/night-shift.css?raw';
+import shotGithubTerminal from '../assets/gallery/github/terminal.png';
 import cssGmail from '../assets/gallery/gmail/midnight.css?raw';
+import shotGmail from '../assets/gallery/gmail/midnight.png';
+import cssHnNewspaper from '../assets/gallery/hn/newspaper.css?raw';
+import shotHnNewspaper from '../assets/gallery/hn/newspaper.png';
+import cssHnNewspaperDark from '../assets/gallery/hn/newspaper-dark.css?raw';
+import shotHnNewspaperDark from '../assets/gallery/hn/newspaper-dark.png';
+import cssHnNightShift from '../assets/gallery/hn/night-shift.css?raw';
+import shotHnNightShift from '../assets/gallery/hn/night-shift.png';
+import cssNytimes from '../assets/gallery/nytimes/midnight.css?raw';
+import shotNytimes from '../assets/gallery/nytimes/midnight.png';
+import cssNytimesMorning from '../assets/gallery/nytimes/morning.css?raw';
+import shotNytimesMorning from '../assets/gallery/nytimes/morning.png';
+import cssNytimesNight from '../assets/gallery/nytimes/night.css?raw';
+import shotNytimesNight from '../assets/gallery/nytimes/night.png';
+import cssWikipediaParchment from '../assets/gallery/wikipedia/parchment.css?raw';
+import shotWikipediaParchment from '../assets/gallery/wikipedia/parchment.png';
+import cssWikipediaSlate from '../assets/gallery/wikipedia/slate.css?raw';
+import shotWikipediaSlate from '../assets/gallery/wikipedia/slate.png';
 
 export type GalleryTheme = {
   name: string;
@@ -42,10 +43,10 @@ export type GallerySite = {
    * left, top and width as fractions of the screenshot's width.
    */
   phoneCrop: { x: number; y: number; width: number };
-  themes: GalleryTheme[];
+  themes: Array<GalleryTheme>;
 };
 
-export const GALLERY: GallerySite[] = [
+export const GALLERY: Array<GallerySite> = [
   {
     id: 'wikipedia',
     site: 'Wikipedia',

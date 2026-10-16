@@ -120,9 +120,9 @@ export const THEMES: Record<ThemeKey, Theme> = {
   },
 };
 
-export const THEME_KEYS = Object.keys(THEMES) as ThemeKey[];
+export const THEME_KEYS = Object.keys(THEMES) as Array<ThemeKey>;
 
-export const DARK_THEMES: ThemeKey[] = ['dark', 'stylebot'];
+export const DARK_THEMES: Array<ThemeKey> = ['dark', 'stylebot'];
 
 export const STORAGE_KEY = 'stylebot-site-theme';
 
@@ -153,5 +153,6 @@ export function themeStylesheet(): string {
     `[data-ed]{${vars(THEMES.light)}}`,
     `${DARK_THEMES.map((key) => `:root[data-theme="${key}"] [data-ed]`).join(',')}{${vars(THEMES.dark)}}`,
   ];
+
   return rules.join('\n');
 }

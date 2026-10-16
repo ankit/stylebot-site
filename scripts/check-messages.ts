@@ -5,6 +5,7 @@
  * Pass locale codes to check only those; exits non-zero on any mismatch.
  */
 import { readdirSync } from 'node:fs';
+
 import { LOCALES } from '../src/i18n/locales.ts';
 
 const CATALOGS = ['site', 'demo', 'gallery'];
@@ -40,57 +41,91 @@ const isPlural = (value: unknown): value is Record<string, string> =>
   'other' in value &&
   Object.keys(value).every((k) => PLURAL_FORMS.has(k));
 
-const errors: string[] = [];
+const errors: Array<string> = [];
 
 /**
  * Compares a translated value with the English one at the same path.
  */
 function compare(en: unknown, tr: unknown, path: string) {
   if (typeof en === 'string') {
-    if (typeof tr !== 'string') return errors.push(`${path}: not a string`);
-    if (en === '' && tr !== '') errors.push(`${path}: should stay empty`);
-    if (en !== '' && tr === '') errors.push(`${path}: empty`);
-    if (tokens(en) !== tokens(tr))
+    if (typeof tr !== 'string') {
+      return errors.push(`${path}: not a string`);
+    }
+
+    if (en === '' && tr !== '') {
+      errors.push(`${path}: should stay empty`);
+    }
+
+    if (en !== '' && tr === '') {
+      errors.push(`${path}: empty`);
+    }
+
+    if (tokens(en) !== tokens(tr)) {
       errors.push(`${path}: expected [${tokens(en)}], got [${tokens(tr)}]`);
+    }
+
     return;
   }
+
   if (Array.isArray(en)) {
-    if (!Array.isArray(tr) || tr.length !== en.length)
+    if (!Array.isArray(tr) || tr.length !== en.length) {
       return errors.push(`${path}: expected a list of ${en.length}`);
+    }
+
     en.forEach((v, i) => compare(v, tr[i], `${path}[${i}]`));
+
     return;
   }
+
   if (isPlural(en)) {
-    if (!isPlural(tr))
+    if (!isPlural(tr)) {
       return errors.push(`${path}: expected plural forms with "other"`);
-    const needed: string[] = pluralCategories(path.split('/')[0]);
+    }
+
+    const needed: Array<string> = pluralCategories(path.split('/')[0]);
     const forms = Object.keys(tr);
     const missing = needed.filter((f) => !forms.includes(f));
     const unused = forms.filter((f) => !needed.includes(f));
-    if (missing.length) errors.push(`${path}: missing ${missing.join(', ')}`);
-    if (unused.length) errors.push(`${path}: unused ${unused.join(', ')}`);
+
+    if (missing.length) {
+      errors.push(`${path}: missing ${missing.join(', ')}`);
+    }
+
+    if (unused.length) {
+      errors.push(`${path}: unused ${unused.join(', ')}`);
+    }
+
     for (const [form, text] of Object.entries(tr)) {
       compare(en.other, text, `${path}.${form}`);
     }
+
     return;
   }
+
   if (en && typeof en === 'object') {
-    if (!tr || typeof tr !== 'object') return errors.push(`${path}: missing`);
+    if (!tr || typeof tr !== 'object') {
+      return errors.push(`${path}: missing`);
+    }
+
     const keys = new Set([...Object.keys(en), ...Object.keys(tr)]);
+
     for (const key of keys) {
-      if (!(key in en)) errors.push(`${path}.${key}: not in English`);
-      else
+      if (!(key in en)) {
+        errors.push(`${path}.${key}: not in English`);
+      } else {
         compare(
           (en as Record<string, unknown>)[key],
           (tr as Record<string, unknown>)[key],
           `${path}.${key}`,
         );
+      }
     }
   }
 }
 
 for (const catalog of CATALOGS) {
   const en = await load('en', catalog);
+
   for (const locale of locales) {
     compare(en, await load(locale, catalog), `${locale}/${catalog}`);
   }
@@ -100,4 +135,5 @@ if (errors.length) {
   console.error(errors.join('\n'));
   process.exit(1);
 }
+
 console.log(`Checked ${locales.join(', ')}`);

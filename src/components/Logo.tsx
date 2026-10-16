@@ -1,5 +1,6 @@
 import { render } from 'preact';
 import { useEffect, useRef, useState } from 'preact/hooks';
+
 import SbIcon from './SbIcon';
 
 type Splat = {
@@ -10,7 +11,7 @@ type Splat = {
   rot: number;
   color: string;
   delay: number;
-  drops: [number, number, number][];
+  drops: Array<[number, number, number]>;
 };
 
 const SPLAT_COLORS = ['#4d80f0', '#f07c2a', '#e0457b', '#2fae68'];
@@ -23,6 +24,7 @@ function PaintSplat({ x, y, size, rot, color, delay, drops }: Splat) {
   useEffect(() => {
     const raf = requestAnimationFrame(() => setStage(1));
     const fade = setTimeout(() => setStage(2), 2600);
+
     return () => {
       cancelAnimationFrame(raf);
       clearTimeout(fade);
@@ -63,18 +65,22 @@ function PaintSplat({ x, y, size, rot, color, delay, drops }: Splat) {
  */
 export default function Logo({ href, label }: { href: string; label: string }) {
   const [hover, setHover] = useState(false);
-  const [splats, setSplats] = useState<Splat[]>([]);
+  const [splats, setSplats] = useState<Array<Splat>>([]);
   const nextId = useRef(0);
   const layer = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (!layer.current) {
-      if (!splats.length) return;
+      if (!splats.length) {
+        return;
+      }
+
       layer.current = document.createElement('div');
       layer.current.className = 'paint-layer';
       layer.current.setAttribute('aria-hidden', 'true');
       document.body.appendChild(layer.current);
     }
+
     render(
       <>
         {splats.map((s) => (
@@ -86,12 +92,19 @@ export default function Logo({ href, label }: { href: string; label: string }) {
   }, [splats]);
 
   const splash = (ev: MouseEvent) => {
-    if (location.pathname !== '/') return;
+    if (location.pathname !== '/') {
+      return;
+    }
+
     ev.preventDefault();
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+
     const w = window.innerWidth;
     const h = window.innerHeight;
-    const born: Splat[] = Array.from({ length: 5 }, (_, i) => ({
+    const born: Array<Splat> = Array.from({ length: 5 }, (_, i) => ({
       id: nextId.current++,
       x: w * (0.08 + Math.random() * 0.84),
       y: window.scrollY + h * (0.14 + Math.random() * 0.78),
@@ -102,6 +115,7 @@ export default function Logo({ href, label }: { href: string; label: string }) {
       drops: Array.from({ length: 4 }, () => {
         const a = Math.random() * Math.PI * 2;
         const d = 36 + Math.random() * 12;
+
         return [
           32 + Math.cos(a) * d,
           32 + Math.sin(a) * d,
@@ -110,6 +124,7 @@ export default function Logo({ href, label }: { href: string; label: string }) {
       }),
     }));
     const ids = new Set(born.map((s) => s.id));
+
     setSplats((current) => [...current, ...born]);
     setTimeout(
       () => setSplats((current) => current.filter((s) => !ids.has(s.id))),
