@@ -4,12 +4,12 @@ import ChevronDownIcon from '@/components/icons/ChevronDownIcon';
 import CloseIcon from '@/components/icons/CloseIcon';
 import EyeOffIcon from '@/components/icons/EyeOffIcon';
 import SbIcon from '@/components/icons/SbIcon';
+import type { DemoMessages } from '@/i18n';
+import { fmt } from '@/i18n/format';
 import { reducedMotion } from '@/lib/motion';
+import { currentTheme } from '@/lib/theme-state';
+import { isDarkTheme } from '@/lib/themes';
 
-import type { DemoMessages } from '../../i18n';
-import { fmt } from '../../i18n/format';
-import { currentTheme } from '../../lib/theme-state';
-import { isDarkTheme } from '../../lib/themes';
 import {
   DEFAULT_PROFILE,
   type DemoState,

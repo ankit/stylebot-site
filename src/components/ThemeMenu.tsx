@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'preact/hooks';
 
 import ContrastIcon from '@/components/icons/ContrastIcon';
-
-import { fmt } from '../i18n/format';
-import { track } from '../lib/analytics';
-import { currentTheme } from '../lib/theme-state';
-import { STORAGE_KEY, THEME_KEYS, type ThemeKey, THEMES } from '../lib/themes';
+import { fmt } from '@/i18n/format';
+import { track } from '@/lib/analytics';
+import { currentTheme } from '@/lib/theme-state';
+import { STORAGE_KEY, THEME_KEYS, type ThemeKey, THEMES } from '@/lib/themes';
 
 type Labels = { title: string; names: Record<ThemeKey, string> };
 

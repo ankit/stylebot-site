@@ -1,10 +1,10 @@
 ---
-import { localeStaticPaths } from '../../i18n';
-import Base from '../../layouts/Base.astro';
-import Demo from '../../components/demo/Demo';
-import CliCommand from '../../components/cli/CliCommand.astro';
-import { CLI_INSTALL } from '../../lib/cli';
-import { LINKS } from '../../lib/links';
+import { localeStaticPaths } from '@/i18n';
+import Base from '@/layouts/Base.astro';
+import Demo from '@/components/demo/Demo';
+import CliCommand from '@/components/cli/CliCommand.astro';
+import { CLI_INSTALL } from '@/lib/cli';
+import { LINKS } from '@/lib/links';
 
 export const getStaticPaths = localeStaticPaths;
 
@@ -77,7 +77,7 @@ const {
 </Base>
 
 <script>
-  import '../../scripts/mac-keys';
+  import '@/scripts/mac-keys';
 </script>
 
 <style>

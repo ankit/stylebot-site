@@ -1,6 +1,6 @@
 ---
-import { BROWSERS, STORES } from '../lib/links';
-import { fmt } from '../i18n';
+import { BROWSERS, STORES } from '@/lib/links';
+import { fmt } from '@/i18n';
 
 type Props = {
   index: 0 | 1 | 2;
@@ -28,8 +28,8 @@ const template = {
 </a>
 
 <script>
-  import { fmt } from '../i18n/format';
-  import { type Browser, BROWSERS, STORES } from '../lib/links';
+  import { fmt } from '@/i18n/format';
+  import { type Browser, BROWSERS, STORES } from '@/lib/links';
 
   const ua = navigator.userAgent;
   const current: Browser = /Firefox\//.test(ua)

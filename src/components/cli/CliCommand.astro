@@ -1,7 +1,7 @@
 ---
 import CheckIcon from '@/components/icons/CheckIcon';
 import CopyIcon from '@/components/icons/CopyIcon';
-import { fmt } from '../../i18n';
+import { fmt } from '@/i18n';
 
 type Props = {
   lines: Array<string>;
@@ -49,7 +49,7 @@ const command = lines.join(' && ');
 </div>
 
 <script>
-  import { track } from '../../lib/analytics';
+  import { track } from '@/lib/analytics';
 
   document
     .querySelectorAll<HTMLButtonElement>('.cli-cmd-copy')

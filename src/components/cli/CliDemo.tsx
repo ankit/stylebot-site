@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState } from 'preact/hooks';
 
+import type { SiteMessages } from '@/i18n';
+import { fmt } from '@/i18n/format';
 import { reducedMotion } from '@/lib/motion';
-
-import type { SiteMessages } from '../../i18n';
-import { fmt } from '../../i18n/format';
 
 import './cli-demo.css';
 
