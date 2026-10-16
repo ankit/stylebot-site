@@ -119,6 +119,28 @@ img {
   color: var(--ink);
 }
 
+.logo-tag {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: -2px;
+  font:
+    italic 500 21px/1 'Cormorant Garamond',
+    Georgia,
+    serif;
+  color: var(--ink2);
+}
+
+.logo-tag:hover {
+  color: var(--ink);
+}
+
+.logo-tag-rule {
+  width: 1px;
+  height: 16px;
+  background: var(--strong);
+}
+
 .header-actions {
   margin-left: auto;
   display: flex;

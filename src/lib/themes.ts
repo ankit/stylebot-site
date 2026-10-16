@@ -34,6 +34,9 @@ export const THEMES: Record<ThemeKey, Theme> = {
     acctint: '#f2f6fe',
     accline: '#dfe8fc',
     ...lightCode,
+    ok: '#1f9d55',
+    warn: '#b7791f',
+    danger: '#c9473f',
   },
   dark: {
     ui: geist,
@@ -59,6 +62,9 @@ export const THEMES: Record<ThemeKey, Theme> = {
     cval: '#f0d38a',
     cnum: '#f0d38a',
     ccom: '#7d8593',
+    ok: '#4cc27a',
+    warn: '#e0a84a',
+    danger: '#ef7a6f',
   },
   stylebot: {
     ui: geist,
@@ -85,6 +91,9 @@ export const THEMES: Record<ThemeKey, Theme> = {
     cval: '#e8ad2a',
     cnum: '#e8ad2a',
     ccom: '#7d776d',
+    ok: '#56c48a',
+    warn: '#e8ad2a',
+    danger: '#f2665a',
   },
   newsprint: {
     ui: geist,
@@ -105,6 +114,9 @@ export const THEMES: Record<ThemeKey, Theme> = {
     acctint: '#e3f0f3',
     accline: '#bfdde5',
     ...lightCode,
+    ok: '#1f7f45',
+    warn: '#9a6a1f',
+    danger: '#b8402f',
   },
 };
 

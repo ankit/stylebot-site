@@ -1,0 +1,41 @@
+---
+import StoreLink from './StoreLink.astro';
+import { GitHub, Manual } from './icons';
+import { LINKS } from '../lib/links';
+import { localizePath, messagesFor } from '../i18n';
+
+type Props = { current?: 'manual'; storeCta?: boolean; install?: boolean };
+
+const { current, storeCta = false, install = true } = Astro.props;
+
+const { locale, site: t } = messagesFor(Astro.url);
+---
+
+<a
+  href={localizePath(locale, LINKS.manual)}
+  class:list={['icon-btn', { 'is-current': current === 'manual' }]}
+  aria-label={t.header.manual}
+  aria-current={current === 'manual' ? 'page' : undefined}
+>
+  <Manual />
+  <span class="tip">{t.header.manual}</span>
+</a>
+
+<a href={LINKS.github} class="icon-btn" aria-label="GitHub">
+  <GitHub />
+  <span class="tip">GitHub</span>
+</a>
+
+{install && storeCta && (
+  <StoreLink
+    index={0}
+    format="add"
+    class="btn btn-primary btn-sm header-store"
+  />
+)}
+
+{install && !storeCta && (
+  <a href={localizePath(locale, '/#install')} class="btn btn-primary btn-sm">
+    {t.header.install}
+  </a>
+)}
