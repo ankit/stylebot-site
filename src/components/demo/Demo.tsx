@@ -163,8 +163,6 @@ export default class Demo extends Component<Props, State> {
   rootRef = createRef<HTMLDivElement>();
   resizeObserver?: ResizeObserver;
   timers: Array<ReturnType<typeof setTimeout>> = [];
-  scene = 0;
-  t0 = 0;
   startId?: ReturnType<typeof setTimeout>;
 
   state: State = {
@@ -392,8 +390,6 @@ export default class Demo extends Component<Props, State> {
     const k = 1 / this.state.speed;
     const dur = sc.dur * k;
 
-    this.scene = i;
-    this.t0 = performance.now() - from;
     this.setState({
       scene: i,
       done: false,
