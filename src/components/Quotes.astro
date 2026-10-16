@@ -137,16 +137,25 @@ const {
    * isn't already on screen.
    */
   function rotate() {
-    if (held || document.hidden) return;
+    if (held || document.hidden) {
+      return;
+    }
+
     const slot = turn % cards.length;
-    while (shown.includes(next % QUOTES.length)) next++;
+
+    while (shown.includes(next % QUOTES.length)) {
+      next++;
+    }
+
     const index = next % QUOTES.length;
     const card = cards[slot];
+
     card.classList.add('fading');
     setTimeout(() => {
       const quote = QUOTES[index];
       const text = card.querySelector<HTMLElement>('.quote-text')!;
       const name = card.querySelector<HTMLElement>('.quote-name')!;
+
       text.textContent = `“${quote.text}”`;
       text.classList.toggle('long', quote.text.length > LONG_QUOTE);
       name.textContent = quote.name;

@@ -23,8 +23,8 @@ const path = unlocalizedPath(Astro.url.pathname);
       stroke-linecap="round"
       aria-hidden="true"
     >
-      <circle cx="8" cy="8" r="6.3"></circle>
-      <path d="M1.9 8h12.2M8 1.7c-3.6 3.6-3.6 9 0 12.6M8 1.7c3.6 3.6 3.6 9 0 12.6"></path>
+      <circle cx="8" cy="8" r="6.3" />
+      <path d="M1.9 8h12.2M8 1.7c-3.6 3.6-3.6 9 0 12.6M8 1.7c3.6 3.6 3.6 9 0 12.6" />
     </svg>
     <span class="tip">{t.header.language}</span>
   </button>
@@ -46,8 +46,8 @@ const path = unlocalizedPath(Astro.url.pathname);
 </div>
 
 <script>
-  import { LOCALE_CHOSEN_KEY } from '../lib/locale-choice';
   import { track } from '../lib/analytics';
+  import { LOCALE_CHOSEN_KEY } from '../lib/locale-choice';
 
   const menu = document.querySelector<HTMLElement>('.lang-menu')!;
   const toggle = menu.querySelector<HTMLButtonElement>('[data-lang-toggle]')!;
@@ -61,18 +61,27 @@ const path = unlocalizedPath(Astro.url.pathname);
 
   toggle.addEventListener('click', () => setOpen(list.hasAttribute('hidden')));
   document.addEventListener('click', (e) => {
-    if (!menu.contains(e.target as Node)) setOpen(false);
+    if (!menu.contains(e.target as Node)) {
+      setOpen(false);
+    }
   });
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') setOpen(false);
+    if (e.key === 'Escape') {
+      setOpen(false);
+    }
   });
   list.addEventListener('click', (e) => {
     const link = (e.target as HTMLElement).closest('a');
+
     if (link) {
       try {
         localStorage.setItem(LOCALE_CHOSEN_KEY, '1');
-      } catch {}
+      } catch {
+        // Storage can be blocked; the choice just isn't remembered.
+      }
+
       const target = new URL(link.href);
+
       track('Language change', {
         from: document.documentElement.lang,
         to: link.hreflang,

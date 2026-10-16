@@ -16,6 +16,7 @@ The [stylebot.dev](https://stylebot.dev) site for the Stylebot browser extension
 - `yarn dev` — dev server
 - `yarn run check` — type check, catalogs against English, and extension wording (not `yarn check`, Yarn's own command)
 - `yarn format` — format everything with Prettier; `yarn format:check` checks it, as CI does
+- `yarn lint` — ESLint, as CI runs it; `yarn lint --fix` fixes what it can, such as import order
 - `yarn build` — build into `dist/`
 - `yarn deploy` — build and publish to the `gh-pages` branch, which serves stylebot.dev
 

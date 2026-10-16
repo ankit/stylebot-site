@@ -15,7 +15,7 @@ export const STORES = {
 
 export type Browser = keyof typeof STORES;
 
-export const BROWSERS = Object.keys(STORES) as Browser[];
+export const BROWSERS = Object.keys(STORES) as Array<Browser>;
 
 export const LINKS = {
   github: 'https://github.com/ankit/stylebot',

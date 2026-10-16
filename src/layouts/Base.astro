@@ -88,9 +88,14 @@ const altUrl = (code: (typeof LOCALES)[number]['code']) =>
     <meta name="twitter:description" content={description} />
     <slot name="head" />
     <script is:inline define:vars={{ STORAGE_KEY, THEME_KEYS }}>
+      let saved = null;
+
       try {
-        var saved = localStorage.getItem(STORAGE_KEY);
-      } catch (e) {}
+        saved = localStorage.getItem(STORAGE_KEY);
+      } catch {
+        // Storage can be blocked; fall back to the system theme.
+      }
+
       document.documentElement.dataset.theme =
         (THEME_KEYS.indexOf(saved) >= 0 && saved) ||
         (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
@@ -108,18 +113,22 @@ const altUrl = (code: (typeof LOCALES)[number]['code']) =>
           is:inline
           async
           src="https://plausible.io/js/pa-BGI4Ew6K-t0hsxPyst1zG.js"
-        ></script>
+        />
         <script is:inline>
           window.plausible =
             window.plausible ||
             function () {
+              // Plausible's own snippet, which queues calls as they were made.
+              // eslint-disable-next-line prefer-rest-params
               (plausible.q = plausible.q || []).push(arguments);
             };
+
           plausible.init =
             plausible.init ||
             function (i) {
               plausible.o = i || {};
             };
+
           plausible.init({ outboundLinks: true });
         </script>
       </>

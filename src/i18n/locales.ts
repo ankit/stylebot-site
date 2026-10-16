@@ -20,7 +20,7 @@ export type Locale = (typeof LOCALES)[number]['code'];
 
 export const DEFAULT_LOCALE: Locale = 'en';
 
-const CODES = LOCALES.map((l) => l.code) as readonly string[];
+const CODES = LOCALES.map((l) => l.code) as ReadonlyArray<string>;
 
 /**
  * The locale a site path belongs to, from its first segment; English pages
@@ -28,6 +28,7 @@ const CODES = LOCALES.map((l) => l.code) as readonly string[];
  */
 export function localeOf(pathname: string): Locale {
   const first = pathname.split('/')[1]?.toLowerCase() ?? '';
+
   return CODES.includes(first) ? (first as Locale) : DEFAULT_LOCALE;
 }
 
@@ -36,7 +37,11 @@ export function localeOf(pathname: string): Locale {
  */
 export function unlocalizedPath(pathname: string): string {
   const locale = localeOf(pathname);
-  if (locale === DEFAULT_LOCALE) return pathname;
+
+  if (locale === DEFAULT_LOCALE) {
+    return pathname;
+  }
+
   return pathname.slice(locale.length + 1) || '/';
 }
 
@@ -68,11 +73,20 @@ export function localeStaticPaths() {
  */
 export function matchLocale(tag: string): Locale | undefined {
   const lower = tag.toLowerCase();
-  if (CODES.includes(lower)) return lower as Locale;
+
+  if (CODES.includes(lower)) {
+    return lower as Locale;
+  }
+
   const [base] = lower.split('-');
+
   if (base === 'zh') {
     return /-(tw|hk|mo|hant)/.test(lower) ? 'zh-tw' : 'zh-cn';
   }
-  if (base === 'pt') return 'pt-br';
+
+  if (base === 'pt') {
+    return 'pt-br';
+  }
+
   return CODES.includes(base) ? (base as Locale) : undefined;
 }

@@ -17,7 +17,7 @@ const { site: t } = messagesFor(Astro.url);
       stroke-linecap="round"
       aria-hidden="true"
     >
-      <path d="M2.5 2.5l9 9M11.5 2.5l-9 9"></path>
+      <path d="M2.5 2.5l9 9M11.5 2.5l-9 9" />
     </svg>
   </button>
 </dialog>
@@ -32,6 +32,7 @@ const { site: t } = messagesFor(Astro.url);
    */
   function largest(img: HTMLImageElement) {
     const last = img.srcset.split(',').pop()?.trim().split(/\s+/)[0];
+
     return last || img.currentSrc || img.src;
   }
 
@@ -41,6 +42,7 @@ const { site: t } = messagesFor(Astro.url);
    */
   function fit(img: HTMLImageElement) {
     const width = Number(img.dataset.fullWidth) / devicePixelRatio;
+
     zoomed.style.maxWidth = width ? `min(1400px, 100%, ${width}px)` : '';
   }
 
@@ -58,7 +60,10 @@ const { site: t } = messagesFor(Astro.url);
       img.setAttribute('role', 'button');
       img.addEventListener('click', () => open(img));
       img.addEventListener('keydown', (e) => {
-        if (e.key !== 'Enter' && e.key !== ' ') return;
+        if (e.key !== 'Enter' && e.key !== ' ') {
+          return;
+        }
+
         e.preventDefault();
         open(img);
       });

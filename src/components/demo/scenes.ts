@@ -12,7 +12,7 @@ export type Scene = {
   title: string;
   body: string;
   dur: number;
-  acts: [number, Patch][];
+  acts: Array<[number, Patch]>;
 };
 
 /**
@@ -58,9 +58,10 @@ export type DemoState = typeof INIT;
 /**
  * The walkthrough's scenes, with their text from the demo messages.
  */
-export function scenes(m: DemoMessages, dark = false): Scene[] {
+export function scenes(m: DemoMessages, dark = false): Array<Scene> {
   const { open, pick, style, profiles } = m.scenes;
   const defaultProfile = m.editor.defaultProfile;
+
   return [
     {
       title: open.title,
@@ -222,7 +223,7 @@ export const QUOTE_TOTAL = QUOTE_CSS.reduce((a, q) => a + q.txt.length, 0);
 
 type Look = {
   serif: boolean;
-  css: [string, [string, string][]][];
+  css: Array<[string, Array<[string, string]>]>;
   colors: {
     bg: string;
     panel: string;
@@ -363,6 +364,7 @@ export const LOOKS: Record<'light' | 'dark', Look> = {
  */
 export function pinScene(m: DemoMessages): Scene {
   const { pin } = m.scenes;
+
   return {
     title: pin.title,
     body: pin.body,

@@ -1,6 +1,7 @@
-import { defineConfig } from 'astro/config';
 import preact from '@astrojs/preact';
 import sitemap from '@astrojs/sitemap';
+import { defineConfig } from 'astro/config';
+
 import {
   DEFAULT_LOCALE,
   LOCALES,

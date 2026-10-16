@@ -1,34 +1,34 @@
-import enSite from './en/site';
-import enDemo from './en/demo';
-import deSite from './de/site';
 import deDemo from './de/demo';
-import esSite from './es/site';
+import deSite from './de/site';
+import enDemo from './en/demo';
+import enSite from './en/site';
 import esDemo from './es/demo';
-import frSite from './fr/site';
+import esSite from './es/site';
 import frDemo from './fr/demo';
-import itSite from './it/site';
-import itDemo from './it/demo';
-import ptBrSite from './pt-br/site';
-import ptBrDemo from './pt-br/demo';
-import ptPtSite from './pt-pt/site';
-import ptPtDemo from './pt-pt/demo';
-import roSite from './ro/site';
-import roDemo from './ro/demo';
-import idSite from './id/site';
+import frSite from './fr/site';
 import idDemo from './id/demo';
-import viSite from './vi/site';
-import viDemo from './vi/demo';
-import ruSite from './ru/site';
-import ruDemo from './ru/demo';
-import jaSite from './ja/site';
+import idSite from './id/site';
+import itDemo from './it/demo';
+import itSite from './it/site';
 import jaDemo from './ja/demo';
-import koSite from './ko/site';
+import jaSite from './ja/site';
 import koDemo from './ko/demo';
-import zhCnSite from './zh-cn/site';
+import koSite from './ko/site';
+import { type Locale, localeOf } from './locales';
+import ptBrDemo from './pt-br/demo';
+import ptBrSite from './pt-br/site';
+import ptPtDemo from './pt-pt/demo';
+import ptPtSite from './pt-pt/site';
+import roDemo from './ro/demo';
+import roSite from './ro/site';
+import ruDemo from './ru/demo';
+import ruSite from './ru/site';
+import viDemo from './vi/demo';
+import viSite from './vi/site';
 import zhCnDemo from './zh-cn/demo';
-import zhTwSite from './zh-tw/site';
+import zhCnSite from './zh-cn/site';
 import zhTwDemo from './zh-tw/demo';
-import { localeOf, type Locale } from './locales';
+import zhTwSite from './zh-tw/site';
 
 export type SiteMessages = typeof enSite;
 export type DemoMessages = typeof enDemo;
@@ -61,8 +61,9 @@ export function messages(locale: Locale): Messages {
  */
 export function messagesFor(url: URL) {
   const locale = localeOf(url.pathname);
+
   return { locale, ...messages(locale) };
 }
 
-export * from './locales';
 export * from './format';
+export * from './locales';

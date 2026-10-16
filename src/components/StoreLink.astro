@@ -28,8 +28,8 @@ const template = {
 </a>
 
 <script>
-  import { BROWSERS, STORES, type Browser } from '../lib/links';
   import { fmt } from '../i18n/format';
+  import { type Browser, BROWSERS, STORES } from '../lib/links';
 
   const ua = navigator.userAgent;
   const current: Browser = /Firefox\//.test(ua)
@@ -43,6 +43,7 @@ const template = {
     .querySelectorAll<HTMLAnchorElement>('[data-store-slot]')
     .forEach((link) => {
       const store = STORES[order[Number(link.dataset.storeSlot)]];
+
       link.href = store.href;
       link.textContent = fmt(link.dataset.storeLabel!, { store: store.name });
     });

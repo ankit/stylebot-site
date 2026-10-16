@@ -3,7 +3,7 @@ import { Check, Copy } from '../icons';
 import { fmt, messagesFor } from '../../i18n';
 
 type Props = {
-  lines: string[];
+  lines: Array<string>;
   copy?: boolean;
   boxed?: boolean;
   class?: string;
@@ -54,12 +54,14 @@ const command = lines.join(' && ');
     .querySelectorAll<HTMLButtonElement>('.cli-cmd-copy')
     .forEach((button) => {
       let timer: ReturnType<typeof setTimeout>;
+
       button.addEventListener('click', async () => {
         try {
           await navigator.clipboard.writeText(button.dataset.copy!);
         } catch {
           return;
         }
+
         track('CLI copy', { command: button.dataset.copy! });
         button.classList.add('is-copied');
         button.title = button.dataset.copiedLabel!;

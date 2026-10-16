@@ -1,4 +1,5 @@
 import { useState } from 'preact/hooks';
+
 import type { SiteMessages } from '../i18n';
 import { track } from '../lib/analytics';
 
@@ -18,7 +19,7 @@ const REASON_KEYS = [
  * Optional uninstall survey: pick any reasons, add a note, and send it.
  */
 export default function GoodbyeFeedback({ messages: t }: Props) {
-  const [picked, setPicked] = useState<string[]>([]);
+  const [picked, setPicked] = useState<Array<string>>([]);
   const [note, setNote] = useState('');
   const [sent, setSent] = useState(false);
   const ready = picked.length > 0 || note.trim().length > 0;
@@ -29,15 +30,20 @@ export default function GoodbyeFeedback({ messages: t }: Props) {
     );
 
   const send = () => {
-    if (!ready) return;
+    if (!ready) {
+      return;
+    }
+
     picked.forEach((reason) =>
       track('Uninstall reason', {
         reason: REASON_KEYS[t.reasons.indexOf(reason)],
       }),
     );
+
     if (note.trim()) {
       track('Uninstall note', { note: note.trim().slice(0, 2000) });
     }
+
     setSent(true);
   };
 

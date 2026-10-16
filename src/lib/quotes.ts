@@ -1,10 +1,10 @@
-export interface Quote {
+export type Quote = {
   text: string;
   name: string;
   from: string;
-}
+};
 
-export const QUOTES: Quote[] = [
+export const QUOTES: Array<Quote> = [
   {
     text: 'Thank you for creating this — this tool lets me make inaccessible sites more accessible for me',
     name: 'James',
