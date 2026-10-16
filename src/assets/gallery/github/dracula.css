@@ -1,11 +1,11 @@
 /* GitHub: Dracula */
 
-html[data-color-mode="light"][data-light-theme="light"],
-html[data-color-mode="auto"][data-light-theme="light"],
-html[data-color-mode="dark"][data-dark-theme="dark"],
-html[data-color-mode="auto"][data-dark-theme="dark"],
-html[data-color-mode="light"][data-light-theme="light_high_contrast"],
-html[data-color-mode="dark"][data-dark-theme="dark_high_contrast"] {
+html[data-color-mode='light'][data-light-theme='light'],
+html[data-color-mode='auto'][data-light-theme='light'],
+html[data-color-mode='dark'][data-dark-theme='dark'],
+html[data-color-mode='auto'][data-dark-theme='dark'],
+html[data-color-mode='light'][data-light-theme='light_high_contrast'],
+html[data-color-mode='dark'][data-dark-theme='dark_high_contrast'] {
   /* base surfaces */
   --bgColor-default: #282a36;
   --bgColor-muted: #21222c;
@@ -168,7 +168,7 @@ html[data-color-mode="dark"][data-dark-theme="dark_high_contrast"] {
    --------------------------------------------------------------------- */
 
 * {
-  font-family: "SF Mono", Consolas, Menlo, monospace;
+  font-family: 'SF Mono', Consolas, Menlo, monospace;
   font-weight: 400;
 }
 
@@ -214,18 +214,18 @@ img.avatar,
    force it bright here.
    --------------------------------------------------------------------- */
 
-[class*="prc-Button-ButtonBase-"] {
+[class*='prc-Button-ButtonBase-'] {
   color: #f8f8f2;
   border-color: #6272a4;
   opacity: 1;
 }
-[class*="prc-Button-ButtonBase-"] {
+[class*='prc-Button-ButtonBase-'] {
   color: #f8f8f2;
   border-color: #6272a4;
   opacity: 1;
 }
-[class*="prc-Button-Label-"],
-[class*="prc-Button-Visual-"] {
+[class*='prc-Button-Label-'],
+[class*='prc-Button-Visual-'] {
   color: #f8f8f2;
   opacity: 1;
 }
@@ -245,10 +245,10 @@ img.avatar,
    both tabs were unreadable before this fix). The pill is a ::before
    on the track, not a class on the button, so it needs its own rule.
    --------------------------------------------------------------------- */
-[class*="prc-SegmentedControl-SegmentedControl-"] {
+[class*='prc-SegmentedControl-SegmentedControl-'] {
   background-color: #21222c;
 }
-[class*="prc-SegmentedControl-SegmentedControl-"]::before {
+[class*='prc-SegmentedControl-SegmentedControl-']::before {
   background-color: #343746;
 }
 
@@ -424,12 +424,20 @@ img.avatar,
   font-size: 14px;
   line-height: 1.6;
 }
-.markdown-body h1 { font-size: 1.6em; }
-.markdown-body h2 { font-size: 1.35em; }
-.markdown-body h3 { font-size: 1.15em; }
+.markdown-body h1 {
+  font-size: 1.6em;
+}
+.markdown-body h2 {
+  font-size: 1.35em;
+}
+.markdown-body h3 {
+  font-size: 1.15em;
+}
 .markdown-body h4,
 .markdown-body h5,
-.markdown-body h6 { font-size: 1em; }
+.markdown-body h6 {
+  font-size: 1em;
+}
 .markdown-body code,
 .markdown-body pre,
 .markdown-body tt {
@@ -441,18 +449,57 @@ img.avatar,
    aren't all driven by the CodeMirror tokens above.
    --------------------------------------------------------------------- */
 
-.pl-c, .pl-c span { color: #6272a4; font-style: italic; }
-.pl-k, .pl-kos { color: #ff79c6; }
-.pl-pds, .pl-s1, .pl-pse { color: #f1fa8c; }
-.pl-s { color: #f1fa8c; }
-.pl-c1, .pl-v, .pl-smi, .pl-vo, .pl-vpf { color: #bd93f9; }
-.pl-en, .pl-e { color: #50fa7b; }
-.pl-ent { color: #ff5555; }
-.pl-s .pl-s1, .pl-pse .pl-s1 { color: #f1fa8c; }
-.pl-mi1, .pl-mdht { color: #50fa7b; }
-.pl-md, .pl-mdhf { color: #ff5555; }
-.pl-ml { color: #f1fa8c; }
-.pl-mh, .pl-mh .pl-en, .pl-ms { color: #8be9fd; }
+.pl-c,
+.pl-c span {
+  color: #6272a4;
+  font-style: italic;
+}
+.pl-k,
+.pl-kos {
+  color: #ff79c6;
+}
+.pl-pds,
+.pl-s1,
+.pl-pse {
+  color: #f1fa8c;
+}
+.pl-s {
+  color: #f1fa8c;
+}
+.pl-c1,
+.pl-v,
+.pl-smi,
+.pl-vo,
+.pl-vpf {
+  color: #bd93f9;
+}
+.pl-en,
+.pl-e {
+  color: #50fa7b;
+}
+.pl-ent {
+  color: #ff5555;
+}
+.pl-s .pl-s1,
+.pl-pse .pl-s1 {
+  color: #f1fa8c;
+}
+.pl-mi1,
+.pl-mdht {
+  color: #50fa7b;
+}
+.pl-md,
+.pl-mdhf {
+  color: #ff5555;
+}
+.pl-ml {
+  color: #f1fa8c;
+}
+.pl-mh,
+.pl-mh .pl-en,
+.pl-ms {
+  color: #8be9fd;
+}
 
 /* comments inside a changed-word highlight: must come after the .pl-c
    rule above, which has equal specificity for ".pl-c span" */
@@ -469,7 +516,7 @@ img.avatar,
   background-color: #21222c;
   border: 1px solid #44475a;
 }
-.markdown-body code:not([class*="pl-"]) {
+.markdown-body code:not([class*='pl-']) {
   color: #6bd786;
   border-width: 1px;
   border-color: #024413;
@@ -481,7 +528,7 @@ img.avatar,
    uses under its top bar, for anything not covered by the token.
    --------------------------------------------------------------------- */
 
-header[role="banner"],
+header[role='banner'],
 .Header {
   border-bottom: 2px solid #ff79c6;
 }
@@ -512,7 +559,7 @@ span.prc-StateLabel-StateLabel-Iawzp {
   color: #191a21;
 }
 
-[data-variant="primary"] * {
+[data-variant='primary'] * {
   color: #000;
 }
 
@@ -529,10 +576,10 @@ span.pl-corl {
 }
 
 bdi.markdown-title {
-  font-size: 16px
+  font-size: 16px;
 }
 
-span[class*="HeaderViewer-module__issueNumberText__"] {
+span[class*='HeaderViewer-module__issueNumberText__'] {
   font-size: 18px;
 }
 
@@ -540,7 +587,7 @@ span.Button-label {
   color: #f8f8f2;
 }
 
-div[class*="prc-Truncate-Truncate-"] {
+div[class*='prc-Truncate-Truncate-'] {
   color: #f8f8f2;
 }
 
@@ -552,6 +599,6 @@ span.issueNumberText__ZPJKLj {
   font-size: 16px;
 }
 
-bdi[class*="issueTitleContainer__"] {
+bdi[class*='issueTitleContainer__'] {
   font-size: 12px;
 }

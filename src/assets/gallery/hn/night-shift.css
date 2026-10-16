@@ -5,7 +5,6 @@
 
 @import url(https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap);
 
-
 body {
   background-color: #282a36 !important;
   color: #f8f8f2;
@@ -87,7 +86,10 @@ tr {
 }
 
 /* subtext row: points, author, time, comments — bumped for contrast */
-.subtext, .subtext a, .age a, .age {
+.subtext,
+.subtext a,
+.age a,
+.age {
   color: #b3bce0;
 }
 .subline {
@@ -139,10 +141,12 @@ tr.spacer {
 }
 
 /* comment page */
-.comment, .commtext {
+.comment,
+.commtext {
   color: #f8f8f2;
 }
-.comhead a, .comhead a:visited {
+.comhead a,
+.comhead a:visited {
   color: #b3bce0;
 }
 .comhead {
@@ -151,7 +155,8 @@ tr.spacer {
 .comhead .hnuser {
   color: #ffb86c;
 }
-.comment a, .commtext a {
+.comment a,
+.commtext a {
   color: #8be9fd;
 }
 .commtext a:hover {
@@ -159,7 +164,8 @@ tr.spacer {
 }
 
 /* quoted text in comments */
-.commtext .quote, .commtext font[color] {
+.commtext .quote,
+.commtext font[color] {
   color: #f1fa8c;
 }
 
@@ -181,21 +187,26 @@ tr.spacer {
 }
 
 /* indent guides for comment tree */
-table.comment-tree img[src="s.gif"] {
+table.comment-tree img[src='s.gif'] {
   filter: invert(40%) sepia(40%) saturate(1000%) hue-rotate(220deg);
   opacity: 0.5;
 }
 
 /* reply / more links */
-.togg, .reply a, a.togg {
+.togg,
+.reply a,
+a.togg {
   color: #bd93f9;
 }
-.togg:hover, .reply a:hover {
+.togg:hover,
+.reply a:hover {
   color: #ff79c6;
 }
 
 /* input fields, textareas, buttons */
-input, textarea, select {
+input,
+textarea,
+select {
   background-color: #44475a;
   color: #f8f8f2;
   border: 1px solid #6272a4;
@@ -205,24 +216,26 @@ input, textarea, select {
   font-family: Fira Code;
   color: #bfc6e0;
 }
-input[type="submit"] {
+input[type='submit'] {
   background-color: #bd93f9;
   color: #282a36;
   border: none;
   font-weight: 600;
   cursor: pointer;
 }
-input[type="submit"]:hover {
+input[type='submit']:hover {
   background-color: #ff79c6;
 }
 
 /* dead/flagged comments */
-.comhead .dead, .comment .dead {
+.comhead .dead,
+.comment .dead {
   color: #44475a;
 }
 
 /* yc footer links */
-.yclinks a, .yclinks a:visited {
+.yclinks a,
+.yclinks a:visited {
   color: #b3bce0;
 }
 .yclinks a:hover {
@@ -259,7 +272,7 @@ td a img {
   color: #44475a;
   font-weight: 500;
 }
-td[style*="right"] .pagetop {
+td[style*='right'] .pagetop {
   display: inline-block;
   padding-right: 16px;
 }

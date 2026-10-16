@@ -10,6 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check && node scripts/check-messages.ts && node scripts/extension-terms.ts",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "deploy": "astro build && gh-pages -d dist -b gh-pages -t",
     "sync:extension-strings": "node scripts/sync-extension-strings.ts"
   },
