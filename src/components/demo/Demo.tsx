@@ -4,6 +4,7 @@ import ChevronDownIcon from '@/components/icons/ChevronDownIcon';
 import CloseIcon from '@/components/icons/CloseIcon';
 import EyeOffIcon from '@/components/icons/EyeOffIcon';
 import SbIcon from '@/components/icons/SbIcon';
+import { reducedMotion } from '@/lib/motion';
 
 import type { DemoMessages } from '../../i18n';
 import { fmt } from '../../i18n/format';
@@ -259,7 +260,7 @@ export default class Demo extends Component<Props, State> {
       });
     }
 
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (reducedMotion()) {
       return;
     }
 

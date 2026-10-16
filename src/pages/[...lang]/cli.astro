@@ -1,7 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
 import CliCommand from '../../components/cli/CliCommand.astro';
-import { CLI_PACKAGE, STORES } from '../../lib/links';
+import { STORES } from '../../lib/links';
+import { CLI_EXAMPLES, CLI_INSTALL } from '../../lib/cli';
 import { fmt, localeStaticPaths, rich } from '../../i18n';
 
 export const getStaticPaths = localeStaticPaths;
@@ -13,12 +14,10 @@ const {
   },
 } = Astro.locals;
 
-const examples = [
-  ['stylebot open news.ycombinator.com', t.examples.open],
-  ['stylebot outline 54432929', t.examples.outline],
-  ['stylebot css set news.ycombinator.com < dark.css', t.examples.css],
-  ['stylebot screenshot 54432929 -o page.png', t.examples.screenshot],
-];
+const examples = CLI_EXAMPLES.map(({ id, command }) => [
+  command,
+  t.examples[id],
+]);
 ---
 
 <Base title={t.title} description={t.description}>
@@ -46,7 +45,7 @@ const examples = [
         <li>
           <h3>{t.cli}</h3>
           <p>{t.cliBody}</p>
-          <CliCommand lines={[`npm install -g ${CLI_PACKAGE}`]} />
+          <CliCommand lines={[CLI_INSTALL]} />
         </li>
         <li>
           <h3>{t.connect}</h3>

@@ -1,5 +1,4 @@
-const reducedMotion = () =>
-  matchMedia('(prefers-reduced-motion: reduce)').matches;
+import { reducedMotion } from '@/lib/motion';
 
 /**
  * Width of one item plus the gap after it, i.e. the distance between the
