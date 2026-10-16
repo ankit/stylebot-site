@@ -1,3 +1,40 @@
+@layer theme, base, components, utilities;
+
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities) source(none);
+
+@theme inline {
+  --color-*: initial;
+  --color-surface: var(--surface);
+  --color-sunken: var(--sunken);
+  --color-fill: var(--fill);
+  --color-hover: var(--hover);
+  --color-track: var(--track);
+  --color-border: var(--border);
+  --color-strong: var(--strong);
+  --color-ink: var(--ink);
+  --color-ink2: var(--ink2);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-acc: var(--acc);
+  --color-acctint: var(--acctint);
+  --color-accline: var(--accline);
+
+  --font-*: initial;
+  --font-ui: var(--ui);
+  --font-display: var(--display);
+  --font-mono: var(--mono);
+
+  --spacing-gutter: var(--gutter);
+
+  --breakpoint-*: initial;
+  --breakpoint-xs: 421px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 761px;
+  --breakpoint-lg: 821px;
+  --breakpoint-xl: 1100px;
+}
+
 *,
 *::before,
 *::after {

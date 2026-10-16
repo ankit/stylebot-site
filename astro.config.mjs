@@ -1,5 +1,6 @@
 import preact from '@astrojs/preact';
 import sitemap from '@astrojs/sitemap';
+import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'astro/config';
 
 import {
@@ -26,4 +27,5 @@ export default defineConfig({
     }),
   ],
   redirects: { '/help': '/manual/' },
+  vite: { plugins: [tailwindcss()] },
 });
