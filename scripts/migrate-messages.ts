@@ -10,7 +10,11 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const CATALOGS = { site: 'SiteMessages', demo: 'DemoMessages' } as const;
+const CATALOGS = {
+  site: 'SiteMessages',
+  demo: 'DemoMessages',
+  gallery: 'GalleryMessages',
+} as const;
 type Catalog = keyof typeof CATALOGS;
 
 const USAGE = `Usage: node scripts/migrate-messages.ts [--from <git ref>] [--rename <catalog>:<new.path>=<old.path>]...

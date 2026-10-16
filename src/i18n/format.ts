@@ -43,3 +43,17 @@ export function rich(message: string, vars: Record<string, string> = {}) {
 export function parts(message: string) {
   return message.split(/(\{\w+\})/);
 }
+
+/**
+ * The plural form of a message for a count, with {count} filled in from
+ * `shown` (a formatted number such as "18K") or the count itself.
+ */
+export function plural(
+  lang: string,
+  forms: { other: string } & Partial<Record<string, string>>,
+  count: number,
+  shown: string = String(count),
+) {
+  const form = new Intl.PluralRules(lang).select(count);
+  return fmt(forms[form] ?? forms.other, { count: shown });
+}

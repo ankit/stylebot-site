@@ -10,7 +10,7 @@ const extensionStrings: Record<string, Record<string, string>> = JSON.parse(
   readFileSync(new URL('extension-strings.json', import.meta.url), 'utf8'),
 );
 
-const CATALOGS = ['site', 'demo'];
+const CATALOGS = ['site', 'demo', 'gallery'];
 
 // Walkthrough step headings word "Pick an element" as an instruction, unlike the
 // button; the sample news article is the demo page's text, not Stylebot's UI.
