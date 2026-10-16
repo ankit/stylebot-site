@@ -15,13 +15,5 @@ const MAC_KEYS: Record<string, string> = { ctrl: 'cmd', alt: 'option' };
 </span>
 
 <script>
-  const platform =
-    (navigator as Navigator & { userAgentData?: { platform: string } })
-      .userAgentData?.platform ?? navigator.platform;
-
-  if (/mac/i.test(platform)) {
-    document.querySelectorAll<HTMLElement>('kbd[data-mac]').forEach((kbd) => {
-      kbd.textContent = kbd.dataset.mac!;
-    });
-  }
+  import '../../scripts/mac-keys';
 </script>
