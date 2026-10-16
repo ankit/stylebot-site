@@ -8,6 +8,7 @@ import SbIcon from '@/components/icons/SbIcon';
 
 import { GALLERY, type GallerySite } from '@/lib/gallery';
 import { LINKS } from '@/lib/links';
+
 import { fmt } from '@/i18n';
 
 const {
@@ -186,6 +187,7 @@ const sites = await Promise.all(
 
 <script>
   import { track } from '@/lib/analytics';
+
   import { fmt } from '@/i18n/format';
 
   const COPIED_MS = 1600;

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'preact/hooks';
 
 import { reducedMotion } from '@/lib/motion';
+
 import { fmt } from '@/i18n/format';
 
 import type { SiteMessages } from '@/i18n';

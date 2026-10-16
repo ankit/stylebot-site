@@ -3,6 +3,7 @@ import { useEffect, useState } from 'preact/hooks';
 import ContrastIcon from '@/components/icons/ContrastIcon';
 
 import { track } from '@/lib/analytics';
+
 import { fmt } from '@/i18n/format';
 
 import { applyTheme, currentTheme } from './state';

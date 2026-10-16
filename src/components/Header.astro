@@ -2,11 +2,13 @@
 import BookIcon from '@/components/icons/BookIcon';
 import GitHubIcon from '@/components/icons/GitHubIcon';
 
-import Logo from './Logo';
 import { ThemeMenu } from '@/theme';
+
+import { LINKS } from '@/lib/links';
+
+import Logo from './Logo';
 import StoreLink from './StoreLink.astro';
 import LanguageMenu from './LanguageMenu.astro';
-import { LINKS } from '@/lib/links';
 
 type Props = { current?: 'manual'; storeCta?: boolean; install?: boolean };
 const { current, storeCta = false, install = true } = Astro.props;

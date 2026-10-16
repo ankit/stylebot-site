@@ -5,8 +5,10 @@ import CloseIcon from '@/components/icons/CloseIcon';
 import EyeOffIcon from '@/components/icons/EyeOffIcon';
 import SbIcon from '@/components/icons/SbIcon';
 
-import { reducedMotion } from '@/lib/motion';
 import { currentTheme, isDarkTheme } from '@/theme';
+
+import { reducedMotion } from '@/lib/motion';
+
 import { fmt } from '@/i18n/format';
 
 import type { DemoMessages } from '@/i18n';
