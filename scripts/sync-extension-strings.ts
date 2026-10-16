@@ -3,17 +3,15 @@
  * locale, from github.com/ankit/stylebot, for extension-terms.ts to check
  * against. Pass --from <ref> for a branch or tag other than main.
  */
-import { readdirSync, writeFileSync } from 'node:fs';
+import { writeFileSync } from 'node:fs';
+
+import { allLocales } from './locales.ts';
 
 const args = process.argv.slice(2);
 const ref = args[0] === '--from' && args[1] ? args[1] : 'main';
 const base = `https://raw.githubusercontent.com/ankit/stylebot/${ref}/src/assets/_locales/`;
 
-const i18n = new URL('../src/i18n/', import.meta.url);
-const locales = readdirSync(i18n, { withFileTypes: true })
-  .filter((e) => e.isDirectory())
-  .map((e) => e.name)
-  .sort();
+const locales = allLocales();
 
 /**
  * The messages in an extension .config file by key: `@key` on its own line

@@ -3,18 +3,13 @@
  * lengths, and the same {placeholders}, HTML tags and [[keys]] in each string.
  * Pass locale codes to check only those; exits non-zero on any mismatch.
  */
-import { readdirSync } from 'node:fs';
+import { I18N_DIR as dir, translatedLocales } from './locales.ts';
 
 const CATALOGS = ['site', 'demo'];
 const TOKEN = /\{\w+\}|<[^>]+>|\[\[[^\]]+\]\]/g;
 
-const dir = new URL('../src/i18n/', import.meta.url);
 const locales =
-  process.argv.length > 2
-    ? process.argv.slice(2)
-    : readdirSync(dir, { withFileTypes: true })
-        .filter((e) => e.isDirectory() && e.name !== 'en')
-        .map((e) => e.name);
+  process.argv.length > 2 ? process.argv.slice(2) : translatedLocales();
 
 const load = async (locale: string, catalog: string) =>
   (await import(new URL(`${locale}/${catalog}.ts`, dir).href)).default;

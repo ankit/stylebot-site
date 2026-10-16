@@ -5,10 +5,12 @@
  * Prints the changed keys, the list to translate next.
  */
 import { execFileSync } from 'node:child_process';
-import { mkdtempSync, readdirSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+
+import { translatedLocales } from './locales.ts';
 
 const CATALOGS = { site: 'SiteMessages', demo: 'DemoMessages' } as const;
 
@@ -125,9 +127,7 @@ function serialize(value: unknown, depth: number): string {
   return `{\n${entries.join(',\n')},\n${end}}`;
 }
 
-const locales = readdirSync(i18n, { withFileTypes: true })
-  .filter((e) => e.isDirectory() && e.name !== 'en')
-  .map((e) => e.name);
+const locales = translatedLocales();
 
 const changed = new Set<string>();
 const written: Array<string> = [];
