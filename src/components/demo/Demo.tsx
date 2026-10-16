@@ -1,11 +1,14 @@
 import { Component, type ComponentChildren, createRef } from 'preact';
 
+import ChevronDownIcon from '@/components/icons/ChevronDownIcon';
+import CloseIcon from '@/components/icons/CloseIcon';
+import EyeOffIcon from '@/components/icons/EyeOffIcon';
+import SbIcon from '@/components/icons/SbIcon';
+
 import type { DemoMessages } from '../../i18n';
 import { fmt } from '../../i18n/format';
 import { currentTheme } from '../../lib/theme-state';
 import { isDarkTheme } from '../../lib/themes';
-import { ChevronDown, Close, EyeOff } from '../icons';
-import SbIcon from '../SbIcon';
 import {
   DEFAULT_PROFILE,
   type DemoState,
@@ -985,7 +988,7 @@ export default class Demo extends Component<Props, State> {
                 <div class="demo-side-bar">
                   <SbIcon size={16} />
                   <span class="demo-side-name">Stylebot</span>
-                  <ChevronDown />
+                  <ChevronDownIcon />
                   <span class="demo-side-icon" style="margin-left:auto">
                     <svg
                       width="14"
@@ -1002,7 +1005,7 @@ export default class Demo extends Component<Props, State> {
                     </svg>
                   </span>
                   <span class="demo-side-icon">
-                    <Close size={12} />
+                    <CloseIcon size={12} />
                   </span>
                 </div>
                 <div class="demo-ed-body">
@@ -1019,7 +1022,7 @@ export default class Demo extends Component<Props, State> {
                       >
                         {profileName(S.profile)}
                         <span style="display:flex;color:var(--muted)">
-                          <ChevronDown />
+                          <ChevronDownIcon />
                         </span>
                       </span>
                       <div
@@ -1134,11 +1137,11 @@ export default class Demo extends Component<Props, State> {
                       </span>
                       {selected && (
                         <span class="demo-sel-icon">
-                          <Close size={11} />
+                          <CloseIcon size={11} />
                         </span>
                       )}
                       <span class="demo-sel-icon">
-                        <ChevronDown />
+                        <ChevronDownIcon />
                       </span>
                     </div>
                   </div>
@@ -1163,7 +1166,7 @@ export default class Demo extends Component<Props, State> {
                             class="demo-small-btn"
                             style={`color:${hasSel ? 'var(--ink2)' : 'var(--faint)'}`}
                           >
-                            <EyeOff size={12} />
+                            <EyeOffIcon size={12} />
                             {basic.hide}
                           </span>
                           <span
@@ -1177,7 +1180,7 @@ export default class Demo extends Component<Props, State> {
                           <div style="display:flex;align-items:center;height:42px;font:600 13.5px/1 var(--ui);color:var(--ink2)">
                             <span style="flex:1">{basic.text}</span>
                             <span style="color:var(--muted);display:flex;transform:rotate(180deg)">
-                              <ChevronDown />
+                              <ChevronDownIcon />
                             </span>
                           </div>
                           <div class="demo-row">
@@ -1192,7 +1195,7 @@ export default class Demo extends Component<Props, State> {
                                   ? serif.split(',')[0].replace(/'/g, '')
                                   : basic.defaultFont}
                               </span>
-                              <ChevronDown />
+                              <ChevronDownIcon />
                             </div>
                           </div>
                           <div class="demo-row">
@@ -1286,7 +1289,7 @@ export default class Demo extends Component<Props, State> {
                           <div key={g} class="demo-card demo-group">
                             <span style="flex:1">{g}</span>
                             <span style="color:var(--muted);display:flex">
-                              <ChevronDown />
+                              <ChevronDownIcon />
                             </span>
                           </div>
                         ))}

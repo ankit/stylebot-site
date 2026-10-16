@@ -1,7 +1,9 @@
 ---
+import CheckIcon from '@/components/icons/CheckIcon';
+import CloseIcon from '@/components/icons/CloseIcon';
+import CopyIcon from '@/components/icons/CopyIcon';
+import SbIcon from '@/components/icons/SbIcon';
 import { Image, getImage } from 'astro:assets';
-import SbIcon from './SbIcon';
-import { Check, Copy } from './icons';
 import { GALLERY, type GallerySite } from '../lib/gallery';
 import { LINKS } from '../lib/links';
 import { fmt } from '../i18n';
@@ -97,7 +99,7 @@ const sites = await Promise.all(
                   {t.install}
                 </span>
                 <span class="gallery-action-ok">
-                  <Check size={12} />
+                  <CheckIcon size={12} />
                   {t.installed}
                 </span>
               </button>
@@ -108,10 +110,10 @@ const sites = await Promise.all(
                 aria-label={t.copy}
               >
                 <span class="gallery-action-idle">
-                  <Copy />
+                  <CopyIcon />
                 </span>
                 <span class="gallery-action-ok">
-                  <Check />
+                  <CheckIcon />
                 </span>
               </button>
             </div>
@@ -176,18 +178,7 @@ const sites = await Promise.all(
     </div>
   </div>
   <button class="lightbox-close" data-close aria-label={t.close}>
-    <svg
-      width="14"
-      height="14"
-      viewBox="0 0 14 14"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="1.6"
-      stroke-linecap="round"
-      aria-hidden="true"
-    >
-      <path d="M2.5 2.5l9 9M11.5 2.5l-9 9" />
-    </svg>
+    <CloseIcon strokeWidth={1.6} />
   </button>
 </dialog>
 

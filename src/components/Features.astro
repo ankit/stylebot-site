@@ -1,6 +1,7 @@
 ---
+import ChevronDownIcon from '@/components/icons/ChevronDownIcon';
+import SyncIcon from '@/components/icons/SyncIcon';
 import CarouselNav from './CarouselNav.astro';
-import { ChevronDown } from './icons';
 
 const {
   site: { features: t },
@@ -43,19 +44,7 @@ const {
             </div>
             <div class="sync-foot">
               <span class="mock-btn">
-                <svg
-                  width="13"
-                  height="13"
-                  viewBox="0 0 14 14"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.4"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M12 5.5A5 5 0 0 0 3 4M2 8.5A5 5 0 0 0 11 10" />
-                  <path d="M3 1.5V4h2.5M11 12.5V10H8.5" />
-                </svg>
+                <SyncIcon />
                 {t.sync.syncNow}
               </span>
               <span class="mock-link">{t.sync.disconnect}</span>
@@ -88,7 +77,7 @@ const {
               </span>
               <span class="faint hist-sites">{t.history.sites}</span>
               <span class="hist-chev">
-                <ChevronDown />
+                <ChevronDownIcon />
               </span>
             </div>
             <div class="hist-day">{t.history.yesterday}</div>
@@ -100,7 +89,7 @@ const {
               </span>
               <span class="faint hist-sites">{t.history.sites}</span>
               <span class="hist-chev">
-                <ChevronDown />
+                <ChevronDownIcon />
               </span>
             </div>
           </div>

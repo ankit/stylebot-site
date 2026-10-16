@@ -1,7 +1,7 @@
 import { render } from 'preact';
 import { useEffect, useRef, useState } from 'preact/hooks';
 
-import SbIcon from './SbIcon';
+import SbIcon from '@/components/icons/SbIcon';
 
 type Splat = {
   id: number;

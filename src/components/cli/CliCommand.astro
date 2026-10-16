@@ -1,5 +1,6 @@
 ---
-import { Check, Copy } from '../icons';
+import CheckIcon from '@/components/icons/CheckIcon';
+import CopyIcon from '@/components/icons/CopyIcon';
 import { fmt } from '../../i18n';
 
 type Props = {
@@ -38,10 +39,10 @@ const command = lines.join(' && ');
       aria-label={fmt(t.copyCommand, { command })}
     >
       <span class="cli-cmd-idle">
-        <Copy size={14} />
+        <CopyIcon size={14} />
       </span>
       <span class="cli-cmd-ok">
-        <Check size={14} />
+        <CheckIcon size={14} />
       </span>
     </button>
   )}
