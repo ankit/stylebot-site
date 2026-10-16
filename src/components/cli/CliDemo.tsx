@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'preact/hooks';
 
+import { reducedMotion } from '@/lib/motion';
 import { fmt } from '@/i18n/format';
 
 import type { SiteMessages } from '@/i18n';
@@ -40,7 +41,7 @@ export default function CliDemo({
   const [step, setStep] = useState(0);
 
   useEffect(() => {
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (reducedMotion()) {
       setStep(LAST - 1);
 
       return;
@@ -159,7 +160,7 @@ function Typer({ text, on }: { text: string; on: boolean }) {
       return;
     }
 
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (reducedMotion()) {
       setCount(text.length);
 
       return;

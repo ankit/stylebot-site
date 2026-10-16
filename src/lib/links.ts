@@ -28,5 +28,3 @@ export const LINKS = {
   feedbackEmail: 'stylebot+ahuja.ankit@gmail.com',
   cli: '/cli',
 };
-
-export const CLI_PACKAGE = '@stylebot/cli';

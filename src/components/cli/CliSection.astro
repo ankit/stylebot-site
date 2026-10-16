@@ -1,5 +1,6 @@
 ---
-import { CLI_PACKAGE, LINKS } from '@/lib/links';
+import { CLI_INSTALL } from '@/lib/cli';
+import { LINKS } from '@/lib/links';
 
 import CliCommand from './CliCommand.astro';
 import CliDemo from './CliDemo';
@@ -18,7 +19,7 @@ const {
         <p>{t.body}</p>
       </div>
       <div class="cli-setup">
-        <CliCommand lines={[`npm install -g ${CLI_PACKAGE}`]} boxed />
+        <CliCommand lines={[CLI_INSTALL]} boxed />
         <a href={path(LINKS.cli)} class="cli-guide">
           {t.guide}
         </a>

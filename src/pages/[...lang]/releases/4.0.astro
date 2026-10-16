@@ -5,7 +5,8 @@ import Base from '@/layouts/Base.astro';
 import ImageZoom from '@/components/ImageZoom.astro';
 import CliCommand from '@/components/cli/CliCommand.astro';
 
-import { CLI_PACKAGE, LINKS } from '@/lib/links';
+import { CLI_EXAMPLES, CLI_INSTALL } from '@/lib/cli';
+import { LINKS } from '@/lib/links';
 import { crisp } from '@/lib/screenshots';
 import { fmt, localeStaticPaths, rich } from '@/i18n';
 
@@ -29,12 +30,10 @@ const {
 const r = t.r40;
 const title = fmt(t.title, { version: '4.0' });
 
-const commands = [
-  [cli.page.examples.open, 'stylebot open news.ycombinator.com'],
-  [cli.page.examples.outline, 'stylebot outline 54432929'],
-  [cli.page.examples.css, 'stylebot css set news.ycombinator.com < dark.css'],
-  [cli.page.examples.screenshot, 'stylebot screenshot 54432929 -o page.png'],
-];
+const commands = CLI_EXAMPLES.map(({ id, command }) => [
+  cli.page.examples[id],
+  command,
+]);
 
 const cards = [
   {
@@ -125,7 +124,7 @@ const cards = [
           <h2>{cli.page.heading}</h2>
           <p>{cli.page.lede}</p>
           <div class="release-cli-setup">
-            <CliCommand lines={[`npm install -g ${CLI_PACKAGE}`]} boxed />
+            <CliCommand lines={[CLI_INSTALL]} boxed />
             <a href={path(LINKS.cli)} class="btn btn-primary">
               {cli.guide}
             </a>

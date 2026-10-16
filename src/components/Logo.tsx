@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from 'preact/hooks';
 
 import SbIcon from '@/components/icons/SbIcon';
 
+import { reducedMotion } from '@/lib/motion';
+
 type Splat = {
   id: number;
   x: number;
@@ -98,7 +100,7 @@ export default function Logo({ href, label }: { href: string; label: string }) {
 
     ev.preventDefault();
 
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (reducedMotion()) {
       return;
     }
 
