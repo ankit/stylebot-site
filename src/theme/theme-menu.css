@@ -1,0 +1,74 @@
+.theme-menu {
+  position: relative;
+}
+
+.theme-menu-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+}
+
+.theme-menu-list {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  z-index: 61;
+  width: 200px;
+  padding: 6px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.16);
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.theme-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  background: transparent;
+}
+
+.theme-option:hover {
+  background: var(--hover);
+}
+
+.theme-option.is-on {
+  background: var(--fill);
+}
+
+.theme-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  flex: none;
+}
+
+.theme-name {
+  flex: 1;
+  font-size: 13.5px;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.theme-option.is-on .theme-name {
+  font-weight: 600;
+}
+
+.theme-check {
+  font: 600 12px/1 system-ui;
+  color: var(--acc);
+  opacity: 0;
+}
+
+.theme-option.is-on .theme-check {
+  opacity: 1;
+}

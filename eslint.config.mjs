@@ -82,7 +82,7 @@ export default tseslint.config(
             ['^\\u0000(?!.*\\.css$)'],
             ['^node:', '^@?\\w'],
             ['^@/layouts/', '^@/components/'],
-            ['^@/lib/', '^@/i18n(/|$)'],
+            ['^@/lib/', '^@/theme(/|$)', '^@/i18n(/|$)'],
             ['^@/assets/'],
             ['^'],
             ['^\\.'],

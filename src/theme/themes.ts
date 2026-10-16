@@ -133,13 +133,16 @@ function vars(theme: Theme): string {
  * Product mocks (`[data-ed]`) always use the light or dark editor palette.
  */
 export function themeStylesheet(): string {
+  const dark = (scope = '') =>
+    DARK_THEMES.map((key) => `:root[data-theme="${key}"]${scope}`).join(',');
   const rules = [
     `:root{${vars(THEMES.light)}}`,
     ...THEME_KEYS.map(
       (key) => `:root[data-theme="${key}"]{${vars(THEMES[key])}}`,
     ),
+    `${dark()}{color-scheme:dark}`,
     `[data-ed]{${vars(THEMES.light)}}`,
-    `${DARK_THEMES.map((key) => `:root[data-theme="${key}"] [data-ed]`).join(',')}{${vars(THEMES.dark)}}`,
+    `${dark(' [data-ed]')}{${vars(THEMES.dark)}}`,
   ];
 
   return rules.join('\n');

@@ -1,0 +1,18 @@
+---
+import { STORAGE_KEY, THEME_KEYS, themeStylesheet } from './themes';
+---
+
+<script is:inline define:vars={{ STORAGE_KEY, THEME_KEYS }}>
+  let saved = null;
+
+  try {
+    saved = localStorage.getItem(STORAGE_KEY);
+  } catch {
+    // Storage can be blocked; fall back to the system theme.
+  }
+
+  document.documentElement.dataset.theme =
+    (THEME_KEYS.indexOf(saved) >= 0 && saved) ||
+    (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+</script>
+<Fragment set:html={`<style>${themeStylesheet()}</style>`} />

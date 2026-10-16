@@ -6,8 +6,7 @@ import EyeOffIcon from '@/components/icons/EyeOffIcon';
 import SbIcon from '@/components/icons/SbIcon';
 
 import { reducedMotion } from '@/lib/motion';
-import { currentTheme } from '@/lib/theme-state';
-import { isDarkTheme } from '@/lib/themes';
+import { currentTheme, isDarkTheme } from '@/theme';
 import { fmt } from '@/i18n/format';
 
 import type { DemoMessages } from '@/i18n';

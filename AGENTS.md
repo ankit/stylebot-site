@@ -6,6 +6,7 @@ The [stylebot.dev](https://stylebot.dev) site for the Stylebot browser extension
 
 - `src/pages/[...lang]/` — every page, once per locale; English has no prefix
 - `src/components/`, `src/layouts/`, `src/styles/`, `src/lib/` — shared pieces; `components/demo` and `components/cli` are the landing page's demos
+- `src/theme/` — the site themes: their tokens, the menu that switches them, and the head script that applies the saved one before first paint
 - `src/i18n/<locale>/` — the string catalogs: `site.ts` for pages, `demo.ts` for the hero demo
 - `src/assets/` — images; `gallery/`, `manual/` and `tour/` are screenshots taken with the extension repo's capture scripts and copied here (see README)
 - `scripts/` — `check-messages.ts`, `extension-terms.ts` and `migrate-messages.ts`, for the catalogs; `extension-strings.json` is a snapshot of the extension's strings, refreshed with `yarn sync:extension-strings`

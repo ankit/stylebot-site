@@ -2,10 +2,13 @@ import { useEffect, useState } from 'preact/hooks';
 
 import ContrastIcon from '@/components/icons/ContrastIcon';
 
-import { fmt } from '../i18n/format';
-import { track } from '../lib/analytics';
-import { currentTheme } from '../lib/theme-state';
-import { STORAGE_KEY, THEME_KEYS, type ThemeKey, THEMES } from '../lib/themes';
+import { track } from '@/lib/analytics';
+import { fmt } from '@/i18n/format';
+
+import { applyTheme, currentTheme } from './state';
+import { THEME_KEYS, type ThemeKey, THEMES } from './themes';
+
+import './theme-menu.css';
 
 type Labels = { title: string; names: Record<ThemeKey, string> };
 
@@ -28,15 +31,7 @@ export default function ThemeMenu({ labels }: { labels: Labels }) {
   }, []);
 
   const pick = (key: ThemeKey) => {
-    document.documentElement.dataset.theme = key;
-
-    try {
-      localStorage.setItem(STORAGE_KEY, key);
-    } catch {
-      // Storage can be unavailable (private mode); the theme still applies.
-    }
-
-    window.dispatchEvent(new CustomEvent('themechange', { detail: key }));
+    applyTheme(key);
     track('Site theme', { theme: key });
     setTheme(key);
     setOpen(false);
