@@ -177,7 +177,7 @@ img {
   color: var(--ink);
 }
 
-.tip {
+.tooltip {
   position: absolute;
   top: calc(100% + 8px);
   left: 50%;
@@ -201,13 +201,13 @@ a.icon-btn:hover {
   color: var(--link, var(--ink));
 }
 
-.icon-btn:hover .tip,
-.icon-btn:focus-visible .tip {
+.icon-btn:hover .tooltip,
+.icon-btn:focus-visible .tooltip {
   opacity: 1;
   transform: translate(-50%, 0);
 }
 
-.icon-btn.is-open .tip {
+.icon-btn.is-open .tooltip {
   opacity: 0;
 }
 
@@ -292,7 +292,7 @@ a.icon-btn:hover {
   text-wrap: balance;
 }
 
-.section-lede {
+.section-subtitle {
   font: 400 var(--text-base)/1.55 var(--ui);
   color: var(--muted);
   margin: 8px 0 0;
@@ -386,7 +386,7 @@ a.icon-btn:hover {
   margin: 28px 0 8px;
 }
 
-.prose .lede {
+.prose .subtitle {
   font-size: var(--text-lg);
   line-height: 1.55;
   color: var(--muted);

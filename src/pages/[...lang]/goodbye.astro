@@ -18,7 +18,7 @@ const { strings, t } = Astro.locals;
 >
   <main class="gb">
     <h1>{t('Thanks for using Stylebot.')}</h1>
-    <p class="gb-lede">
+    <p class="gb-subtitle">
       {t(
         'Your styles were removed from this browser. If you turned on sync, a backup is still in your Google Drive.',
       )}
@@ -54,7 +54,7 @@ const { strings, t } = Astro.locals;
     text-wrap: balance;
   }
 
-  .gb-lede {
+  .gb-subtitle {
     margin: 0;
     max-width: 46ch;
     font: 400 var(--text-base)/1.6 var(--ui);

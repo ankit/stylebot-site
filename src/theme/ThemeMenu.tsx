@@ -55,7 +55,7 @@ export default function ThemeMenu({ strings }: { strings: Catalog }) {
         onClick={() => setOpen(!open)}
       >
         <ContrastIcon />
-        <span class="tip">{title}</span>
+        <span class="tooltip">{title}</span>
       </button>
       {open && (
         <>

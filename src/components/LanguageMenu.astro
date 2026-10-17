@@ -16,7 +16,7 @@ const path = unlocalizedPath(Astro.url.pathname);
     data-lang-toggle
   >
     <GlobeIcon />
-    <span class="tip">{t('Language')}</span>
+    <span class="tooltip">{t('Language')}</span>
   </button>
   <div class="lang-menu-list" role="menu" hidden>
     {LOCALES.map((l) => (

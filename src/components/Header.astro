@@ -28,11 +28,11 @@ const { path, strings, t } = Astro.locals;
         aria-current={current === 'manual' ? 'page' : undefined}
       >
         <BookIcon />
-        <span class="tip">{t('Manual')}</span>
+        <span class="tooltip">{t('Manual')}</span>
       </a>
       <a href={LINKS.github} class="icon-btn" aria-label="GitHub">
         <GitHubIcon />
-        <span class="tip">GitHub</span>
+        <span class="tooltip">GitHub</span>
       </a>
       {install &&
         (storeCta ? (
