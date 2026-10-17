@@ -14,6 +14,7 @@ const UP_A_FOLDER = {
 
 const SRC_FOLDERS = [
   'www',
+  'gallery',
   'layouts',
   'components',
   'theme',
@@ -24,7 +25,14 @@ const SRC_FOLDERS = [
 
 export default tseslint.config(
   {
-    ignores: ['dist', '.astro', 'node_modules', 'src/www/public'],
+    ignores: [
+      'dist',
+      'dist-gallery',
+      '.astro',
+      'node_modules',
+      'src/www/public',
+      'src/gallery/public',
+    ],
   },
 
   js.configs.recommended,

@@ -1,0 +1,50 @@
+---
+import Header from '@/components/Header.astro';
+
+import Base from '@/layouts/Base.astro';
+
+import './gallery.css';
+
+type Props = {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+  alternates?: boolean;
+};
+
+const { t } = Astro.locals;
+const {
+  title = t('Browse Styles'),
+  description = t(
+    'Styles people made with Stylebot for the sites they use. Pick one and install it in a click.',
+  ),
+  noindex,
+  alternates,
+} = Astro.props;
+---
+
+<Base
+  description={description}
+  fullTitle={t('{title} | Stylebot', { title })}
+  noindex={noindex}
+  alternates={alternates}
+>
+  <link
+    slot="head"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500&display=swap"
+    rel="stylesheet"
+  />
+  <Header
+    slot="header"
+    homeLabel={t('Stylebot gallery home')}
+    tag={
+      // i18n: A short tag next to the Stylebot logo, naming this part of the site.
+      t('Gallery')
+    }
+  >
+    <Fragment slot="actions" />
+  </Header>
+  <main class="g-main">
+    <slot />
+  </main>
+</Base>

@@ -46,6 +46,12 @@
     ]
   },
   {
+    "text": "{title} | Stylebot",
+    "files": [
+      "src/gallery/layouts/Gallery.astro"
+    ]
+  },
+  {
     "text": "{word} any website.",
     "note": "{word} is the title word (\"Restyle\"), a button that switches its own font each time it's clicked. Keep {word} at the start where the language allows: wider fonts grow it to the left.",
     "files": [
@@ -181,6 +187,12 @@
     ]
   },
   {
+    "text": "All styles",
+    "files": [
+      "src/gallery/pages/404.astro"
+    ]
+  },
+  {
     "text": "Also on {first} and {second}",
     "files": [
       "src/www/pages/[...lang]/index.astro"
@@ -291,6 +303,12 @@
     "text": "Box",
     "files": [
       "src/www/components/demo/Demo.tsx"
+    ]
+  },
+  {
+    "text": "Browse Styles",
+    "files": [
+      "src/gallery/layouts/Gallery.astro"
     ]
   },
   {
@@ -779,6 +797,13 @@
     ]
   },
   {
+    "text": "Gallery",
+    "note": "A short tag next to the Stylebot logo, naming this part of the site.",
+    "files": [
+      "src/gallery/layouts/Gallery.astro"
+    ]
+  },
+  {
     "text": "Getting started",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
@@ -1263,6 +1288,7 @@
   {
     "text": "Page not found",
     "files": [
+      "src/gallery/pages/404.astro",
       "src/www/components/NotFound.tsx",
       "src/www/pages/404.astro"
     ]
@@ -1648,6 +1674,12 @@
     ]
   },
   {
+    "text": "Stylebot gallery home",
+    "files": [
+      "src/gallery/layouts/Gallery.astro"
+    ]
+  },
+  {
     "text": "Stylebot has a CLI, so any agent that can run commands can restyle a site.",
     "files": [
       "src/www/components/cli/CliSection.astro"
@@ -1724,6 +1756,12 @@
     "text": "Styles now apply inside shadow DOM, so they work on sites built with web components",
     "files": [
       "src/www/pages/[...lang]/releases/4.0.astro"
+    ]
+  },
+  {
+    "text": "Styles people made with Stylebot for the sites they use. Pick one and install it in a click.",
+    "files": [
+      "src/gallery/layouts/Gallery.astro"
     ]
   },
   {

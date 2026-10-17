@@ -40,3 +40,6 @@ jobs:
 
       - name: Build
         run: npx astro build
+
+      - name: Build the gallery
+        run: yarn build:gallery

@@ -10,42 +10,64 @@ import Logo from './Logo';
 import StoreLink from './StoreLink.astro';
 import LanguageMenu from './LanguageMenu.astro';
 
-type Props = { current?: 'manual'; storeCta?: boolean; install?: boolean };
-const { current, storeCta = false, install = true } = Astro.props;
+type Props = {
+  current?: 'manual';
+  storeCta?: boolean;
+  install?: boolean;
+  // For another site on the header: the logo's label and a tag beside it.
+  homeLabel?: string;
+  tag?: string;
+};
+
 const { path, strings, t } = Astro.locals;
+const {
+  current,
+  storeCta = false,
+  install = true,
+  homeLabel = t('Stylebot home'),
+  tag,
+} = Astro.props;
 ---
 
 <header class="site-header">
   <div class="site-header-inner">
-    <Logo client:idle href={path('/')} label={t('Stylebot home')} />
+    <Logo client:idle href={path('/')} label={homeLabel} />
+    {tag && (
+      <a href={path('/')} class="logo-tag">
+        <span class="logo-tag-rule" aria-hidden="true" />
+        {tag}
+      </a>
+    )}
     <div class="header-actions">
       <LanguageMenu />
       <ThemeMenu client:idle strings={strings('theme/')} />
-      <a
-        href={path(LINKS.manual)}
-        class:list={['icon-btn', { 'is-current': current === 'manual' }]}
-        aria-label={t('Manual')}
-        aria-current={current === 'manual' ? 'page' : undefined}
-      >
-        <BookIcon />
-        <span class="tooltip">{t('Manual')}</span>
-      </a>
-      <a href={LINKS.github} class="icon-btn" aria-label="GitHub">
-        <GitHubIcon />
-        <span class="tooltip">GitHub</span>
-      </a>
-      {install &&
-        (storeCta ? (
-          <StoreLink
-            index={0}
-            format="add"
-            class="btn btn-primary btn-sm header-store"
-          />
-        ) : (
-          <a href={path('/#install')} class="btn btn-primary btn-sm">
-            {t('Install')}
-          </a>
-        ))}
+      <slot name="actions">
+        <a
+          href={path(LINKS.manual)}
+          class:list={['icon-btn', { 'is-current': current === 'manual' }]}
+          aria-label={t('Manual')}
+          aria-current={current === 'manual' ? 'page' : undefined}
+        >
+          <BookIcon />
+          <span class="tooltip">{t('Manual')}</span>
+        </a>
+        <a href={LINKS.github} class="icon-btn" aria-label="GitHub">
+          <GitHubIcon />
+          <span class="tooltip">GitHub</span>
+        </a>
+        {install &&
+          (storeCta ? (
+            <StoreLink
+              index={0}
+              format="add"
+              class="btn btn-primary btn-sm header-store"
+            />
+          ) : (
+            <a href={path('/#install')} class="btn btn-primary btn-sm">
+              {t('Install')}
+            </a>
+          ))}
+      </slot>
     </div>
   </div>
 </header>
@@ -85,6 +107,28 @@ const { path, strings, t } = Astro.locals;
     display: flex;
     align-items: center;
     gap: 10px;
+  }
+
+  .logo-tag {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: -2px;
+    font:
+      italic 500 21px/1 'Cormorant Garamond',
+      Georgia,
+      serif;
+    color: var(--fg-secondary);
+  }
+
+  .logo-tag:hover {
+    color: var(--fg);
+  }
+
+  .logo-tag-rule {
+    width: 1px;
+    height: 16px;
+    background: var(--border-strong);
   }
 
   .header-actions {

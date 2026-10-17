@@ -7,8 +7,11 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
+    "dev:gallery": "astro dev --config astro.gallery.config.mjs",
     "build": "astro build",
+    "build:gallery": "astro build --config astro.gallery.config.mjs",
     "preview": "astro preview",
+    "preview:gallery": "astro preview --config astro.gallery.config.mjs",
     "check": "astro check && node scripts/check-messages.ts && node scripts/extension-terms.ts",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
