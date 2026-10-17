@@ -2079,7 +2079,7 @@
   {
     "text": "Try again",
     "files": [
-      "src/gallery/components/Browse.tsx"
+      "src/gallery/components/LoadError.tsx"
     ]
   },
   {
