@@ -11,25 +11,27 @@
   gap: 28px;
 }
 
+.g-title {
+  margin: 0;
+  text-align: center;
+  font: 700 var(--text-2xl) / 1.1 var(--font-display);
+  letter-spacing: -0.03em;
+  color: var(--fg);
+  text-wrap: balance;
+}
+
 .g-empty {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 16px;
   padding: 72px 20px;
   text-align: center;
 
-  h1 {
-    margin: 0 0 8px;
-    font: 700 26px/1.2 var(--font-display);
-    letter-spacing: -0.025em;
-    color: var(--fg);
-  }
-
   p {
     max-width: 46ch;
-    margin: 0 0 12px;
-    font: 400 15px/1.55 var(--font-ui);
+    margin: 0;
+    font: 400 var(--text-base) / 1.55 var(--font-ui);
     color: var(--fg-muted);
   }
 }

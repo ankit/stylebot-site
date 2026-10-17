@@ -7,7 +7,7 @@ const { path, t } = Astro.locals;
 <Gallery title={t('Page not found')} noindex>
   <div class="g-page">
     <div class="g-empty">
-      <h1>{t('Page not found')}</h1>
+      <h1 class="g-title">{t('Page not found')}</h1>
       <a class="btn btn-outline btn-sm" href={path('/')}>
         {t('All styles')}
       </a>

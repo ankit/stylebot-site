@@ -225,6 +225,13 @@
     ]
   },
   {
+    "text": "Anonymous",
+    "note": "Shown for a style's author who hasn't set a name.",
+    "files": [
+      "src/gallery/components/StyleCard.tsx"
+    ]
+  },
+  {
     "text": "Any URL beginning with docs.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
@@ -308,7 +315,8 @@
   {
     "text": "Browse Styles",
     "files": [
-      "src/gallery/layouts/Gallery.astro"
+      "src/gallery/layouts/Gallery.astro",
+      "src/gallery/pages/[...lang]/index.astro"
     ]
   },
   {
@@ -534,6 +542,12 @@
     "text": "Couldn’t install",
     "files": [
       "src/www/components/Examples.astro"
+    ]
+  },
+  {
+    "text": "Couldn’t load styles.",
+    "files": [
+      "src/gallery/components/Browse.tsx"
     ]
   },
   {
@@ -1213,6 +1227,12 @@
     "note": "Shown as a CSS comment in an empty code editor",
     "files": [
       "src/www/components/demo/Demo.tsx"
+    ]
+  },
+  {
+    "text": "No styles yet.",
+    "files": [
+      "src/gallery/components/Browse.tsx"
     ]
   },
   {
@@ -2054,6 +2074,12 @@
     "text": "Travel · Long read",
     "files": [
       "src/www/components/demo/Demo.tsx"
+    ]
+  },
+  {
+    "text": "Try again",
+    "files": [
+      "src/gallery/components/Browse.tsx"
     ]
   },
   {

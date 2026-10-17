@@ -1,0 +1,21 @@
+---
+import Browse from '@/gallery/components/Browse';
+import Gallery from '@/gallery/layouts/Gallery.astro';
+
+import { localeStaticPaths } from '@/i18n';
+
+export const getStaticPaths = localeStaticPaths;
+
+const { locale, strings, t } = Astro.locals;
+---
+
+<Gallery>
+  <div class="g-page">
+    <h1 class="g-title">{t('Browse Styles')}</h1>
+    <Browse
+      client:load
+      locale={locale}
+      strings={strings('gallery/components/')}
+    />
+  </div>
+</Gallery>

@@ -1,0 +1,42 @@
+import { screenshotUrl, type Style } from '@/gallery/lib/api';
+import { faviconUrl, styleHref } from '@/gallery/lib/paths';
+
+import { type Locale } from '@/i18n/locales';
+import { type Translate } from '@/i18n/t';
+
+import './StyleCard.css';
+
+type Props = { style: Style; locale: Locale; t: Translate };
+
+/**
+ * A style in a grid: its screenshot in a small browser frame, with its name
+ * and author.
+ */
+export default function StyleCard({ style, locale, t }: Props) {
+  const href = styleHref(locale, style);
+
+  return (
+    <div class="style-card">
+      <a class="style-card-frame" href={href} tabIndex={-1} aria-hidden="true">
+        <span class="style-card-bar">
+          <img src={faviconUrl(style.site)} width={14} height={14} alt="" />
+          <span>{style.site}</span>
+        </span>
+        <img
+          class="style-card-shot"
+          src={screenshotUrl(style)}
+          alt=""
+          loading="lazy"
+        />
+      </a>
+      <a class="style-card-name" href={href}>
+        {style.name}
+      </a>
+      <span class="style-card-author">
+        {style.author.name ??
+          // i18n: Shown for a style's author who hasn't set a name.
+          t('Anonymous')}
+      </span>
+    </div>
+  );
+}
