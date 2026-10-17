@@ -27,7 +27,7 @@ import {
   scenes,
 } from './scenes';
 
-import './demo.css';
+import './Demo.css';
 
 type State = DemoState & {
   scene: number;

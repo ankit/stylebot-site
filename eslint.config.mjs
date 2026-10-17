@@ -1,3 +1,4 @@
+import { basename } from 'node:path';
 import js from '@eslint/js';
 import stylistic from '@stylistic/eslint-plugin';
 import prettier from 'eslint-config-prettier';
@@ -10,6 +11,28 @@ import tseslint from 'typescript-eslint';
 const UP_A_FOLDER = {
   group: ['../*'],
   message: 'Import from @/ unless the file is in the same folder.',
+};
+
+// A component's stylesheet sits beside it and takes its name: Logo.tsx imports
+// ./Logo.css. A variant, such as StyleCardSkeleton, may import its base's.
+const cssNamedAfterComponent = {
+  meta: {
+    type: 'suggestion',
+    messages: { name: "Name this component's stylesheet ./{{name}}.css." },
+  },
+  create(context) {
+    const name = basename(context.filename).replace(/\.\w+$/, '');
+
+    return {
+      ImportDeclaration(node) {
+        const css = /^\.\/([^/]+)\.css$/.exec(node.source.value)?.[1];
+
+        if (css && !name.startsWith(css)) {
+          context.report({ node, messageId: 'name', data: { name } });
+        }
+      },
+    };
+  },
 };
 
 const SRC_FOLDERS = [
@@ -49,6 +72,7 @@ export default tseslint.config(
     plugins: {
       '@stylistic': stylistic,
       'simple-import-sort': simpleImportSort,
+      local: { rules: { 'css-named-after-component': cssNamedAfterComponent } },
     },
 
     rules: {
@@ -56,6 +80,7 @@ export default tseslint.config(
       eqeqeq: ['error', 'always', { null: 'ignore' }],
       'no-else-return': 'error',
       'no-restricted-imports': ['error', { patterns: [UP_A_FOLDER] }],
+      'local/css-named-after-component': 'error',
 
       'arrow-body-style': ['error', 'as-needed'],
       'no-lonely-if': 'error',

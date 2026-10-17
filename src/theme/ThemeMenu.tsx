@@ -9,7 +9,7 @@ import { type Catalog, translator } from '@/i18n/t';
 import { applyTheme, currentTheme } from './state';
 import { THEME_KEYS, type ThemeKey, THEMES } from './themes';
 
-import './theme-menu.css';
+import './ThemeMenu.css';
 
 export default function ThemeMenu({ strings }: { strings: Catalog }) {
   const t = translator(strings);

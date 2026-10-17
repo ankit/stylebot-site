@@ -25,6 +25,10 @@ The [stylebot.dev](https://stylebot.dev) site for the Stylebot browser extension
 
 Never hardcode user-facing strings: write the English inline as `t('Text with {name}', { name })`, with `t` from `Astro.locals` (islands get theirs from a `strings` prop, `strings={strings('www/components/demo/')}`). A note for translators goes in a `// i18n: …` or `{/* i18n: … */}` comment before the call; text with two meanings takes `context`. Then run `yarn extract:messages` and translate the new messages into every locale with the `translate` skill. `yarn run check` fails until every locale has them; until then pages show the English.
 
+## CSS
+
+A component's styles go in a stylesheet beside it named after it: `Logo.tsx` imports `./Logo.css` (ESLint checks this). Astro components can use a `<style>` block instead. Use the tokens in `src/styles/tokens.css` and the theme's colors and fonts rather than literal sizes.
+
 ## Commit messages
 
 Use [Conventional Commits](https://www.conventionalcommits.org/): `<type>[optional scope]: <description>`, e.g. `fix: keep the header on one line in German`.

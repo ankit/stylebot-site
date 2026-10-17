@@ -5,7 +5,7 @@ import { reducedMotion } from '@/lib/motion';
 import { fmt } from '@/i18n/format';
 import { type Catalog, translator } from '@/i18n/t';
 
-import './cli-demo.css';
+import './CliDemo.css';
 
 const SITE = 'harbourpost.example';
 const TAB = '54432929';

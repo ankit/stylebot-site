@@ -5,7 +5,7 @@ import SbIcon from '@/components/icons/SbIcon';
 
 import { reducedMotion } from '@/lib/motion';
 
-import './logo.css';
+import './Logo.css';
 
 type Splat = {
   id: number;
