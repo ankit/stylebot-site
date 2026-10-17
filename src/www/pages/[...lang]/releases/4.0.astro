@@ -3,12 +3,12 @@ import { Image } from 'astro:assets';
 
 import Base from '@/layouts/Base.astro';
 
-import ImageZoom from '@/components/ImageZoom.astro';
-import CliCommand from '@/components/cli/CliCommand.astro';
+import ImageZoom from '@/www/components/ImageZoom.astro';
+import CliCommand from '@/www/components/cli/CliCommand.astro';
 
-import { CLI_EXAMPLES, CLI_INSTALL } from '@/lib/cli';
+import { CLI_EXAMPLES, CLI_INSTALL } from '@/www/lib/cli';
 import { LINKS } from '@/lib/links';
-import { crisp } from '@/lib/screenshots';
+import { crisp } from '@/www/lib/screenshots';
 
 import { localeStaticPaths, rich } from '@/i18n';
 

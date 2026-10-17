@@ -34,6 +34,6 @@ The site doesn't depend on the extension's repo, but borrows from it in two ways
 yarn deploy
 ```
 
-Builds and pushes `dist/` to the `gh-pages` branch, which GitHub Pages serves at stylebot.dev (`public/CNAME`). `public/.nojekyll` keeps GitHub Pages from dropping the `_astro/` directory, and `public/sw.js` unregisters the service worker left behind by the old Gatsby site.
+Builds and pushes `dist/` to the `gh-pages` branch, which GitHub Pages serves at stylebot.dev (`src/www/public/CNAME`). `src/www/public/.nojekyll` keeps GitHub Pages from dropping the `_astro/` directory, and `src/www/public/sw.js` unregisters the service worker left behind by the old Gatsby site.
 
 The extension links to `/help` (now a redirect to `/manual`), `/goodbye` (the uninstall page), `/privacy` and `/releases/<major.minor>`, so keep those URLs working.

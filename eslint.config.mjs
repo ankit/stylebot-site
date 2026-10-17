@@ -12,11 +12,19 @@ const UP_A_FOLDER = {
   message: 'Import from @/ unless the file is in the same folder.',
 };
 
-const SRC_FOLDERS = ['layouts', 'components', 'theme', 'lib', 'i18n', 'assets'];
+const SRC_FOLDERS = [
+  'www',
+  'layouts',
+  'components',
+  'theme',
+  'lib',
+  'i18n',
+  'assets',
+];
 
 export default tseslint.config(
   {
-    ignores: ['dist', '.astro', 'node_modules', 'public'],
+    ignores: ['dist', '.astro', 'node_modules', 'src/www/public'],
   },
 
   js.configs.recommended,

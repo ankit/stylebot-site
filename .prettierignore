@@ -2,7 +2,7 @@ dist/
 dist-gallery/
 .astro/
 node_modules/
-public/
+src/www/public/
 yarn.lock
 scripts/extension-strings.json
 src/i18n/source.json

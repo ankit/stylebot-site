@@ -1,7 +1,7 @@
 ---
 import Base from '@/layouts/Base.astro';
 
-import NotFound from '@/components/NotFound';
+import NotFound from '@/www/components/NotFound';
 
 import { type Catalog, islandStrings, type Locale, LOCALES } from '@/i18n';
 
@@ -9,7 +9,7 @@ const { t } = Astro.locals;
 const strings = Object.fromEntries(
   LOCALES.map((l) => [
     l.code,
-    islandStrings(l.code, 'components/NotFound.tsx'),
+    islandStrings(l.code, 'www/components/NotFound.tsx'),
   ]),
 ) as Record<Locale, Catalog>;
 ---

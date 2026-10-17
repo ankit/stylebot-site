@@ -2,7 +2,7 @@
 import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
 
-import { crisp } from '@/lib/screenshots';
+import { crisp } from '@/www/lib/screenshots';
 
 type Props = { label: string; src: ImageMetadata; dark?: ImageMetadata };
 const { label, src, dark } = Astro.props;

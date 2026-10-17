@@ -12,6 +12,8 @@ const UNLISTED = ['/welcome/', '/goodbye/', '/404/'];
 
 export default defineConfig({
   site: 'https://stylebot.dev',
+  srcDir: './src/www',
+  publicDir: './src/www/public',
   trailingSlash: 'ignore',
   build: { format: 'directory' },
   integrations: [

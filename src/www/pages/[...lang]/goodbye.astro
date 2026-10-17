@@ -1,7 +1,7 @@
 ---
 import Base from '@/layouts/Base.astro';
 
-import GoodbyeFeedback from '@/components/GoodbyeFeedback';
+import GoodbyeFeedback from '@/www/components/GoodbyeFeedback';
 import StoreLink from '@/components/StoreLink.astro';
 
 import { localeStaticPaths } from '@/i18n';
@@ -25,7 +25,7 @@ const { strings, t } = Astro.locals;
     </p>
     <GoodbyeFeedback
       client:visible
-      strings={strings('components/GoodbyeFeedback.tsx')}
+      strings={strings('www/components/GoodbyeFeedback.tsx')}
     />
     <div class="gb-reinstall">
       <span>{t('Changed your mind?')}</span>

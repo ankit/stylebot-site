@@ -2,17 +2,17 @@
 import Base from '@/layouts/Base.astro';
 
 import MonitorIcon from '@/components/icons/MonitorIcon';
-import Demo from '@/components/demo/Demo';
-import Examples from '@/components/Examples.astro';
-import Features from '@/components/Features.astro';
-import CliCommand from '@/components/cli/CliCommand.astro';
-import CliSection from '@/components/cli/CliSection.astro';
-import Quotes from '@/components/Quotes.astro';
+import Demo from '@/www/components/demo/Demo';
+import Examples from '@/www/components/Examples.astro';
+import Features from '@/www/components/Features.astro';
+import CliCommand from '@/www/components/cli/CliCommand.astro';
+import CliSection from '@/www/components/cli/CliSection.astro';
+import Quotes from '@/www/components/Quotes.astro';
 import Footer from '@/components/Footer.astro';
-import FeatureTour from '@/components/FeatureTour.astro';
+import FeatureTour from '@/www/components/FeatureTour.astro';
 import StoreLink from '@/components/StoreLink.astro';
 
-import { CLI_INSTALL } from '@/lib/cli';
+import { CLI_INSTALL } from '@/www/lib/cli';
 import { LINKS, STORES } from '@/lib/links';
 
 import { localeStaticPaths, parts } from '@/i18n';
@@ -431,7 +431,7 @@ const structuredData = {
 
     <div class="demo-wrap">
       <div class="demo-full">
-        <Demo client:visible strings={strings('components/demo/')} />
+        <Demo client:visible strings={strings('www/components/demo/')} />
       </div>
       <div class="demo-tour">
         <FeatureTour />

@@ -1,5 +1,5 @@
 ---
-import { CLI_INSTALL } from '@/lib/cli';
+import { CLI_INSTALL } from '@/www/lib/cli';
 import { LINKS } from '@/lib/links';
 
 import CliCommand from './CliCommand.astro';
@@ -26,7 +26,10 @@ const { path, strings, t } = Astro.locals;
         </a>
       </div>
     </div>
-    <CliDemo client:visible strings={strings('components/cli/CliDemo.tsx')} />
+    <CliDemo
+      client:visible
+      strings={strings('www/components/cli/CliDemo.tsx')}
+    />
   </div>
 </section>
 

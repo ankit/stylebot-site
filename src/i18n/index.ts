@@ -41,7 +41,7 @@ export function catalog(locale: Locale): Catalog {
 
 /**
  * The translations an island needs: those of the messages used in files
- * under the given paths, relative to src/, such as 'components/demo/'.
+ * under the given paths, relative to src/, such as 'www/components/demo/'.
  */
 export function islandStrings(locale: Locale, ...paths: Array<string>) {
   const all = catalog(locale);
