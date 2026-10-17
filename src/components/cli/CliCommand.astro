@@ -84,9 +84,9 @@ const command = lines.join(' && ');
     padding: 5px 5px 5px 12px;
     border-radius: var(--radius-md);
     border: 1px solid var(--border);
-    background: var(--surface);
-    font: 400 var(--text-sm)/1.4 var(--mono);
-    color: var(--ink);
+    background: var(--bg-surface);
+    font: 400 var(--text-sm)/1.4 var(--font-mono);
+    color: var(--fg);
   }
 
   .cli-cmd.is-boxed {
@@ -112,7 +112,7 @@ const command = lines.join(' && ');
   }
 
   .cli-cmd-prompt {
-    color: var(--faint);
+    color: var(--fg-subtle);
     user-select: none;
   }
 
@@ -128,13 +128,13 @@ const command = lines.join(' && ');
     border: 1px solid transparent;
     background: transparent;
     cursor: pointer;
-    color: var(--muted);
+    color: var(--fg-muted);
   }
 
   .cli-cmd-copy:hover {
-    border-color: var(--strong);
-    background: var(--hover);
-    color: var(--ink);
+    border-color: var(--border-strong);
+    background: var(--bg-hover);
+    color: var(--fg);
   }
 
   .cli-cmd-idle,
@@ -152,6 +152,6 @@ const command = lines.join(' && ');
   }
 
   .cli-cmd-copy.is-copied {
-    color: var(--acc);
+    color: var(--accent);
   }
 </style>

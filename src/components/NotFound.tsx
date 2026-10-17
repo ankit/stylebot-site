@@ -55,13 +55,13 @@ export default function NotFound({
 
   const style = {
     h1: nice
-      ? 'margin:0 0 14px;font:800 clamp(56px,8vw,88px)/.95 var(--display);letter-spacing:-.05em;color:var(--ink)'
+      ? 'margin:0 0 14px;font:800 clamp(56px,8vw,88px)/.95 var(--font-display);letter-spacing:-.05em;color:var(--fg)'
       : "margin:0 0 16px;font:700 32px/1.15 'Times New Roman',Times,serif;color:#000",
     p: nice
-      ? 'margin:0 0 26px;font:400 18px/1.55 var(--ui);color:var(--muted);max-width:34ch'
+      ? 'margin:0 0 26px;font:400 18px/1.55 var(--font-ui);color:var(--fg-muted);max-width:34ch'
       : "margin:0 0 16px;font:400 16px/1.3 'Times New Roman',Times,serif;color:#000",
     a: nice
-      ? 'display:inline-flex;align-items:center;padding:12px 18px;border-radius:9px;background:var(--ink);color:var(--surface);font:600 14px/1 var(--ui);text-decoration:none'
+      ? 'display:inline-flex;align-items:center;padding:12px 18px;border-radius:9px;background:var(--fg);color:var(--bg-surface);font:600 14px/1 var(--font-ui);text-decoration:none'
       : "font:400 16px 'Times New Roman',Times,serif;color:#0000ee;text-decoration:underline",
   };
 
@@ -92,7 +92,7 @@ export default function NotFound({
         </div>
         <div
           class="nf-page"
-          style={`background:${nice ? 'var(--sunken)' : '#fff'};transition:background ${FADE_MS}ms`}
+          style={`background:${nice ? 'var(--bg-page)' : '#fff'};transition:background ${FADE_MS}ms`}
         >
           <div
             style={`${

@@ -527,7 +527,7 @@ const structuredData = {
   }
 
   .hero h1 {
-    font: 700 var(--text-4xl) / 1.04 var(--display);
+    font: 700 var(--text-4xl) / 1.04 var(--font-display);
     letter-spacing: -0.035em;
     margin: 0;
     text-wrap: balance;
@@ -555,7 +555,7 @@ const structuredData = {
     translate: 0 -50%;
     padding: 0 4px;
     border-radius: 4px;
-    color: var(--ink);
+    color: var(--fg);
     white-space: nowrap;
     user-select: none;
     pointer-events: none;
@@ -566,7 +566,7 @@ const structuredData = {
   .restyle:hover .restyle-cycle,
   .restyle:focus-visible .restyle-cycle,
   .restyle-cycle[data-playing] {
-    outline-color: color-mix(in srgb, var(--acc) 45%, transparent);
+    outline-color: color-mix(in srgb, var(--accent) 45%, transparent);
   }
 
   .restyle-cycle[data-step='1'] {
@@ -576,7 +576,7 @@ const structuredData = {
     font-style: var(--style-1);
     font-weight: var(--weight-1);
     letter-spacing: var(--spacing-1);
-    color: var(--acc);
+    color: var(--accent);
   }
 
   .restyle-cycle[data-step='2'] {
@@ -597,8 +597,8 @@ const structuredData = {
     font-style: var(--style-3);
     font-weight: var(--weight-3);
     letter-spacing: var(--spacing-3);
-    color: var(--acc);
-    background: var(--accline);
+    color: var(--accent);
+    background: var(--accent-border);
   }
 
   .restyle-cycle[data-step='4'] {
@@ -613,8 +613,8 @@ const structuredData = {
   }
 
   .hero p {
-    font: 400 var(--text-lg)/1.55 var(--ui);
-    color: var(--muted);
+    font: 400 var(--text-lg)/1.55 var(--font-ui);
+    color: var(--fg-muted);
     margin: 0;
     max-width: 48ch;
     text-wrap: pretty;
@@ -637,21 +637,21 @@ const structuredData = {
 
   .cta-also {
     white-space: nowrap;
-    font: 400 var(--text-sm)/1.4 var(--ui);
-    color: var(--muted);
+    font: 400 var(--text-sm)/1.4 var(--font-ui);
+    color: var(--fg-muted);
   }
 
   .cta-also :global(.ink-link) {
-    color: var(--ink);
+    color: var(--fg);
     text-decoration: underline;
-    text-decoration-color: var(--strong);
+    text-decoration-color: var(--border-strong);
     text-underline-offset: 3px;
     text-decoration-thickness: 1.5px;
   }
 
   .cta-also :global(.ink-link:hover) {
-    color: var(--link, var(--ink));
-    text-decoration-color: var(--ink);
+    color: var(--link, var(--fg));
+    text-decoration-color: var(--fg);
   }
 
   .demo-wrap {
@@ -674,14 +674,14 @@ const structuredData = {
   }
 
   .install h2 {
-    font: 700 var(--text-2xl) / 1.1 var(--display);
+    font: 700 var(--text-2xl) / 1.1 var(--font-display);
     letter-spacing: -0.03em;
     margin: 0;
   }
 
   .install p {
-    font: 400 var(--text-base)/1.55 var(--ui);
-    color: var(--muted);
+    font: 400 var(--text-base)/1.55 var(--font-ui);
+    color: var(--fg-muted);
     margin: 0;
     max-width: var(--width-subtitle);
   }
@@ -700,12 +700,12 @@ const structuredData = {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    font: 400 var(--text-sm)/1.4 var(--ui);
-    color: var(--muted);
+    font: 400 var(--text-sm)/1.4 var(--font-ui);
+    color: var(--fg-muted);
   }
 
   .install-cli :global(a) {
-    color: var(--link, var(--ink));
+    color: var(--link, var(--fg));
   }
 
   .install :global(.site-footer) {
@@ -734,21 +734,21 @@ const structuredData = {
       padding: 10px 14px;
       border-radius: var(--radius-md);
       border: 1px solid var(--border);
-      background: var(--surface);
-      font: 400 var(--text-sm)/1.45 var(--ui);
-      color: var(--muted);
+      background: var(--bg-surface);
+      font: 400 var(--text-sm)/1.45 var(--font-ui);
+      color: var(--fg-muted);
       text-align: left;
       text-wrap: pretty;
     }
 
     .cta-desktop svg {
       flex: none;
-      color: var(--ink2);
+      color: var(--fg-secondary);
     }
 
     .cta-desktop :global(strong) {
       font-weight: 600;
-      color: var(--ink);
+      color: var(--fg);
     }
   }
 </style>

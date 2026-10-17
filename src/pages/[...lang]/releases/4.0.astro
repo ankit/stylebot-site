@@ -278,7 +278,7 @@ const cards = [
     max-width: 1080px;
     margin: 0 auto;
     padding: 64px var(--gutter) 0;
-    color: var(--ink2);
+    color: var(--fg-secondary);
   }
 
   .release-intro {
@@ -290,16 +290,16 @@ const cards = [
 
   .release-intro h1 {
     margin: 0;
-    font: 700 var(--text-4xl) / 1.04 var(--display);
+    font: 700 var(--text-4xl) / 1.04 var(--font-display);
     letter-spacing: -0.035em;
-    color: var(--ink);
+    color: var(--fg);
     text-wrap: balance;
   }
 
   .release-intro p {
     margin: 0;
-    font: 400 var(--text-lg)/1.55 var(--ui);
-    color: var(--muted);
+    font: 400 var(--text-lg)/1.55 var(--font-ui);
+    color: var(--fg-muted);
     text-wrap: pretty;
   }
 
@@ -314,14 +314,14 @@ const cards = [
     padding: 7px 12px;
     border-radius: var(--radius-full);
     border: 1px solid var(--border);
-    background: var(--surface);
-    font: 500 var(--text-sm)/1 var(--ui);
-    color: var(--ink2);
+    background: var(--bg-surface);
+    font: 500 var(--text-sm)/1 var(--font-ui);
+    color: var(--fg-secondary);
   }
 
   .release-toc a:hover {
-    background: var(--hover);
-    color: var(--ink);
+    background: var(--bg-hover);
+    color: var(--fg);
   }
 
   .release-body {
@@ -342,7 +342,7 @@ const cards = [
   .release h2,
   .release h3 {
     margin: 0;
-    color: var(--ink);
+    color: var(--fg);
   }
 
   .release [id] {
@@ -350,13 +350,13 @@ const cards = [
   }
 
   .release h2 {
-    font: 650 var(--text-2xl) / 1.15 var(--display);
+    font: 650 var(--text-2xl) / 1.15 var(--font-display);
     letter-spacing: -0.02em;
     text-wrap: balance;
   }
 
   .release h3 {
-    font: 650 20px/1.2 var(--display);
+    font: 650 20px/1.2 var(--font-display);
     letter-spacing: -0.015em;
   }
 
@@ -380,7 +380,7 @@ const cards = [
   .release-text p {
     margin: 0;
     max-width: 60ch;
-    font: 400 var(--text-base)/1.65 var(--ui);
+    font: 400 var(--text-base)/1.65 var(--font-ui);
     text-wrap: pretty;
   }
 
@@ -396,7 +396,7 @@ const cards = [
   .release li {
     position: relative;
     padding-left: 17px;
-    font: 400 var(--text-base)/1.55 var(--ui);
+    font: 400 var(--text-base)/1.55 var(--font-ui);
     text-wrap: pretty;
   }
 
@@ -408,13 +408,13 @@ const cards = [
     width: 5px;
     height: 5px;
     border-radius: 3px;
-    background: var(--faint);
+    background: var(--fg-subtle);
   }
 
   .release-shot {
     padding: 28px;
     border-radius: var(--radius-xl);
-    background: var(--fill);
+    background: var(--bg-muted);
     border: 1px solid var(--border);
     display: flex;
     justify-content: center;
@@ -444,7 +444,7 @@ const cards = [
   .release .release-note {
     font-size: var(--text-sm);
     line-height: 1.5;
-    color: var(--muted);
+    color: var(--fg-muted);
   }
 
   .release-term {
@@ -477,7 +477,7 @@ const cards = [
     display: flex;
     flex-direction: column;
     gap: 18px;
-    font: 400 13px/1.55 var(--mono);
+    font: 400 13px/1.55 var(--font-mono);
     color: #e8eaee;
     overflow-wrap: anywhere;
   }
@@ -506,7 +506,7 @@ const cards = [
     display: flex;
     flex-direction: column;
     border-radius: var(--radius-xl);
-    background: var(--surface);
+    background: var(--bg-surface);
     border: 1px solid var(--border);
     overflow: hidden;
   }
@@ -515,7 +515,7 @@ const cards = [
     height: 280px;
     overflow: hidden;
     padding: 24px 24px 0;
-    background: var(--fill);
+    background: var(--bg-muted);
     border-bottom: 1px solid var(--border);
     display: flex;
     justify-content: center;
@@ -562,7 +562,7 @@ const cards = [
 
   .release-card-text p {
     margin: 0;
-    font: 400 var(--text-base)/1.6 var(--ui);
+    font: 400 var(--text-base)/1.6 var(--font-ui);
     text-wrap: pretty;
   }
 
@@ -584,8 +584,8 @@ const cards = [
     margin: auto 0 0;
     padding-top: 18px;
     border-top: 1px solid var(--border);
-    font: 600 var(--text-base)/1.5 var(--ui);
-    color: var(--ink);
+    font: 600 var(--text-base)/1.5 var(--font-ui);
+    color: var(--fg);
   }
 
   .release-fixes a {

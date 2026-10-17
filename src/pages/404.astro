@@ -39,9 +39,9 @@ const strings = Object.fromEntries(
 
   .nf-intro h1 {
     margin: 0;
-    font: 700 clamp(26px, 3.2vw, 34px) / 1.15 var(--display);
+    font: 700 clamp(26px, 3.2vw, 34px) / 1.15 var(--font-display);
     letter-spacing: -0.025em;
-    color: var(--ink);
+    color: var(--fg);
     text-wrap: balance;
   }
 
@@ -58,7 +58,7 @@ const strings = Object.fromEntries(
     align-items: center;
     gap: 10px;
     padding: 0 12px;
-    background: var(--fill);
+    background: var(--bg-muted);
     border-bottom: 1px solid var(--border);
   }
 
@@ -71,7 +71,7 @@ const strings = Object.fromEntries(
     width: 9px;
     height: 9px;
     border-radius: 5px;
-    background: var(--strong);
+    background: var(--border-strong);
   }
 
   .nf-url {
@@ -79,13 +79,13 @@ const strings = Object.fromEntries(
     max-width: 320px;
     height: 22px;
     border-radius: 11px;
-    background: var(--surface);
+    background: var(--bg-surface);
     border: 1px solid var(--border);
     display: flex;
     align-items: center;
     padding: 0 10px;
-    font: 400 11px/1 var(--mono);
-    color: var(--muted);
+    font: 400 11px/1 var(--font-mono);
+    color: var(--fg-muted);
     overflow: hidden;
     white-space: nowrap;
   }
@@ -118,7 +118,7 @@ const strings = Object.fromEntries(
     background: #191b1f;
     color: #fff;
     cursor: pointer;
-    font: 600 13.5px/1 var(--ui);
+    font: 600 13.5px/1 var(--font-ui);
   }
 
   .nf-done {
@@ -126,8 +126,8 @@ const strings = Object.fromEntries(
     min-height: 40px;
     display: flex;
     align-items: center;
-    font: 400 16px/1.55 var(--ui);
-    color: var(--muted);
+    font: 400 16px/1.55 var(--font-ui);
+    color: var(--fg-muted);
   }
 
   .nf-nice:hover {

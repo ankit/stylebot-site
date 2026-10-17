@@ -57,8 +57,8 @@ const { path, strings, t } = Astro.locals;
   }
 
   .cli-intro p {
-    font: 400 var(--text-base)/1.6 var(--ui);
-    color: var(--muted);
+    font: 400 var(--text-base)/1.6 var(--font-ui);
+    color: var(--fg-muted);
     margin: 0;
     max-width: 56ch;
     text-wrap: pretty;
@@ -78,15 +78,15 @@ const { path, strings, t } = Astro.locals;
     gap: 6px;
     padding: 10px 16px;
     border-radius: var(--radius-md);
-    border: 1px solid var(--strong);
-    background: var(--surface);
-    font: 600 var(--text-sm)/1 var(--ui);
-    color: var(--ink);
+    border: 1px solid var(--border-strong);
+    background: var(--bg-surface);
+    font: 600 var(--text-sm)/1 var(--font-ui);
+    color: var(--fg);
   }
 
   .cli-guide:hover {
-    background: var(--hover);
-    color: var(--ink);
+    background: var(--bg-hover);
+    color: var(--fg);
   }
 
   @media (max-width: 639px) {
@@ -104,7 +104,7 @@ const { path, strings, t } = Astro.locals;
       border: none;
       background: none;
       font-size: var(--text-base);
-      color: var(--link, var(--acc));
+      color: var(--link, var(--accent));
     }
 
     .cli-guide:hover {

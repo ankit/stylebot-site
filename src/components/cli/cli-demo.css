@@ -23,7 +23,7 @@
 .cli-term-title {
   padding: 11px 16px;
   border-bottom: 1px solid #262a32;
-  font: 500 12px/1 var(--ui);
+  font: 500 12px/1 var(--font-ui);
   color: #8b92a0;
 }
 
@@ -33,7 +33,7 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  font: 400 13px/1.55 var(--mono);
+  font: 400 13px/1.55 var(--font-mono);
   color: #e7e9ee;
   overflow-wrap: anywhere;
 }
@@ -117,7 +117,7 @@
 .cli-page {
   position: relative;
   border: 1px solid var(--border);
-  background: var(--surface);
+  background: var(--bg-surface);
   box-shadow: 0 18px 40px rgba(10, 14, 22, 0.1);
   --page-bg: #ffffff;
   --page-kicker: #c0392b;
@@ -142,7 +142,7 @@
   gap: 10px;
   padding: 8px 10px;
   border-bottom: 1px solid var(--border);
-  background: var(--fill);
+  background: var(--bg-muted);
 }
 
 .cli-page-url {
@@ -150,9 +150,9 @@
   min-width: 0;
   padding: 5px 10px;
   border-radius: 6px;
-  background: var(--surface);
-  font: 400 12px/1 var(--ui);
-  color: var(--muted);
+  background: var(--bg-surface);
+  font: 400 12px/1 var(--font-ui);
+  color: var(--fg-muted);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -163,18 +163,18 @@
   padding: 4px 8px;
   border-radius: 6px;
   border: 1px solid var(--border);
-  background: var(--surface);
-  font: 600 11px/1 var(--ui);
-  color: var(--muted);
+  background: var(--bg-surface);
+  font: 600 11px/1 var(--font-ui);
+  color: var(--fg-muted);
   transition:
     background 0.3s,
     color 0.3s;
 }
 
 .is-after .cli-page-badge {
-  border-color: var(--accline);
-  background: var(--acctint);
-  color: var(--acc);
+  border-color: var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--accent);
 }
 
 .cli-page-body {

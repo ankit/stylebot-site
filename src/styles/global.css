@@ -18,24 +18,24 @@ body {
   margin: 0;
   min-height: 100vh;
   overflow-x: clip;
-  background: var(--sunken);
-  color: var(--ink);
-  font-family: var(--ui);
+  background: var(--bg-page);
+  color: var(--fg);
+  font-family: var(--font-ui);
   -webkit-font-smoothing: antialiased;
 }
 
 a {
-  color: var(--acc);
+  color: var(--accent);
   text-decoration: none;
 }
 
 :focus-visible {
-  outline: 2px solid var(--acc);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
 a:hover {
-  color: var(--ink);
+  color: var(--fg);
 }
 
 button {
@@ -47,7 +47,7 @@ img {
 }
 
 .mono {
-  font-family: var(--mono);
+  font-family: var(--font-mono);
 }
 
 .container {
@@ -67,18 +67,18 @@ img {
   border: none;
   background: transparent;
   cursor: pointer;
-  color: var(--ink2);
+  color: var(--fg-secondary);
 }
 
 .icon-btn.is-current {
-  color: var(--ink);
+  color: var(--fg);
 }
 
 .icon-btn:hover,
 .icon-btn:focus-visible,
 .icon-btn.is-open {
-  background: var(--hover);
-  color: var(--ink);
+  background: var(--bg-hover);
+  color: var(--fg);
 }
 
 .tooltip {
@@ -88,9 +88,9 @@ img {
   z-index: var(--layer-tooltip);
   padding: 6px 9px;
   border-radius: var(--radius-sm);
-  background: var(--ink);
-  color: var(--surface);
-  font: 500 var(--text-xs)/1 var(--ui);
+  background: var(--fg);
+  color: var(--bg-surface);
+  font: 500 var(--text-xs)/1 var(--font-ui);
   white-space: nowrap;
   pointer-events: none;
   box-shadow: var(--shadow-md);
@@ -102,7 +102,7 @@ img {
 }
 
 a.icon-btn:hover {
-  color: var(--link, var(--ink));
+  color: var(--link, var(--fg));
 }
 
 .icon-btn:hover .tooltip,
@@ -122,28 +122,28 @@ a.icon-btn:hover {
   gap: 8px;
   padding: 12px 18px;
   border-radius: var(--radius-md);
-  font: 600 var(--text-sm)/1 var(--ui);
+  font: 600 var(--text-sm)/1 var(--font-ui);
 }
 
 .btn-primary {
-  background: var(--ink);
-  color: var(--surface);
+  background: var(--fg);
+  color: var(--bg-surface);
 }
 
 .btn-primary:hover {
-  background: var(--ink2);
-  color: var(--surface);
+  background: var(--fg-secondary);
+  color: var(--bg-surface);
 }
 
 .btn-outline {
-  border: 1px solid var(--strong);
-  background: var(--surface);
-  color: var(--ink);
+  border: 1px solid var(--border-strong);
+  background: var(--bg-surface);
+  color: var(--fg);
 }
 
 .btn-outline:hover {
-  background: var(--hover);
-  color: var(--ink);
+  background: var(--bg-hover);
+  color: var(--fg);
 }
 
 .btn-sm {
@@ -172,16 +172,16 @@ a.icon-btn:hover {
 }
 
 .section-title {
-  font: 700 var(--text-2xl) / 1.15 var(--display);
+  font: 700 var(--text-2xl) / 1.15 var(--font-display);
   letter-spacing: -0.025em;
   margin: 0;
-  color: var(--ink);
+  color: var(--fg);
   text-wrap: balance;
 }
 
 .section-subtitle {
-  font: 400 var(--text-base)/1.55 var(--ui);
-  color: var(--muted);
+  font: 400 var(--text-base)/1.55 var(--font-ui);
+  color: var(--fg-muted);
   margin: 8px 0 0;
   max-width: var(--width-subtitle);
 }

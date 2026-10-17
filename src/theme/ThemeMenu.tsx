@@ -76,11 +76,14 @@ export default function ThemeMenu({ strings }: { strings: Catalog }) {
                   <span
                     class="theme-dot"
                     style={{
-                      background: `linear-gradient(135deg,${colors.surface} 0 50%,${colors.acc} 50% 100%)`,
-                      boxShadow: `inset 0 0 0 1px ${colors.strong}`,
+                      background: `linear-gradient(135deg,${colors['bg-surface']} 0 50%,${colors.accent} 50% 100%)`,
+                      boxShadow: `inset 0 0 0 1px ${colors['border-strong']}`,
                     }}
                   />
-                  <span class="theme-name" style={{ fontFamily: colors.ui }}>
+                  <span
+                    class="theme-name"
+                    style={{ fontFamily: colors['font-ui'] }}
+                  >
                     {names[key]}
                   </span>
                   <span class="theme-check">✓</span>

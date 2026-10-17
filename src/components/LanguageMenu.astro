@@ -91,7 +91,7 @@ const path = unlocalizedPath(Astro.url.pathname);
     padding: 6px;
     border-radius: var(--radius-lg);
     border: 1px solid var(--border);
-    background: var(--surface);
+    background: var(--bg-surface);
     box-shadow: var(--shadow-xl);
     display: flex;
     flex-direction: column;
@@ -108,17 +108,17 @@ const path = unlocalizedPath(Astro.url.pathname);
     gap: 10px;
     padding: 8px 10px;
     border-radius: var(--radius-md);
-    font: 400 var(--text-sm)/1.2 var(--ui);
-    color: var(--ink);
+    font: 400 var(--text-sm)/1.2 var(--font-ui);
+    color: var(--fg);
   }
 
   .lang-option:hover {
-    background: var(--hover);
-    color: var(--ink);
+    background: var(--bg-hover);
+    color: var(--fg);
   }
 
   .lang-option.is-on {
-    background: var(--fill);
+    background: var(--bg-muted);
     font-weight: 600;
   }
 
@@ -128,7 +128,7 @@ const path = unlocalizedPath(Astro.url.pathname);
 
   .lang-check {
     font: 600 var(--text-xs)/1 system-ui;
-    color: var(--acc);
+    color: var(--accent);
     opacity: 0;
   }
 

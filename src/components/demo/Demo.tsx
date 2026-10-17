@@ -60,13 +60,13 @@ const PROFILE_TYPING_MS = 1000;
 const PLAYBACK_KEYS = new Set(['cur', 'click', 'qType', 'profType']);
 
 const CODE_COLORS: Record<string, string> = {
-  sel: 'color:var(--csel)',
-  br: 'color:var(--cbr)',
-  prop: 'color:var(--cprop)',
-  val: 'color:var(--cval)',
-  num: 'color:var(--cnum)',
-  com: 'color:var(--ccom)',
-  pl: 'color:var(--ink)',
+  sel: 'color:var(--code-selector)',
+  br: 'color:var(--code-brace)',
+  prop: 'color:var(--code-property)',
+  val: 'color:var(--code-value)',
+  num: 'color:var(--code-number)',
+  com: 'color:var(--code-comment)',
+  pl: 'color:var(--fg)',
 };
 
 const tk = (text: string, c: string): Token => ({
@@ -527,7 +527,7 @@ export default class Demo extends Component<Props, State> {
         tk(': ', 'pl'),
         {
           text: '',
-          style: `display:inline-block;width:10px;height:10px;margin-right:3px;vertical-align:-1px;border:1px solid var(--ink);background:${S.h1Color}`,
+          style: `display:inline-block;width:10px;height:10px;margin-right:3px;vertical-align:-1px;border:1px solid var(--fg);background:${S.h1Color}`,
         },
         tk(S.h1Color, 'val'),
         tk(';', 'pl'),
@@ -560,7 +560,7 @@ export default class Demo extends Component<Props, State> {
       const caret = {
         text: '',
         style:
-          'display:inline-block;width:1.5px;height:13px;vertical-align:-2px;margin-left:1px;background:var(--acc)',
+          'display:inline-block;width:1.5px;height:13px;vertical-align:-2px;margin-left:1px;background:var(--accent)',
       };
 
       lines.push({
@@ -592,7 +592,7 @@ export default class Demo extends Component<Props, State> {
         ? [
             {
               text: '',
-              style: `display:inline-block;width:9px;height:9px;margin-right:4px;vertical-align:-1px;border:1px solid var(--strong);background:${v}`,
+              style: `display:inline-block;width:9px;height:9px;margin-right:4px;vertical-align:-1px;border:1px solid var(--border-strong);background:${v}`,
             },
             tk(v, 'val'),
           ]
@@ -693,20 +693,20 @@ export default class Demo extends Component<Props, State> {
       const inset = first ? 0 : 6;
 
       return (
-        `padding:6px 6px 8px ${inset}px;font:${on ? 600 : 400} 14px/1.3 var(--ui);margin-bottom:-1px;transition:color .15s;` +
-        `background:${on ? `linear-gradient(var(--acc),var(--acc)) no-repeat ${inset}px 100% / calc(100% - ${inset + 6}px) 2px` : 'none'};` +
-        `color:${on ? 'var(--ink)' : 'var(--muted)'}`
+        `padding:6px 6px 8px ${inset}px;font:${on ? 600 : 400} 14px/1.3 var(--font-ui);margin-bottom:-1px;transition:color .15s;` +
+        `background:${on ? `linear-gradient(var(--accent),var(--accent)) no-repeat ${inset}px 100% / calc(100% - ${inset + 6}px) 2px` : 'none'};` +
+        `color:${on ? 'var(--fg)' : 'var(--fg-muted)'}`
       );
     };
 
     const field = (f: string) =>
-      `width:104px;height:30px;flex:none;border-radius:8px;display:flex;align-items:center;overflow:hidden;background:var(--hover);transition:box-shadow .15s;${
+      `width:104px;height:30px;flex:none;border-radius:8px;display:flex;align-items:center;overflow:hidden;background:var(--bg-hover);transition:box-shadow .15s;${
         S.focus === f
-          ? 'box-shadow:0 0 0 1px var(--acc),0 0 0 4px rgba(42,95,214,.15)'
+          ? 'box-shadow:0 0 0 1px var(--accent),0 0 0 4px rgba(42,95,214,.15)'
           : 'box-shadow:none'
       }`;
     const toggle = (on: boolean) => ({
-      track: `width:36px;height:20px;border-radius:10px;flex:none;position:relative;transition:background .2s;background:${on ? 'var(--acc)' : 'var(--strong)'}`,
+      track: `width:36px;height:20px;border-radius:10px;flex:none;position:relative;transition:background .2s;background:${on ? 'var(--accent)' : 'var(--border-strong)'}`,
       knob: `position:absolute;top:2px;left:${on ? 18 : 2}px;width:16px;height:16px;border-radius:8px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.15);transition:left .2s`,
     });
     const readTog = toggle(read);
@@ -740,10 +740,14 @@ export default class Demo extends Component<Props, State> {
         body: this.keysText(sc.body, S.mac),
         mark: doneStep ? '✓' : String(i + 1),
         state: doneStep ? 'is-done' : active ? 'is-active' : '',
-        titleStyle: `font:${active ? 600 : 500} 13.5px/1.35 var(--ui);padding-top:2px;color:${
-          doneStep ? 'var(--muted)' : active ? 'var(--ink)' : 'var(--faint)'
+        titleStyle: `font:${active ? 600 : 500} 13.5px/1.35 var(--font-ui);padding-top:2px;color:${
+          doneStep
+            ? 'var(--fg-muted)'
+            : active
+              ? 'var(--fg)'
+              : 'var(--fg-subtle)'
         }`,
-        barStyle: `height:2px;background:var(--acc);width:${doneStep ? 100 : active ? S.pct * 100 : 0}%;transition:${
+        barStyle: `height:2px;background:var(--accent);width:${doneStep ? 100 : active ? S.pct * 100 : 0}%;transition:${
           active && S.anim ? `width ${S.remain}ms linear` : 'none'
         }`,
       };
@@ -779,7 +783,9 @@ export default class Demo extends Component<Props, State> {
               style={
                 `height:28px;border-radius:14px;display:flex;align-items:center;justify-content:center;overflow:hidden;flex:none;transition:width .3s,opacity .3s,background .15s;` +
                 `width:${S.pinned ? 28 : 0}px;opacity:${S.pinned ? 1 : 0}${
-                  S.popOpen || S.editorOpen ? ';background:var(--strong)' : ''
+                  S.popOpen || S.editorOpen
+                    ? ';background:var(--border-strong)'
+                    : ''
                 }`
               }
             >
@@ -788,7 +794,7 @@ export default class Demo extends Component<Props, State> {
             <div
               data-t="puzzle"
               class="demo-puzzle"
-              style={S.menuOpen ? 'background:var(--strong)' : ''}
+              style={S.menuOpen ? 'background:var(--border-strong)' : ''}
             >
               <svg
                 width="14"
@@ -839,13 +845,13 @@ export default class Demo extends Component<Props, State> {
                   <span
                     data-t={sb ? 'pin' : undefined}
                     class="demo-menu-pin"
-                    style={`color:${on ? 'var(--acc)' : 'var(--muted)'}`}
+                    style={`color:${on ? 'var(--accent)' : 'var(--fg-muted)'}`}
                   >
                     <svg
                       width="14"
                       height="14"
                       viewBox="0 0 14 14"
-                      fill={on ? 'var(--acc)' : 'none'}
+                      fill={on ? 'var(--accent)' : 'none'}
                       stroke="currentColor"
                       stroke-width="1.3"
                       stroke-linejoin="round"
@@ -878,7 +884,7 @@ export default class Demo extends Component<Props, State> {
             <div style="padding:8px 6px">
               <div class="demo-pop-row">
                 <span style="flex:1;min-width:0">{t('Readability')}</span>
-                <span style="width:28px;height:16px;border-radius:8px;background:var(--strong);position:relative;flex:none">
+                <span style="width:28px;height:16px;border-radius:8px;background:var(--border-strong);position:relative;flex:none">
                   <span style="position:absolute;top:2px;left:2px;width:12px;height:12px;border-radius:6px;background:#fff" />
                 </span>
               </div>
@@ -888,7 +894,7 @@ export default class Demo extends Component<Props, State> {
               <span
                 data-t="style-btn"
                 class="demo-style-btn"
-                style={`background:${S.popHover ? (S.clicking ? 'var(--track)' : 'var(--hover)') : 'var(--surface)'}`}
+                style={`background:${S.popHover ? (S.clicking ? 'var(--bg-track)' : 'var(--bg-hover)') : 'var(--bg-surface)'}`}
               >
                 <span />
                 <span style="text-align:center">{t('Style this page')}</span>
@@ -1049,17 +1055,17 @@ export default class Demo extends Component<Props, State> {
                 <div class="demo-ed-body">
                   <div class="demo-ed-head">
                     <span class="demo-ed-site">harbourpost.example</span>
-                    <span style="flex:none;font:400 13px/1 var(--ui);color:var(--faint)">
+                    <span style="flex:none;font:400 13px/1 var(--font-ui);color:var(--fg-subtle)">
                       /
                     </span>
                     <span style="position:relative;display:flex">
                       <span
                         data-t="prof-btn"
                         class="demo-prof-btn"
-                        style={S.profMenu ? 'background:var(--hover)' : ''}
+                        style={S.profMenu ? 'background:var(--bg-hover)' : ''}
                       >
                         {profileName(S.profile)}
-                        <span style="display:flex;color:var(--muted)">
+                        <span style="display:flex;color:var(--fg-muted)">
                           <ChevronDownIcon />
                         </span>
                       </span>
@@ -1081,7 +1087,7 @@ export default class Demo extends Component<Props, State> {
                               class="demo-prof-row"
                               style={
                                 on
-                                  ? 'font-weight:600;background:var(--hover)'
+                                  ? 'font-weight:600;background:var(--bg-hover)'
                                   : ''
                               }
                             >
@@ -1116,7 +1122,7 @@ export default class Demo extends Component<Props, State> {
                           <div
                             data-t="prof-create"
                             class="demo-prof-row"
-                            style="padding-left:32px;color:var(--muted)"
+                            style="padding-left:32px;color:var(--fg-muted)"
                           >
                             {t('Create profile')}
                           </div>
@@ -1143,8 +1149,8 @@ export default class Demo extends Component<Props, State> {
                       class="demo-picker"
                       style={
                         S.inspecting
-                          ? 'background:var(--acc);color:#fff'
-                          : 'background:var(--hover);color:var(--ink)'
+                          ? 'background:var(--accent);color:#fff'
+                          : 'background:var(--bg-hover);color:var(--fg)'
                       }
                     >
                       <svg
@@ -1167,8 +1173,8 @@ export default class Demo extends Component<Props, State> {
                     </span>
                     <div class="demo-sel-field">
                       <span
-                        style={`flex:1;min-width:0;padding:0 12px;font:400 13px/1 var(--mono);overflow:hidden;white-space:nowrap;color:${
-                          selected ? 'var(--ink)' : 'var(--faint)'
+                        style={`flex:1;min-width:0;padding:0 12px;font:400 13px/1 var(--font-mono);overflow:hidden;white-space:nowrap;color:${
+                          selected ? 'var(--fg)' : 'var(--fg-subtle)'
                         }`}
                       >
                         {selText}
@@ -1196,28 +1202,28 @@ export default class Demo extends Component<Props, State> {
                     </span>
                   </div>
 
-                  <div style="flex:1;min-height:0;overflow:hidden;background:var(--fill)">
+                  <div style="flex:1;min-height:0;overflow:hidden;background:var(--bg-muted)">
                     {S.tab === 'basic' && (
                       <div style="padding:10px 6px 16px;display:flex;flex-direction:column;gap:8px">
                         <div style="display:flex;justify-content:flex-end;gap:6px">
                           <span
                             class="demo-small-btn"
-                            style={`color:${hasSel ? 'var(--ink2)' : 'var(--faint)'}`}
+                            style={`color:${hasSel ? 'var(--fg-secondary)' : 'var(--fg-subtle)'}`}
                           >
                             <EyeOffIcon size={12} />
                             {t('Hide')}
                           </span>
                           <span
                             class="demo-small-btn"
-                            style={`color:${hasSel ? 'var(--ink2)' : 'var(--faint)'}`}
+                            style={`color:${hasSel ? 'var(--fg-secondary)' : 'var(--fg-subtle)'}`}
                           >
                             {t('Reset')}
                           </span>
                         </div>
                         <div class="demo-card" style="padding:0 14px 8px">
-                          <div style="display:flex;align-items:center;height:42px;font:600 13.5px/1 var(--ui);color:var(--ink2)">
+                          <div style="display:flex;align-items:center;height:42px;font:600 13.5px/1 var(--font-ui);color:var(--fg-secondary)">
                             <span style="flex:1">{t('Text')}</span>
-                            <span style="color:var(--muted);display:flex;transform:rotate(180deg)">
+                            <span style="color:var(--fg-muted);display:flex;transform:rotate(180deg)">
                               <ChevronDownIcon />
                             </span>
                           </div>
@@ -1226,7 +1232,7 @@ export default class Demo extends Component<Props, State> {
                             <div
                               data-t="font-field"
                               class="demo-field"
-                              style="width:160px;gap:6px;padding:0 10px;color:var(--muted)"
+                              style="width:160px;gap:6px;padding:0 10px;color:var(--fg-muted)"
                             >
                               <span class="demo-field-text">
                                 {hasSel
@@ -1241,7 +1247,7 @@ export default class Demo extends Component<Props, State> {
                             <span class="demo-label">{t('Size')}</span>
                             <div data-t="size" style={field('size')}>
                               <span
-                                style={`flex:1;padding:0 10px;font:400 12.5px/1 var(--ui);color:${sizeSet ? 'var(--ink)' : 'var(--faint)'}`}
+                                style={`flex:1;padding:0 10px;font:400 12.5px/1 var(--font-ui);color:${sizeSet ? 'var(--fg)' : 'var(--fg-subtle)'}`}
                               >
                                 {sizeSet || hasSel ? String(S.h1Size) : '—'}
                               </span>
@@ -1251,7 +1257,7 @@ export default class Demo extends Component<Props, State> {
                           <div class="demo-row">
                             <span class="demo-label">{t('Line Height')}</span>
                             <div style={field('lh')}>
-                              <span style="flex:1;padding:0 10px;font:400 12.5px/1 var(--ui);color:var(--faint)">
+                              <span style="flex:1;padding:0 10px;font:400 12.5px/1 var(--font-ui);color:var(--fg-subtle)">
                                 {hasSel
                                   ? String(Math.round(S.h1Size * 1.15))
                                   : '—'}
@@ -1264,10 +1270,10 @@ export default class Demo extends Component<Props, State> {
                             <div data-t="color" style={field('color')}>
                               <span
                                 class="demo-swatch"
-                                style={`background:${S.h1Color || (hasSel ? computedInk : 'repeating-linear-gradient(135deg,transparent 0 3px,var(--strong) 3px 4px)')}`}
+                                style={`background:${S.h1Color || (hasSel ? computedInk : 'repeating-linear-gradient(135deg,transparent 0 3px,var(--border-strong) 3px 4px)')}`}
                               />
                               <span
-                                style={`flex:1;padding:0 8px;font:400 12px/1 var(--mono);color:${S.h1Color ? 'var(--ink)' : 'var(--faint)'}`}
+                                style={`flex:1;padding:0 8px;font:400 12px/1 var(--font-mono);color:${S.h1Color ? 'var(--fg)' : 'var(--fg-subtle)'}`}
                               >
                                 {S.h1Color || (hasSel ? computedInk : '—')}
                               </span>
@@ -1277,7 +1283,7 @@ export default class Demo extends Component<Props, State> {
                             <span class="demo-label">{t('Decoration')}</span>
                             <div
                               class="demo-seg"
-                              style="font:400 12.5px/1 var(--ui)"
+                              style="font:400 12.5px/1 var(--font-ui)"
                             >
                               <span style="padding:6px 8px;text-decoration:underline">
                                 U
@@ -1332,7 +1338,7 @@ export default class Demo extends Component<Props, State> {
                         ].map((g) => (
                           <div key={g} class="demo-card demo-group">
                             <span style="flex:1">{g}</span>
-                            <span style="color:var(--muted);display:flex">
+                            <span style="color:var(--fg-muted);display:flex">
                               <ChevronDownIcon />
                             </span>
                           </div>
@@ -1343,7 +1349,7 @@ export default class Demo extends Component<Props, State> {
                     {S.tab === 'code' && (
                       <div
                         data-t="code"
-                        style="height:100%;overflow:hidden;background:var(--surface);font:400 12px/1.75 var(--mono)"
+                        style="height:100%;overflow:hidden;background:var(--bg-surface);font:400 12px/1.75 var(--font-mono)"
                       >
                         <div style="padding:12px 14px 40px">
                           {this.renderLines(codeLines)}
@@ -1357,13 +1363,13 @@ export default class Demo extends Component<Props, State> {
                       <div style="padding:12px;display:flex;flex-direction:column;gap:10px">
                         <div class="demo-card" style="padding:14px 16px">
                           <div style="display:flex;align-items:center;gap:12px">
-                            <span style="font:600 14px/1.2 var(--ui);color:var(--ink)">
+                            <span style="font:600 14px/1.2 var(--font-ui);color:var(--fg)">
                               {t('Readability')}
                             </span>
                             <span style={readTog.track}>
                               <span style={readTog.knob} />
                             </span>
-                            <span style="margin-left:auto;font:400 12px/1 var(--ui);color:var(--muted)">
+                            <span style="margin-left:auto;font:400 12px/1 var(--font-ui);color:var(--fg-muted)">
                               {t('Articles only')}
                             </span>
                           </div>
@@ -1375,7 +1381,7 @@ export default class Demo extends Component<Props, State> {
                         </div>
                         <div class="demo-card" style="padding:14px 16px">
                           <div style="display:flex;align-items:center;gap:12px">
-                            <span style="font:600 14px/1.2 var(--ui);color:var(--ink)">
+                            <span style="font:600 14px/1.2 var(--font-ui);color:var(--fg)">
                               {t('Grayscale')}
                             </span>
                             <span style={grayTog.track}>

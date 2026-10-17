@@ -2,36 +2,36 @@
   max-width: var(--width-text);
   margin: 0 auto;
   padding: 64px var(--gutter) 0;
-  font: 400 var(--text-base)/1.65 var(--ui);
-  color: var(--ink2);
+  font: 400 var(--text-base)/1.65 var(--font-ui);
+  color: var(--fg-secondary);
 }
 
 .prose h1 {
-  font: 700 var(--text-3xl) / 1.08 var(--display);
+  font: 700 var(--text-3xl) / 1.08 var(--font-display);
   letter-spacing: -0.03em;
-  color: var(--ink);
+  color: var(--fg);
   margin: 0 0 12px;
   text-wrap: balance;
 }
 
 .prose h2 {
-  font: 600 var(--text-xl)/1.25 var(--display);
+  font: 600 var(--text-xl)/1.25 var(--font-display);
   letter-spacing: -0.015em;
-  color: var(--ink);
+  color: var(--fg);
   margin: 56px 0 12px;
   scroll-margin-top: 80px;
 }
 
 .prose h3 {
-  font: 600 var(--text-base)/1.3 var(--ui);
-  color: var(--ink);
+  font: 600 var(--text-base)/1.3 var(--font-ui);
+  color: var(--fg);
   margin: 28px 0 8px;
 }
 
 .prose .subtitle {
   font-size: var(--text-lg);
   line-height: 1.55;
-  color: var(--muted);
+  color: var(--fg-muted);
   margin: 0;
   text-wrap: pretty;
 }
@@ -43,24 +43,24 @@
 }
 
 .prose strong {
-  color: var(--ink);
+  color: var(--fg);
   font-weight: 600;
 }
 
 .prose code {
-  font: 400 0.88em/1 var(--mono);
+  font: 400 0.88em/1 var(--font-mono);
   padding: 2px 5px;
   border-radius: var(--radius-sm);
-  background: var(--fill);
+  background: var(--bg-muted);
   border: 1px solid var(--border);
-  color: var(--ink);
+  color: var(--fg);
 }
 
 .prose figure {
   margin: 20px 0 24px;
   padding: 16px;
   border-radius: var(--radius-lg);
-  background: var(--fill);
+  background: var(--bg-muted);
   border: 1px solid var(--border);
   display: flex;
   flex-wrap: wrap;

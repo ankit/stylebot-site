@@ -411,15 +411,15 @@ const shortcutGroups = [
 
   .manual-intro h1 {
     margin: 0 0 12px;
-    font: 700 var(--text-3xl) / 1.05 var(--display);
+    font: 700 var(--text-3xl) / 1.05 var(--font-display);
     letter-spacing: -0.03em;
-    color: var(--ink);
+    color: var(--fg);
   }
 
   .manual-intro p {
     margin: 0;
-    font: 400 var(--text-lg)/1.55 var(--ui);
-    color: var(--muted);
+    font: 400 var(--text-lg)/1.55 var(--font-ui);
+    color: var(--fg-muted);
   }
 
   .manual-body {
@@ -443,19 +443,19 @@ const shortcutGroups = [
     display: block;
     padding: 7px 12px;
     border-radius: var(--radius-md);
-    font: 400 var(--text-sm)/1.3 var(--ui);
-    color: var(--muted);
+    font: 400 var(--text-sm)/1.3 var(--font-ui);
+    color: var(--fg-muted);
   }
 
   .toc a:hover {
-    background: var(--track);
-    color: var(--ink);
+    background: var(--bg-track);
+    color: var(--fg);
   }
 
   .toc a.is-active {
     font-weight: 600;
-    color: var(--ink);
-    background: var(--track);
+    color: var(--fg);
+    background: var(--bg-track);
   }
 
   .sections {
@@ -475,36 +475,36 @@ const shortcutGroups = [
 
   h2 {
     margin: 0;
-    font: 700 var(--text-xl)/1.2 var(--display);
+    font: 700 var(--text-xl)/1.2 var(--font-display);
     letter-spacing: -0.02em;
-    color: var(--ink);
+    color: var(--fg);
   }
 
   h3 {
     margin: 10px 0 0;
-    font: 600 var(--text-base)/1.3 var(--ui);
-    color: var(--ink);
+    font: 600 var(--text-base)/1.3 var(--font-ui);
+    color: var(--fg);
   }
 
   p {
     margin: 0;
-    font: 400 var(--text-base)/1.65 var(--ui);
-    color: var(--ink2);
+    font: 400 var(--text-base)/1.65 var(--font-ui);
+    color: var(--fg-secondary);
     text-wrap: pretty;
   }
 
   .sections :global(strong) {
-    color: var(--ink);
+    color: var(--fg);
     font-weight: 600;
   }
 
   .sections :global(code) {
     padding: 1px 6px;
     border-radius: var(--radius-sm);
-    background: var(--fill);
+    background: var(--bg-muted);
     border: 1px solid var(--border);
-    font: 400 0.88em/1.5 var(--mono);
-    color: var(--ink);
+    font: 400 0.88em/1.5 var(--font-mono);
+    color: var(--fg);
   }
 
   .sections :global(.keys) {
@@ -518,16 +518,16 @@ const shortcutGroups = [
     display: inline-block;
     padding: 2px 7px;
     border-radius: var(--radius-sm);
-    background: var(--fill);
-    border: 1px solid var(--strong);
+    background: var(--bg-muted);
+    border: 1px solid var(--border-strong);
     border-bottom-width: 2px;
-    font: 500 var(--text-xs)/1.4 var(--mono);
-    color: var(--ink2);
+    font: 500 var(--text-xs)/1.4 var(--font-mono);
+    color: var(--fg-secondary);
   }
 
   .sections :global(.keys-sep) {
-    font: 400 var(--text-xs)/1 var(--ui);
-    color: var(--faint);
+    font: 400 var(--text-xs)/1 var(--font-ui);
+    color: var(--fg-subtle);
   }
 
   .sections :global(.callout) {
@@ -535,10 +535,10 @@ const shortcutGroups = [
     gap: 12px;
     padding: 14px 16px;
     border-radius: var(--radius-md);
-    background: var(--fill);
+    background: var(--bg-muted);
     border: 1px solid var(--border);
-    font: 400 var(--text-base)/1.55 var(--ui);
-    color: var(--ink2);
+    font: 400 var(--text-base)/1.55 var(--font-ui);
+    color: var(--fg-secondary);
     text-wrap: pretty;
   }
 
@@ -548,8 +548,8 @@ const shortcutGroups = [
     height: 18px;
     margin-top: 1px;
     border-radius: var(--radius-md);
-    background: var(--muted);
-    color: var(--surface);
+    background: var(--fg-muted);
+    color: var(--bg-surface);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -584,14 +584,14 @@ const shortcutGroups = [
   }
 
   .sections :global(.term dt) {
-    font: 600 14.5px/1.5 var(--ui);
-    color: var(--ink);
+    font: 600 14.5px/1.5 var(--font-ui);
+    color: var(--fg);
   }
 
   .sections :global(.term dd) {
     margin: 0;
-    font: 400 15px/1.6 var(--ui);
-    color: var(--ink2);
+    font: 400 15px/1.6 var(--font-ui);
+    color: var(--fg-secondary);
     text-wrap: pretty;
   }
 
@@ -599,17 +599,17 @@ const shortcutGroups = [
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     overflow: hidden;
-    background: var(--surface);
+    background: var(--bg-surface);
   }
 
   .table-head {
     padding: 10px 16px;
-    background: var(--fill);
+    background: var(--bg-muted);
     border-bottom: 1px solid var(--border);
-    font: 600 var(--text-xs)/1 var(--ui);
+    font: 600 var(--text-xs)/1 var(--font-ui);
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--fg-muted);
   }
 
   .table-row {
@@ -617,8 +617,8 @@ const shortcutGroups = [
     gap: 16px;
     align-items: baseline;
     padding: 12px 16px;
-    font: 400 var(--text-base)/1.55 var(--ui);
-    color: var(--ink2);
+    font: 400 var(--text-base)/1.55 var(--font-ui);
+    color: var(--fg-secondary);
   }
 
   .table-row + .table-row {
@@ -637,13 +637,13 @@ const shortcutGroups = [
 
   .shortcut-action {
     flex: 1;
-    font: 400 var(--text-base)/1.4 var(--ui);
-    color: var(--ink);
+    font: 400 var(--text-base)/1.4 var(--font-ui);
+    color: var(--fg);
   }
 
   .shortcut-unset {
-    font: 400 var(--text-sm)/1 var(--ui);
-    color: var(--faint);
+    font: 400 var(--text-sm)/1 var(--font-ui);
+    color: var(--fg-subtle);
   }
 
   @media (max-width: 760px) {
@@ -666,7 +666,7 @@ const shortcutGroups = [
 
     .toc a {
       border: 1px solid var(--border);
-      background: var(--surface);
+      background: var(--bg-surface);
     }
 
     .sections :global(.term) {

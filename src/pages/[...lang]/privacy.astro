@@ -106,9 +106,9 @@ const sections = [
 
   h1 {
     margin: 0;
-    font: 700 var(--text-3xl) / 1.05 var(--display);
+    font: 700 var(--text-3xl) / 1.05 var(--font-display);
     letter-spacing: -0.03em;
-    color: var(--ink);
+    color: var(--fg);
     overflow-wrap: break-word;
     hyphens: auto;
   }
@@ -116,13 +116,13 @@ const sections = [
   .privacy-intro p {
     font-size: var(--text-lg);
     line-height: 1.55;
-    color: var(--muted);
+    color: var(--fg-muted);
   }
 
   .privacy-intro .updated,
   .privacy-intro .translated {
     font-size: var(--text-sm);
-    color: var(--faint);
+    color: var(--fg-subtle);
   }
 
   section {
@@ -135,24 +135,24 @@ const sections = [
 
   h2 {
     margin: 0;
-    font: 700 var(--text-xl)/1.2 var(--display);
+    font: 700 var(--text-xl)/1.2 var(--font-display);
     letter-spacing: -0.02em;
-    color: var(--ink);
+    color: var(--fg);
   }
 
   p {
     margin: 0;
-    font: 400 var(--text-base)/1.65 var(--ui);
-    color: var(--ink2);
+    font: 400 var(--text-base)/1.65 var(--font-ui);
+    color: var(--fg-secondary);
     text-wrap: pretty;
   }
 
   p :global(code) {
     padding: 1px 6px;
     border-radius: var(--radius-sm);
-    background: var(--fill);
+    background: var(--bg-muted);
     border: 1px solid var(--border);
-    font: 400 0.88em/1.5 var(--mono);
+    font: 400 0.88em/1.5 var(--font-mono);
   }
 
   @media (max-width: 760px) {
