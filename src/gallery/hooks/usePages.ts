@@ -4,12 +4,13 @@ export type Page<T> = { items: Array<T>; next: number | null };
 
 /**
  * A list loaded a page at a time, starting over from offset 0 whenever
- * `deps` change. `more` loads the next page; `retry` repeats a failed one.
- * Answers to requests that a newer one replaced are dropped.
+ * `deps` change, once `enabled`. `more` loads the next page; `retry` repeats a
+ * failed one. Answers to requests that a newer one replaced are dropped.
  */
 export function usePages<T>(
   fetchPage: (offset: number) => Promise<Page<T>>,
   deps: Inputs = [],
+  enabled = true,
 ) {
   const [items, setItems] = useState<Array<T>>([]);
   const [next, setNext] = useState<number | null>(null);
@@ -27,9 +28,7 @@ export function usePages<T>(
     fetchPage(offset).then(
       (page) => {
         if (id === latest.current) {
-          setItems((prev) =>
-            offset === 0 ? page.items : [...prev, ...page.items],
-          );
+          setItems((prev) => [...prev, ...page.items]);
           setNext(page.next);
           setLoading(false);
         }
@@ -44,10 +43,14 @@ export function usePages<T>(
   };
 
   useEffect(() => {
-    load(0);
+    if (enabled) {
+      setItems([]);
+      setNext(null);
+      load(0);
+    }
     // The caller's deps say when the list changes.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, deps);
+  }, [enabled, ...deps]);
 
   return {
     items,

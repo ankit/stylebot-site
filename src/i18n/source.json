@@ -1164,6 +1164,12 @@
     ]
   },
   {
+    "text": "Most installed",
+    "files": [
+      "src/gallery/components/SortTabs.tsx"
+    ]
+  },
+  {
     "text": "Much better. The page still doesn’t exist, but at least it looks good now.",
     "files": [
       "src/www/components/NotFound.tsx"
@@ -1459,6 +1465,12 @@
     ]
   },
   {
+    "text": "Recently updated",
+    "files": [
+      "src/gallery/components/SortTabs.tsx"
+    ]
+  },
+  {
     "text": "Redesigned editor",
     "files": [
       "src/www/pages/[...lang]/releases/4.0.astro"
@@ -1636,6 +1648,12 @@
     "text": "Something else",
     "files": [
       "src/www/components/GoodbyeFeedback.tsx"
+    ]
+  },
+  {
+    "text": "Sort styles",
+    "files": [
+      "src/gallery/components/SortTabs.tsx"
     ]
   },
   {
