@@ -598,11 +598,11 @@ const sites = await Promise.all(
   .gallery-shot {
     position: relative;
     aspect-ratio: 3 / 2;
-    border-radius: 12px;
+    border-radius: var(--radius-lg);
     overflow: hidden;
     border: 1px solid var(--border);
     background: var(--fill);
-    box-shadow: 0 8px 24px rgba(25, 27, 31, 0.08);
+    box-shadow: var(--shadow-lg);
     transition:
       transform 0.2s,
       box-shadow 0.2s;
@@ -680,7 +680,7 @@ const sites = await Promise.all(
     display: none;
     width: auto;
     padding: 0 10px 0 8px;
-    font: 600 12px/1 var(--ui);
+    font: 600 var(--text-xs)/1 var(--ui);
   }
 
   .gallery-install span {
@@ -851,11 +851,11 @@ const sites = await Promise.all(
     padding: 5px 8px;
     margin: 0 -8px;
     border: none;
-    border-radius: 8px;
+    border-radius: var(--radius-md);
     background: none;
     cursor: pointer;
     white-space: nowrap;
-    font: 400 14px/1.2 var(--ui);
+    font: 400 var(--text-sm)/1.2 var(--ui);
     color: rgba(255, 255, 255, 0.6);
   }
 
@@ -881,7 +881,7 @@ const sites = await Promise.all(
   .lightbox-install {
     margin-left: 6px;
     padding: 7px 12px;
-    border-radius: 8px;
+    border-radius: var(--radius-md);
     border: none;
     background: var(--acc);
     color: #fff;
@@ -896,7 +896,7 @@ const sites = await Promise.all(
   .lightbox-copy {
     margin-left: 6px;
     padding: 7px 12px;
-    border-radius: 8px;
+    border-radius: var(--radius-md);
     border: none;
     background: #fff;
     color: #191b1f;
@@ -911,7 +911,7 @@ const sites = await Promise.all(
   .lightbox-source {
     margin-left: 4px;
     padding: 7px 4px;
-    border-radius: 6px;
+    border-radius: var(--radius-sm);
     color: rgba(255, 255, 255, 0.7);
     font: 500 12.5px/1 var(--ui);
     text-decoration: underline;
@@ -1000,8 +1000,8 @@ const sites = await Promise.all(
       margin: 0;
       padding: 0 12px 0 10px;
       border: 1px solid var(--border);
-      border-radius: 18px;
-      font-size: 14px;
+      border-radius: var(--radius-xl);
+      font-size: var(--text-sm);
     }
 
     .gallery-chip[aria-pressed='true'] {

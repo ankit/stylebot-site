@@ -92,7 +92,7 @@ const sections = [
 
 <style>
   .privacy {
-    max-width: 720px;
+    max-width: var(--width-text);
     margin: 0 auto;
     padding: 64px var(--gutter) 0;
   }
@@ -114,14 +114,14 @@ const sections = [
   }
 
   .privacy-intro p {
-    font-size: 18px;
+    font-size: var(--text-lg);
     line-height: 1.55;
     color: var(--muted);
   }
 
   .privacy-intro .updated,
   .privacy-intro .translated {
-    font-size: 14px;
+    font-size: var(--text-sm);
     color: var(--faint);
   }
 
@@ -142,7 +142,7 @@ const sections = [
 
   p {
     margin: 0;
-    font: 400 16px/1.65 var(--ui);
+    font: 400 var(--text-base)/1.65 var(--ui);
     color: var(--ink2);
     text-wrap: pretty;
   }

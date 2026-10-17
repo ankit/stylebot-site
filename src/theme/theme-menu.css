@@ -5,7 +5,7 @@
 .theme-menu-scrim {
   position: fixed;
   inset: 0;
-  z-index: 60;
+  z-index: var(--layer-dialog);
 }
 
 .theme-menu-list {
@@ -15,10 +15,10 @@
   z-index: 61;
   width: 200px;
   padding: 6px;
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   border: 1px solid var(--border);
   background: var(--surface);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.16);
+  box-shadow: var(--shadow-xl);
   display: flex;
   flex-direction: column;
   gap: 1px;
@@ -31,7 +31,7 @@
   width: 100%;
   padding: 8px 10px;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   cursor: pointer;
   text-align: left;
   background: transparent;
@@ -48,7 +48,7 @@
 .theme-dot {
   width: 16px;
   height: 16px;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   flex: none;
 }
 
@@ -64,7 +64,7 @@
 }
 
 .theme-check {
-  font: 600 12px/1 system-ui;
+  font: 600 var(--text-xs)/1 system-ui;
   color: var(--acc);
   opacity: 0;
 }

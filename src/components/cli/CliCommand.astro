@@ -82,7 +82,7 @@ const command = lines.join(' && ');
     gap: 10px;
     min-width: 0;
     padding: 5px 5px 5px 12px;
-    border-radius: 8px;
+    border-radius: var(--radius-md);
     border: 1px solid var(--border);
     background: var(--surface);
     font: 400 13px/1.4 var(--mono);
@@ -92,7 +92,7 @@ const command = lines.join(' && ');
   .cli-cmd.is-boxed {
     padding: 6px 6px 6px 14px;
     border-radius: 10px;
-    font-size: 14px;
+    font-size: var(--text-sm);
   }
 
   .cli-cmd.is-static {

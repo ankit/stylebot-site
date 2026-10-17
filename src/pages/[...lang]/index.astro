@@ -613,7 +613,7 @@ const structuredData = {
   }
 
   .hero p {
-    font: 400 18px/1.55 var(--ui);
+    font: 400 var(--text-lg)/1.55 var(--ui);
     color: var(--muted);
     margin: 0;
     max-width: 48ch;
@@ -664,7 +664,7 @@ const structuredData = {
   }
 
   .install {
-    max-width: 1180px;
+    max-width: var(--width-page);
     margin: 0 auto;
     padding: clamp(56px, 10vw, 80px) var(--gutter) 0;
     display: flex;
@@ -674,16 +674,16 @@ const structuredData = {
   }
 
   .install h2 {
-    font: 700 clamp(28px, 3.4vw, 40px) / 1.1 var(--display);
+    font: 700 var(--text-2xl) / 1.1 var(--display);
     letter-spacing: -0.03em;
     margin: 0;
   }
 
   .install p {
-    font: 400 16px/1.55 var(--ui);
+    font: 400 var(--text-base)/1.55 var(--ui);
     color: var(--muted);
     margin: 0;
-    max-width: 52ch;
+    max-width: var(--width-subtitle);
   }
 
   .install-buttons {
@@ -700,7 +700,7 @@ const structuredData = {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    font: 400 14px/1.4 var(--ui);
+    font: 400 var(--text-sm)/1.4 var(--ui);
     color: var(--muted);
   }
 
@@ -735,7 +735,7 @@ const structuredData = {
       border-radius: 10px;
       border: 1px solid var(--border);
       background: var(--surface);
-      font: 400 14px/1.45 var(--ui);
+      font: 400 var(--text-sm)/1.45 var(--ui);
       color: var(--muted);
       text-align: left;
       text-wrap: pretty;

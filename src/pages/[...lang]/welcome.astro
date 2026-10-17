@@ -140,7 +140,7 @@ const { path, strings, t } = Astro.locals;
     padding: 18px 22px;
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: var(--radius-lg);
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -206,7 +206,7 @@ const { path, strings, t } = Astro.locals;
   }
 
   .agent {
-    max-width: 1180px;
+    max-width: var(--width-page);
     margin: 0 auto;
     padding: 0 var(--gutter) 24px;
   }
@@ -235,10 +235,10 @@ const { path, strings, t } = Astro.locals;
   }
 
   .agent-text p {
-    font: 400 16px/1.6 var(--ui);
+    font: 400 var(--text-base)/1.6 var(--ui);
     color: var(--muted);
     margin: 0;
-    max-width: 52ch;
+    max-width: var(--width-subtitle);
     text-wrap: pretty;
   }
 
@@ -258,7 +258,7 @@ const { path, strings, t } = Astro.locals;
     border-radius: 10px;
     border: 1px solid var(--strong);
     background: var(--surface);
-    font: 600 14px/1 var(--ui);
+    font: 600 var(--text-sm)/1 var(--ui);
     color: var(--ink);
   }
 

@@ -282,7 +282,7 @@ const cards = [
   }
 
   .release-intro {
-    max-width: 720px;
+    max-width: var(--width-text);
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -312,7 +312,7 @@ const cards = [
 
   .release-toc a {
     padding: 7px 12px;
-    border-radius: 999px;
+    border-radius: var(--radius-full);
     border: 1px solid var(--border);
     background: var(--surface);
     font: 500 13px/1 var(--ui);
@@ -396,7 +396,7 @@ const cards = [
   .release li {
     position: relative;
     padding-left: 17px;
-    font: 400 16px/1.55 var(--ui);
+    font: 400 var(--text-base)/1.55 var(--ui);
     text-wrap: pretty;
   }
 
@@ -424,7 +424,7 @@ const cards = [
     width: 100%;
     max-width: 290px;
     height: auto;
-    border-radius: 12px;
+    border-radius: var(--radius-lg);
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
   }
 
@@ -442,7 +442,7 @@ const cards = [
   }
 
   .release .release-note {
-    font-size: 14px;
+    font-size: var(--text-sm);
     line-height: 1.5;
     color: var(--muted);
   }
@@ -584,7 +584,7 @@ const cards = [
     margin: auto 0 0;
     padding-top: 18px;
     border-top: 1px solid var(--border);
-    font: 600 16px/1.5 var(--ui);
+    font: 600 var(--text-base)/1.5 var(--ui);
     color: var(--ink);
   }
 

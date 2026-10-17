@@ -99,7 +99,7 @@ const { strings, t } = Astro.locals;
 
   .gb-chip {
     padding: 8px 12px;
-    border-radius: 18px;
+    border-radius: var(--radius-xl);
     cursor: pointer;
     font: 500 13px/1 var(--ui);
     border: 1px solid var(--strong);
@@ -125,7 +125,7 @@ const { strings, t } = Astro.locals;
     border: 1px solid var(--strong);
     background: var(--sunken);
     color: var(--ink);
-    font: 400 14px/1.5 var(--ui);
+    font: 400 var(--text-sm)/1.5 var(--ui);
   }
 
   .gb-send {
@@ -154,7 +154,7 @@ const { strings, t } = Astro.locals;
     align-items: center;
     gap: 8px 16px;
     margin-top: 6px;
-    font: 400 14px/1.4 var(--ui);
+    font: 400 var(--text-sm)/1.4 var(--ui);
     color: var(--muted);
   }
 
