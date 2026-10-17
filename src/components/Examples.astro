@@ -49,7 +49,7 @@ const sites = await Promise.all(
 );
 ---
 
-<section id="gallery" class="section" data-strings={JSON.stringify(strings)}>
+<section id="examples" class="section" data-strings={JSON.stringify(strings)}>
   <div class="section-inner">
     <div class="section-head">
       <div>
@@ -59,20 +59,20 @@ const sites = await Promise.all(
         </p>
       </div>
     </div>
-    <div class="gallery-grid">
+    <div class="examples-grid">
       {sites.map((site) => (
         <figure
-          class="gallery-item"
-          data-gallery={site.id}
+          class="examples-item"
+          data-example={site.id}
           data-site={site.url}
           data-active="0"
           style={cropStyle(site)}
         >
-          <span class="gallery-site">{site.site}</span>
-          <div class="gallery-shot">
+          <span class="examples-site">{site.site}</span>
+          <div class="examples-shot">
             {site.themes.map((theme, i) => (
               <button
-                class="gallery-open"
+                class="examples-open"
                 data-open
                 data-theme={i}
                 data-full={theme.full}
@@ -97,53 +97,53 @@ const sites = await Promise.all(
                 />
               </button>
             ))}
-            <div class="gallery-actions">
+            <div class="examples-actions">
               <button
-                class="gallery-action gallery-install"
+                class="examples-action examples-install"
                 data-install
                 title={t('Install in Stylebot')}
               >
-                <span class="gallery-action-idle">
+                <span class="examples-action-idle">
                   <SbIcon size={13} />
                   {t('Install')}
                 </span>
-                <span class="gallery-action-ok">
+                <span class="examples-action-ok">
                   <CheckIcon size={12} />
                   {t('Installed')}
                 </span>
               </button>
               <button
-                class="gallery-action gallery-copy"
+                class="examples-action examples-copy"
                 data-copy
                 title={t('Copy CSS')}
                 aria-label={t('Copy CSS')}
               >
-                <span class="gallery-action-idle">
+                <span class="examples-action-idle">
                   <CopyIcon />
                 </span>
-                <span class="gallery-action-ok">
+                <span class="examples-action-ok">
                   <CheckIcon />
                 </span>
               </button>
             </div>
           </div>
-          <figcaption class="gallery-caption">
-            <div class="gallery-chips">
+          <figcaption class="examples-caption">
+            <div class="examples-chips">
               {site.themes.map((theme, i) => (
                 <button
-                  class="gallery-chip"
+                  class="examples-chip"
                   data-chip={i}
                   aria-pressed={i === 0}
                 >
                   <span
-                    class="gallery-dot"
+                    class="examples-dot"
                     style={`background: linear-gradient(135deg, ${theme.colors[0]} 0 50%, ${theme.colors[1]} 50% 100%)`}
                   />
-                  <span class="gallery-name">{theme.name}</span>
+                  <span class="examples-name">{theme.name}</span>
                 </button>
               ))}
             </div>
-            <p class="gallery-hint">
+            <p class="examples-hint">
               {
                 // i18n: Shown after copying a style's CSS; {site} is a website, such as github.com. "Code" is the editor tab's name in Stylebot; use the extension's own translation.
                 t('Paste it into the Code tab on {site}.', { site: site.url })
@@ -218,19 +218,19 @@ const sites = await Promise.all(
     '[data-lightbox-source]',
   )!;
   const lightboxChips = dialog.querySelector<HTMLElement>('.lightbox-chips')!;
-  const gallery = document.getElementById('gallery')!;
+  const examples = document.getElementById('examples')!;
   const strings: Record<
     'alt' | 'install' | 'installedAs' | 'installFailed' | 'copy' | 'copied',
     string
-  > = JSON.parse(gallery.dataset.strings!);
-  const items = [...document.querySelectorAll<HTMLElement>('.gallery-item')];
+  > = JSON.parse(examples.dataset.strings!);
+  const items = [...document.querySelectorAll<HTMLElement>('.examples-item')];
   const installed = new Map<string, string>();
   const failed = new Set<string>();
   const copied = new Set<string>();
 
   const activeOf = (item: HTMLElement) => Number(item.dataset.active);
   const keyOf = (item: HTMLElement) =>
-    `${item.dataset.gallery}:${activeOf(item)}`;
+    `${item.dataset.example}:${activeOf(item)}`;
   const themeData = (item: HTMLElement) =>
     item.querySelector<HTMLTemplateElement>(
       `template[data-theme-data="${activeOf(item)}"]`,
@@ -241,9 +241,9 @@ const sites = await Promise.all(
   const fileOf = (item: HTMLElement) =>
     themeData(item).dataset.file!.replace(/\.css$/, '');
   const nameOf = (item: HTMLElement) =>
-    item.querySelectorAll('.gallery-name')[activeOf(item)].textContent ?? '';
+    item.querySelectorAll('.examples-name')[activeOf(item)].textContent ?? '';
   const siteOf = (item: HTMLElement) =>
-    item.querySelector('.gallery-site')!.textContent ?? '';
+    item.querySelector('.examples-site')!.textContent ?? '';
   const fullSrc = (item: HTMLElement) =>
     item.querySelector<HTMLButtonElement>(
       `[data-open][data-theme="${activeOf(item)}"]`,
@@ -297,7 +297,7 @@ const sites = await Promise.all(
         String(Number(el.dataset.chip) === active),
       );
     });
-    item.querySelector<HTMLElement>('.gallery-actions')!.hidden = !hasCss;
+    item.querySelector<HTMLElement>('.examples-actions')!.hidden = !hasCss;
     item.classList.toggle('is-copied', copied.has(key));
     item.classList.toggle('is-installed', installed.has(key));
     item
@@ -342,7 +342,7 @@ const sites = await Promise.all(
    */
   window.addEventListener('message', (e) => {
     if (e.source === window && e.data?.type === 'stylebot:pong') {
-      gallery.classList.add('can-install');
+      examples.classList.add('can-install');
 
       if (lightboxItem) {
         renderLightbox(lightboxItem);
@@ -414,7 +414,7 @@ const sites = await Promise.all(
 
   /**
    * Fetches the full-size screenshots of each card's selected theme once the
-   * gallery is near the viewport, so opening one shows it immediately.
+   * section is near the viewport, so opening one shows it immediately.
    */
   const preloaded = new Set<string>();
 
@@ -444,7 +444,7 @@ const sites = await Promise.all(
       preload();
     },
     { rootMargin: '600px 0px' },
-  ).observe(gallery);
+  ).observe(examples);
 
   function renderLightbox(item: HTMLElement) {
     const img = dialog.querySelector<HTMLImageElement>('.lightbox-img')!;
@@ -462,8 +462,8 @@ const sites = await Promise.all(
         const copy = chip.cloneNode(true) as HTMLElement;
 
         copy.className = 'lightbox-chip';
-        copy.querySelector('.gallery-dot')!.className = 'lightbox-dot';
-        copy.querySelector('.gallery-name')!.className = 'lightbox-chip-name';
+        copy.querySelector('.examples-dot')!.className = 'lightbox-dot';
+        copy.querySelector('.examples-name')!.className = 'lightbox-chip-name';
 
         return copy;
       }),
@@ -486,7 +486,7 @@ const sites = await Promise.all(
     noteEl.hidden = !note;
     lightboxCopy.hidden = !!note;
     lightboxInstall.hidden =
-      !!note || !gallery.classList.contains('can-install');
+      !!note || !examples.classList.contains('can-install');
     lightboxInstall.textContent = installLabel(item);
     lightboxCopy.textContent = copied.has(key) ? strings.copied : strings.copy;
   }
@@ -581,13 +581,13 @@ const sites = await Promise.all(
 </script>
 
 <style>
-  .gallery-grid {
+  .examples-grid {
     display: grid;
     gap: 40px 24px;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
 
-  .gallery-item {
+  .examples-item {
     min-width: 0;
     display: flex;
     flex-direction: column;
@@ -595,7 +595,7 @@ const sites = await Promise.all(
     margin: 0;
   }
 
-  .gallery-shot {
+  .examples-shot {
     position: relative;
     aspect-ratio: 3 / 2;
     border-radius: var(--radius-lg);
@@ -608,17 +608,17 @@ const sites = await Promise.all(
       box-shadow 0.2s;
   }
 
-  .gallery-shot:has(.gallery-open:focus-visible) {
+  .examples-shot:has(.examples-open:focus-visible) {
     outline: 2px solid var(--acc);
     outline-offset: 2px;
   }
 
-  .gallery-shot:hover {
+  .examples-shot:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-xl);
   }
 
-  .gallery-open {
+  .examples-open {
     display: block;
     width: 100%;
     height: 100%;
@@ -628,11 +628,11 @@ const sites = await Promise.all(
     cursor: zoom-in;
   }
 
-  .gallery-open:focus-visible {
+  .examples-open:focus-visible {
     outline: none;
   }
 
-  .gallery-open img {
+  .examples-open img {
     display: block;
     width: 100%;
     height: 100%;
@@ -640,12 +640,12 @@ const sites = await Promise.all(
     object-position: top center;
   }
 
-  .gallery-open[hidden],
-  .gallery-actions[hidden] {
+  .examples-open[hidden],
+  .examples-actions[hidden] {
     display: none;
   }
 
-  .gallery-actions {
+  .examples-actions {
     position: absolute;
     top: 8px;
     right: 8px;
@@ -654,7 +654,7 @@ const sites = await Promise.all(
     gap: 6px;
   }
 
-  .gallery-action {
+  .examples-action {
     width: 28px;
     height: 28px;
     padding: 0;
@@ -676,71 +676,71 @@ const sites = await Promise.all(
       background 0.15s;
   }
 
-  .gallery-install {
+  .examples-install {
     display: none;
     width: auto;
     padding: 0 10px 0 8px;
     font: 600 var(--text-xs)/1 var(--ui);
   }
 
-  .gallery-install span {
+  .examples-install span {
     gap: 5px;
     align-items: center;
   }
 
-  .can-install .gallery-install {
+  .can-install .examples-install {
     display: flex;
   }
 
-  .gallery-shot:hover .gallery-action,
-  .gallery-action:focus-visible,
-  .is-copied .gallery-copy,
-  .is-just-installed .gallery-action {
+  .examples-shot:hover .examples-action,
+  .examples-action:focus-visible,
+  .is-copied .examples-copy,
+  .is-just-installed .examples-action {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
   }
 
-  .is-copied .gallery-copy,
-  .is-installed .gallery-install {
+  .is-copied .examples-copy,
+  .is-installed .examples-install {
     background: rgba(31, 138, 76, 0.85);
   }
 
-  .gallery-action-idle,
-  .gallery-action-ok {
+  .examples-action-idle,
+  .examples-action-ok {
     display: flex;
   }
 
-  .gallery-action-ok,
-  .is-copied .gallery-copy .gallery-action-idle,
-  .is-installed .gallery-install .gallery-action-idle {
+  .examples-action-ok,
+  .is-copied .examples-copy .examples-action-idle,
+  .is-installed .examples-install .examples-action-idle {
     display: none;
   }
 
-  .is-copied .gallery-copy .gallery-action-ok,
-  .is-installed .gallery-install .gallery-action-ok {
+  .is-copied .examples-copy .examples-action-ok,
+  .is-installed .examples-install .examples-action-ok {
     display: flex;
   }
 
-  .gallery-caption {
+  .examples-caption {
     display: flex;
     flex-direction: column;
     gap: 8px;
     padding: 0 2px;
   }
 
-  .gallery-site {
+  .examples-site {
     font: 600 var(--text-base)/1.3 var(--ui);
     color: var(--ink);
   }
 
-  .gallery-chips {
+  .examples-chips {
     display: flex;
     flex-wrap: wrap;
     gap: 4px 16px;
   }
 
-  .gallery-hint {
+  .examples-hint {
     min-height: 20px;
     margin: 0;
     font: 400 var(--text-sm)/1.4 var(--ui);
@@ -748,11 +748,11 @@ const sites = await Promise.all(
     visibility: hidden;
   }
 
-  .is-copied .gallery-hint {
+  .is-copied .examples-hint {
     visibility: visible;
   }
 
-  .gallery-chip {
+  .examples-chip {
     display: flex;
     align-items: center;
     gap: 6px;
@@ -768,16 +768,16 @@ const sites = await Promise.all(
     transition: color 0.15s;
   }
 
-  .gallery-chip:hover,
-  .gallery-chip[aria-pressed='true'] {
+  .examples-chip:hover,
+  .examples-chip[aria-pressed='true'] {
     color: var(--ink);
   }
 
-  .gallery-chip[aria-pressed='true'] .gallery-name {
+  .examples-chip[aria-pressed='true'] .examples-name {
     font-weight: 600;
   }
 
-  .gallery-dot,
+  .examples-dot,
   .lightbox-dot {
     width: 10px;
     height: 10px;
@@ -948,16 +948,16 @@ const sites = await Promise.all(
   }
 
   @media (max-width: 639px) {
-    .gallery-copy,
-    .gallery-hint {
+    .examples-copy,
+    .examples-hint {
       display: none;
     }
 
-    .gallery-open {
+    .examples-open {
       cursor: default;
     }
 
-    .gallery-grid {
+    .examples-grid {
       grid-template-columns: none;
       grid-auto-flow: column;
       grid-auto-columns: min(400px, calc(100% - 28px));
@@ -970,20 +970,20 @@ const sites = await Promise.all(
       scrollbar-width: none;
     }
 
-    .gallery-grid::-webkit-scrollbar {
+    .examples-grid::-webkit-scrollbar {
       display: none;
     }
 
-    .gallery-item {
+    .examples-item {
       scroll-snap-align: start;
     }
 
-    .gallery-shot {
+    .examples-shot {
       aspect-ratio: 4 / 3;
       box-shadow: none;
     }
 
-    .gallery-open img {
+    .examples-open img {
       width: calc(100% / var(--crop-w));
       max-width: none;
       height: auto;
@@ -991,11 +991,11 @@ const sites = await Promise.all(
         calc(-100% * var(--crop-x) / var(--crop-w));
     }
 
-    .gallery-chips {
+    .examples-chips {
       gap: 8px;
     }
 
-    .gallery-chip {
+    .examples-chip {
       min-height: 36px;
       margin: 0;
       padding: 0 12px 0 10px;
@@ -1004,7 +1004,7 @@ const sites = await Promise.all(
       font-size: var(--text-sm);
     }
 
-    .gallery-chip[aria-pressed='true'] {
+    .examples-chip[aria-pressed='true'] {
       border-color: var(--strong);
       background: var(--fill);
     }
