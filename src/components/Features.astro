@@ -150,6 +150,29 @@ const { t } = Astro.locals;
 </section>
 
 <style>
+  .carousel {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    cursor: grab;
+  }
+
+  .carousel:focus-visible {
+    border-radius: var(--radius-lg);
+  }
+
+  .carousel.is-dragging,
+  .carousel.is-dragging * {
+    cursor: grabbing;
+    user-select: none;
+  }
+
+  .carousel::-webkit-scrollbar {
+    display: none;
+  }
+
   .features {
     background: var(--surface);
   }

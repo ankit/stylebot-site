@@ -18,3 +18,28 @@ const { target, previous, next } = Astro.props;
 <script>
   import './carousel';
 </script>
+
+<style>
+  .carousel-nav {
+    display: flex;
+    gap: 8px;
+    flex: none;
+  }
+
+  .round-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--strong);
+    background: var(--surface);
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .round-btn:hover {
+    background: var(--hover);
+  }
+</style>

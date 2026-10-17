@@ -23,6 +23,34 @@ const { t } = Astro.locals;
 </footer>
 
 <style>
+  .site-footer {
+    margin-top: 56px;
+    padding: 20px 0 40px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px 22px;
+    font: 400 var(--text-sm)/1.4 var(--ui);
+    color: var(--muted);
+  }
+
+  .site-footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 22px;
+  }
+
+  .site-footer a {
+    color: var(--muted);
+  }
+
+  .site-footer a:hover {
+    color: var(--link, var(--ink));
+  }
+
   .coffee {
     display: inline-flex;
     align-items: center;

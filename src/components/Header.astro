@@ -58,3 +58,60 @@ const { path, strings, t } = Astro.locals;
   window.addEventListener('scroll', update, { passive: true });
   update();
 </script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: var(--layer-header);
+    border-bottom: 1px solid transparent;
+    background: transparent;
+    transition:
+      background 0.2s,
+      border-color 0.2s;
+  }
+
+  .site-header.is-scrolled {
+    border-bottom-color: var(--border);
+    background: color-mix(in srgb, var(--surface) 72%, transparent);
+    backdrop-filter: saturate(180%) blur(16px);
+  }
+
+  .site-header-inner {
+    max-width: var(--width-page);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .header-actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  @media (max-width: 639px) {
+    .header-actions :global(.header-store) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .site-header-inner:not(:has(:global(.header-store))) :global(.logo-name) {
+      display: none;
+    }
+
+    .header-actions {
+      gap: 2px;
+    }
+
+    .header-actions :global(.btn-sm) {
+      margin-left: 6px;
+      padding: 9px 12px;
+    }
+  }
+</style>
