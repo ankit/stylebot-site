@@ -154,7 +154,7 @@ const examples = CLI_EXAMPLES.map(({ id, command }) => [
 
   h1 {
     margin: 0;
-    font: 700 clamp(34px, 4.6vw, 48px) / 1.05 var(--display);
+    font: 700 var(--text-3xl) / 1.05 var(--display);
     letter-spacing: -0.03em;
     color: var(--ink);
     text-wrap: balance;
@@ -178,7 +178,7 @@ const examples = CLI_EXAMPLES.map(({ id, command }) => [
 
   h2 {
     margin: 0;
-    font: 700 26px/1.2 var(--display);
+    font: 700 var(--text-xl)/1.2 var(--display);
     letter-spacing: -0.02em;
     color: var(--ink);
   }
@@ -201,7 +201,7 @@ const examples = CLI_EXAMPLES.map(({ id, command }) => [
 
   p :global(code) {
     padding: 1px 6px;
-    border-radius: 5px;
+    border-radius: var(--radius-sm);
     background: var(--fill);
     border: 1px solid var(--border);
     font: 400 0.88em/1.5 var(--mono);
@@ -244,7 +244,7 @@ const examples = CLI_EXAMPLES.map(({ id, command }) => [
   }
 
   .cli-steps p {
-    font-size: 15px;
+    font-size: var(--text-base);
     color: var(--muted);
   }
 
@@ -257,7 +257,7 @@ const examples = CLI_EXAMPLES.map(({ id, command }) => [
     padding: 3px 7px;
     border-radius: var(--radius-sm);
     border: 1px solid var(--border);
-    font: 500 11px/1 var(--ui);
+    font: 500 var(--text-xs)/1 var(--ui);
     color: var(--muted);
   }
 

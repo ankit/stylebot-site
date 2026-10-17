@@ -85,13 +85,13 @@ const command = lines.join(' && ');
     border-radius: var(--radius-md);
     border: 1px solid var(--border);
     background: var(--surface);
-    font: 400 13px/1.4 var(--mono);
+    font: 400 var(--text-sm)/1.4 var(--mono);
     color: var(--ink);
   }
 
   .cli-cmd.is-boxed {
     padding: 6px 6px 6px 14px;
-    border-radius: 10px;
+    border-radius: var(--radius-md);
     font-size: var(--text-sm);
   }
 
@@ -124,7 +124,7 @@ const command = lines.join(' && ');
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 7px;
+    border-radius: var(--radius-sm);
     border: 1px solid transparent;
     background: transparent;
     cursor: pointer;

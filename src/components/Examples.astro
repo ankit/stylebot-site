@@ -615,7 +615,7 @@ const sites = await Promise.all(
 
   .gallery-shot:hover {
     transform: translateY(-2px);
-    box-shadow: 0 14px 32px rgba(25, 27, 31, 0.14);
+    box-shadow: var(--shadow-xl);
   }
 
   .gallery-open {
@@ -661,7 +661,7 @@ const sites = await Promise.all(
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 7px;
+    border-radius: var(--radius-sm);
     border: none;
     cursor: pointer;
     backdrop-filter: blur(6px);
@@ -730,7 +730,7 @@ const sites = await Promise.all(
   }
 
   .gallery-site {
-    font: 600 15px/1.3 var(--ui);
+    font: 600 var(--text-base)/1.3 var(--ui);
     color: var(--ink);
   }
 
@@ -743,7 +743,7 @@ const sites = await Promise.all(
   .gallery-hint {
     min-height: 20px;
     margin: 0;
-    font: 400 13px/1.4 var(--ui);
+    font: 400 var(--text-sm)/1.4 var(--ui);
     color: var(--muted);
     visibility: hidden;
   }
@@ -759,11 +759,11 @@ const sites = await Promise.all(
     padding: 4px 6px;
     margin: 0 -6px;
     border: none;
-    border-radius: 7px;
+    border-radius: var(--radius-sm);
     background: none;
     cursor: pointer;
     white-space: nowrap;
-    font: 400 13px/1.2 var(--ui);
+    font: 400 var(--text-sm)/1.2 var(--ui);
     color: var(--muted);
     transition: color 0.15s;
   }
@@ -782,7 +782,7 @@ const sites = await Promise.all(
     width: 10px;
     height: 10px;
     flex: none;
-    border-radius: 5px;
+    border-radius: var(--radius-sm);
     box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.18);
   }
 
@@ -833,7 +833,7 @@ const sites = await Promise.all(
   }
 
   .lightbox-site {
-    font: 500 13px/1.3 var(--ui);
+    font: 500 var(--text-sm)/1.3 var(--ui);
     opacity: 0.7;
   }
 
@@ -874,7 +874,7 @@ const sites = await Promise.all(
 
   .lightbox-note {
     margin-left: 6px;
-    font: 400 12.5px/1.3 var(--ui);
+    font: 400 var(--text-xs)/1.3 var(--ui);
     opacity: 0.7;
   }
 
@@ -886,7 +886,7 @@ const sites = await Promise.all(
     background: var(--acc);
     color: #fff;
     cursor: pointer;
-    font: 600 12.5px/1 var(--ui);
+    font: 600 var(--text-xs)/1 var(--ui);
   }
 
   .lightbox-install:hover {
@@ -901,7 +901,7 @@ const sites = await Promise.all(
     background: #fff;
     color: #191b1f;
     cursor: pointer;
-    font: 600 12.5px/1 var(--ui);
+    font: 600 var(--text-xs)/1 var(--ui);
   }
 
   .lightbox-copy:hover {
@@ -913,7 +913,7 @@ const sites = await Promise.all(
     padding: 7px 4px;
     border-radius: var(--radius-sm);
     color: rgba(255, 255, 255, 0.7);
-    font: 500 12.5px/1 var(--ui);
+    font: 500 var(--text-xs)/1 var(--ui);
     text-decoration: underline;
     text-underline-offset: 3px;
     text-decoration-color: rgba(255, 255, 255, 0.35);
@@ -933,7 +933,7 @@ const sites = await Promise.all(
     right: 18px;
     width: 40px;
     height: 40px;
-    border-radius: 20px;
+    border-radius: var(--radius-full);
     border: none;
     background: rgba(255, 255, 255, 0.14);
     color: #fff;

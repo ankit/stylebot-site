@@ -411,7 +411,7 @@ const shortcutGroups = [
 
   .manual-intro h1 {
     margin: 0 0 12px;
-    font: 700 clamp(34px, 4.6vw, 48px) / 1.05 var(--display);
+    font: 700 var(--text-3xl) / 1.05 var(--display);
     letter-spacing: -0.03em;
     color: var(--ink);
   }
@@ -475,7 +475,7 @@ const shortcutGroups = [
 
   h2 {
     margin: 0;
-    font: 700 26px/1.2 var(--display);
+    font: 700 var(--text-xl)/1.2 var(--display);
     letter-spacing: -0.02em;
     color: var(--ink);
   }
@@ -500,7 +500,7 @@ const shortcutGroups = [
 
   .sections :global(code) {
     padding: 1px 6px;
-    border-radius: 5px;
+    border-radius: var(--radius-sm);
     background: var(--fill);
     border: 1px solid var(--border);
     font: 400 0.88em/1.5 var(--mono);
@@ -517,7 +517,7 @@ const shortcutGroups = [
   .sections :global(kbd) {
     display: inline-block;
     padding: 2px 7px;
-    border-radius: 5px;
+    border-radius: var(--radius-sm);
     background: var(--fill);
     border: 1px solid var(--strong);
     border-bottom-width: 2px;
@@ -534,10 +534,10 @@ const shortcutGroups = [
     display: flex;
     gap: 12px;
     padding: 14px 16px;
-    border-radius: 10px;
+    border-radius: var(--radius-md);
     background: var(--fill);
     border: 1px solid var(--border);
-    font: 400 14.5px/1.55 var(--ui);
+    font: 400 var(--text-base)/1.55 var(--ui);
     color: var(--ink2);
     text-wrap: pretty;
   }
@@ -547,13 +547,13 @@ const shortcutGroups = [
     width: 18px;
     height: 18px;
     margin-top: 1px;
-    border-radius: 9px;
+    border-radius: var(--radius-md);
     background: var(--muted);
     color: var(--surface);
     display: flex;
     align-items: center;
     justify-content: center;
-    font: 700 11px/1 system-ui;
+    font: 700 var(--text-xs)/1 system-ui;
   }
 
   .sections :global(.shot-image) {
@@ -617,7 +617,7 @@ const shortcutGroups = [
     gap: 16px;
     align-items: baseline;
     padding: 12px 16px;
-    font: 400 15px/1.55 var(--ui);
+    font: 400 var(--text-base)/1.55 var(--ui);
     color: var(--ink2);
   }
 
@@ -637,12 +637,12 @@ const shortcutGroups = [
 
   .shortcut-action {
     flex: 1;
-    font: 400 15px/1.4 var(--ui);
+    font: 400 var(--text-base)/1.4 var(--ui);
     color: var(--ink);
   }
 
   .shortcut-unset {
-    font: 400 13px/1 var(--ui);
+    font: 400 var(--text-sm)/1 var(--ui);
     color: var(--faint);
   }
 
