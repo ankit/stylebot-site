@@ -179,6 +179,7 @@
   "Installed": "Установлено",
   "Installed as {name}": "Установлено как «{name}»",
   "Installs": "Установки",
+  "Installs: {count}": "Установки: {count}",
   "It broke a site": "Сломал сайт",
   "It may have been unpublished, or the link is wrong.": "Возможно, его сняли с публикации или ссылка неверна.",
   "It needs Node 20 or later.": "Нужен Node 20 или новее.",

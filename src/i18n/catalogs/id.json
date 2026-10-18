@@ -179,6 +179,7 @@
   "Installed": "Terinstal",
   "Installed as {name}": "Diinstal sebagai {name}",
   "Installs": "Pemasangan",
+  "Installs: {count}": "Pemasangan: {count}",
   "It broke a site": "Merusak tampilan situs",
   "It may have been unpublished, or the link is wrong.": "Gaya ini mungkin sudah ditarik, atau tautannya salah.",
   "It needs Node 20 or later.": "Memerlukan Node 20 atau yang lebih baru.",

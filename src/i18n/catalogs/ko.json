@@ -179,6 +179,7 @@
   "Installed": "설치됨",
   "Installed as {name}": "{name} 프로필로 설치됨",
   "Installs": "설치 수",
+  "Installs: {count}": "설치 수: {count}",
   "It broke a site": "사이트가 제대로 표시되지 않음",
   "It may have been unpublished, or the link is wrong.": "게시가 취소되었거나 링크가 잘못되었을 수 있습니다.",
   "It needs Node 20 or later.": "Node 20 이상이 필요합니다.",

@@ -179,6 +179,7 @@
   "Installed": "已安裝",
   "Installed as {name}": "已安裝為「{name}」",
   "Installs": "安裝次數",
+  "Installs: {count}": "安裝次數：{count}",
   "It broke a site": "它讓某個網站壞掉了",
   "It may have been unpublished, or the link is wrong.": "它可能已取消發布，或連結有誤。",
   "It needs Node 20 or later.": "需要 Node 20 或以上版本。",

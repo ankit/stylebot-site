@@ -179,6 +179,7 @@
   "Installed": "インストール済み",
   "Installed as {name}": "{name} としてインストール済み",
   "Installs": "インストール数",
+  "Installs: {count}": "インストール数: {count}",
   "It broke a site": "サイトの表示が崩れた",
   "It may have been unpublished, or the link is wrong.": "公開が取り消されたか、リンクが間違っている可能性があります。",
   "It needs Node 20 or later.": "Node 20 以降が必要です。",

@@ -179,6 +179,7 @@
   "Installed": "Instalado",
   "Installed as {name}": "Instalado como {name}",
   "Installs": "Instalaciones",
+  "Installs: {count}": "Instalaciones: {count}",
   "It broke a site": "Rompió un sitio",
   "It may have been unpublished, or the link is wrong.": "Puede que se haya retirado o que el enlace sea incorrecto.",
   "It needs Node 20 or later.": "Necesita Node 20 o posterior.",

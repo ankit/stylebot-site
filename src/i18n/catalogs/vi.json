@@ -179,6 +179,7 @@
   "Installed": "Đã cài đặt",
   "Installed as {name}": "Đã cài với tên {name}",
   "Installs": "Lượt cài",
+  "Installs: {count}": "Lượt cài: {count}",
   "It broke a site": "Gây lỗi trên trang web",
   "It may have been unpublished, or the link is wrong.": "Có thể kiểu này đã bị gỡ, hoặc liên kết bị sai.",
   "It needs Node 20 or later.": "Cần Node 20 trở lên.",

@@ -179,6 +179,7 @@
   "Installed": "Instalat",
   "Installed as {name}": "Instalat ca {name}",
   "Installs": "Instalări",
+  "Installs: {count}": "Instalări: {count}",
   "It broke a site": "A stricat un site",
   "It may have been unpublished, or the link is wrong.": "Poate a fost retras sau linkul e greșit.",
   "It needs Node 20 or later.": "Necesită Node 20 sau o versiune mai nouă.",

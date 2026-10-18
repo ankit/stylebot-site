@@ -1,0 +1,7 @@
+.install-count {
+  position: relative;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}

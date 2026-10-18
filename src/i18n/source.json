@@ -1109,6 +1109,12 @@
     ]
   },
   {
+    "text": "Installs: {count}",
+    "files": [
+      "src/gallery/components/InstallCount.tsx"
+    ]
+  },
+  {
     "text": "It broke a site",
     "files": [
       "src/www/components/GoodbyeFeedback.tsx"

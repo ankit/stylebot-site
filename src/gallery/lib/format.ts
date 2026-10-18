@@ -14,6 +14,10 @@ const UNITS: Array<[Intl.RelativeTimeFormatUnit, number]> = [
 export const fullNumber = (locale: Locale, n: number) =>
   new Intl.NumberFormat(htmlLang(locale)).format(n);
 
+// Short, as in 1.2K.
+export const compactNumber = (locale: Locale, n: number) =>
+  new Intl.NumberFormat(htmlLang(locale), { notation: 'compact' }).format(n);
+
 /**
  * How long ago a time was, such as "3 days ago" or "yesterday".
  */
