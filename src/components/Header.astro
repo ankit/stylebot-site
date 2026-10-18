@@ -89,6 +89,17 @@ const {
     margin-left: 10px;
   }
 
+  .header-actions > :global(:last-child .tooltip) {
+    left: auto;
+    right: 0;
+    transform: translate(0, -3px);
+  }
+
+  .header-actions > :global(:last-child .icon-btn:hover .tooltip),
+  .header-actions > :global(:last-child .icon-btn:focus-visible .tooltip) {
+    transform: translate(0, 0);
+  }
+
   .site-header {
     position: sticky;
     top: 0;
