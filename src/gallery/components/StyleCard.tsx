@@ -13,6 +13,8 @@ import './StyleCard.css';
 type Props = {
   style: Style;
   installed?: boolean;
+  // Off where the site is already named, as on its own page.
+  showSite?: boolean;
   locale: Locale;
   t: Translate;
 };
@@ -21,16 +23,24 @@ type Props = {
  * A style in a grid: its screenshot in a small browser frame, with its name,
  * author, installs, and whether it's installed.
  */
-export default function StyleCard({ style, installed, locale, t }: Props) {
+export default function StyleCard({
+  style,
+  installed,
+  showSite = true,
+  locale,
+  t,
+}: Props) {
   const href = styleHref(locale, style);
 
   return (
     <div class="style-card">
       <a class="style-card-frame" href={href} tabIndex={-1} aria-hidden="true">
-        <span class="style-card-bar">
-          <Favicon site={style.site} />
-          <span>{style.site}</span>
-        </span>
+        {showSite && (
+          <span class="style-card-bar">
+            <Favicon site={style.site} />
+            <span>{style.site}</span>
+          </span>
+        )}
         <img
           class="style-card-shot"
           src={screenshotUrl(style)}

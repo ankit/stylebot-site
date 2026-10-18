@@ -2,6 +2,10 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+
+  > section {
+    margin-top: 24px;
+  }
 }
 
 .style-page-top {

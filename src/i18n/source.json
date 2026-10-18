@@ -1234,6 +1234,12 @@
     ]
   },
   {
+    "text": "More for {site}",
+    "files": [
+      "src/gallery/components/MoreForSite.tsx"
+    ]
+  },
+  {
     "text": "More properties",
     "files": [
       "src/www/components/demo/Demo.tsx"
@@ -1686,6 +1692,12 @@
     "text": "Sections",
     "files": [
       "src/www/pages/[...lang]/releases/4.0.astro"
+    ]
+  },
+  {
+    "text": "See all",
+    "files": [
+      "src/gallery/components/MoreForSite.tsx"
     ]
   },
   {

@@ -13,6 +13,7 @@ import { type Catalog, translator } from '@/i18n/t';
 import BackLink from './BackLink';
 import Favicon from './Favicon';
 import LoadError from './LoadError';
+import MoreForSite from './MoreForSite';
 import NotFound from './NotFound';
 import PreviewCard from './PreviewCard';
 import StyleCss from './StyleCss';
@@ -120,6 +121,8 @@ export default function StylePage({ locale, strings }: Props) {
         strings={strings}
         t={t}
       />
+
+      <MoreForSite style={style} locale={locale} t={t} />
     </div>
   );
 }

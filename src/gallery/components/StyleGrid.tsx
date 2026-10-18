@@ -20,6 +20,7 @@ type Props = {
     more: () => void;
     retry: () => void;
   };
+  showSite?: boolean;
   locale: Locale;
   t: Translate;
 };
@@ -29,7 +30,7 @@ type Props = {
  * placeholders while a page loads, a retry when one fails, and the ones
  * Stylebot has marked installed.
  */
-export default function StyleGrid({ feed, locale, t }: Props) {
+export default function StyleGrid({ feed, showSite, locale, t }: Props) {
   const installed = useInstalledStyles(feed.items.map((style) => style.id));
 
   return (
@@ -40,12 +41,13 @@ export default function StyleGrid({ feed, locale, t }: Props) {
             key={style.id}
             style={style}
             installed={style.id in installed}
+            showSite={showSite}
             locale={locale}
             t={t}
           />
         ))}
 
-        {feed.loading && <StyleCardSkeleton count={6} />}
+        {feed.loading && <StyleCardSkeleton count={6} showSite={showSite} />}
       </div>
 
       {feed.error && (

@@ -1,0 +1,35 @@
+.more-for-site {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.more-for-site-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+
+  h2 {
+    margin: 0;
+    font: 600 var(--text-lg) / 1.2 var(--font-display);
+    letter-spacing: -0.01em;
+    color: var(--fg);
+  }
+
+  a {
+    flex: none;
+    font: 500 var(--text-sm) / 1.2 var(--font-ui);
+    color: var(--fg-muted);
+
+    &:hover {
+      color: var(--fg);
+    }
+  }
+}
+
+.more-for-site-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 28px 20px;
+}

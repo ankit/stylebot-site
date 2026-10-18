@@ -59,7 +59,7 @@ export default function SitePage({ locale, strings }: Props) {
 
       <SortTabs sort={sort} onChange={setSort} t={t} />
 
-      <StyleGrid feed={feed} locale={locale} t={t} />
+      <StyleGrid feed={feed} showSite={false} locale={locale} t={t} />
     </div>
   );
 }
