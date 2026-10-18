@@ -12,6 +12,7 @@ import { type Catalog, translator } from '@/i18n/t';
 import Favicon from './Favicon';
 import LoadError from './LoadError';
 import NotFound from './NotFound';
+import PreviewCard from './PreviewCard';
 import StyleCss from './StyleCss';
 import StylePageSkeleton from './StylePageSkeleton';
 
@@ -86,6 +87,8 @@ export default function StylePage({ locale, strings }: Props) {
           </span>
 
           {style.description && <p>{style.description}</p>}
+
+          <PreviewCard style={style} t={t} />
 
           <dl class="style-page-facts">
             <dt>{t('Author')}</dt>

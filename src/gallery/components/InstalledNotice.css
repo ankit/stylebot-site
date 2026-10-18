@@ -1,0 +1,26 @@
+.installed-notice {
+  display: flex;
+  margin-top: 8px;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  background: var(--bg-hover);
+  color: var(--fg);
+
+  svg {
+    flex: none;
+    margin-top: 2px;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font: 400 var(--text-sm) / 1.4 var(--font-ui);
+  }
+
+  span {
+    color: var(--fg-muted);
+  }
+}
