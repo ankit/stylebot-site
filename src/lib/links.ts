@@ -47,6 +47,8 @@ export function currentBrowser(): Browser | null {
 }
 
 export const LINKS = {
+  // stylebot.dev, for links from the gallery, which is on its own domain.
+  site: 'https://stylebot.dev',
   github: 'https://github.com/ankit/stylebot',
   siteGithub: 'https://github.com/ankit/stylebot-site',
   issues: 'https://github.com/ankit/stylebot/issues',

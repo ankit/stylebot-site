@@ -144,6 +144,12 @@
     ]
   },
   {
+    "text": "About Stylebot",
+    "files": [
+      "src/gallery/components/GetStylebotCard.tsx"
+    ]
+  },
+  {
     "text": "Ad",
     "files": [
       "src/www/components/cli/CliDemo.tsx"
@@ -154,6 +160,12 @@
     "note": "Names of made-up extensions listed beside Stylebot in the browser's menu",
     "files": [
       "src/www/components/demo/Demo.tsx"
+    ]
+  },
+  {
+    "text": "Add Stylebot to {store}",
+    "files": [
+      "src/gallery/components/GetStylebotCard.tsx"
     ]
   },
   {
@@ -850,6 +862,12 @@
     "note": "A short tag next to the Stylebot logo, naming this part of the site.",
     "files": [
       "src/gallery/layouts/Gallery.astro"
+    ]
+  },
+  {
+    "text": "Get Stylebot to install this style.",
+    "files": [
+      "src/gallery/components/GetStylebotCard.tsx"
     ]
   },
   {
@@ -1860,6 +1878,12 @@
     "text": "Stylebot starts in the extensions menu.",
     "files": [
       "src/www/components/demo/scenes.ts"
+    ]
+  },
+  {
+    "text": "Stylebot works in Chrome, Firefox and Edge on a computer.",
+    "files": [
+      "src/gallery/components/GetStylebotCard.tsx"
     ]
   },
   {

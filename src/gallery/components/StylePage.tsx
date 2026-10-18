@@ -88,7 +88,7 @@ export default function StylePage({ locale, strings }: Props) {
 
           {style.description && <p>{style.description}</p>}
 
-          <PreviewCard style={style} t={t} />
+          <PreviewCard style={style} locale={locale} t={t} />
 
           <dl class="style-page-facts">
             <dt>{t('Author')}</dt>

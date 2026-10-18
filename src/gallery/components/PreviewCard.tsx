@@ -4,24 +4,26 @@ import { type StyleWithCss } from '@/gallery/lib/api';
 
 import Button from '@/components/Button';
 
+import { type Locale } from '@/i18n/locales';
 import { type Translate } from '@/i18n/t';
 
+import GetStylebotCard from './GetStylebotCard';
 import InstalledNotice from './InstalledNotice';
 
 import './PreviewCard.css';
 
-type Props = { style: StyleWithCss; t: Translate };
+type Props = { style: StyleWithCss; locale: Locale; t: Translate };
 
 /**
  * Previews the style on its site in Stylebot, which offers to install it
- * there, once Stylebot is found in this browser.
+ * there, or offers Stylebot to someone who doesn't have it.
  */
-export default function PreviewCard({ style, t }: Props) {
+export default function PreviewCard({ style, locale, t }: Props) {
   const availability = useStylebotAvailability();
   const { state, preview } = usePreview(style.id);
 
   if (availability === 'unavailable') {
-    return null;
+    return <GetStylebotCard locale={locale} t={t} />;
   }
 
   if (availability === 'checking' || state.status === 'checking') {
