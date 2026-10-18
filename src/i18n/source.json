@@ -524,6 +524,7 @@
   {
     "text": "Copied",
     "files": [
+      "src/gallery/components/CopyButton.tsx",
       "src/www/components/Examples.astro",
       "src/www/components/cli/CliCommand.astro"
     ]
@@ -544,6 +545,7 @@
   {
     "text": "Copy CSS",
     "files": [
+      "src/gallery/components/StyleCss.tsx",
       "src/www/components/Examples.astro"
     ]
   },
@@ -581,6 +583,12 @@
     "text": "Create profile",
     "files": [
       "src/www/components/demo/Demo.tsx"
+    ]
+  },
+  {
+    "text": "CSS",
+    "files": [
+      "src/gallery/components/StyleCss.tsx"
     ]
   },
   {

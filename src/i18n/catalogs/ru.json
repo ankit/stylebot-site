@@ -92,6 +92,7 @@
   "Couldn’t load this style.": "Не удалось загрузить стиль.",
   "Create a profile for a new look.": "Создайте профиль для нового оформления.",
   "Create profile": "Создать профиль",
+  "CSS": "CSS",
   "CSS is now cached and applied instantly, so pages no longer flash unstyled while your styles catch up, and everything feels snappier as a result.": "CSS теперь кешируется и применяется мгновенно, поэтому страницы больше не мелькают без оформления, пока подгружаются стили, и всё работает отзывчивее.",
   "Current": "Текущая",
   "Dark": "Тёмная",

@@ -92,6 +92,7 @@
   "Couldn’t load this style.": "无法加载此样式。",
   "Create a profile for a new look.": "为新外观创建方案。",
   "Create profile": "创建方案",
+  "CSS": "CSS",
   "CSS is now cached and applied instantly, so pages no longer flash unstyled while your styles catch up, and everything feels snappier as a result.": "CSS 现在会缓存并即时应用，页面不再在样式加载前闪现未修改的样子，整体也更加流畅。",
   "Current": "当前",
   "Dark": "深色",

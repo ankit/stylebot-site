@@ -1,0 +1,19 @@
+.style-css {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.style-css-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  h2 {
+    margin: 0;
+    font: 600 var(--text-lg) / 1.2 var(--font-display);
+    letter-spacing: -0.01em;
+    color: var(--fg);
+  }
+}

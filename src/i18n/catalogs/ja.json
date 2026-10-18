@@ -92,6 +92,7 @@
   "Couldn’t load this style.": "このスタイルを読み込めませんでした。",
   "Create a profile for a new look.": "新しいデザイン用にプロファイルを作成します。",
   "Create profile": "プロファイルを作成",
+  "CSS": "CSS",
   "CSS is now cached and applied instantly, so pages no longer flash unstyled while your styles catch up, and everything feels snappier as a result.": "CSS がキャッシュされ、すぐに適用されるようになりました。スタイルが追いつくまでページがスタイルなしで一瞬表示されることがなくなり、全体の動作もきびきびしました。",
   "Current": "現在",
   "Dark": "ダーク",

@@ -92,6 +92,7 @@
   "Couldn’t load this style.": "No se pudo cargar este estilo.",
   "Create a profile for a new look.": "Crea un perfil para un estilo nuevo.",
   "Create profile": "Crear perfil",
+  "CSS": "CSS",
   "CSS is now cached and applied instantly, so pages no longer flash unstyled while your styles catch up, and everything feels snappier as a result.": "Ahora el CSS se guarda en caché y se aplica al instante, así que las páginas ya no parpadean sin estilo mientras se cargan tus estilos, y todo se siente más ágil.",
   "Current": "Actual",
   "Dark": "Oscuro",

@@ -92,6 +92,7 @@
   "Couldn’t load this style.": "Không tải được kiểu này.",
   "Create a profile for a new look.": "Tạo hồ sơ cho giao diện mới.",
   "Create profile": "Tạo hồ sơ",
+  "CSS": "CSS",
   "CSS is now cached and applied instantly, so pages no longer flash unstyled while your styles catch up, and everything feels snappier as a result.": "CSS giờ được lưu vào bộ nhớ đệm và áp dụng tức thì, nên trang không còn chớp hiện bản chưa có kiểu trong lúc chờ kiểu của bạn, và mọi thứ cũng nhanh nhạy hơn.",
   "Current": "Hiện tại",
   "Dark": "Tối",

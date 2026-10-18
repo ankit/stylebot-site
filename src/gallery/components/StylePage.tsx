@@ -11,6 +11,7 @@ import { type Catalog, translator } from '@/i18n/t';
 import Favicon from './Favicon';
 import LoadError from './LoadError';
 import NotFound from './NotFound';
+import StyleCss from './StyleCss';
 import StylePageSkeleton from './StylePageSkeleton';
 
 import './StylePage.css';
@@ -100,6 +101,8 @@ export default function StylePage({ locale, strings }: Props) {
           </dl>
         </div>
       </div>
+
+      <StyleCss css={style.css} t={t} />
     </div>
   );
 }

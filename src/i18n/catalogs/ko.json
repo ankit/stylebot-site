@@ -92,6 +92,7 @@
   "Couldn’t load this style.": "이 스타일을 불러오지 못했습니다.",
   "Create a profile for a new look.": "새 디자인을 시도하려면 프로필을 만드세요.",
   "Create profile": "프로필 만들기",
+  "CSS": "CSS",
   "CSS is now cached and applied instantly, so pages no longer flash unstyled while your styles catch up, and everything feels snappier as a result.": "이제 CSS가 캐시되어 즉시 적용되므로, 스타일이 적용되기 전에 페이지가 스타일 없이 잠깐 보이는 일이 없고 전체적으로 더 빠르게 느껴집니다.",
   "Current": "현재",
   "Dark": "다크",
