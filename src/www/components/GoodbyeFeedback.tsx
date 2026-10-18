@@ -1,5 +1,7 @@
 import { useState } from 'preact/hooks';
 
+import Button from '@/components/Button';
+
 import { track } from '@/lib/analytics';
 
 import { type Catalog, translator } from '@/i18n/t';
@@ -86,9 +88,9 @@ export default function GoodbyeFeedback({ strings }: Props) {
         onInput={(e) => setNote((e.target as HTMLTextAreaElement).value)}
       />
       <div class="gb-send">
-        <button class="btn btn-primary" disabled={!ready} onClick={send}>
+        <Button disabled={!ready} onClick={send}>
           {t('Send feedback')}
-        </button>
+        </Button>
       </div>
     </div>
   );

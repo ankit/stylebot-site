@@ -402,7 +402,7 @@ const structuredData = {
       </p>
       <div class="cta">
         <div class="cta-row">
-          <StoreLink index={0} format="add" class="btn btn-primary" />
+          <StoreLink index={0} format="add" variant="primary" />
           <span class="cta-also">
             {parts(t('Also on {first} and {second}')).map((part) =>
               part === '{first}' ? (
@@ -452,9 +452,9 @@ const structuredData = {
           )}
         </p>
         <div class="install-buttons">
-          <StoreLink index={0} format="add" class="btn btn-primary" />
-          <StoreLink index={1} format="name" class="btn btn-outline" />
-          <StoreLink index={2} format="name" class="btn btn-outline" />
+          <StoreLink index={0} format="add" variant="primary" />
+          <StoreLink index={1} format="name" variant="outline" />
+          <StoreLink index={2} format="name" variant="outline" />
         </div>
         <div class="install-cli">
           <span

@@ -1,4 +1,5 @@
 ---
+import ButtonLink from '@/components/ButtonLink';
 import BookIcon from '@/components/icons/BookIcon';
 import GitHubIcon from '@/components/icons/GitHubIcon';
 
@@ -60,12 +61,14 @@ const {
             <StoreLink
               index={0}
               format="add"
-              class="btn btn-primary btn-sm header-store"
+              variant="primary"
+              size="sm"
+              class="header-store"
             />
           ) : (
-            <a href={path('/#install')} class="btn btn-primary btn-sm">
+            <ButtonLink href={path('/#install')} size="sm">
               {t('Install')}
-            </a>
+            </ButtonLink>
           ))}
       </slot>
     </div>
@@ -82,6 +85,10 @@ const {
 </script>
 
 <style>
+  .header-actions :global(.btn-sm) {
+    margin-left: 10px;
+  }
+
   .site-header {
     position: sticky;
     top: 0;

@@ -1,4 +1,5 @@
 ---
+import ButtonLink from '@/components/ButtonLink';
 import Base from '@/layouts/Base.astro';
 
 import CliCommand from '@/www/components/cli/CliCommand.astro';
@@ -52,12 +53,12 @@ const examples = CLI_EXAMPLES.map(({ id, command }) => [
             )}
           </p>
           <div class="cli-stores">
-            <a href={STORES.chrome.href} class="btn btn-outline">
+            <ButtonLink href={STORES.chrome.href} variant="outline">
               {t('Add to {store}', { store: STORES.chrome.name })}
-            </a>
-            <a href={STORES.edge.href} class="btn btn-outline">
+            </ButtonLink>
+            <ButtonLink href={STORES.edge.href} variant="outline">
               {t('Add to {store}', { store: STORES.edge.name })}
-            </a>
+            </ButtonLink>
           </div>
         </li>
         <li>

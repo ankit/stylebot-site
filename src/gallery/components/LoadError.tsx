@@ -1,3 +1,5 @@
+import Button from '@/components/Button';
+
 import { type Translate } from '@/i18n/t';
 
 type Props = { message: string; onRetry: () => void; t: Translate };
@@ -9,9 +11,9 @@ export default function LoadError({ message, onRetry, t }: Props) {
   return (
     <div class="g-note" role="alert">
       {message}
-      <button class="btn btn-outline btn-sm" onClick={onRetry}>
+      <Button variant="outline" size="sm" onClick={onRetry}>
         {t('Try again')}
-      </button>
+      </Button>
     </div>
   );
 }

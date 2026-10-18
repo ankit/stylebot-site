@@ -115,55 +115,6 @@ a.icon-btn:hover {
   opacity: 0;
 }
 
-.btn {
-  display: inline-flex;
-  align-items: center;
-  white-space: nowrap;
-  gap: 8px;
-  padding: 12px 18px;
-  border: none;
-  border-radius: var(--radius-md);
-  font: 600 var(--text-sm)/1 var(--font-ui);
-  cursor: pointer;
-}
-
-.btn:disabled {
-  opacity: 0.5;
-  cursor: default;
-}
-
-.btn-primary {
-  background: var(--fg);
-  color: var(--bg-surface);
-}
-
-.btn-primary:hover {
-  background: color-mix(in oklab, var(--fg) 86%, var(--bg-surface));
-  color: var(--bg-surface);
-}
-
-.btn-primary:disabled {
-  background: var(--fg);
-}
-
-.btn-outline {
-  border: 1px solid var(--border-strong);
-  background: var(--bg-surface);
-  color: var(--fg);
-}
-
-.btn-outline:hover {
-  background: var(--bg-hover);
-  color: var(--fg);
-}
-
-.btn-sm {
-  padding: 9px 14px;
-  margin-left: 10px;
-  border-radius: var(--radius-md);
-  font-size: var(--text-sm);
-}
-
 .section {
   border-top: 1px solid var(--border);
 }

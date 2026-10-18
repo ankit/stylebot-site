@@ -1,4 +1,5 @@
 ---
+import ButtonLink from '@/components/ButtonLink';
 import Base from '@/layouts/Base.astro';
 
 import ZoomableImage from '@/components/ZoomableImage';
@@ -198,9 +199,9 @@ const cardShots = await Promise.all(
           </p>
           <div class="release-cli-setup">
             <CliCommand lines={[CLI_INSTALL]} boxed />
-            <a href={path(LINKS.cli)} class="btn btn-primary">
+            <ButtonLink href={path(LINKS.cli)}>
               {t('Set up the CLI →')}
-            </a>
+            </ButtonLink>
           </div>
           <p class="release-note">
             {t(

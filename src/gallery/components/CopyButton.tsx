@@ -1,5 +1,7 @@
 import { useCopy } from '@/gallery/hooks/useCopy';
 
+import Button from '@/components/Button';
+
 import { type Translate } from '@/i18n/t';
 
 type Props = { text: string; label: string; t: Translate };
@@ -11,13 +13,14 @@ export default function CopyButton({ text, label, t }: Props) {
   const { copied, copy } = useCopy();
 
   return (
-    <button
-      class="btn btn-outline btn-sm"
+    <Button
+      variant="outline"
+      size="sm"
       onClick={() => copy(text)}
       aria-live="polite"
     >
       {copied && t('Copied')}
       {!copied && label}
-    </button>
+    </Button>
   );
 }

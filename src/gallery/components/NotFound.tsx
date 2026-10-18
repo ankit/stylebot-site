@@ -1,3 +1,5 @@
+import ButtonLink from '@/components/ButtonLink';
+
 import { type Locale, localizePath } from '@/i18n/locales';
 import { type Translate } from '@/i18n/t';
 
@@ -18,9 +20,9 @@ export default function NotFound({ title, message, locale, t }: Props) {
 
       {message && <p>{message}</p>}
 
-      <a class="btn btn-outline btn-sm" href={localizePath(locale, '/')}>
+      <ButtonLink href={localizePath(locale, '/')} variant="outline" size="sm">
         {t('All styles')}
-      </a>
+      </ButtonLink>
     </div>
   );
 }

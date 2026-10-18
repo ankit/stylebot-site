@@ -1,15 +1,19 @@
 ---
+import ButtonLink from '@/components/ButtonLink';
 import { BROWSERS, STORES } from '@/lib/links';
 
 import { fmt } from '@/i18n';
 
+// With a variant, the link looks like a button.
 type Props = {
   index: 0 | 1 | 2;
   format: 'add' | 'name' | 'reinstall';
+  variant?: 'primary' | 'outline';
+  size?: 'md' | 'sm';
   class?: string;
 };
 
-const { index, format, class: className } = Astro.props;
+const { index, format, variant, size, class: className } = Astro.props;
 const store = STORES[BROWSERS[index]];
 const { t } = Astro.locals;
 const template = {
@@ -17,16 +21,31 @@ const template = {
   name: '{store}',
   reinstall: t('Reinstall for {store}'),
 }[format];
+const label = fmt(template, { store: store.name });
 ---
 
-<a
-  href={store.href}
-  class={className}
-  data-store-slot={index}
-  data-store-label={template}
->
-  {fmt(template, { store: store.name })}
-</a>
+{variant && (
+  <ButtonLink
+    href={store.href}
+    variant={variant}
+    size={size}
+    class={className}
+    data-store-slot={index}
+    data-store-label={template}
+  >
+    {label}
+  </ButtonLink>
+)}
+{!variant && (
+  <a
+    href={store.href}
+    class={className}
+    data-store-slot={index}
+    data-store-label={template}
+  >
+    {label}
+  </a>
+)}
 
 <script>
   import { type Browser, BROWSERS, STORES } from '@/lib/links';
