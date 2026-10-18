@@ -121,8 +121,15 @@ a.icon-btn:hover {
   white-space: nowrap;
   gap: 8px;
   padding: 12px 18px;
+  border: none;
   border-radius: var(--radius-md);
   font: 600 var(--text-sm)/1 var(--font-ui);
+  cursor: pointer;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: default;
 }
 
 .btn-primary {
@@ -131,8 +138,12 @@ a.icon-btn:hover {
 }
 
 .btn-primary:hover {
-  background: var(--fg-secondary);
+  background: color-mix(in oklab, var(--fg) 86%, var(--bg-surface));
   color: var(--bg-surface);
+}
+
+.btn-primary:disabled {
+  background: var(--fg);
 }
 
 .btn-outline {
