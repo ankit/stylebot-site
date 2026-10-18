@@ -1,0 +1,21 @@
+.style-versions {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  h2 {
+    margin: 0;
+    font: 600 var(--text-lg) / 1.2 var(--font-display);
+    letter-spacing: -0.01em;
+    color: var(--fg);
+  }
+
+  ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--bg-surface);
+  }
+}

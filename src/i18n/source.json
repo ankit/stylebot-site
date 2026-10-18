@@ -620,6 +620,7 @@
   {
     "text": "Current",
     "files": [
+      "src/gallery/components/VersionItem.tsx",
       "src/www/components/Features.astro"
     ]
   },
@@ -1664,6 +1665,12 @@
     ]
   },
   {
+    "text": "Screenshot of version {version}",
+    "files": [
+      "src/gallery/components/VersionItem.tsx"
+    ]
+  },
+  {
     "text": "Search 400 <a href=\"https://fonts.google.com/\">Google Fonts</a> and Stylebot loads the one you pick, or type any font installed on your computer.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
@@ -2332,6 +2339,12 @@
     ]
   },
   {
+    "text": "Version {version}",
+    "files": [
+      "src/gallery/components/VersionItem.tsx"
+    ]
+  },
+  {
     "text": "Version history",
     "files": [
       "src/www/components/Features.astro",
@@ -2344,6 +2357,12 @@
     "files": [
       "src/www/pages/[...lang]/manual.astro",
       "src/www/pages/[...lang]/releases/4.0.astro"
+    ]
+  },
+  {
+    "text": "Versions",
+    "files": [
+      "src/gallery/components/StyleVersions.tsx"
     ]
   },
   {

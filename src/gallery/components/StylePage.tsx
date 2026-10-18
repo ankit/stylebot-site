@@ -17,6 +17,7 @@ import NotFound from './NotFound';
 import PreviewCard from './PreviewCard';
 import StyleCss from './StyleCss';
 import StylePageSkeleton from './StylePageSkeleton';
+import StyleVersions from './StyleVersions';
 
 import './StylePage.css';
 
@@ -112,6 +113,13 @@ export default function StylePage({ locale, strings }: Props) {
       </div>
 
       <StyleCss css={style.css} t={t} />
+
+      <StyleVersions
+        styleId={style.id}
+        locale={locale}
+        strings={strings}
+        t={t}
+      />
     </div>
   );
 }
