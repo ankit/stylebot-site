@@ -4,6 +4,7 @@ import { screenshotUrl } from '@/gallery/lib/api';
 import { fullNumber, timeAgo } from '@/gallery/lib/format';
 
 import ChevronLeftIcon from '@/components/icons/ChevronLeftIcon';
+import ZoomableImage from '@/components/ZoomableImage';
 
 import { type Locale, localizePath } from '@/i18n/locales';
 import { type Catalog, translator } from '@/i18n/t';
@@ -66,13 +67,14 @@ export default function StylePage({ locale, strings }: Props) {
       </a>
 
       <div class="style-page-top">
-        <img
+        <ZoomableImage
           class="style-page-shot"
           src={screenshotUrl(style)}
           alt={t('Screenshot of {name} on {site}', {
             name: style.name,
             site: style.site,
           })}
+          strings={strings}
         />
 
         <div class="style-page-side">

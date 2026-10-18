@@ -14,7 +14,7 @@ const { locale, strings } = Astro.locals;
     <StylePage
       client:load
       locale={locale}
-      strings={strings('gallery/components/')}
+      strings={strings('gallery/components/', 'components/ZoomableImage.tsx')}
     />
   </div>
 </Gallery>
