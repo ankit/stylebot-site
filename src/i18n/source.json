@@ -424,8 +424,8 @@
   {
     "text": "Close",
     "files": [
-      "src/www/components/Examples.astro",
-      "src/www/components/ImageZoom.astro"
+      "src/components/ZoomableImage.tsx",
+      "src/www/components/Examples.astro"
     ]
   },
   {
@@ -714,7 +714,7 @@
   {
     "text": "Enlarged screenshot",
     "files": [
-      "src/www/components/ImageZoom.astro"
+      "src/components/ZoomableImage.tsx"
     ]
   },
   {

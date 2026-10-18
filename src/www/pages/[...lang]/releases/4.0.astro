@@ -1,14 +1,12 @@
 ---
-import { Image } from 'astro:assets';
-
 import Base from '@/layouts/Base.astro';
 
-import ImageZoom from '@/www/components/ImageZoom.astro';
+import ZoomableImage from '@/components/ZoomableImage';
 import CliCommand from '@/www/components/cli/CliCommand.astro';
 
 import { CLI_EXAMPLES, CLI_INSTALL } from '@/www/lib/cli';
 import { LINKS } from '@/lib/links';
-import { crisp } from '@/www/lib/screenshots';
+import { screenshot } from '@/www/lib/screenshots';
 
 import { localeStaticPaths, rich } from '@/i18n';
 
@@ -25,7 +23,7 @@ import historyDark from '@/assets/manual/history-dark.png';
 
 export const getStaticPaths = localeStaticPaths;
 
-const { path, t } = Astro.locals;
+const { path, strings, t } = Astro.locals;
 const title = t("What's new in {version}", { version: '4.0' });
 
 const commands = CLI_EXAMPLES.map(({ id, command }) => [
@@ -83,6 +81,30 @@ const cards = [
     wide: true,
   },
 ];
+
+function cardWidth(card: { wide?: boolean; small?: boolean }) {
+  if (card.wide) {
+    return 480;
+  }
+
+  if (card.small) {
+    return 220;
+  }
+
+  return 300;
+}
+
+const zoomStrings = strings('components/ZoomableImage.tsx');
+const editorShots = {
+  light: await screenshot(editor, 290),
+  dark: await screenshot(editorDark, 290),
+};
+const cardShots = await Promise.all(
+  cards.map(async (card) => ({
+    light: await screenshot(card.light, cardWidth(card)),
+    dark: await screenshot(card.dark, cardWidth(card)),
+  })),
+);
 ---
 
 <Base
@@ -137,12 +159,11 @@ const cards = [
           </ul>
         </div>
         <div class="release-shot">
-          <Image
+          <ZoomableImage
+            client:visible
             class="shot-image is-light"
-            src={editor}
-            width={290}
-            densities={[1, 2]}
-            {...crisp(editor)}
+            strings={zoomStrings}
+            {...editorShots.light}
             alt={
               // i18n: Newspaper is a profile name shown in the screenshot.
               t(
@@ -150,12 +171,11 @@ const cards = [
               )
             }
           />
-          <Image
+          <ZoomableImage
+            client:visible
             class="shot-image is-dark"
-            src={editorDark}
-            width={290}
-            densities={[1, 2]}
-            {...crisp(editorDark)}
+            strings={zoomStrings}
+            {...editorShots.dark}
             alt={
               // i18n: Newspaper is a profile name shown in the screenshot.
               t(
@@ -211,7 +231,7 @@ const cards = [
       <hr />
 
       <section class="release-cards">
-        {cards.map((card) => (
+        {cards.map((card, i) => (
           <article id={card.id} class="release-card">
             <div
               class:list={[
@@ -219,20 +239,18 @@ const cards = [
                 { 'is-wide': card.wide, 'is-small': card.small },
               ]}
             >
-              <Image
+              <ZoomableImage
+                client:visible
                 class="shot-image is-light"
-                src={card.light}
-                width={card.wide ? 480 : card.small ? 220 : 300}
-                densities={[1, 2]}
-                {...crisp(card.light)}
+                strings={zoomStrings}
+                {...cardShots[i].light}
                 alt={card.alt}
               />
-              <Image
+              <ZoomableImage
+                client:visible
                 class="shot-image is-dark"
-                src={card.dark}
-                width={card.wide ? 480 : card.small ? 220 : 300}
-                densities={[1, 2]}
-                {...crisp(card.dark)}
+                strings={zoomStrings}
+                {...cardShots[i].dark}
                 alt={card.alt}
               />
             </div>
@@ -270,7 +288,6 @@ const cards = [
       </section>
     </div>
   </main>
-  <ImageZoom />
 </Base>
 
 <style>
