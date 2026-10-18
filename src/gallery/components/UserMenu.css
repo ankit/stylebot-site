@@ -1,0 +1,76 @@
+.user-menu {
+  position: relative;
+  margin-left: 4px;
+}
+
+.user-menu-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 200px;
+  height: 34px;
+  padding: 0 10px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--fg);
+  font: 500 var(--text-sm) / 1 var(--font-ui);
+  cursor: pointer;
+}
+
+.user-menu-button:hover,
+.user-menu-button:focus-visible,
+.user-menu-button[aria-expanded='true'] {
+  background: var(--bg-hover);
+}
+
+.user-menu-button svg {
+  flex: none;
+  color: var(--fg-muted);
+}
+
+.user-menu-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user-menu-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: var(--layer-dialog);
+}
+
+.user-menu-list {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  z-index: calc(var(--layer-dialog) + 1);
+  min-width: 180px;
+  padding: 6px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-xl);
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.user-menu-item {
+  display: block;
+  width: 100%;
+  padding: 8px 10px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--fg);
+  font: 400 var(--text-sm) / 1.2 var(--font-ui);
+  text-align: left;
+  cursor: pointer;
+}
+
+.user-menu-item:hover,
+.user-menu-item:focus-visible {
+  background: var(--bg-hover);
+}

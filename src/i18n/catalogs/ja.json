@@ -93,6 +93,7 @@
   "Couldn’t load styles.": "スタイルを読み込めませんでした。",
   "Couldn’t load this style.": "このスタイルを読み込めませんでした。",
   "Couldn’t open the preview. Try again.": "プレビューを開けませんでした。もう一度お試しください。",
+  "Couldn’t sign in. Try again": "ログインできませんでした。再試行",
   "Create a profile for a new look.": "新しいデザイン用にプロファイルを作成します。",
   "Create profile": "プロファイルを作成",
   "CSS": "CSS",
@@ -287,6 +288,7 @@
   "Shows when another rule overrides a value": "ほかのルールで値が上書きされているときに表示",
   "Side panel": "サイドパネル",
   "Sign in": "ログイン",
+  "Sign out": "ログアウト",
   "Size": "サイズ",
   "Smoother loading animation": "よりなめらかな読み込みアニメーション",
   "Some sites use auto-generated class names that change when the site updates. If a style stops working, pick the element again to get a fresh selector.": "自動生成されたクラス名を使うサイトでは、サイトの更新でクラス名が変わることがあります。スタイルが効かなくなったら、要素を選び直して新しいセレクタを取得してください。",
@@ -398,6 +400,7 @@
   "Yesterday, Sep 24": "昨日 9月24日",
   "You can also add the Stylebot CLI, so your agent can restyle sites for you.": "Stylebot の CLI を追加すれば、エージェントがサイトのスタイルを変えてくれます。",
   "You can now resize the Stylebot editor, and optionally have the page shrink so its content doesn't sit under the editor.": "Stylebot エディタのサイズを変更できるようになりました。ページを縮めて、コンテンツがエディタの下に隠れないようにすることもできます。",
+  "Your account": "アカウント",
   "Your styles were removed from this browser. If you turned on sync, a backup is still in your Google Drive.": "このブラウザからスタイルを削除しました。同期をオンにしていた場合、バックアップは Google Drive に残っています。",
   "Your styles, settings and history are saved in your browser, and uninstalling Stylebot removes them. Google Fonts and stylesheets you <code>@import</code> are downloaded from where they're hosted, which sees your IP address.": "スタイル、設定、履歴はブラウザに保存され、Stylebot をアンインストールすると削除されます。Google Fonts と <code>@import</code> したスタイルシートはそれぞれのホストからダウンロードされ、ホストには IP アドレスが伝わります。",
   "Your turn.": "さあ、試してみましょう。"

@@ -93,6 +93,7 @@
   "Couldn’t load styles.": "Не удалось загрузить стили.",
   "Couldn’t load this style.": "Не удалось загрузить стиль.",
   "Couldn’t open the preview. Try again.": "Не удалось открыть просмотр. Попробуйте ещё раз.",
+  "Couldn’t sign in. Try again": "Не удалось войти. Повторить",
   "Create a profile for a new look.": "Создайте профиль для нового оформления.",
   "Create profile": "Создать профиль",
   "CSS": "CSS",
@@ -287,6 +288,7 @@
   "Shows when another rule overrides a value": "Видно, когда значение переопределено другим правилом",
   "Side panel": "Боковая панель",
   "Sign in": "Войти",
+  "Sign out": "Выйти",
   "Size": "Размер",
   "Smoother loading animation": "Более плавная анимация загрузки",
   "Some sites use auto-generated class names that change when the site updates. If a style stops working, pick the element again to get a fresh selector.": "Некоторые сайты используют автоматически сгенерированные имена классов, которые меняются при обновлении сайта. Если стиль перестал работать, выберите элемент заново, чтобы получить новый селектор.",
@@ -398,6 +400,7 @@
   "Yesterday, Sep 24": "Вчера, 24 сент.",
   "You can also add the Stylebot CLI, so your agent can restyle sites for you.": "Можно также добавить CLI Stylebot — тогда ваш агент сможет менять оформление сайтов за вас.",
   "You can now resize the Stylebot editor, and optionally have the page shrink so its content doesn't sit under the editor.": "Теперь размер редактора Stylebot можно менять, а страницу — по желанию сужать, чтобы её содержимое не оказывалось под редактором.",
+  "Your account": "Ваш аккаунт",
   "Your styles were removed from this browser. If you turned on sync, a backup is still in your Google Drive.": "Ваши стили удалены из этого браузера. Если вы включали синхронизацию, резервная копия осталась в вашем Google Drive.",
   "Your styles, settings and history are saved in your browser, and uninstalling Stylebot removes them. Google Fonts and stylesheets you <code>@import</code> are downloaded from where they're hosted, which sees your IP address.": "Ваши стили, настройки и история хранятся в браузере и удаляются вместе со Stylebot. Шрифты Google Fonts и таблицы стилей, подключённые через <code>@import</code>, загружаются с серверов, где они размещены, и эти серверы видят ваш IP-адрес.",
   "Your turn.": "Теперь вы."

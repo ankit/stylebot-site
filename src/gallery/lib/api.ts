@@ -40,6 +40,10 @@ export type StyleVersion = {
   screenshot: string;
 };
 
+export type Account = { id: string; name: string | null };
+
+export type Session = { session: string; expiresAt: number; account: Account };
+
 export type Sort = 'popular' | 'new';
 
 export type StyleQuery = {
@@ -60,13 +64,34 @@ export class ApiError extends Error {
   }
 }
 
-async function request<T>(path: string): Promise<T> {
-  const response = await fetch(`${API_ORIGIN}/api/v1${path}`);
+async function request<T>(
+  path: string,
+  init: RequestInit & { session?: string } = {},
+): Promise<T> {
+  const { session, ...rest } = init;
+  const headers: Record<string, string> = {};
+
+  if (rest.body) {
+    headers['Content-Type'] = 'application/json';
+  }
+
+  if (session) {
+    headers.Authorization = `Bearer ${session}`;
+  }
+
+  const response = await fetch(`${API_ORIGIN}/api/v1${path}`, {
+    ...rest,
+    headers,
+  });
 
   if (!response.ok) {
     const body = await response.json().catch(() => null);
 
     throw new ApiError(response.status, body?.error ?? response.statusText);
+  }
+
+  if (response.status === 204) {
+    return undefined as T;
   }
 
   return response.json();
@@ -105,3 +130,9 @@ export const getVersion = (id: string, version: number) =>
   request<StyleVersion & { css: string }>(
     `/styles/${encodeURIComponent(id)}/versions/${version}`,
   );
+
+export const createSession = (googleToken: string) =>
+  request<Session>('/session', {
+    method: 'POST',
+    body: JSON.stringify({ googleToken }),
+  });

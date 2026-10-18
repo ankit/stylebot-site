@@ -93,6 +93,7 @@
   "Couldn’t load styles.": "Tidak dapat memuat gaya.",
   "Couldn’t load this style.": "Tidak dapat memuat gaya ini.",
   "Couldn’t open the preview. Try again.": "Tidak dapat membuka pratinjau. Coba lagi.",
+  "Couldn’t sign in. Try again": "Gagal login. Coba lagi",
   "Create a profile for a new look.": "Buat profil untuk tampilan baru.",
   "Create profile": "Buat profil",
   "CSS": "CSS",
@@ -287,6 +288,7 @@
   "Shows when another rule overrides a value": "Menunjukkan saat nilai ditimpa aturan lain",
   "Side panel": "Panel samping",
   "Sign in": "Login",
+  "Sign out": "Logout",
   "Size": "Ukuran",
   "Smoother loading animation": "Animasi pemuatan yang lebih halus",
   "Some sites use auto-generated class names that change when the site updates. If a style stops working, pick the element again to get a fresh selector.": "Beberapa situs memakai nama class yang dibuat otomatis dan berubah saat situs diperbarui. Jika gaya berhenti berfungsi, pilih ulang elemennya untuk mendapatkan selektor baru.",
@@ -398,6 +400,7 @@
   "Yesterday, Sep 24": "Kemarin, 24 Sep",
   "You can also add the Stylebot CLI, so your agent can restyle sites for you.": "Anda juga bisa menambahkan CLI Stylebot, jadi agen Anda dapat mengubah gaya situs untuk Anda.",
   "You can now resize the Stylebot editor, and optionally have the page shrink so its content doesn't sit under the editor.": "Kini Anda bisa mengubah ukuran editor Stylebot, dan secara opsional mengecilkan halaman agar kontennya tidak tertutup editor.",
+  "Your account": "Akun Anda",
   "Your styles were removed from this browser. If you turned on sync, a backup is still in your Google Drive.": "Gaya Anda telah dihapus dari browser ini. Jika Anda mengaktifkan sinkronisasi, cadangannya masih ada di Google Drive Anda.",
   "Your styles, settings and history are saved in your browser, and uninstalling Stylebot removes them. Google Fonts and stylesheets you <code>@import</code> are downloaded from where they're hosted, which sees your IP address.": "Gaya, setelan, dan riwayat Anda disimpan di browser, dan menghapus instalan Stylebot akan menghapusnya. Google Fonts dan stylesheet yang Anda <code>@import</code> diunduh dari server tempatnya di-hosting, yang dapat melihat alamat IP Anda.",
   "Your turn.": "Sekarang giliran Anda."

@@ -594,6 +594,13 @@
     ]
   },
   {
+    "text": "Couldn’t sign in. Try again",
+    "note": "On the sign-in button after signing in with Google failed.",
+    "files": [
+      "src/gallery/components/SignInButton.tsx"
+    ]
+  },
+  {
     "text": "Create a profile for a new look.",
     "files": [
       "src/www/components/demo/scenes.ts"
@@ -1765,7 +1772,14 @@
   {
     "text": "Sign in",
     "files": [
+      "src/gallery/components/SignInButton.tsx",
       "src/www/components/demo/Demo.tsx"
+    ]
+  },
+  {
+    "text": "Sign out",
+    "files": [
+      "src/gallery/components/UserMenu.tsx"
     ]
   },
   {
@@ -2449,6 +2463,13 @@
     "text": "You can now resize the Stylebot editor, and optionally have the page shrink so its content doesn't sit under the editor.",
     "files": [
       "src/www/pages/[...lang]/releases/3.1.astro"
+    ]
+  },
+  {
+    "text": "Your account",
+    "note": "The account menu's label when the account has no display name.",
+    "files": [
+      "src/gallery/components/UserMenu.tsx"
     ]
   },
   {

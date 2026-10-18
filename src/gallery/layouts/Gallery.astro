@@ -3,6 +3,8 @@ import Header from '@/components/Header.astro';
 
 import Base from '@/layouts/Base.astro';
 
+import UserMenu from '@/gallery/components/UserMenu';
+
 import './Gallery.css';
 
 type Props = {
@@ -12,7 +14,7 @@ type Props = {
   alternates?: boolean;
 };
 
-const { t } = Astro.locals;
+const { strings, t } = Astro.locals;
 const {
   title = t('Browse Styles'),
   description = t(
@@ -42,7 +44,14 @@ const {
       t('Gallery')
     }
   >
-    <Fragment slot="actions" />
+    <UserMenu
+      slot="actions"
+      client:load
+      strings={strings(
+        'gallery/components/UserMenu.tsx',
+        'gallery/components/SignInButton.tsx',
+      )}
+    />
   </Header>
   <main class="g-main">
     <slot />

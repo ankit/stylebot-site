@@ -93,6 +93,7 @@
   "Couldn’t load styles.": "无法加载样式。",
   "Couldn’t load this style.": "无法加载此样式。",
   "Couldn’t open the preview. Try again.": "无法打开预览。请重试。",
+  "Couldn’t sign in. Try again": "无法登录，重试",
   "Create a profile for a new look.": "为新外观创建方案。",
   "Create profile": "创建方案",
   "CSS": "CSS",
@@ -287,6 +288,7 @@
   "Shows when another rule overrides a value": "值被其他规则覆盖时会标明",
   "Side panel": "侧边栏",
   "Sign in": "登录",
+  "Sign out": "退出登录",
   "Size": "字号",
   "Smoother loading animation": "更流畅的加载动画",
   "Some sites use auto-generated class names that change when the site updates. If a style stops working, pick the element again to get a fresh selector.": "有些网站使用自动生成的类名，网站更新时类名会变。如果某个样式失效了，重新选取该元素即可得到新的选择器。",
@@ -398,6 +400,7 @@
   "Yesterday, Sep 24": "昨天，9月24日",
   "You can also add the Stylebot CLI, so your agent can restyle sites for you.": "你也可以添加 Stylebot CLI，让智能体帮你修改网站样式。",
   "You can now resize the Stylebot editor, and optionally have the page shrink so its content doesn't sit under the editor.": "现在可以调整 Stylebot 编辑器的大小，还可以选择让页面收窄，避免内容被编辑器挡住。",
+  "Your account": "你的账号",
   "Your styles were removed from this browser. If you turned on sync, a backup is still in your Google Drive.": "你的样式已从此浏览器中移除。如果开启过同步，Google Drive 中仍有一份备份。",
   "Your styles, settings and history are saved in your browser, and uninstalling Stylebot removes them. Google Fonts and stylesheets you <code>@import</code> are downloaded from where they're hosted, which sees your IP address.": "你的样式、设置和历史记录都保存在浏览器中，卸载 Stylebot 会将它们删除。Google Fonts 字体和通过 <code>@import</code> 引入的样式表会从其托管位置下载，托管方会看到你的 IP 地址。",
   "Your turn.": "轮到你了。"

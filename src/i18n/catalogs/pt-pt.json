@@ -93,6 +93,7 @@
   "Couldn’t load styles.": "Não foi possível carregar os estilos.",
   "Couldn’t load this style.": "Não foi possível carregar este estilo.",
   "Couldn’t open the preview. Try again.": "Não foi possível abrir a pré-visualização. Tente novamente.",
+  "Couldn’t sign in. Try again": "Não foi possível iniciar sessão. Tentar novamente",
   "Create a profile for a new look.": "Crie um perfil para um novo aspeto.",
   "Create profile": "Criar perfil",
   "CSS": "CSS",
@@ -287,6 +288,7 @@
   "Shows when another rule overrides a value": "Indica quando outra regra substitui um valor",
   "Side panel": "Painel lateral",
   "Sign in": "Iniciar sessão",
+  "Sign out": "Terminar sessão",
   "Size": "Tamanho",
   "Smoother loading animation": "Animação de carregamento mais suave",
   "Some sites use auto-generated class names that change when the site updates. If a style stops working, pick the element again to get a fresh selector.": "Alguns sites usam nomes de classes gerados automaticamente, que mudam quando o site é atualizado. Se um estilo deixar de funcionar, escolha o elemento novamente para obter um seletor novo.",
@@ -398,6 +400,7 @@
   "Yesterday, Sep 24": "Ontem, 24/09",
   "You can also add the Stylebot CLI, so your agent can restyle sites for you.": "Também pode adicionar a CLI do Stylebot para que o seu agente mude o estilo dos sites por si.",
   "You can now resize the Stylebot editor, and optionally have the page shrink so its content doesn't sit under the editor.": "Agora pode redimensionar o editor do Stylebot e, opcionalmente, fazer a página encolher para que o conteúdo não fique por baixo do editor.",
+  "Your account": "A sua conta",
   "Your styles were removed from this browser. If you turned on sync, a backup is still in your Google Drive.": "Os seus estilos foram removidos deste navegador. Se ativou a sincronização, ainda tem uma cópia de segurança no seu Google Drive.",
   "Your styles, settings and history are saved in your browser, and uninstalling Stylebot removes them. Google Fonts and stylesheets you <code>@import</code> are downloaded from where they're hosted, which sees your IP address.": "Os seus estilos, definições e histórico são guardados no navegador, e desinstalar o Stylebot remove-os. Os tipos de letra do Google Fonts e as folhas de estilos que importa com <code>@import</code> são transferidos a partir de onde estão alojados, e quem os aloja vê o seu endereço IP.",
   "Your turn.": "A sua vez."

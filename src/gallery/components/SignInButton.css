@@ -1,0 +1,6 @@
+.sign-in-button svg {
+  padding: 2px;
+  box-sizing: content-box;
+  border-radius: 50%;
+  background: #fff;
+}
