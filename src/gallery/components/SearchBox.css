@@ -1,0 +1,63 @@
+.search-box {
+  width: 100%;
+  max-width: 560px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 auto;
+  padding: 0 7px 0 16px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-lg);
+  color: var(--fg-muted);
+  cursor: text;
+
+  &:focus-within {
+    border-color: var(--fg-muted);
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--fg) 8%, transparent);
+    color: var(--fg-secondary);
+  }
+
+  svg {
+    flex: none;
+  }
+
+  input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    font: 400 var(--text-base) / 1 var(--font-ui);
+    color: var(--fg);
+
+    &::placeholder {
+      color: var(--fg-subtle);
+    }
+
+    &::-webkit-search-cancel-button {
+      display: none;
+    }
+  }
+
+  .icon-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  kbd {
+    margin-right: 3px;
+    padding: 5px 7px;
+    border: 1px solid var(--border-strong);
+    border-bottom-width: 2px;
+    border-radius: var(--radius-sm);
+    font: 600 var(--text-xs) / 1 var(--font-ui);
+    color: var(--fg-muted);
+  }
+
+  &:focus-within kbd {
+    visibility: hidden;
+  }
+}

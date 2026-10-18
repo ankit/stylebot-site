@@ -1,41 +1,23 @@
-import { useEffect, useState } from 'preact/hooks';
-
 import { type Sort } from '@/gallery/lib/api';
+
+import { useQueryParam } from './useQueryParam';
 
 const SORTS: Array<Sort> = ['popular', 'new'];
 
-function sortFromUrl() {
-  const param = new URLSearchParams(location.search).get('sort');
+function sortOf(param: string | null) {
+  if (param === null) {
+    return null;
+  }
 
   return SORTS.find((sort) => sort === param) ?? 'popular';
 }
 
-function setSortInUrl(sort: Sort) {
-  const url = new URL(location.href);
-
-  if (sort === 'popular') {
-    url.searchParams.delete('sort');
-  } else {
-    url.searchParams.set('sort', sort);
-  }
-
-  history.replaceState(null, '', url);
-}
-
 /**
  * The sort in the page's address, ?sort=new, and a setter that updates both.
- * It's null until the island runs, since the page is built without the
- * address.
+ * It's null until the island runs.
  */
 export function useSort() {
-  const [sort, setSort] = useState<Sort | null>(null);
+  const [param, setParam] = useQueryParam('sort', 'popular');
 
-  useEffect(() => setSort(sortFromUrl()), []);
-
-  const changeSort = (value: Sort) => {
-    setSort(value);
-    setSortInUrl(value);
-  };
-
-  return [sort, changeSort] as const;
+  return [sortOf(param), (sort: Sort) => setParam(sort)] as const;
 }

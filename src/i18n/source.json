@@ -344,6 +344,12 @@
     ]
   },
   {
+    "text": "Clear search",
+    "files": [
+      "src/gallery/components/SearchBox.tsx"
+    ]
+  },
+  {
     "text": "CLI",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
@@ -1229,6 +1235,12 @@
     ]
   },
   {
+    "text": "No styles match “{query}”.",
+    "files": [
+      "src/gallery/components/Browse.tsx"
+    ]
+  },
+  {
     "text": "No styles yet",
     "note": "Shown as a CSS comment in an empty code editor",
     "files": [
@@ -1398,6 +1410,12 @@
     ]
   },
   {
+    "text": "Press / to search",
+    "files": [
+      "src/gallery/components/SearchBox.tsx"
+    ]
+  },
+  {
     "text": "Preview a color or font on the page by hovering it",
     "files": [
       "src/www/pages/[...lang]/releases/4.0.astro"
@@ -1550,6 +1568,12 @@
     "text": "Search 400 <a href=\"https://fonts.google.com/\">Google Fonts</a> and Stylebot loads the one you pick, or type any font installed on your computer.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
+    "text": "Search sites and styles",
+    "files": [
+      "src/gallery/components/SearchBox.tsx"
     ]
   },
   {
