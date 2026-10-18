@@ -70,6 +70,19 @@
   color: var(--fg-muted);
 }
 
+.style-card-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
+
+  .style-card-name {
+    align-self: auto;
+    min-width: 0;
+  }
+}
+
 .style-card.is-skeleton {
   .style-card-bar,
   .style-card-shot,

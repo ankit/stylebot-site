@@ -1,3 +1,4 @@
+import { useInstalledStyles } from '@/gallery/hooks/useInstalledStyles';
 import { type Style } from '@/gallery/lib/api';
 
 import { type Locale } from '@/i18n/locales';
@@ -25,14 +26,23 @@ type Props = {
 
 /**
  * Styles as a grid of cards that loads more as the reader scrolls, with
- * placeholders while a page loads and a retry when one fails.
+ * placeholders while a page loads, a retry when one fails, and the ones
+ * Stylebot has marked installed.
  */
 export default function StyleGrid({ feed, locale, t }: Props) {
+  const installed = useInstalledStyles(feed.items.map((style) => style.id));
+
   return (
     <>
       <div class="style-grid" aria-busy={feed.loading}>
         {feed.items.map((style) => (
-          <StyleCard key={style.id} style={style} locale={locale} t={t} />
+          <StyleCard
+            key={style.id}
+            style={style}
+            installed={style.id in installed}
+            locale={locale}
+            t={t}
+          />
         ))}
 
         {feed.loading && <StyleCardSkeleton count={6} />}

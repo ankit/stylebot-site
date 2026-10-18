@@ -1,0 +1,11 @@
+.installed-badge {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  background: var(--bg-hover);
+  font: 500 var(--text-xs) / 1.2 var(--font-ui);
+  color: var(--fg-secondary);
+}

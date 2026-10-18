@@ -5,16 +5,22 @@ import { type Locale } from '@/i18n/locales';
 import { type Translate } from '@/i18n/t';
 
 import Favicon from './Favicon';
+import InstalledBadge from './InstalledBadge';
 
 import './StyleCard.css';
 
-type Props = { style: Style; locale: Locale; t: Translate };
+type Props = {
+  style: Style;
+  installed?: boolean;
+  locale: Locale;
+  t: Translate;
+};
 
 /**
- * A style in a grid: its screenshot in a small browser frame, with its name
- * and author.
+ * A style in a grid: its screenshot in a small browser frame, with its name,
+ * author, and whether it's installed.
  */
-export default function StyleCard({ style, locale, t }: Props) {
+export default function StyleCard({ style, installed, locale, t }: Props) {
   const href = styleHref(locale, style);
 
   return (
@@ -31,9 +37,14 @@ export default function StyleCard({ style, locale, t }: Props) {
           loading="lazy"
         />
       </a>
-      <a class="style-card-name" href={href}>
-        {style.name}
-      </a>
+      <div class="style-card-title">
+        <a class="style-card-name" href={href}>
+          {style.name}
+        </a>
+
+        {installed && <InstalledBadge t={t} />}
+      </div>
+
       <span class="style-card-author">
         {style.author.name ??
           // i18n: Shown for a style's author who hasn't set a name.

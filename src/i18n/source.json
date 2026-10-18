@@ -1090,6 +1090,7 @@
   {
     "text": "Installed",
     "files": [
+      "src/gallery/components/InstalledBadge.tsx",
       "src/gallery/components/InstalledNotice.tsx",
       "src/www/components/Examples.astro"
     ]
