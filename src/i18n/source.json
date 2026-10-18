@@ -48,6 +48,7 @@
   {
     "text": "{title} | Stylebot",
     "files": [
+      "src/gallery/components/StylePage.tsx",
       "src/gallery/layouts/Gallery.astro"
     ]
   },
@@ -189,7 +190,8 @@
   {
     "text": "All styles",
     "files": [
-      "src/gallery/pages/404.astro"
+      "src/gallery/components/NotFound.tsx",
+      "src/gallery/components/StylePage.tsx"
     ]
   },
   {
@@ -228,7 +230,8 @@
     "text": "Anonymous",
     "note": "Shown for a style's author who hasn't set a name.",
     "files": [
-      "src/gallery/components/StyleCard.tsx"
+      "src/gallery/components/StyleCard.tsx",
+      "src/gallery/components/StylePage.tsx"
     ]
   },
   {
@@ -261,6 +264,12 @@
     "text": "At the start of a URL, turns it into a regular expression.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
+    "text": "Author",
+    "files": [
+      "src/gallery/components/StylePage.tsx"
     ]
   },
   {
@@ -554,6 +563,12 @@
     "text": "Couldn’t load styles.",
     "files": [
       "src/gallery/components/Browse.tsx"
+    ]
+  },
+  {
+    "text": "Couldn’t load this style.",
+    "files": [
+      "src/gallery/components/StylePage.tsx"
     ]
   },
   {
@@ -1052,9 +1067,21 @@
     ]
   },
   {
+    "text": "Installs",
+    "files": [
+      "src/gallery/components/StylePage.tsx"
+    ]
+  },
+  {
     "text": "It broke a site",
     "files": [
       "src/www/components/GoodbyeFeedback.tsx"
+    ]
+  },
+  {
+    "text": "It may have been unpublished, or the link is wrong.",
+    "files": [
+      "src/gallery/components/StylePage.tsx"
     ]
   },
   {
@@ -1565,6 +1592,12 @@
     ]
   },
   {
+    "text": "Screenshot of {name} on {site}",
+    "files": [
+      "src/gallery/components/StylePage.tsx"
+    ]
+  },
+  {
     "text": "Search 400 <a href=\"https://fonts.google.com/\">Google Fonts</a> and Stylebot loads the one you pick, or type any font installed on your computer.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
@@ -1684,6 +1717,12 @@
     "text": "Style it",
     "files": [
       "src/www/components/demo/scenes.ts"
+    ]
+  },
+  {
+    "text": "Style not found",
+    "files": [
+      "src/gallery/components/StylePage.tsx"
     ]
   },
   {
@@ -2167,6 +2206,12 @@
     ]
   },
   {
+    "text": "Updated",
+    "files": [
+      "src/gallery/components/StylePage.tsx"
+    ]
+  },
+  {
     "text": "URL rules",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
@@ -2194,6 +2239,12 @@
     "text": "Using a coding agent? Add the <a href=\"#cli\">CLI</a>:",
     "files": [
       "src/www/pages/[...lang]/index.astro"
+    ]
+  },
+  {
+    "text": "Version",
+    "files": [
+      "src/gallery/components/StylePage.tsx"
     ]
   },
   {

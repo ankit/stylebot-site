@@ -1,0 +1,20 @@
+---
+import StylePage from '@/gallery/components/StylePage';
+import Gallery from '@/gallery/layouts/Gallery.astro';
+
+import { localeStaticPaths } from '@/i18n';
+
+export const getStaticPaths = localeStaticPaths;
+
+const { locale, strings } = Astro.locals;
+---
+
+<Gallery alternates={false}>
+  <div class="g-page">
+    <StylePage
+      client:load
+      locale={locale}
+      strings={strings('gallery/components/')}
+    />
+  </div>
+</Gallery>

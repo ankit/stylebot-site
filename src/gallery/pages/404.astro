@@ -1,16 +1,12 @@
 ---
+import NotFound from '@/gallery/components/NotFound';
 import Gallery from '@/gallery/layouts/Gallery.astro';
 
-const { path, t } = Astro.locals;
+const { locale, t } = Astro.locals;
 ---
 
 <Gallery title={t('Page not found')} noindex>
   <div class="g-page">
-    <div class="g-empty">
-      <h1 class="g-title">{t('Page not found')}</h1>
-      <a class="btn btn-outline btn-sm" href={path('/')}>
-        {t('All styles')}
-      </a>
-    </div>
+    <NotFound title={t('Page not found')} locale={locale} t={t} />
   </div>
 </Gallery>

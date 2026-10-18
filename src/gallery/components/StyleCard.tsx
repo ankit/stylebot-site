@@ -1,8 +1,10 @@
 import { screenshotUrl, type Style } from '@/gallery/lib/api';
-import { faviconUrl, styleHref } from '@/gallery/lib/paths';
+import { styleHref } from '@/gallery/lib/paths';
 
 import { type Locale } from '@/i18n/locales';
 import { type Translate } from '@/i18n/t';
+
+import Favicon from './Favicon';
 
 import './StyleCard.css';
 
@@ -19,7 +21,7 @@ export default function StyleCard({ style, locale, t }: Props) {
     <div class="style-card">
       <a class="style-card-frame" href={href} tabIndex={-1} aria-hidden="true">
         <span class="style-card-bar">
-          <img src={faviconUrl(style.site)} width={14} height={14} alt="" />
+          <Favicon site={style.site} />
           <span>{style.site}</span>
         </span>
         <img

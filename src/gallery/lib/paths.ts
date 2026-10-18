@@ -1,4 +1,4 @@
-import { type Locale, localizePath } from '@/i18n/locales';
+import { type Locale, localizePath, unlocalizedPath } from '@/i18n/locales';
 
 export const styleHref = (
   locale: Locale,
@@ -9,5 +9,14 @@ export const styleHref = (
     `/s/${encodeURIComponent(style.group)}/${encodeURIComponent(style.slug)}`,
   );
 
-export const faviconUrl = (site: string) =>
-  `https://www.google.com/s2/favicons?sz=64&domain=${encodeURIComponent(site)}`;
+/**
+ * The site group and style slug in this page's address, /s/<group>/<slug>,
+ * which the host serves the style page for.
+ */
+export function styleRoute() {
+  const [, , group = '', slug = ''] = unlocalizedPath(location.pathname).split(
+    '/',
+  );
+
+  return { group: decodeURIComponent(group), slug: decodeURIComponent(slug) };
+}
