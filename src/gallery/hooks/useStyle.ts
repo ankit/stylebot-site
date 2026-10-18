@@ -1,5 +1,5 @@
 import { ApiError, getStyle } from '@/gallery/lib/api';
-import { styleRoute } from '@/gallery/lib/paths';
+import { galleryRoute } from '@/gallery/lib/paths';
 
 import { useRequest } from './useRequest';
 
@@ -9,7 +9,7 @@ import { useRequest } from './useRequest';
  */
 export function useStyle() {
   const request = useRequest(() => {
-    const { group, slug } = styleRoute();
+    const { group, slug } = galleryRoute();
 
     return getStyle(group, slug);
   });

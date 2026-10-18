@@ -1,14 +1,16 @@
+import { useGroupRedirect } from '@/gallery/hooks/useGroupRedirect';
 import { usePageMeta } from '@/gallery/hooks/usePageMeta';
 import { useStyle } from '@/gallery/hooks/useStyle';
 import { screenshotUrl } from '@/gallery/lib/api';
 import { fullNumber, timeAgo } from '@/gallery/lib/format';
+import { siteHref } from '@/gallery/lib/paths';
 
-import ChevronLeftIcon from '@/components/icons/ChevronLeftIcon';
 import ZoomableImage from '@/components/ZoomableImage';
 
 import { type Locale, localizePath } from '@/i18n/locales';
 import { type Catalog, translator } from '@/i18n/t';
 
+import BackLink from './BackLink';
 import Favicon from './Favicon';
 import LoadError from './LoadError';
 import NotFound from './NotFound';
@@ -27,6 +29,7 @@ type Props = { locale: Locale; strings: Catalog };
 export default function StylePage({ locale, strings }: Props) {
   const t = translator(strings);
   const { style, missing, failed, reload } = useStyle();
+  const redirecting = useGroupRedirect(missing);
   let title = style?.name;
 
   if (missing) {
@@ -34,6 +37,10 @@ export default function StylePage({ locale, strings }: Props) {
   }
 
   usePageMeta(title && t('{title} | Stylebot', { title }));
+
+  if (missing && redirecting) {
+    return null;
+  }
 
   if (missing) {
     return (
@@ -62,10 +69,7 @@ export default function StylePage({ locale, strings }: Props) {
 
   return (
     <div class="style-page">
-      <a class="style-page-back" href={localizePath(locale, '/')}>
-        <ChevronLeftIcon />
-        {t('All styles')}
-      </a>
+      <BackLink href={localizePath(locale, '/')}>{t('All styles')}</BackLink>
 
       <div class="style-page-top">
         <ZoomableImage
@@ -81,10 +85,10 @@ export default function StylePage({ locale, strings }: Props) {
         <div class="style-page-side">
           <h1>{style.name}</h1>
 
-          <span class="style-page-site">
+          <a class="style-page-site" href={siteHref(locale, style.group)}>
             <Favicon site={style.site} />
             {style.site}
-          </span>
+          </a>
 
           {style.description && <p>{style.description}</p>}
 

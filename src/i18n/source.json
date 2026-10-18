@@ -48,6 +48,7 @@
   {
     "text": "{title} | Stylebot",
     "files": [
+      "src/gallery/components/SitePage.tsx",
       "src/gallery/components/StylePage.tsx",
       "src/gallery/layouts/Gallery.astro"
     ]
@@ -203,6 +204,7 @@
     "text": "All styles",
     "files": [
       "src/gallery/components/NotFound.tsx",
+      "src/gallery/components/SitePage.tsx",
       "src/gallery/components/StylePage.tsx"
     ]
   },
@@ -576,7 +578,7 @@
   {
     "text": "Couldn’t load styles.",
     "files": [
-      "src/gallery/components/Browse.tsx"
+      "src/gallery/components/StyleGrid.tsx"
     ]
   },
   {
@@ -1295,6 +1297,12 @@
     ]
   },
   {
+    "text": "No styles for {site} yet",
+    "files": [
+      "src/gallery/components/SitePage.tsx"
+    ]
+  },
+  {
     "text": "No styles match “{query}”.",
     "files": [
       "src/gallery/components/Browse.tsx"
@@ -1908,6 +1916,12 @@
     "text": "Stylebot's use of information received from Google APIs adheres to the <a href=\"https://developers.google.com/terms/api-services-user-data-policy\">Google API Services User Data Policy</a>, including the Limited Use requirements.",
     "files": [
       "src/www/pages/[...lang]/privacy.astro"
+    ]
+  },
+  {
+    "text": "Styles for {site}",
+    "files": [
+      "src/gallery/components/SitePage.tsx"
     ]
   },
   {

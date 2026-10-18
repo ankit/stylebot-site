@@ -1,0 +1,17 @@
+.site-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.site-page-head {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  .favicon {
+    border-radius: var(--radius-sm);
+  }
+}

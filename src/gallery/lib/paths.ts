@@ -9,11 +9,13 @@ export const styleHref = (
     `/s/${encodeURIComponent(style.group)}/${encodeURIComponent(style.slug)}`,
   );
 
+export const siteHref = (locale: Locale, group: string) =>
+  localizePath(locale, `/s/${encodeURIComponent(group)}`);
+
 /**
- * The site group and style slug in this page's address, /s/<group>/<slug>,
- * which the host serves the style page for.
+ * The group and slug in this page's address, /s/<group>[/<slug>].
  */
-export function styleRoute() {
+export function galleryRoute() {
   const [, , group = '', slug = ''] = unlocalizedPath(location.pathname).split(
     '/',
   );

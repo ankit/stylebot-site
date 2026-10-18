@@ -1,0 +1,12 @@
+.back-link {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font: 500 var(--text-sm) / 1 var(--font-ui);
+  color: var(--fg-muted);
+
+  &:hover {
+    color: var(--fg);
+  }
+}
