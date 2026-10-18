@@ -1,4 +1,5 @@
 ---
+import Tooltip from '@/components/Tooltip';
 import GlobeIcon from '@/components/icons/GlobeIcon';
 
 import { LOCALES, localizePath, unlocalizedPath } from '@/i18n';
@@ -16,7 +17,7 @@ const path = unlocalizedPath(Astro.url.pathname);
     data-lang-toggle
   >
     <GlobeIcon />
-    <span class="tooltip">{t('Language')}</span>
+    <Tooltip>{t('Language')}</Tooltip>
   </button>
   <div class="lang-menu-list" role="menu" hidden>
     {LOCALES.map((l) => (

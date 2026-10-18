@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'preact/hooks';
 
 import ContrastIcon from '@/components/icons/ContrastIcon';
+import Tooltip from '@/components/Tooltip';
 
 import { track } from '@/lib/analytics';
 
@@ -55,7 +56,7 @@ export default function ThemeMenu({ strings }: { strings: Catalog }) {
         onClick={() => setOpen(!open)}
       >
         <ContrastIcon />
-        <span class="tooltip">{title}</span>
+        <Tooltip>{title}</Tooltip>
       </button>
       {open && (
         <>

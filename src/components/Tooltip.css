@@ -1,0 +1,29 @@
+.tooltip {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  z-index: var(--layer-tooltip);
+  padding: 6px 9px;
+  border-radius: var(--radius-sm);
+  background: var(--fg);
+  color: var(--bg-surface);
+  font: 500 var(--text-xs) / 1 var(--font-ui);
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  transform: translate(-50%, -3px);
+  transition:
+    opacity 0.12s,
+    transform 0.12s;
+}
+
+:hover > .tooltip,
+:focus-visible > .tooltip {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.is-open > .tooltip {
+  opacity: 0;
+}

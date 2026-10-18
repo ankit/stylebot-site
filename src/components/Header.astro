@@ -1,5 +1,6 @@
 ---
 import ButtonLink from '@/components/ButtonLink';
+import Tooltip from '@/components/Tooltip';
 import BookIcon from '@/components/icons/BookIcon';
 import GitHubIcon from '@/components/icons/GitHubIcon';
 
@@ -50,11 +51,11 @@ const {
           aria-current={current === 'manual' ? 'page' : undefined}
         >
           <BookIcon />
-          <span class="tooltip">{t('Manual')}</span>
+          <Tooltip>{t('Manual')}</Tooltip>
         </a>
         <a href={LINKS.github} class="icon-btn" aria-label="GitHub">
           <GitHubIcon />
-          <span class="tooltip">GitHub</span>
+          <Tooltip>GitHub</Tooltip>
         </a>
         {install &&
           (storeCta ? (
