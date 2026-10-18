@@ -48,16 +48,12 @@ const label = fmt(template, { store: store.name });
 )}
 
 <script>
-  import { type Browser, BROWSERS, STORES } from '@/lib/links';
+  import { BROWSERS, currentBrowser, STORES } from '@/lib/links';
 
   import { fmt } from '@/i18n/format';
 
-  const ua = navigator.userAgent;
-  const current: Browser = /Firefox\//.test(ua)
-    ? 'firefox'
-    : /Edg\//.test(ua)
-      ? 'edge'
-      : 'chrome';
+  // Where Stylebot doesn't run, Chrome comes first, as on the built page.
+  const current = currentBrowser() ?? 'chrome';
   const order = [current, ...BROWSERS.filter((b) => b !== current)];
 
   document
