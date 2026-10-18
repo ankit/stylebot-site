@@ -1,0 +1,26 @@
+.top-sites {
+  display: flex;
+  justify-content: safe center;
+  gap: 8px;
+  margin-top: -12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  a {
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-full);
+    background: var(--bg-surface);
+    font: 500 var(--text-sm) / 1.2 var(--font-ui);
+    color: var(--fg-secondary);
+
+    &:hover {
+      border-color: var(--border-strong);
+      color: var(--fg);
+    }
+  }
+}

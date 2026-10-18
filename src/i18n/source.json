@@ -2210,6 +2210,12 @@
     ]
   },
   {
+    "text": "Top sites",
+    "files": [
+      "src/gallery/components/TopSites.tsx"
+    ]
+  },
+  {
     "text": "Translate",
     "files": [
       "src/www/components/demo/Demo.tsx"

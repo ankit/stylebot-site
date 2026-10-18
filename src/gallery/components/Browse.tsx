@@ -8,6 +8,7 @@ import { type Catalog, translator } from '@/i18n/t';
 import SearchBox from './SearchBox';
 import SortTabs from './SortTabs';
 import StyleGrid from './StyleGrid';
+import TopSites from './TopSites';
 
 type Props = { locale: Locale; strings: Catalog };
 
@@ -25,6 +26,8 @@ export default function Browse({ locale, strings }: Props) {
   return (
     <>
       <SearchBox value={query ?? ''} onChange={setQuery} t={t} />
+
+      <TopSites locale={locale} t={t} />
 
       <SortTabs sort={sort} onChange={setSort} t={t} />
 
