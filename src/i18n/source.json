@@ -48,6 +48,9 @@
   {
     "text": "{title} | Stylebot",
     "files": [
+      "src/gallery/components/Browse.tsx",
+      "src/gallery/components/MinePage.tsx",
+      "src/gallery/components/NotFoundPage.tsx",
       "src/gallery/components/SitePage.tsx",
       "src/gallery/components/StylePage.tsx",
       "src/gallery/layouts/Gallery.astro"
@@ -345,8 +348,8 @@
   {
     "text": "Browse Styles",
     "files": [
-      "src/gallery/layouts/Gallery.astro",
-      "src/gallery/pages/[...lang]/index.astro"
+      "src/gallery/components/Browse.tsx",
+      "src/gallery/layouts/Gallery.astro"
     ]
   },
   {
@@ -1428,6 +1431,7 @@
   {
     "text": "Page not found",
     "files": [
+      "src/gallery/components/NotFoundPage.tsx",
       "src/gallery/pages/404.astro",
       "src/www/components/NotFound.tsx",
       "src/www/pages/404.astro"
@@ -2497,8 +2501,8 @@
     "text": "Your styles",
     "files": [
       "src/gallery/components/AccountNav.tsx",
-      "src/gallery/components/UserMenu.tsx",
-      "src/gallery/pages/[...lang]/mine.astro"
+      "src/gallery/components/MinePage.tsx",
+      "src/gallery/components/UserMenu.tsx"
     ]
   },
   {

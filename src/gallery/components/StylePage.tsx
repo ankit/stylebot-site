@@ -1,3 +1,5 @@
+import { useRoute } from 'preact-iso';
+
 import { useGroupRedirect } from '@/gallery/hooks/useGroupRedirect';
 import { usePageMeta } from '@/gallery/hooks/usePageMeta';
 import { useStyle } from '@/gallery/hooks/useStyle';
@@ -30,8 +32,9 @@ type Props = { locale: Locale; strings: Catalog };
  */
 export default function StylePage({ locale, strings }: Props) {
   const t = translator(strings);
-  const { style, missing, failed, reload } = useStyle();
-  const redirecting = useGroupRedirect(missing);
+  const { group, slug } = useRoute().params;
+  const { style, missing, failed, reload } = useStyle(group, slug);
+  const redirecting = useGroupRedirect(missing, { group, slug }, locale);
   let title = style?.name;
 
   if (missing) {

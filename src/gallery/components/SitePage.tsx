@@ -1,6 +1,7 @@
+import { useRoute } from 'preact-iso';
+
 import { useGroupRedirect } from '@/gallery/hooks/useGroupRedirect';
 import { usePageMeta } from '@/gallery/hooks/usePageMeta';
-import { useSiteGroup } from '@/gallery/hooks/useSiteGroup';
 import { useSort } from '@/gallery/hooks/useSort';
 import { useStyles } from '@/gallery/hooks/useStyles';
 
@@ -23,28 +24,25 @@ type Props = { locale: Locale; strings: Catalog };
  */
 export default function SitePage({ locale, strings }: Props) {
   const t = translator(strings);
-  const group = useSiteGroup();
+  const { group } = useRoute().params;
   const [sort, setSort] = useSort();
   const feed = useStyles({ search: '', sort, group });
   const site = feed.items[0]?.site;
-  const missing =
-    group !== null && !feed.loading && !feed.error && feed.items.length === 0;
-  const redirecting = useGroupRedirect(missing);
-  let heading = '';
+  const missing = !feed.loading && !feed.error && feed.items.length === 0;
+  const redirecting = useGroupRedirect(missing, { group }, locale);
+  let heading = t('Styles for {site}', { site: group });
 
-  if (group && missing) {
+  if (missing) {
     heading = t('No styles for {site} yet', { site: group });
-  } else if (group) {
-    heading = t('Styles for {site}', { site: group });
   }
 
-  usePageMeta(heading && t('{title} | Stylebot', { title: heading }));
+  usePageMeta(t('{title} | Stylebot', { title: heading }));
 
   if (missing && redirecting) {
     return null;
   }
 
-  if (group && missing) {
+  if (missing) {
     return <NotFound title={heading} locale={locale} t={t} />;
   }
 

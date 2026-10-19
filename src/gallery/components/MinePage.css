@@ -1,3 +1,13 @@
+.mine-page {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mine-title {
+  text-align: left;
+}
+
 .mine-account {
   margin: 0;
   font: 400 var(--text-base) / 1.5 var(--font-ui);

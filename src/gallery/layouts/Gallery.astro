@@ -3,10 +3,6 @@ import Header from '@/components/Header.astro';
 
 import Base from '@/layouts/Base.astro';
 
-import AccountNav, {
-  type GallerySection,
-} from '@/gallery/components/AccountNav';
-
 import './Gallery.css';
 
 type Props = {
@@ -14,10 +10,9 @@ type Props = {
   description?: string;
   noindex?: boolean;
   alternates?: boolean;
-  current?: GallerySection;
 };
 
-const { locale, strings, t } = Astro.locals;
+const { t } = Astro.locals;
 const {
   title = t('Browse Styles'),
   description = t(
@@ -25,7 +20,6 @@ const {
   ),
   noindex,
   alternates,
-  current = 'browse',
 } = Astro.props;
 ---
 
@@ -48,17 +42,7 @@ const {
       t('Gallery')
     }
   >
-    <AccountNav
-      slot="actions"
-      client:load
-      current={current}
-      locale={locale}
-      strings={strings(
-        'gallery/components/AccountNav.tsx',
-        'gallery/components/UserMenu.tsx',
-        'gallery/components/SignInButton.tsx',
-      )}
-    />
+    <div slot="actions" id="account-nav" class="account-nav-slot" />
   </Header>
   <main class="g-main">
     <slot />

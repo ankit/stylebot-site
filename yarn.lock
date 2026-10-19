@@ -4014,6 +4014,11 @@ postcss@^8.5.3:
     picocolors "^1.1.1"
     source-map-js "^1.2.2"
 
+preact-iso@^2.12.2:
+  version "2.12.2"
+  resolved "https://registry.yarnpkg.com/preact-iso/-/preact-iso-2.12.2.tgz#a1d86936523f12bb36284e9f63a991af609b2f9a"
+  integrity sha512-qit+qSMiZ41K0EQkLNa3MSxnWVCm5yXvy9m3CcGf/zF1QhVJzSwVCbpiz52VSbWpg8v8nYNIYDrXJZPNFpM1uw==
+
 preact-render-to-string@^6.6.6:
   version "6.7.0"
   resolved "https://registry.yarnpkg.com/preact-render-to-string/-/preact-render-to-string-6.7.0.tgz#fe10abba7461a439b1846d4ce3c51b87ecf48fe2"

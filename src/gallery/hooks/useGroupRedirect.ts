@@ -1,23 +1,29 @@
 import { useEffect, useState } from 'preact/hooks';
+import { useLocation } from 'preact-iso';
 
 import { listStyles } from '@/gallery/lib/api';
-import { galleryRoute, siteHref, styleHref } from '@/gallery/lib/paths';
+import { siteHref, styleHref } from '@/gallery/lib/paths';
 
-import { localeOf } from '@/i18n/locales';
+import { type Locale } from '@/i18n/locales';
+
+type Route = { group: string; slug?: string };
 
 /**
  * Sends /s/github.com to /s/github when nothing was found under a hostname.
  * True until it's known there's nowhere to go.
  */
-export function useGroupRedirect(missing: boolean) {
+export function useGroupRedirect(
+  missing: boolean,
+  { group, slug }: Route,
+  locale: Locale,
+) {
+  const { route } = useLocation();
   const [redirecting, setRedirecting] = useState(true);
 
   useEffect(() => {
     if (!missing) {
       return;
     }
-
-    const { group, slug } = galleryRoute();
 
     if (!group.includes('.')) {
       setRedirecting(false);
@@ -35,17 +41,16 @@ export function useGroupRedirect(missing: boolean) {
           return;
         }
 
-        const locale = localeOf(location.pathname);
         let path = siteHref(locale, actual);
 
         if (slug) {
           path = styleHref(locale, { group: actual, slug });
         }
 
-        location.replace(path + location.search);
+        route(path + location.search, true);
       })
       .catch(() => setRedirecting(false));
-  }, [missing]);
+  }, [missing, group, slug, locale, route]);
 
   return redirecting;
 }

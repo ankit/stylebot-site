@@ -10,17 +10,17 @@ const PREFIXES = [
 ];
 
 /**
- * Site and style URLs, /s/<group> and /s/<group>/<slug>, are served by
- * one built page each, which reads the group and slug from the address.
+ * The gallery is one app per locale, served at every route it handles:
+ * /s/<group>, /s/<group>/<slug> and /mine.
  */
 const rewrite = (path) => {
-  const match = path.match(/^(\/[a-z-]+)?\/s\/[^/]+(\/[^/]+)?\/?$/);
+  const match = path.match(/^(\/[a-z-]+)?\/(s\/[^/]+(\/[^/]+)?|mine)\/?$/);
 
   if (!match || (match[1] && !PREFIXES.includes(match[1]))) {
     return null;
   }
 
-  return `${match[1] ?? ''}/${match[2] ? 'style' : 'site'}/`;
+  return `${match[1] ?? ''}/`;
 };
 
 const routes = {
@@ -41,8 +41,8 @@ const routes = {
     // Cloudflare Pages rewrites, which keep the address and a 200 status.
     'astro:build:done': ({ dir }) => {
       const lines = PREFIXES.flatMap((p) => [
-        `${p}/s/:group/:slug ${p}/style/ 200`,
-        `${p}/s/:group ${p}/site/ 200`,
+        `${p}/s/* ${p}/ 200`,
+        `${p}/mine ${p}/ 200`,
       ]);
 
       writeFileSync(new URL('_redirects', dir), `${lines.join('\n')}\n`);

@@ -1,3 +1,4 @@
+import { usePageMeta } from '@/gallery/hooks/usePageMeta';
 import { useSearch } from '@/gallery/hooks/useSearch';
 import { useSort } from '@/gallery/hooks/useSort';
 import { useStyles } from '@/gallery/hooks/useStyles';
@@ -22,10 +23,15 @@ export default function Browse({ locale, strings }: Props) {
   const [sort, setSort] = useSort();
   const feed = useStyles({ search, sort });
   const empty = !feed.loading && !feed.error && feed.items.length === 0;
+  const title = t('Browse Styles');
+
+  usePageMeta(t('{title} | Stylebot', { title }));
 
   return (
     <>
-      <SearchBox value={query ?? ''} onChange={setQuery} t={t} />
+      <h1 class="g-title">{title}</h1>
+
+      <SearchBox value={query} onChange={setQuery} t={t} />
 
       <TopSites locale={locale} t={t} />
 

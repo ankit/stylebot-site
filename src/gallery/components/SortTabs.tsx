@@ -5,7 +5,7 @@ import { type Translate } from '@/i18n/t';
 import './SortTabs.css';
 
 type Props = {
-  sort: Sort | null;
+  sort: Sort;
   onChange: (sort: Sort) => void;
   t: Translate;
 };

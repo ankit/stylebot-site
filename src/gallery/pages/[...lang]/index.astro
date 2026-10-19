@@ -1,21 +1,20 @@
 ---
-import Browse from '@/gallery/components/Browse';
+import GalleryApp from '@/gallery/components/GalleryApp';
 import Gallery from '@/gallery/layouts/Gallery.astro';
 
 import { localeStaticPaths } from '@/i18n';
 
 export const getStaticPaths = localeStaticPaths;
 
-const { locale, strings, t } = Astro.locals;
+const { locale, strings } = Astro.locals;
 ---
 
 <Gallery>
   <div class="g-page">
-    <h1 class="g-title">{t('Browse Styles')}</h1>
-    <Browse
-      client:load
+    <GalleryApp
+      client:only="preact"
       locale={locale}
-      strings={strings('gallery/components/')}
+      strings={strings('gallery/components/', 'components/ZoomableImage.tsx')}
     />
   </div>
 </Gallery>

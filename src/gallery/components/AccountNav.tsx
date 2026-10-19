@@ -1,3 +1,5 @@
+import { useLocation } from 'preact-iso';
+
 import { useSession } from '@/gallery/hooks/useSession';
 
 import { type Locale, localizePath } from '@/i18n/locales';
@@ -8,21 +10,16 @@ import UserMenu from './UserMenu';
 
 import './AccountNav.css';
 
-export type GallerySection = 'browse' | 'mine';
-
-type Props = {
-  current?: GallerySection;
-  locale: Locale;
-  strings: Catalog;
-};
+type Props = { locale: Locale; strings: Catalog };
 
 /**
  * Sign in, or the links between browsing and the account's own styles, and
  * the account's menu.
  */
-export default function AccountNav({ current, locale, strings }: Props) {
+export default function AccountNav({ locale, strings }: Props) {
   const t = translator(strings);
   const session = useSession();
+  const { path } = useLocation();
 
   if (session === undefined) {
     return null;
@@ -34,23 +31,24 @@ export default function AccountNav({ current, locale, strings }: Props) {
 
   const links = [
     // i18n: A header link to the gallery's list of styles.
-    { section: 'browse', href: localizePath(locale, '/'), label: t('Browse') },
-    {
-      section: 'mine',
-      href: localizePath(locale, '/mine'),
-      label: t('Your styles'),
-    },
+    { href: localizePath(locale, '/'), label: t('Browse') },
+    { href: localizePath(locale, '/mine'), label: t('Your styles') },
   ];
+  let current = links[0].href;
+
+  if (path === links[1].href) {
+    current = links[1].href;
+  }
 
   return (
     <>
       <nav class="account-nav">
         {links.map((link) => (
           <a
-            key={link.section}
+            key={link.href}
             class="account-nav-link"
             href={link.href}
-            aria-current={link.section === current}
+            aria-current={link.href === current}
           >
             {link.label}
           </a>

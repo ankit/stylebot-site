@@ -1,18 +1,13 @@
 import { ApiError, getStyle } from '@/gallery/lib/api';
-import { galleryRoute } from '@/gallery/lib/paths';
 
 import { useRequest } from './useRequest';
 
 /**
- * The style this page's address names. `missing` when there's no such style,
+ * The style with this group and slug. `missing` when there's no such style,
  * `failed` when it couldn't be loaded.
  */
-export function useStyle() {
-  const request = useRequest(() => {
-    const { group, slug } = galleryRoute();
-
-    return getStyle(group, slug);
-  });
+export function useStyle(group: string, slug: string) {
+  const request = useRequest(() => getStyle(group, slug), [group, slug]);
   const missing =
     request.error instanceof ApiError && request.error.status === 404;
 

@@ -1,24 +1,17 @@
 import { useEffect, useState } from 'preact/hooks';
 
 /**
- * `value`, once it has stopped changing for `ms`. The first value that isn't
- * null, such as one read from the address as the island starts, comes through
- * at once.
+ * `value`, once it has stopped changing for `ms`. The first value comes
+ * through at once.
  */
-export function useDebounced<T>(value: T | null, ms: number) {
+export function useDebounced<T>(value: T, ms: number) {
   const [settled, setSettled] = useState(value);
 
   useEffect(() => {
-    if (settled === null) {
-      setSettled(value);
-
-      return;
-    }
-
     const timer = setTimeout(() => setSettled(value), ms);
 
     return () => clearTimeout(timer);
-  }, [value, ms, settled]);
+  }, [value, ms]);
 
   return settled;
 }
