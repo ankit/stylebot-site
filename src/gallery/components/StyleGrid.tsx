@@ -47,7 +47,7 @@ export default function StyleGrid({ feed, showSite, locale, t }: Props) {
           />
         ))}
 
-        {feed.loading && <StyleCardSkeleton count={6} showSite={showSite} />}
+        {feed.loading && <StyleCardSkeleton count={3} showSite={showSite} />}
       </div>
 
       {feed.error && (

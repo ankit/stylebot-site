@@ -24,3 +24,17 @@
     }
   }
 }
+
+.top-sites-pill {
+  flex: none;
+  height: 31px;
+  border-radius: var(--radius-full);
+  background: var(--bg-track);
+  animation: top-sites-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes top-sites-pulse {
+  50% {
+    opacity: 0.55;
+  }
+}
