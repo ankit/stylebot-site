@@ -1,6 +1,6 @@
 .mine-page {
   width: 100%;
-  max-width: var(--width-text);
+  max-width: 860px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;

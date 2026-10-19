@@ -365,6 +365,13 @@
     ]
   },
   {
+    "text": "Cancel",
+    "files": [
+      "src/gallery/components/DeleteStyleButton.tsx",
+      "src/gallery/components/UnpublishButton.tsx"
+    ]
+  },
+  {
     "text": "Changed your mind?",
     "files": [
       "src/www/pages/[...lang]/goodbye.astro"
@@ -580,6 +587,12 @@
     ]
   },
   {
+    "text": "Couldn’t delete. Try again.",
+    "files": [
+      "src/gallery/components/DeleteStyleButton.tsx"
+    ]
+  },
+  {
     "text": "Couldn’t install",
     "files": [
       "src/www/components/Examples.astro"
@@ -610,10 +623,23 @@
     ]
   },
   {
+    "text": "Couldn’t publish. Try again",
+    "note": "On the Publish button after it failed.",
+    "files": [
+      "src/gallery/components/PublishButton.tsx"
+    ]
+  },
+  {
     "text": "Couldn’t sign in. Try again",
     "note": "On the sign-in button after signing in with Google failed.",
     "files": [
       "src/gallery/components/SignInButton.tsx"
+    ]
+  },
+  {
+    "text": "Couldn’t unpublish. Try again.",
+    "files": [
+      "src/gallery/components/UnpublishButton.tsx"
     ]
   },
   {
@@ -685,6 +711,24 @@
     "files": [
       "src/www/components/demo/Demo.tsx",
       "src/www/components/demo/scenes.ts"
+    ]
+  },
+  {
+    "text": "Delete",
+    "files": [
+      "src/gallery/components/DeleteStyleButton.tsx"
+    ]
+  },
+  {
+    "text": "Delete {name}?",
+    "files": [
+      "src/gallery/components/DeleteStyleButton.tsx"
+    ]
+  },
+  {
+    "text": "Deleting…",
+    "files": [
+      "src/gallery/components/DeleteStyleButton.tsx"
     ]
   },
   {
@@ -1067,6 +1111,13 @@
     ]
   },
   {
+    "text": "In the Gallery",
+    "note": "Heading over your styles that are listed in the Gallery.",
+    "files": [
+      "src/gallery/components/MyStyleList.tsx"
+    ]
+  },
+  {
     "text": "In your browser",
     "files": [
       "src/www/pages/[...lang]/privacy.astro"
@@ -1150,6 +1201,12 @@
     "text": "It broke a site",
     "files": [
       "src/www/components/GoodbyeFeedback.tsx"
+    ]
+  },
+  {
+    "text": "It leaves the Gallery until you publish it again. Existing installs keep working but don’t get updates meanwhile.",
+    "files": [
+      "src/gallery/components/UnpublishButton.tsx"
     ]
   },
   {
@@ -1374,6 +1431,19 @@
     ]
   },
   {
+    "text": "None of your styles are in the Gallery right now.",
+    "files": [
+      "src/gallery/components/MyStyleList.tsx"
+    ]
+  },
+  {
+    "text": "Not in the Gallery",
+    "note": "Heading over your styles that you unpublished or that were hidden after reports.",
+    "files": [
+      "src/gallery/components/MyStyleList.tsx"
+    ]
+  },
+  {
     "text": "Not set; assign in your browser",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
@@ -1581,6 +1651,18 @@
       "src/www/components/demo/scenes.ts",
       "src/www/pages/[...lang]/manual.astro",
       "src/www/pages/[...lang]/releases/4.0.astro"
+    ]
+  },
+  {
+    "text": "Publish",
+    "files": [
+      "src/gallery/components/PublishButton.tsx"
+    ]
+  },
+  {
+    "text": "Publishing…",
+    "files": [
+      "src/gallery/components/PublishButton.tsx"
     ]
   },
   {
@@ -2208,6 +2290,12 @@
     ]
   },
   {
+    "text": "This can’t be undone. Existing installs keep working but won’t get updates.",
+    "files": [
+      "src/gallery/components/DeleteStyleButton.tsx"
+    ]
+  },
+  {
     "text": "This is a translation. If it differs from the <a href=\"{original}\">English version</a>, the English version applies.",
     "files": [
       "src/www/pages/[...lang]/privacy.astro"
@@ -2358,6 +2446,31 @@
     "text": "Undo support",
     "files": [
       "src/www/pages/[...lang]/releases/4.0.astro"
+    ]
+  },
+  {
+    "text": "Unpublish",
+    "files": [
+      "src/gallery/components/UnpublishButton.tsx"
+    ]
+  },
+  {
+    "text": "Unpublish {name}?",
+    "files": [
+      "src/gallery/components/UnpublishButton.tsx"
+    ]
+  },
+  {
+    "text": "Unpublished",
+    "note": "A badge on one of your styles that you took out of the Gallery.",
+    "files": [
+      "src/gallery/components/MyStyleRow.tsx"
+    ]
+  },
+  {
+    "text": "Unpublishing…",
+    "files": [
+      "src/gallery/components/UnpublishButton.tsx"
     ]
   },
   {

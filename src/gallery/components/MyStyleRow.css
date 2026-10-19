@@ -9,8 +9,23 @@
   }
 
   @media (max-width: 639px) {
-    gap: 14px;
+    flex-wrap: wrap;
+    gap: 12px 14px;
     padding: 16px;
+  }
+}
+
+.my-style-side {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  @media (max-width: 639px) {
+    flex-basis: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
   }
 }
 
@@ -92,8 +107,12 @@
   text-overflow: ellipsis;
 }
 
+.my-style-actions {
+  display: flex;
+  gap: 8px;
+}
+
 .my-style-installs {
-  flex: none;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -104,6 +123,12 @@
   strong {
     font: 600 var(--text-lg) / 1.1 var(--font-ui);
     color: var(--fg);
+  }
+
+  @media (max-width: 639px) {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 6px;
   }
 }
 

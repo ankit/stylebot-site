@@ -24,8 +24,8 @@ export type Style = {
 export type StyleWithCss = Style & { css: string };
 
 // One of the signed-in account's styles. `hidden` ones were hidden after
-// reports and aren't listed or served.
-export type OwnStyle = Style & { status: 'live' | 'hidden' };
+// reports; neither they nor `unpublished` ones are listed or served.
+export type OwnStyle = Style & { status: 'live' | 'hidden' | 'unpublished' };
 
 // Hostnames that are the same site, such as en. and es.wikipedia.org. `site`
 // is the most-installed one, shown for the group.
@@ -143,3 +143,17 @@ export const createSession = (googleToken: string) =>
 
 export const listMyStyles = (session: string) =>
   request<{ styles: Array<OwnStyle> }>('/me/styles', { session });
+
+const styleAction = (id: string, action = '') =>
+  `/styles/${encodeURIComponent(id)}${action}`;
+
+export const unpublishStyle = (session: string, id: string) =>
+  request<void>(styleAction(id, '/unpublish'), { method: 'POST', session });
+
+// Brings an unpublished style back, hidden again if it was hidden before.
+export const publishStyle = (session: string, id: string) =>
+  request<OwnStyle>(styleAction(id, '/publish'), { method: 'POST', session });
+
+// Deletes an unpublished style for good.
+export const deleteStyle = (session: string, id: string) =>
+  request<void>(styleAction(id), { method: 'DELETE', session });

@@ -5,18 +5,37 @@ import { styleHref } from '@/gallery/lib/paths';
 import { type Locale } from '@/i18n/locales';
 import { type Translate } from '@/i18n/t';
 
+import DeleteStyleButton from './DeleteStyleButton';
 import Favicon from './Favicon';
+import PublishButton from './PublishButton';
+import UnpublishButton from './UnpublishButton';
 
 import './MyStyleRow.css';
 
-type Props = { style: OwnStyle; locale: Locale; t: Translate };
+type Props = {
+  style: OwnStyle;
+  session: string;
+  onChange: (style: OwnStyle) => void;
+  onDeleted: () => void;
+  locale: Locale;
+  t: Translate;
+};
 
 /**
  * One of the account's styles: its screenshot and name, linking to its page
- * while it's live, its site, when it was updated and its installs.
+ * while it's live, its site, when it was updated, its installs, and Unpublish,
+ * or Publish and Delete once it's unpublished.
  */
-export default function MyStyleRow({ style, locale, t }: Props) {
+export default function MyStyleRow({
+  style,
+  session,
+  onChange,
+  onDeleted,
+  locale,
+  t,
+}: Props) {
   const live = style.status === 'live';
+  const unpublished = style.status === 'unpublished';
 
   return (
     <li class="my-style-row">
@@ -34,11 +53,20 @@ export default function MyStyleRow({ style, locale, t }: Props) {
 
           {!live && <span>{style.name}</span>}
 
-          {!live && (
+          {style.status === 'hidden' && (
             <span class="my-style-badge">
               {
                 // i18n: A badge on one of your styles that was hidden after people reported it.
                 t('Hidden after reports')
+              }
+            </span>
+          )}
+
+          {unpublished && (
+            <span class="my-style-badge">
+              {
+                // i18n: A badge on one of your styles that you took out of the Gallery.
+                t('Unpublished')
               }
             </span>
           )}
@@ -58,9 +86,38 @@ export default function MyStyleRow({ style, locale, t }: Props) {
         </div>
       </div>
 
-      <div class="my-style-installs">
-        <strong>{compactNumber(locale, style.installs)}</strong>
-        {t('Installs')}
+      <div class="my-style-side">
+        <div class="my-style-installs">
+          <strong>{compactNumber(locale, style.installs)}</strong>
+          {t('Installs')}
+        </div>
+
+        {!unpublished && (
+          <UnpublishButton
+            style={style}
+            session={session}
+            onChange={onChange}
+            t={t}
+          />
+        )}
+
+        {unpublished && (
+          <div class="my-style-actions">
+            <PublishButton
+              style={style}
+              session={session}
+              onChange={onChange}
+              t={t}
+            />
+
+            <DeleteStyleButton
+              style={style}
+              session={session}
+              onDeleted={onDeleted}
+              t={t}
+            />
+          </div>
+        )}
       </div>
     </li>
   );

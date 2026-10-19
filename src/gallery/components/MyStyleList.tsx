@@ -1,4 +1,7 @@
+import { useState } from 'preact/hooks';
+
 import { useMyStyles } from '@/gallery/hooks/useMyStyles';
+import { type OwnStyle } from '@/gallery/lib/api';
 
 import { type Locale } from '@/i18n/locales';
 import { type Translate } from '@/i18n/t';
@@ -12,10 +15,25 @@ import './MyStyleList.css';
 type Props = { session: string; locale: Locale; t: Translate };
 
 /**
- * The account's styles as rows, with how to publish more.
+ * The account's styles as rows, those in the Gallery first, then those
+ * unpublished or hidden, with how to publish more.
  */
 export default function MyStyleList({ session, locale, t }: Props) {
-  const { data: styles, error, loading, reload } = useMyStyles(session);
+  const { data, error, loading, reload } = useMyStyles(session);
+
+  // Styles changed on this page, by id; null once deleted.
+  const [changed, setChanged] = useState<Record<string, OwnStyle | null>>({});
+  const current = (style: OwnStyle) => {
+    if (style.id in changed) {
+      return changed[style.id];
+    }
+
+    return style;
+  };
+  const styles = data?.map(current).filter((style) => style !== null);
+
+  const change = (id: string, style: OwnStyle | null) =>
+    setChanged((prev) => ({ ...prev, [id]: style }));
 
   if (error) {
     return (
@@ -27,32 +45,76 @@ export default function MyStyleList({ session, locale, t }: Props) {
     );
   }
 
-  return (
-    <div class="my-style-list">
-      <ul aria-busy={loading}>
-        {loading && <MyStyleRowSkeleton count={3} />}
+  const live = styles?.filter((style) => style.status === 'live') ?? [];
+  const away = styles?.filter((style) => style.status !== 'live') ?? [];
 
-        {styles?.map((style) => (
-          <MyStyleRow key={style.id} style={style} locale={locale} t={t} />
-        ))}
-      </ul>
-
-      {!loading && styles?.length === 0 && (
-        <p class="my-style-empty">
-          {t('You haven’t published any styles yet.')}
-        </p>
-      )}
-
-      <p
-        class="my-style-note"
-        dangerouslySetInnerHTML={{
-          __html:
-            // i18n: "Publish to Gallery" is the menu item's name in the extension, and "⋯" its menu button.
-            t(
-              'To publish a style, open Stylebot on its site and choose <strong>Publish to Gallery</strong> from the ⋯ menu.',
-            ),
-        }}
+  const rows = (list: Array<OwnStyle>) =>
+    list.map((style) => (
+      <MyStyleRow
+        key={style.id}
+        style={style}
+        session={session}
+        onChange={(next) => change(style.id, next)}
+        onDeleted={() => change(style.id, null)}
+        locale={locale}
+        t={t}
       />
-    </div>
+    ));
+
+  let empty = '';
+
+  if (!loading && styles?.length === 0) {
+    empty = t('You haven’t published any styles yet.');
+  } else if (!loading && live.length === 0) {
+    empty = t('None of your styles are in the Gallery right now.');
+  }
+
+  return (
+    <>
+      <section class="my-style-section">
+        <h2>
+          {
+            // i18n: Heading over your styles that are listed in the Gallery.
+            t('In the Gallery')
+          }
+        </h2>
+
+        <div class="my-style-list">
+          <ul aria-busy={loading}>
+            {loading && <MyStyleRowSkeleton count={3} />}
+
+            {rows(live)}
+          </ul>
+
+          {empty && <p class="my-style-empty">{empty}</p>}
+
+          <p
+            class="my-style-note"
+            dangerouslySetInnerHTML={{
+              __html:
+                // i18n: "Publish to Gallery" is the menu item's name in the extension, and "⋯" its menu button.
+                t(
+                  'To publish a style, open Stylebot on its site and choose <strong>Publish to Gallery</strong> from the ⋯ menu.',
+                ),
+            }}
+          />
+        </div>
+      </section>
+
+      {away.length > 0 && (
+        <section class="my-style-section">
+          <h2>
+            {
+              // i18n: Heading over your styles that you unpublished or that were hidden after reports.
+              t('Not in the Gallery')
+            }
+          </h2>
+
+          <div class="my-style-list">
+            <ul>{rows(away)}</ul>
+          </div>
+        </section>
+      )}
+    </>
   );
 }
