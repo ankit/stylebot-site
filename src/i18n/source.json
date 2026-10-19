@@ -598,6 +598,12 @@
     ]
   },
   {
+    "text": "Couldn’t load your styles.",
+    "files": [
+      "src/gallery/components/MyStyleList.tsx"
+    ]
+  },
+  {
     "text": "Couldn’t open the preview. Try again.",
     "files": [
       "src/gallery/components/PreviewCard.tsx"
@@ -986,6 +992,13 @@
     ]
   },
   {
+    "text": "Hidden after reports",
+    "note": "A badge on one of your styles that was hidden after people reported it.",
+    "files": [
+      "src/gallery/components/MyStyleRow.tsx"
+    ]
+  },
+  {
     "text": "Hide",
     "files": [
       "src/www/components/demo/Demo.tsx"
@@ -1123,6 +1136,7 @@
   {
     "text": "Installs",
     "files": [
+      "src/gallery/components/MyStyleRow.tsx",
       "src/gallery/components/StylePage.tsx"
     ]
   },
@@ -1796,14 +1810,7 @@
   {
     "text": "Sign out",
     "files": [
-      "src/gallery/components/MinePage.tsx",
       "src/gallery/components/UserMenu.tsx"
-    ]
-  },
-  {
-    "text": "Signed in as {name}",
-    "files": [
-      "src/gallery/components/MinePage.tsx"
     ]
   },
   {
@@ -2238,6 +2245,13 @@
     ]
   },
   {
+    "text": "To publish a style, open Stylebot on its site and choose <strong>Publish to Gallery</strong> from the ⋯ menu.",
+    "note": "\"Publish to Gallery\" is the menu item's name in the extension, and \"⋯\" its menu button.",
+    "files": [
+      "src/gallery/components/MyStyleList.tsx"
+    ]
+  },
+  {
     "text": "Today, Sep 25",
     "files": [
       "src/www/components/Features.astro"
@@ -2350,6 +2364,12 @@
     "text": "Updated",
     "files": [
       "src/gallery/components/StylePage.tsx"
+    ]
+  },
+  {
+    "text": "Updated {time}",
+    "files": [
+      "src/gallery/components/MyStyleRow.tsx"
     ]
   },
   {
@@ -2490,10 +2510,15 @@
     ]
   },
   {
+    "text": "You haven’t published any styles yet.",
+    "files": [
+      "src/gallery/components/MyStyleList.tsx"
+    ]
+  },
+  {
     "text": "Your account",
     "note": "The account menu's label when the account has no display name.",
     "files": [
-      "src/gallery/components/MinePage.tsx",
       "src/gallery/components/UserMenu.tsx"
     ]
   },

@@ -23,6 +23,10 @@ export type Style = {
 
 export type StyleWithCss = Style & { css: string };
 
+// One of the signed-in account's styles. `hidden` ones were hidden after
+// reports and aren't listed or served.
+export type OwnStyle = Style & { status: 'live' | 'hidden' };
+
 // Hostnames that are the same site, such as en. and es.wikipedia.org. `site`
 // is the most-installed one, shown for the group.
 export type Site = {
@@ -136,3 +140,6 @@ export const createSession = (googleToken: string) =>
     method: 'POST',
     body: JSON.stringify({ googleToken }),
   });
+
+export const listMyStyles = (session: string) =>
+  request<{ styles: Array<OwnStyle> }>('/me/styles', { session });

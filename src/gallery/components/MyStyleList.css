@@ -1,0 +1,41 @@
+.my-style-list {
+  margin-top: 24px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-surface);
+  overflow: hidden;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+}
+
+.my-style-empty {
+  margin: 0;
+  padding: 28px 22px;
+  font: 400 var(--text-base) / 1.5 var(--font-ui);
+  color: var(--fg-muted);
+}
+
+.my-style-note {
+  margin: 0;
+  padding: 16px 22px;
+  border-top: 1px solid var(--border);
+  background: var(--bg-muted);
+  font: 400 var(--text-sm) / 1.55 var(--font-ui);
+  color: var(--fg-muted);
+
+  strong {
+    font-weight: 600;
+    color: var(--fg);
+  }
+}
+
+@media (max-width: 639px) {
+  .my-style-empty,
+  .my-style-note {
+    padding-inline: 16px;
+  }
+}

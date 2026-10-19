@@ -1,4 +1,7 @@
 .mine-page {
+  width: 100%;
+  max-width: var(--width-text);
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -6,25 +9,4 @@
 
 .mine-title {
   text-align: left;
-}
-
-.mine-account {
-  margin: 0;
-  font: 400 var(--text-base) / 1.5 var(--font-ui);
-  color: var(--fg-muted);
-}
-
-.mine-sign-out {
-  padding: 0;
-  border: none;
-  background: none;
-  font: inherit;
-  color: var(--fg-secondary);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  cursor: pointer;
-}
-
-.mine-sign-out:hover {
-  color: var(--fg);
 }

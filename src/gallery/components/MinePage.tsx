@@ -1,9 +1,10 @@
 import { usePageMeta } from '@/gallery/hooks/usePageMeta';
 import { useSession } from '@/gallery/hooks/useSession';
-import { signOut } from '@/gallery/lib/auth';
 
+import { type Locale } from '@/i18n/locales';
 import { type Catalog, translator } from '@/i18n/t';
 
+import MyStyleList from './MyStyleList';
 import SignInButton from './SignInButton';
 
 import './MinePage.css';
@@ -11,7 +12,9 @@ import './MinePage.css';
 /**
  * The signed-in account's published styles, or a prompt to sign in.
  */
-export default function MinePage({ strings }: { strings: Catalog }) {
+type Props = { locale: Locale; strings: Catalog };
+
+export default function MinePage({ locale, strings }: Props) {
   const t = translator(strings);
   const session = useSession();
   const title = t('Your styles');
@@ -31,15 +34,7 @@ export default function MinePage({ strings }: { strings: Catalog }) {
       )}
 
       {session && (
-        <p class="mine-account">
-          {t('Signed in as {name}', {
-            name: session.account.name ?? t('Your account'),
-          })}
-          {' · '}
-          <button class="mine-sign-out" onClick={signOut}>
-            {t('Sign out')}
-          </button>
-        </p>
+        <MyStyleList session={session.session} locale={locale} t={t} />
       )}
     </div>
   );

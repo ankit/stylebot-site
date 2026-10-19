@@ -1,4 +1,4 @@
-import { createSession, type Session } from '@/gallery/lib/api';
+import { ApiError, createSession, type Session } from '@/gallery/lib/api';
 
 // The extension's web OAuth client: the styles API only takes tokens issued to
 // the extension's clients, and the gallery's origin has to be listed on it.
@@ -132,3 +132,14 @@ export async function signIn() {
 }
 
 export const signOut = () => writeSession(null);
+
+/**
+ * Signs out when the API no longer takes the session, then rethrows.
+ */
+export function onAuthError(error: unknown): never {
+  if (error instanceof ApiError && error.status === 401) {
+    signOut();
+  }
+
+  throw error;
+}
