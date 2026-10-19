@@ -36,8 +36,8 @@
 
   h1 {
     margin: 0;
-    font: 700 var(--text-2xl) / 1.1 var(--font-display);
-    letter-spacing: -0.03em;
+    font: 700 var(--text-xl) / 1.2 var(--font-display);
+    letter-spacing: -0.02em;
     color: var(--fg);
     text-wrap: balance;
     overflow-wrap: anywhere;

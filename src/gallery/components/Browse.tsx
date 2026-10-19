@@ -29,7 +29,7 @@ export default function Browse({ locale, strings }: Props) {
 
   return (
     <>
-      <h1 class="g-title">{title}</h1>
+      <h1 class="sr-only">{title}</h1>
 
       <SearchBox value={query} onChange={setQuery} t={t} />
 

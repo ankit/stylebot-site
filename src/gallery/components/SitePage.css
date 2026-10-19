@@ -5,11 +5,11 @@
 }
 
 .site-page-head {
-  min-height: 48px;
+  min-height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 10px;
 
   .favicon {
     border-radius: var(--radius-sm);

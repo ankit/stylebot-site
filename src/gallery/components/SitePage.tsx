@@ -57,7 +57,7 @@ export default function SitePage({ locale, strings }: Props) {
       <BackLink href={localizePath(locale, '/')}>{t('All styles')}</BackLink>
 
       <div class="site-page-head">
-        <Favicon site={site} size={28} />
+        <Favicon site={site} size={22} />
         <h1 class="g-title">{heading}</h1>
       </div>
 
