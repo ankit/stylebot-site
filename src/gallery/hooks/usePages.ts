@@ -1,26 +1,35 @@
-import { type Inputs, useEffect, useRef, useState } from 'preact/hooks';
+import { useEffect, useRef, useState } from 'preact/hooks';
 
 export type Page<T> = { items: Array<T>; next: number | null };
 
+// Lists loaded this visit, by key.
+const cache = new Map<string, Page<unknown>>();
+
 /**
- * A list loaded a page at a time, starting over from offset 0 whenever
- * `deps` change, once `enabled`. The old items stay until the new first page
- * replaces them, with `refreshing` set meanwhile. `more` loads the next page;
- * `retry` repeats a failed one. Answers to requests that a newer one replaced
- * are dropped.
+ * A list loaded a page at a time, reloaded when `key` changes, or taken from
+ * the cache. Old items stay, `refreshing`, until the new first page arrives.
  */
 export function usePages<T>(
   fetchPage: (offset: number) => Promise<Page<T>>,
-  deps: Inputs = [],
-  enabled = true,
+  key: string,
 ) {
-  const [items, setItems] = useState<Array<T>>([]);
-  const [next, setNext] = useState<number | null>(null);
+  const cached = cache.get(key) as Page<T> | undefined;
+  const [items, setItems] = useState<Array<T>>(cached?.items ?? []);
+  const [next, setNext] = useState<number | null>(cached?.next ?? null);
   // The offset of the page being loaded, or null when none is.
-  const [loadingOffset, setLoadingOffset] = useState<number | null>(0);
+  const [loadingOffset, setLoadingOffset] = useState<number | null>(() => {
+    if (cached) {
+      return null;
+    }
+
+    return 0;
+  });
   const [error, setError] = useState<unknown>();
   const latest = useRef(0);
   const lastOffset = useRef(0);
+  const itemsNow = useRef(items);
+
+  itemsNow.current = items;
 
   const load = (offset: number) => {
     const id = ++latest.current;
@@ -31,13 +40,14 @@ export function usePages<T>(
     fetchPage(offset).then(
       (page) => {
         if (id === latest.current) {
-          setItems((prev) => {
-            if (offset === 0) {
-              return page.items;
-            }
+          let all = page.items;
 
-            return [...prev, ...page.items];
-          });
+          if (offset > 0) {
+            all = [...itemsNow.current, ...page.items];
+          }
+
+          cache.set(key, { items: all, next: page.next });
+          setItems(all);
           setNext(page.next);
           setLoadingOffset(null);
         }
@@ -56,13 +66,23 @@ export function usePages<T>(
   };
 
   useEffect(() => {
-    if (enabled) {
+    const hit = cache.get(key) as Page<T> | undefined;
+
+    if (!hit) {
       setNext(null);
       load(0);
+
+      return;
     }
-    // The caller's deps say when the list changes.
+
+    latest.current++;
+    setItems(hit.items);
+    setNext(hit.next);
+    setLoadingOffset(null);
+    setError(undefined);
+    // A new key is a new list; fetchPage changes with it.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [enabled, ...deps]);
+  }, [key]);
 
   return {
     items,

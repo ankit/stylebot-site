@@ -20,6 +20,6 @@ export function useStyles({ search, sort, group = '' }: Filter) {
       listStyles({ q: search, group, sort, limit: PAGE, offset }).then(
         (page) => ({ items: page.styles, next: page.nextOffset }),
       ),
-    [search, sort, group],
+    JSON.stringify([search, sort, group]),
   );
 }

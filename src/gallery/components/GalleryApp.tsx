@@ -1,6 +1,8 @@
 import { createPortal } from 'preact/compat';
 import { lazy, LocationProvider, Route, Router } from 'preact-iso';
 
+import { restoreScroll } from '@/gallery/lib/scroll';
+
 import { type Locale, LOCALES, localizePath } from '@/i18n/locales';
 import { type Catalog } from '@/i18n/t';
 
@@ -37,7 +39,7 @@ export default function GalleryApp({ locale, strings }: Props) {
       {nav &&
         createPortal(<AccountNav locale={locale} strings={strings} />, nav)}
 
-      <Router>
+      <Router onRouteChange={restoreScroll}>
         <Route path={base} component={Browse} {...props} />
 
         <Route path={`${base}s/:group`} component={SitePage} {...props} />
