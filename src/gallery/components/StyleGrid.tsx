@@ -15,6 +15,7 @@ type Props = {
   feed: {
     items: Array<Style>;
     loading: boolean;
+    refreshing: boolean;
     error: unknown;
     hasMore: boolean;
     more: () => void;
@@ -27,15 +28,21 @@ type Props = {
 
 /**
  * Styles as a grid of cards that loads more as the reader scrolls, with
- * placeholders while a page loads, a retry when one fails, and the ones
- * Stylebot has marked installed.
+ * placeholders while a page loads, the old cards dimmed while a new list
+ * replaces them, a retry when one fails, and the ones Stylebot has marked
+ * installed.
  */
 export default function StyleGrid({ feed, showSite, locale, t }: Props) {
   const installed = useInstalledStyles(feed.items.map((style) => style.id));
+  let gridClass = 'style-grid';
+
+  if (feed.refreshing) {
+    gridClass += ' is-refreshing';
+  }
 
   return (
     <>
-      <div class="style-grid" aria-busy={feed.loading}>
+      <div class={gridClass} aria-busy={feed.loading}>
         {feed.items.map((style) => (
           <StyleCard
             key={style.id}
@@ -47,7 +54,9 @@ export default function StyleGrid({ feed, showSite, locale, t }: Props) {
           />
         ))}
 
-        {feed.loading && <StyleCardSkeleton count={3} showSite={showSite} />}
+        {feed.loading && !feed.refreshing && (
+          <StyleCardSkeleton count={3} showSite={showSite} />
+        )}
       </div>
 
       {feed.error && (

@@ -27,7 +27,13 @@ export default function SitePage({ locale, strings }: Props) {
   const { group } = useRoute().params;
   const [sort, setSort] = useSort();
   const feed = useStyles({ search: '', sort, group });
-  const site = feed.items[0]?.site;
+  const first = feed.items[0];
+  let site: string | undefined;
+
+  if (first?.group === group) {
+    site = first.site;
+  }
+
   const missing = !feed.loading && !feed.error && feed.items.length === 0;
   const redirecting = useGroupRedirect(missing, { group }, locale);
   let heading = t('Styles for {site}', { site: group });
@@ -51,7 +57,7 @@ export default function SitePage({ locale, strings }: Props) {
       <BackLink href={localizePath(locale, '/')}>{t('All styles')}</BackLink>
 
       <div class="site-page-head">
-        {site && <Favicon site={site} size={28} />}
+        <Favicon site={site} size={28} />
         <h1 class="g-title">{heading}</h1>
       </div>
 

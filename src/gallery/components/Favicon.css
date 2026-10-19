@@ -3,3 +3,18 @@
   flex: none;
   border-radius: 3px;
 }
+
+.favicon.is-loading {
+  background: var(--bg-track);
+}
+
+.favicon-letter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-track);
+  color: var(--fg-muted);
+  font-family: var(--font-ui);
+  font-weight: 600;
+  line-height: 1;
+}
