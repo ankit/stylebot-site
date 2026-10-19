@@ -19,8 +19,10 @@ type Props = { locale: Locale; t: Translate };
  * they don't load, since browsing works without them.
  */
 export default function TopSites({ locale, t }: Props) {
-  const { data: sites, loading } = useRequest(() =>
-    listSites().then((r) => r.sites.slice(0, COUNT)),
+  const { data: sites, loading } = useRequest(
+    () => listSites().then((r) => r.sites.slice(0, COUNT)),
+    [],
+    'top-sites',
   );
 
   if (loading) {

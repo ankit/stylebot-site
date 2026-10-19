@@ -6,15 +6,28 @@ type RequestState<T> = {
   loading: boolean;
 };
 
+// Results loaded this visit, by key.
+const cache = new Map<string, unknown>();
+
 /**
- * Runs a request when the island starts and whenever `deps` change. Answers to
- * requests that a newer one replaced are dropped.
+ * Runs a request whenever `deps` change, or reads its result from the cache by
+ * `key`. Stale results are dropped.
  */
-export function useRequest<T>(request: () => Promise<T>, deps: Inputs = []) {
+export function useRequest<T>(
+  request: () => Promise<T>,
+  deps: Inputs = [],
+  key?: string,
+) {
+  let cached: T | undefined;
+
+  if (key) {
+    cached = cache.get(key) as T | undefined;
+  }
+
   const [state, setState] = useState<RequestState<T>>({
-    data: undefined,
+    data: cached,
     error: undefined,
-    loading: true,
+    loading: cached === undefined,
   });
   const latest = useRef(0);
 
@@ -24,6 +37,10 @@ export function useRequest<T>(request: () => Promise<T>, deps: Inputs = []) {
     setState((prev) => ({ ...prev, error: undefined, loading: true }));
     request().then(
       (data) => {
+        if (key) {
+          cache.set(key, data);
+        }
+
         if (id === latest.current) {
           setState({ data, error: undefined, loading: false });
         }
@@ -37,6 +54,13 @@ export function useRequest<T>(request: () => Promise<T>, deps: Inputs = []) {
   };
 
   useEffect(() => {
+    if (key && cache.has(key)) {
+      latest.current++;
+      setState({ data: cache.get(key) as T, error: undefined, loading: false });
+
+      return;
+    }
+
     reload();
     // The caller's deps say when the request changes.
     // eslint-disable-next-line react-hooks/exhaustive-deps
