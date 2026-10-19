@@ -1,0 +1,29 @@
+.account-nav {
+  display: flex;
+  gap: 2px;
+  margin: 0 4px;
+}
+
+.account-nav-link {
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  font: 500 var(--text-sm) / 1.2 var(--font-ui);
+  color: var(--fg-secondary);
+  white-space: nowrap;
+}
+
+.account-nav-link:hover {
+  background: var(--bg-hover);
+  color: var(--fg);
+}
+
+.account-nav-link[aria-current='true'] {
+  background: var(--bg-track);
+  color: var(--fg);
+}
+
+@media (max-width: 639px) {
+  .account-nav {
+    display: none;
+  }
+}

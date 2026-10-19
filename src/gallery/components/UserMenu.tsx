@@ -1,22 +1,22 @@
 import { useEffect, useState } from 'preact/hooks';
 
-import { useSession } from '@/gallery/hooks/useSession';
+import { type Account } from '@/gallery/lib/api';
 import { signOut } from '@/gallery/lib/auth';
 
 import ChevronDownIcon from '@/components/icons/ChevronDownIcon';
 
-import { type Catalog, translator } from '@/i18n/t';
-
-import SignInButton from './SignInButton';
+import { type Locale, localizePath } from '@/i18n/locales';
+import { type Translate } from '@/i18n/t';
 
 import './UserMenu.css';
 
+type Props = { account: Account; locale: Locale; t: Translate };
+
 /**
- * Sign in with Google, or the signed-in name, opening a menu to sign out.
+ * The signed-in account's name, opening a menu with its styles, for screens
+ * too narrow for the header's links, and Sign out.
  */
-export default function UserMenu({ strings }: { strings: Catalog }) {
-  const t = translator(strings);
-  const session = useSession();
+export default function UserMenu({ account, locale, t }: Props) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -31,16 +31,8 @@ export default function UserMenu({ strings }: { strings: Catalog }) {
     return () => window.removeEventListener('keydown', onKey);
   }, []);
 
-  if (session === undefined) {
-    return null;
-  }
-
-  if (!session) {
-    return <SignInButton t={t} />;
-  }
-
   // i18n: The account menu's label when the account has no display name.
-  const name = session.account.name ?? t('Your account');
+  const name = account.name ?? t('Your account');
 
   return (
     <div class="user-menu">
@@ -60,6 +52,14 @@ export default function UserMenu({ strings }: { strings: Catalog }) {
           <div class="user-menu-scrim" onClick={() => setOpen(false)} />
 
           <div class="user-menu-list" role="menu">
+            <a
+              role="menuitem"
+              class="user-menu-item user-menu-mine"
+              href={localizePath(locale, '/mine')}
+            >
+              {t('Your styles')}
+            </a>
+
             <button
               role="menuitem"
               class="user-menu-item"

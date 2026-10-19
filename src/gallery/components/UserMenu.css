@@ -7,12 +7,12 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  max-width: 200px;
-  height: 34px;
-  padding: 0 10px;
-  border: none;
-  border-radius: var(--radius-md);
-  background: transparent;
+  max-width: 220px;
+  height: 36px;
+  padding: 0 10px 0 14px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--bg-surface);
   color: var(--fg);
   font: 500 var(--text-sm) / 1 var(--font-ui);
   cursor: pointer;
@@ -73,4 +73,18 @@
 .user-menu-item:hover,
 .user-menu-item:focus-visible {
   background: var(--bg-hover);
+}
+
+.user-menu-mine {
+  display: none;
+}
+
+@media (max-width: 639px) {
+  .user-menu-button {
+    max-width: 140px;
+  }
+
+  .user-menu-mine {
+    display: block;
+  }
 }

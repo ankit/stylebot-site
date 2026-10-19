@@ -336,6 +336,13 @@
     ]
   },
   {
+    "text": "Browse",
+    "note": "A header link to the gallery's list of styles.",
+    "files": [
+      "src/gallery/components/AccountNav.tsx"
+    ]
+  },
+  {
     "text": "Browse Styles",
     "files": [
       "src/gallery/layouts/Gallery.astro",
@@ -1777,9 +1784,22 @@
     ]
   },
   {
+    "text": "Sign in to see and manage the styles you’ve published.",
+    "files": [
+      "src/gallery/components/MinePage.tsx"
+    ]
+  },
+  {
     "text": "Sign out",
     "files": [
+      "src/gallery/components/MinePage.tsx",
       "src/gallery/components/UserMenu.tsx"
+    ]
+  },
+  {
+    "text": "Signed in as {name}",
+    "files": [
+      "src/gallery/components/MinePage.tsx"
     ]
   },
   {
@@ -2469,7 +2489,16 @@
     "text": "Your account",
     "note": "The account menu's label when the account has no display name.",
     "files": [
+      "src/gallery/components/MinePage.tsx",
       "src/gallery/components/UserMenu.tsx"
+    ]
+  },
+  {
+    "text": "Your styles",
+    "files": [
+      "src/gallery/components/AccountNav.tsx",
+      "src/gallery/components/UserMenu.tsx",
+      "src/gallery/pages/[...lang]/mine.astro"
     ]
   },
   {

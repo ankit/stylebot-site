@@ -1,0 +1,27 @@
+---
+import MinePage from '@/gallery/components/MinePage';
+import Gallery from '@/gallery/layouts/Gallery.astro';
+
+import { localeStaticPaths } from '@/i18n';
+
+export const getStaticPaths = localeStaticPaths;
+
+const { strings, t } = Astro.locals;
+---
+
+<Gallery title={t('Your styles')} current="mine" noindex>
+  <div class="g-page mine-page">
+    <h1 class="g-title mine-title">{t('Your styles')}</h1>
+    <MinePage client:load strings={strings('gallery/components/')} />
+  </div>
+</Gallery>
+
+<style>
+  .mine-page {
+    gap: 8px;
+  }
+
+  .mine-title {
+    text-align: left;
+  }
+</style>
