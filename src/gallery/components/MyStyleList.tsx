@@ -2,6 +2,7 @@ import { useState } from 'preact/hooks';
 
 import { useMyStyles } from '@/gallery/hooks/useMyStyles';
 import { type OwnStyle } from '@/gallery/lib/api';
+import { authorHref } from '@/gallery/lib/paths';
 
 import { type Locale } from '@/i18n/locales';
 import { type Translate } from '@/i18n/t';
@@ -12,13 +13,18 @@ import MyStyleRowSkeleton from './MyStyleRowSkeleton';
 
 import './MyStyleList.css';
 
-type Props = { session: string; locale: Locale; t: Translate };
+type Props = {
+  session: string;
+  username: string;
+  locale: Locale;
+  t: Translate;
+};
 
 /**
  * The account's styles as rows, those in the Gallery first, then those
  * unpublished or hidden, with how to publish more.
  */
-export default function MyStyleList({ session, locale, t }: Props) {
+export default function MyStyleList({ session, username, locale, t }: Props) {
   const { data, error, loading, reload } = useMyStyles(session);
 
   // Styles changed on this page, by id; null once deleted.
@@ -72,12 +78,23 @@ export default function MyStyleList({ session, locale, t }: Props) {
   return (
     <>
       <section class="my-style-section">
-        <h2 class="my-style-section-title">
-          {
-            // i18n: Heading over your styles that are listed in the Gallery.
-            t('In the Gallery')
-          }
-        </h2>
+        <div class="my-style-section-head">
+          <h2 class="my-style-section-title">
+            {
+              // i18n: Heading over your styles that are listed in the Gallery.
+              t('In the Gallery')
+            }
+          </h2>
+
+          {live.length > 0 && (
+            <a class="my-style-page-link" href={authorHref(locale, username)}>
+              {
+                // i18n: Links to the public page listing your styles.
+                t('View your page')
+              }
+            </a>
+          )}
+        </div>
 
         <div class="my-style-list">
           <ul aria-busy={loading}>

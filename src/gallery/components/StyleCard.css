@@ -67,6 +67,13 @@
 
 .style-card-author {
   min-width: 0;
+  color: inherit;
+
+  &:hover {
+    color: var(--fg);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
 }
 
 .style-card-meta {

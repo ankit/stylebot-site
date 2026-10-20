@@ -64,6 +64,8 @@ export type Sort = 'popular' | 'new';
 
 export type StyleQuery = {
   site?: string;
+  // An author's username, for their styles only.
+  author?: string;
   group?: string;
   q?: string;
   sort?: Sort;
@@ -129,6 +131,13 @@ export function listStyles(query: StyleQuery) {
     `/styles?${params}`,
   );
 }
+
+// An author with live styles. `username` is their current one, which differs
+// from the one asked for when that's an old username.
+export type Author = { username: string; styles: number; installs: number };
+
+export const getAuthor = (username: string) =>
+  request<Author>(`/authors/${encodeURIComponent(username)}`);
 
 export const listSites = () => request<{ sites: Array<Site> }>('/sites');
 

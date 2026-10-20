@@ -13,6 +13,7 @@ import NotFoundPage from './NotFoundPage';
 const SitePage = lazy(() => import('./SitePage'));
 const StylePage = lazy(() => import('./StylePage'));
 const MinePage = lazy(() => import('./MinePage'));
+const AuthorPage = lazy(() => import('./AuthorPage'));
 
 type Props = { locale: Locale; strings: Catalog };
 
@@ -51,6 +52,8 @@ export default function GalleryApp({ locale, strings }: Props) {
         />
 
         <Route path={`${base}mine`} component={MinePage} {...props} />
+
+        <Route path={`${base}u/:username`} component={AuthorPage} {...props} />
 
         <Route default component={NotFoundPage} {...props} />
       </Router>

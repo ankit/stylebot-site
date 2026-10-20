@@ -1,5 +1,5 @@
 import { screenshotUrl, type Style } from '@/gallery/lib/api';
-import { styleHref } from '@/gallery/lib/paths';
+import { authorHref, styleHref } from '@/gallery/lib/paths';
 
 import { type Locale } from '@/i18n/locales';
 import { type Translate } from '@/i18n/t';
@@ -57,7 +57,12 @@ export default function StyleCard({
       </div>
 
       <div class="style-card-meta">
-        <span class="style-card-author">{style.author.username}</span>
+        <a
+          class="style-card-author"
+          href={authorHref(locale, style.author.username)}
+        >
+          {style.author.username}
+        </a>
 
         <InstallCount installs={style.installs} locale={locale} t={t} />
       </div>

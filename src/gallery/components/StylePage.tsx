@@ -5,7 +5,7 @@ import { usePageMeta } from '@/gallery/hooks/usePageMeta';
 import { useStyle } from '@/gallery/hooks/useStyle';
 import { screenshotUrl } from '@/gallery/lib/api';
 import { fullNumber, timeAgo } from '@/gallery/lib/format';
-import { siteHref } from '@/gallery/lib/paths';
+import { authorHref, siteHref } from '@/gallery/lib/paths';
 
 import ZoomableImage from '@/components/ZoomableImage';
 
@@ -101,7 +101,11 @@ export default function StylePage({ locale, strings }: Props) {
 
           <dl class="style-page-facts">
             <dt>{t('Author')}</dt>
-            <dd>{style.author.username}</dd>
+            <dd>
+              <a href={authorHref(locale, style.author.username)}>
+                {style.author.username}
+              </a>
+            </dd>
             <dt>{t('Installs')}</dt>
             <dd>{fullNumber(locale, style.installs)}</dd>
             <dt>{t('Updated')}</dt>

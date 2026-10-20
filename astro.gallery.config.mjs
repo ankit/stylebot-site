@@ -11,10 +11,12 @@ const PREFIXES = [
 
 /**
  * The gallery is one app per locale, served at every route it handles:
- * /s/<group>, /s/<group>/<slug> and /mine.
+ * /s/<group>, /s/<group>/<slug>, /u/<username> and /mine.
  */
 const rewrite = (path) => {
-  const match = path.match(/^(\/[a-z-]+)?\/(s\/[^/]+(\/[^/]+)?|mine)\/?$/);
+  const match = path.match(
+    /^(\/[a-z-]+)?\/(s\/[^/]+(\/[^/]+)?|u\/[^/]+|mine)\/?$/,
+  );
 
   if (!match || (match[1] && !PREFIXES.includes(match[1]))) {
     return null;
@@ -42,6 +44,7 @@ const routes = {
     'astro:build:done': ({ dir }) => {
       const lines = PREFIXES.flatMap((p) => [
         `${p}/s/* ${p}/ 200`,
+        `${p}/u/* ${p}/ 200`,
         `${p}/mine ${p}/ 200`,
       ]);
 

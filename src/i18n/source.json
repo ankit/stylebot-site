@@ -48,6 +48,7 @@
   {
     "text": "{title} | Stylebot",
     "files": [
+      "src/gallery/components/AuthorPage.tsx",
       "src/gallery/components/Browse.tsx",
       "src/gallery/components/MinePage.tsx",
       "src/gallery/components/NotFoundPage.tsx",
@@ -206,6 +207,7 @@
   {
     "text": "All styles",
     "files": [
+      "src/gallery/components/AuthorPage.tsx",
       "src/gallery/components/NotFound.tsx",
       "src/gallery/components/SitePage.tsx",
       "src/gallery/components/StylePage.tsx"
@@ -279,6 +281,13 @@
     "text": "Author",
     "files": [
       "src/gallery/components/StylePage.tsx"
+    ]
+  },
+  {
+    "text": "Author not found",
+    "note": "The title of the page for an author who doesn't exist or has no published styles.",
+    "files": [
+      "src/gallery/components/AuthorPage.tsx"
     ]
   },
   {
@@ -621,6 +630,12 @@
     "text": "Couldn’t load styles.",
     "files": [
       "src/gallery/components/StyleGrid.tsx"
+    ]
+  },
+  {
+    "text": "Couldn’t load this author.",
+    "files": [
+      "src/gallery/components/AuthorPage.tsx"
     ]
   },
   {
@@ -1239,6 +1254,7 @@
   {
     "text": "Installs: {count}",
     "files": [
+      "src/gallery/components/AuthorPage.tsx",
       "src/gallery/components/InstallCount.tsx"
     ]
   },
@@ -1337,6 +1353,12 @@
     "note": "What the person asks the agent; {site} is the site's address.",
     "files": [
       "src/www/components/cli/CliDemo.tsx"
+    ]
+  },
+  {
+    "text": "Manage your styles",
+    "files": [
+      "src/gallery/components/AuthorPage.tsx"
     ]
   },
   {
@@ -2173,6 +2195,12 @@
     ]
   },
   {
+    "text": "Styles: {count}",
+    "files": [
+      "src/gallery/components/AuthorPage.tsx"
+    ]
+  },
+  {
     "text": "Switch between them anytime.",
     "note": "\"them\" is the two profiles",
     "files": [
@@ -2659,6 +2687,13 @@
     "text": "View on GitHub",
     "files": [
       "src/www/components/Examples.astro"
+    ]
+  },
+  {
+    "text": "View your page",
+    "note": "Links to the public page listing your styles.",
+    "files": [
+      "src/gallery/components/MyStyleList.tsx"
     ]
   },
   {

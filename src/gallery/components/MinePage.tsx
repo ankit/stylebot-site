@@ -34,7 +34,12 @@ export default function MinePage({ locale, strings }: Props) {
       )}
 
       {session && (
-        <MyStyleList session={session.session} locale={locale} t={t} />
+        <MyStyleList
+          session={session.session}
+          username={session.account.username}
+          locale={locale}
+          t={t}
+        />
       )}
     </div>
   );
