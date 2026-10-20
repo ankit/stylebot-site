@@ -1,4 +1,4 @@
-import { type OwnStyle, screenshotUrl } from '@/gallery/lib/api';
+import { type OwnStyle, resizedScreenshotUrl } from '@/gallery/lib/api';
 import { compactNumber, timeAgo } from '@/gallery/lib/format';
 import { styleHref } from '@/gallery/lib/paths';
 
@@ -42,7 +42,7 @@ export default function MyStyleRow({
     <li class="my-style-row">
       {live && (
         <a class="my-style-shot" href={styleHref(locale, style)} tabIndex={-1}>
-          <img src={screenshotUrl(style)} alt="" loading="lazy" />
+          <img src={resizedScreenshotUrl(style, 480)} alt="" loading="lazy" />
         </a>
       )}
 

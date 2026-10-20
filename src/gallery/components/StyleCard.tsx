@@ -1,4 +1,8 @@
-import { screenshotUrl, type Style } from '@/gallery/lib/api';
+import {
+  resizedScreenshotUrl,
+  screenshotSrcset,
+  type Style,
+} from '@/gallery/lib/api';
 import { authorHref, styleHref } from '@/gallery/lib/paths';
 
 import { type Locale } from '@/i18n/locales';
@@ -10,11 +14,17 @@ import InstalledBadge from './InstalledBadge';
 
 import './StyleCard.css';
 
+// Cards in StyleGrid: three columns of up to 361px, then two, then one.
+const GRID_SIZES =
+  '(min-width: 906px) 361px, (min-width: 612px) calc(50vw - 36px), calc(100vw - 32px)';
+
 type Props = {
   style: Style;
   installed?: boolean;
   // Off where the site is already named, as on its own page.
   showSite?: boolean;
+  // The screenshot's width in the layout, as an img `sizes`.
+  sizes?: string;
   locale: Locale;
   t: Translate;
 };
@@ -27,6 +37,7 @@ export default function StyleCard({
   style,
   installed,
   showSite = true,
+  sizes = GRID_SIZES,
   locale,
   t,
 }: Props) {
@@ -43,7 +54,9 @@ export default function StyleCard({
         )}
         <img
           class="style-card-shot"
-          src={screenshotUrl(style)}
+          src={resizedScreenshotUrl(style, 960)}
+          srcSet={screenshotSrcset(style)}
+          sizes={sizes}
           alt=""
           loading="lazy"
         />

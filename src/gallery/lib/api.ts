@@ -117,6 +117,17 @@ async function request<T>(
 export const screenshotUrl = (style: { screenshot: string }) =>
   API_ORIGIN + style.screenshot;
 
+// The API resizes screenshots to these widths only; any other returns 400.
+export type ScreenshotWidth = 480 | 960;
+
+export const resizedScreenshotUrl = (
+  style: { screenshot: string },
+  width: ScreenshotWidth,
+) => `${screenshotUrl(style)}?w=${width}`;
+
+export const screenshotSrcset = (style: { screenshot: string }) =>
+  `${resizedScreenshotUrl(style, 480)} 480w, ${resizedScreenshotUrl(style, 960)} 960w`;
+
 export function listStyles(query: StyleQuery) {
   const params = new URLSearchParams();
 

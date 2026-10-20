@@ -10,6 +10,7 @@ type Props = {
   src: string;
   alt: string;
   srcset?: string;
+  sizes?: string;
   width?: number;
   height?: number;
   class?: string;
@@ -36,6 +37,7 @@ export default function ZoomableImage({
   src,
   alt,
   srcset,
+  sizes,
   width,
   height,
   class: className = '',
@@ -59,6 +61,7 @@ export default function ZoomableImage({
         class={`zoomable-image ${className}`}
         src={src}
         srcset={srcset}
+        sizes={sizes}
         width={width}
         height={height}
         alt={alt}

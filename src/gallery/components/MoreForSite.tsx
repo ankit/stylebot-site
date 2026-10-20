@@ -10,6 +10,10 @@ import StyleCard from './StyleCard';
 
 import './MoreForSite.css';
 
+// Up to four columns of 220px or more, so a card is at most about 340px wide
+// until a single column on phones.
+const SIZES = '(min-width: 508px) 340px, calc(100vw - 32px)';
+
 type Props = { style: Style; locale: Locale; t: Translate };
 
 /**
@@ -39,6 +43,7 @@ export default function MoreForSite({ style, locale, t }: Props) {
             style={other}
             installed={other.id in installed}
             showSite={false}
+            sizes={SIZES}
             locale={locale}
             t={t}
           />
