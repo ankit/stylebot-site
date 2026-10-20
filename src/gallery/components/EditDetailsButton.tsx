@@ -9,8 +9,6 @@ import { type Translate } from '@/i18n/t';
 
 import Dialog from './Dialog';
 
-import './EditDetailsButton.css';
-
 // The API's limits.
 const NAME_MAX = 60;
 const DESCRIPTION_MAX = 200;
@@ -93,7 +91,7 @@ export default function EditDetailsButton({
             </>
           }
         >
-          <form id={formId} class="edit-details" onSubmit={submit}>
+          <form id={formId} class="dialog-form" onSubmit={submit}>
             <label>
               {t('Name')}
               <input
@@ -114,7 +112,7 @@ export default function EditDetailsButton({
               />
             </label>
 
-            <p class="edit-details-hint">
+            <p class="dialog-hint">
               {t('Changes show right away. Installs aren’t updated.')}
             </p>
 

@@ -55,7 +55,7 @@ export default function AccountNav({ locale, strings }: Props) {
         ))}
       </nav>
 
-      <UserMenu account={session.account} locale={locale} t={t} />
+      <UserMenu session={session} locale={locale} t={t} />
     </>
   );
 }

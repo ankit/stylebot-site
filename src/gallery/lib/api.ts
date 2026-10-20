@@ -141,6 +141,14 @@ export const createSession = (googleToken: string) =>
     body: JSON.stringify({ googleToken }),
   });
 
+// Sets the name shown as the author of the account's styles; blank clears it.
+export const setName = (session: string, name: string) =>
+  request<Account>('/me', {
+    method: 'PATCH',
+    session,
+    body: JSON.stringify({ name: name.trim() || null }),
+  });
+
 export const listMyStyles = (session: string) =>
   request<{ styles: Array<OwnStyle> }>('/me/styles', { session });
 

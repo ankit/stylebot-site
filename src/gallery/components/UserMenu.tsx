@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'preact/hooks';
 
-import { type Account } from '@/gallery/lib/api';
+import { type Session } from '@/gallery/lib/api';
 import { signOut } from '@/gallery/lib/auth';
 
 import ChevronDownIcon from '@/components/icons/ChevronDownIcon';
@@ -8,16 +8,20 @@ import ChevronDownIcon from '@/components/icons/ChevronDownIcon';
 import { type Locale, localizePath } from '@/i18n/locales';
 import { type Translate } from '@/i18n/t';
 
+import ChangeNameDialog from './ChangeNameDialog';
+
 import './UserMenu.css';
 
-type Props = { account: Account; locale: Locale; t: Translate };
+type Props = { session: Session; locale: Locale; t: Translate };
 
 /**
  * The signed-in account's name, opening a menu with its styles, for screens
- * too narrow for the header's links, and Sign out.
+ * too narrow for the header's links, Change name and Sign out.
  */
-export default function UserMenu({ account, locale, t }: Props) {
+export default function UserMenu({ session, locale, t }: Props) {
+  const { account } = session;
   const [open, setOpen] = useState(false);
+  const [changingName, setChangingName] = useState(false);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -65,6 +69,17 @@ export default function UserMenu({ account, locale, t }: Props) {
               class="user-menu-item"
               onClick={() => {
                 setOpen(false);
+                setChangingName(true);
+              }}
+            >
+              {t('Change name')}
+            </button>
+
+            <button
+              role="menuitem"
+              class="user-menu-item"
+              onClick={() => {
+                setOpen(false);
                 signOut();
               }}
             >
@@ -72,6 +87,15 @@ export default function UserMenu({ account, locale, t }: Props) {
             </button>
           </div>
         </>
+      )}
+
+      {changingName && (
+        <ChangeNameDialog
+          account={account}
+          session={session.session}
+          onClose={() => setChangingName(false)}
+          t={t}
+        />
       )}
     </div>
   );

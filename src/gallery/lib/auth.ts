@@ -1,4 +1,9 @@
-import { ApiError, createSession, type Session } from '@/gallery/lib/api';
+import {
+  type Account,
+  ApiError,
+  createSession,
+  type Session,
+} from '@/gallery/lib/api';
 
 // The extension's web OAuth client: the styles API only takes tokens issued to
 // the extension's clients, and the gallery's origin has to be listed on it.
@@ -132,6 +137,18 @@ export async function signIn() {
 }
 
 export const signOut = () => writeSession(null);
+
+/**
+ * Keeps the saved session's account, such as its name, in step after a
+ * change.
+ */
+export function updateAccount(account: Account) {
+  const current = readSession();
+
+  if (current) {
+    writeSession({ ...current, account });
+  }
+}
 
 /**
  * Signs out when the API no longer takes the session, then rethrows.
