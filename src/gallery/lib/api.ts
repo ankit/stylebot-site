@@ -213,3 +213,11 @@ export const updateStyle = (
     session,
     body: JSON.stringify(details),
   });
+
+// Reports a live style as the signed-in account; each account counts once.
+export const reportStyle = (session: string, id: string, reason: string) =>
+  request<void>(styleAction(id, '/reports'), {
+    method: 'POST',
+    session,
+    body: JSON.stringify({ reason }),
+  });

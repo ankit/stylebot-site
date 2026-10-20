@@ -1,0 +1,21 @@
+.report-style-button {
+  align-self: flex-start;
+  margin: 4px 0 0;
+  padding: 0;
+  border: none;
+  background: none;
+  font: 400 var(--text-xs) / 1.3 var(--font-ui);
+  color: var(--fg-muted);
+}
+
+button.report-style-button {
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: var(--border-strong);
+  text-underline-offset: 3px;
+
+  &:hover {
+    color: var(--fg);
+    text-decoration-color: currentColor;
+  }
+}

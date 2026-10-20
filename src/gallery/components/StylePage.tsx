@@ -22,6 +22,7 @@ import LoadError from './LoadError';
 import MoreForSite from './MoreForSite';
 import NotFound from './NotFound';
 import PreviewCard from './PreviewCard';
+import ReportStyleButton from './ReportStyleButton';
 import StyleCss from './StyleCss';
 import StylePageSkeleton from './StylePageSkeleton';
 import StyleVersions from './StyleVersions';
@@ -129,6 +130,8 @@ export default function StylePage({ locale, strings }: Props) {
             <dt>{t('Version')}</dt>
             <dd>{style.version}</dd>
           </dl>
+
+          <ReportStyleButton style={style} t={t} />
         </div>
       </div>
 

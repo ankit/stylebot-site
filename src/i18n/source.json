@@ -115,6 +115,12 @@
     ]
   },
   {
+    "text": "A moderator will take a look. Styles reported by several people are hidden until then.",
+    "files": [
+      "src/gallery/components/ReportDialog.tsx"
+    ]
+  },
+  {
     "text": "A new Stylebot icon",
     "files": [
       "src/www/pages/[...lang]/releases/4.0.astro"
@@ -366,6 +372,12 @@
     ]
   },
   {
+    "text": "Broken or malicious CSS",
+    "files": [
+      "src/gallery/components/ReportDialog.tsx"
+    ]
+  },
+  {
     "text": "Browse",
     "note": "A header link to the gallery's list of styles.",
     "files": [
@@ -397,6 +409,7 @@
       "src/gallery/components/ChangeUsernameDialog.tsx",
       "src/gallery/components/DeleteStyleButton.tsx",
       "src/gallery/components/EditDetailsButton.tsx",
+      "src/gallery/components/ReportDialog.tsx",
       "src/gallery/components/UnpublishButton.tsx"
     ]
   },
@@ -504,6 +517,7 @@
     "text": "Close",
     "files": [
       "src/components/ZoomableImage.tsx",
+      "src/gallery/components/ReportDialog.tsx",
       "src/www/components/Examples.astro"
     ]
   },
@@ -698,10 +712,22 @@
     ]
   },
   {
+    "text": "Couldn’t send the report. Try again.",
+    "files": [
+      "src/gallery/components/ReportDialog.tsx"
+    ]
+  },
+  {
     "text": "Couldn’t sign in. Try again",
     "note": "On the sign-in button after signing in with Google failed.",
     "files": [
       "src/gallery/components/SignInButton.tsx"
+    ]
+  },
+  {
+    "text": "Couldn’t sign in. Try again.",
+    "files": [
+      "src/gallery/components/ReportDialog.tsx"
     ]
   },
   {
@@ -803,6 +829,12 @@
     "text": "Description",
     "files": [
       "src/gallery/components/EditDetailsButton.tsx"
+    ]
+  },
+  {
+    "text": "Details",
+    "files": [
+      "src/gallery/components/ReportDialog.tsx"
     ]
   },
   {
@@ -1216,6 +1248,12 @@
     ]
   },
   {
+    "text": "Inappropriate screenshot",
+    "files": [
+      "src/gallery/components/ReportDialog.tsx"
+    ]
+  },
+  {
     "text": "Inline customization for theme and typography",
     "files": [
       "src/www/pages/[...lang]/releases/3.2.astro"
@@ -1582,6 +1620,12 @@
     ]
   },
   {
+    "text": "Only moderators see reports. Each account counts once.",
+    "files": [
+      "src/gallery/components/ReportDialog.tsx"
+    ]
+  },
+  {
     "text": "Open any site and press the shortcut. Nothing changes until you do.",
     "files": [
       "src/www/pages/[...lang]/welcome.astro"
@@ -1636,6 +1680,13 @@
     "text": "Or write CSS by hand.",
     "files": [
       "src/www/components/demo/scenes.ts"
+    ]
+  },
+  {
+    "text": "Other",
+    "note": "A reason for reporting a style, explained in a text box below.",
+    "files": [
+      "src/gallery/components/ReportDialog.tsx"
     ]
   },
   {
@@ -1835,6 +1886,36 @@
     ]
   },
   {
+    "text": "Report",
+    "files": [
+      "src/gallery/components/ReportDialog.tsx"
+    ]
+  },
+  {
+    "text": "Report {name}",
+    "files": [
+      "src/gallery/components/ReportDialog.tsx"
+    ]
+  },
+  {
+    "text": "Report this style",
+    "files": [
+      "src/gallery/components/ReportStyleButton.tsx"
+    ]
+  },
+  {
+    "text": "Reported. Thanks.",
+    "files": [
+      "src/gallery/components/ReportStyleButton.tsx"
+    ]
+  },
+  {
+    "text": "Reporting…",
+    "files": [
+      "src/gallery/components/ReportDialog.tsx"
+    ]
+  },
+  {
     "text": "Reset",
     "files": [
       "src/www/components/demo/Demo.tsx"
@@ -2018,6 +2099,18 @@
     ]
   },
   {
+    "text": "Sign in and report",
+    "files": [
+      "src/gallery/components/ReportDialog.tsx"
+    ]
+  },
+  {
+    "text": "Sign in to report this style.",
+    "files": [
+      "src/gallery/components/ReportDialog.tsx"
+    ]
+  },
+  {
     "text": "Sign in to see and manage the styles you’ve published.",
     "files": [
       "src/gallery/components/MinePage.tsx"
@@ -2069,6 +2162,12 @@
     "text": "Sort styles",
     "files": [
       "src/gallery/components/SortTabs.tsx"
+    ]
+  },
+  {
+    "text": "Spam or misleading",
+    "files": [
+      "src/gallery/components/ReportDialog.tsx"
     ]
   },
   {
@@ -2337,6 +2436,12 @@
     ]
   },
   {
+    "text": "Thanks for reporting",
+    "files": [
+      "src/gallery/components/ReportDialog.tsx"
+    ]
+  },
+  {
     "text": "Thanks for submitting the feedback.",
     "files": [
       "src/www/components/GoodbyeFeedback.tsx"
@@ -2499,6 +2604,12 @@
     "text": "This registers the CLI with Chrome and Edge, so Stylebot can reach it.",
     "files": [
       "src/www/pages/[...lang]/cli.astro"
+    ]
+  },
+  {
+    "text": "This style is no longer published.",
+    "files": [
+      "src/gallery/components/ReportDialog.tsx"
     ]
   },
   {
@@ -2794,6 +2905,12 @@
     ]
   },
   {
+    "text": "What’s wrong with it?",
+    "files": [
+      "src/gallery/components/ReportDialog.tsx"
+    ]
+  },
+  {
     "text": "While picking an element",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
@@ -2839,6 +2956,12 @@
     "text": "You haven’t published any styles yet.",
     "files": [
       "src/gallery/components/MyStyleList.tsx"
+    ]
+  },
+  {
+    "text": "You’ve been signed out. Sign in again to report it.",
+    "files": [
+      "src/gallery/components/ReportDialog.tsx"
     ]
   },
   {

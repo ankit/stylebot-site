@@ -43,7 +43,7 @@
     overflow-wrap: anywhere;
   }
 
-  p {
+  > p {
     margin: 4px 0 0;
     font: 400 var(--text-base) / 1.55 var(--font-ui);
     color: var(--fg-secondary);
