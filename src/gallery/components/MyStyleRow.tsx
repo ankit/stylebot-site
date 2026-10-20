@@ -6,6 +6,7 @@ import { type Locale } from '@/i18n/locales';
 import { type Translate } from '@/i18n/t';
 
 import DeleteStyleButton from './DeleteStyleButton';
+import EditDetailsButton from './EditDetailsButton';
 import Favicon from './Favicon';
 import PublishButton from './PublishButton';
 import UnpublishButton from './UnpublishButton';
@@ -23,8 +24,8 @@ type Props = {
 
 /**
  * One of the account's styles: its screenshot and name, linking to its page
- * while it's live, its site, when it was updated, its installs, and Unpublish,
- * or Publish and Delete once it's unpublished.
+ * while it's live, its site, when it was updated, its installs, and Edit and
+ * Unpublish, or Publish and Delete once it's unpublished.
  */
 export default function MyStyleRow({
   style,
@@ -93,12 +94,21 @@ export default function MyStyleRow({
         </div>
 
         {!unpublished && (
-          <UnpublishButton
-            style={style}
-            session={session}
-            onChange={onChange}
-            t={t}
-          />
+          <div class="my-style-actions">
+            <EditDetailsButton
+              style={style}
+              session={session}
+              onChange={onChange}
+              t={t}
+            />
+
+            <UnpublishButton
+              style={style}
+              session={session}
+              onChange={onChange}
+              t={t}
+            />
+          </div>
         )}
 
         {unpublished && (

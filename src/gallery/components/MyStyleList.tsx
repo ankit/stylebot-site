@@ -72,7 +72,7 @@ export default function MyStyleList({ session, locale, t }: Props) {
   return (
     <>
       <section class="my-style-section">
-        <h2>
+        <h2 class="my-style-section-title">
           {
             // i18n: Heading over your styles that are listed in the Gallery.
             t('In the Gallery')
@@ -103,7 +103,7 @@ export default function MyStyleList({ session, locale, t }: Props) {
 
       {away.length > 0 && (
         <section class="my-style-section">
-          <h2>
+          <h2 class="my-style-section-title">
             {
               // i18n: Heading over your styles that you unpublished or that were hidden after reports.
               t('Not in the Gallery')

@@ -157,3 +157,15 @@ export const publishStyle = (session: string, id: string) =>
 // Deletes an unpublished style for good.
 export const deleteStyle = (session: string, id: string) =>
   request<void>(styleAction(id), { method: 'DELETE', session });
+
+// Changes a style's name and description without publishing a new version.
+export const updateStyle = (
+  session: string,
+  id: string,
+  details: { name: string; description: string },
+) =>
+  request<StyleWithCss>(styleAction(id), {
+    method: 'PATCH',
+    session,
+    body: JSON.stringify(details),
+  });

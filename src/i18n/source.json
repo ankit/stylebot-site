@@ -368,6 +368,7 @@
     "text": "Cancel",
     "files": [
       "src/gallery/components/DeleteStyleButton.tsx",
+      "src/gallery/components/EditDetailsButton.tsx",
       "src/gallery/components/UnpublishButton.tsx"
     ]
   },
@@ -381,6 +382,12 @@
     "text": "Changelog",
     "files": [
       "src/components/Footer.astro"
+    ]
+  },
+  {
+    "text": "Changes show right away. Installs aren’t updated.",
+    "files": [
+      "src/gallery/components/EditDetailsButton.tsx"
     ]
   },
   {
@@ -630,6 +637,12 @@
     ]
   },
   {
+    "text": "Couldn’t save. Try again.",
+    "files": [
+      "src/gallery/components/EditDetailsButton.tsx"
+    ]
+  },
+  {
     "text": "Couldn’t sign in. Try again",
     "note": "On the sign-in button after signing in with Google failed.",
     "files": [
@@ -732,6 +745,12 @@
     ]
   },
   {
+    "text": "Description",
+    "files": [
+      "src/gallery/components/EditDetailsButton.tsx"
+    ]
+  },
+  {
     "text": "Didn’t need it anymore",
     "files": [
       "src/www/components/GoodbyeFeedback.tsx"
@@ -759,6 +778,18 @@
     "text": "Each field shows the element’s current computed value.",
     "files": [
       "src/www/components/demo/scenes.ts"
+    ]
+  },
+  {
+    "text": "Edit",
+    "files": [
+      "src/gallery/components/EditDetailsButton.tsx"
+    ]
+  },
+  {
+    "text": "Edit {name}",
+    "files": [
+      "src/gallery/components/EditDetailsButton.tsx"
     ]
   },
   {
@@ -1346,6 +1377,12 @@
     ]
   },
   {
+    "text": "Name",
+    "files": [
+      "src/gallery/components/EditDetailsButton.tsx"
+    ]
+  },
+  {
     "text": "Newer article-extraction algorithm, better at cleaning up pages",
     "files": [
       "src/www/pages/[...lang]/releases/3.2.astro"
@@ -1740,6 +1777,12 @@
     ]
   },
   {
+    "text": "Save",
+    "files": [
+      "src/gallery/components/EditDetailsButton.tsx"
+    ]
+  },
+  {
     "text": "Save different looks for the same site.",
     "note": "Also the scene's first caption",
     "files": [
@@ -1770,6 +1813,12 @@
     "files": [
       "src/www/pages/[...lang]/cli.astro",
       "src/www/pages/[...lang]/releases/4.0.astro"
+    ]
+  },
+  {
+    "text": "Saving…",
+    "files": [
+      "src/gallery/components/EditDetailsButton.tsx"
     ]
   },
   {
