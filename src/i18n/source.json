@@ -53,6 +53,7 @@
       "src/gallery/components/MinePage.tsx",
       "src/gallery/components/NotFoundPage.tsx",
       "src/gallery/components/SitePage.tsx",
+      "src/gallery/components/SitesPage.tsx",
       "src/gallery/components/StylePage.tsx",
       "src/gallery/layouts/Gallery.astro"
     ]
@@ -149,6 +150,13 @@
     ]
   },
   {
+    "text": "A–Z",
+    "note": "Sorts sites alphabetically by name.",
+    "files": [
+      "src/gallery/components/SitesPage.tsx"
+    ]
+  },
+  {
     "text": "About Stylebot",
     "files": [
       "src/gallery/components/GetStylebotCard.tsx"
@@ -205,11 +213,20 @@
     ]
   },
   {
+    "text": "All sites",
+    "note": "Links to the page listing every site that has styles.",
+    "files": [
+      "src/gallery/components/SitesPage.tsx",
+      "src/gallery/components/TopSites.tsx"
+    ]
+  },
+  {
     "text": "All styles",
     "files": [
       "src/gallery/components/AuthorPage.tsx",
       "src/gallery/components/NotFound.tsx",
       "src/gallery/components/SitePage.tsx",
+      "src/gallery/components/SitesPage.tsx",
       "src/gallery/components/StylePage.tsx"
     ]
   },
@@ -633,6 +650,12 @@
     ]
   },
   {
+    "text": "Couldn’t load the sites.",
+    "files": [
+      "src/gallery/components/SitesPage.tsx"
+    ]
+  },
+  {
     "text": "Couldn’t load this author.",
     "files": [
       "src/gallery/components/AuthorPage.tsx"
@@ -942,6 +965,12 @@
     "note": "Headlines of the swipeable feature cards on phones, each over a screenshot of the feature.",
     "files": [
       "src/www/components/FeatureTour.astro"
+    ]
+  },
+  {
+    "text": "Filter sites",
+    "files": [
+      "src/gallery/components/SitesPage.tsx"
     ]
   },
   {
@@ -1415,6 +1444,7 @@
   {
     "text": "Most installed",
     "files": [
+      "src/gallery/components/SitesPage.tsx",
       "src/gallery/components/SortTabs.tsx"
     ]
   },
@@ -1481,6 +1511,12 @@
     "text": "No changes",
     "files": [
       "src/www/components/Features.astro"
+    ]
+  },
+  {
+    "text": "No sites match “{query}”.",
+    "files": [
+      "src/gallery/components/SitesPage.tsx"
     ]
   },
   {
@@ -1989,6 +2025,12 @@
     ]
   },
   {
+    "text": "Sites: {count}",
+    "files": [
+      "src/gallery/components/SitesPage.tsx"
+    ]
+  },
+  {
     "text": "Size",
     "files": [
       "src/www/components/demo/Demo.tsx"
@@ -2010,6 +2052,12 @@
     "text": "Something else",
     "files": [
       "src/www/components/GoodbyeFeedback.tsx"
+    ]
+  },
+  {
+    "text": "Sort sites",
+    "files": [
+      "src/gallery/components/SitesPage.tsx"
     ]
   },
   {
@@ -2191,7 +2239,8 @@
   {
     "text": "Styles: {count}",
     "files": [
-      "src/gallery/components/AuthorPage.tsx"
+      "src/gallery/components/AuthorPage.tsx",
+      "src/gallery/components/SiteLink.tsx"
     ]
   },
   {

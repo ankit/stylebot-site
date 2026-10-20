@@ -23,6 +23,13 @@
       color: var(--fg);
     }
   }
+
+  .top-sites-all {
+    position: sticky;
+    right: 0;
+    gap: 4px;
+    color: var(--fg);
+  }
 }
 
 .top-sites-pill {

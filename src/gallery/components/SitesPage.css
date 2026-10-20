@@ -1,0 +1,27 @@
+.sites-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sites-page-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.sites-page-stats {
+  margin: 0;
+  font: 400 var(--text-sm) / 1.4 var(--font-ui);
+  color: var(--fg-muted);
+}
+
+.sites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

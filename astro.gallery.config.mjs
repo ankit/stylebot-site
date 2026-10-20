@@ -11,11 +11,11 @@ const PREFIXES = [
 
 /**
  * The gallery is one app per locale, served at every route it handles:
- * /s/<group>, /s/<group>/<slug>, /u/<username> and /mine.
+ * /sites, /s/<group>, /s/<group>/<slug>, /u/<username> and /mine.
  */
 const rewrite = (path) => {
   const match = path.match(
-    /^(\/[a-z-]+)?\/(s\/[^/]+(\/[^/]+)?|u\/[^/]+|mine)\/?$/,
+    /^(\/[a-z-]+)?\/(s\/[^/]+(\/[^/]+)?|u\/[^/]+|mine|sites)\/?$/,
   );
 
   if (!match || (match[1] && !PREFIXES.includes(match[1]))) {
@@ -46,6 +46,7 @@ const routes = {
         `${p}/s/* ${p}/ 200`,
         `${p}/u/* ${p}/ 200`,
         `${p}/mine ${p}/ 200`,
+        `${p}/sites ${p}/ 200`,
       ]);
 
       writeFileSync(new URL('_redirects', dir), `${lines.join('\n')}\n`);

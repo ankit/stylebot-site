@@ -12,12 +12,13 @@ import './SearchBox.css';
 type Props = {
   value: string;
   onChange: (value: string) => void;
+  label?: string;
   t: Translate;
 };
 
-export default function SearchBox({ value, onChange, t }: Props) {
+export default function SearchBox({ value, onChange, label = '', t }: Props) {
   const input = useRef<HTMLInputElement>(null);
-  const label = t('Search sites and styles');
+  const placeholder = label || t('Search sites and styles');
 
   useSearchShortcut(input);
 
@@ -35,8 +36,8 @@ export default function SearchBox({ value, onChange, t }: Props) {
         type="search"
         value={value}
         onInput={(e) => onChange(e.currentTarget.value)}
-        placeholder={label}
-        aria-label={label}
+        placeholder={placeholder}
+        aria-label={placeholder}
         maxLength={100}
       />
 

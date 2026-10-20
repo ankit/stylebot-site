@@ -14,6 +14,7 @@ const SitePage = lazy(() => import('./SitePage'));
 const StylePage = lazy(() => import('./StylePage'));
 const MinePage = lazy(() => import('./MinePage'));
 const AuthorPage = lazy(() => import('./AuthorPage'));
+const SitesPage = lazy(() => import('./SitesPage'));
 
 type Props = { locale: Locale; strings: Catalog };
 
@@ -42,6 +43,8 @@ export default function GalleryApp({ locale, strings }: Props) {
 
       <Router onRouteChange={restoreScroll}>
         <Route path={base} component={Browse} {...props} />
+
+        <Route path={`${base}sites`} component={SitesPage} {...props} />
 
         <Route path={`${base}s/:group`} component={SitePage} {...props} />
 

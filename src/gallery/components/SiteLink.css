@@ -1,0 +1,48 @@
+.site-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  font: 500 var(--text-sm) / 1.2 var(--font-ui);
+  color: var(--fg-secondary);
+
+  &:hover {
+    border-color: var(--border-strong);
+    color: var(--fg);
+  }
+
+  .favicon {
+    flex: none;
+    border-radius: var(--radius-sm);
+  }
+
+  &.is-skeleton {
+    height: 40px;
+    border-color: transparent;
+    background: var(--bg-track);
+    animation: site-link-pulse 1.4s ease-in-out infinite;
+  }
+}
+
+.site-link-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.site-link-count {
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  color: var(--fg-muted);
+}
+
+@keyframes site-link-pulse {
+  50% {
+    opacity: 0.55;
+  }
+}

@@ -14,3 +14,5 @@ export const authorHref = (locale: Locale, username: string) =>
 
 export const siteHref = (locale: Locale, group: string) =>
   localizePath(locale, `/s/${encodeURIComponent(group)}`);
+
+export const sitesHref = (locale: Locale) => localizePath(locale, '/sites');

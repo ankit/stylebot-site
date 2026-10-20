@@ -1,6 +1,7 @@
-import { useRequest } from '@/gallery/hooks/useRequest';
-import { listSites } from '@/gallery/lib/api';
-import { siteHref } from '@/gallery/lib/paths';
+import { useSites } from '@/gallery/hooks/useSites';
+import { siteHref, sitesHref } from '@/gallery/lib/paths';
+
+import ChevronRightIcon from '@/components/icons/ChevronRightIcon';
 
 import { type Locale } from '@/i18n/locales';
 import { type Translate } from '@/i18n/t';
@@ -10,20 +11,18 @@ import TopSitesSkeleton from './TopSitesSkeleton';
 
 import './TopSites.css';
 
-const COUNT = 8;
+const COUNT = 7;
 
 type Props = { locale: Locale; t: Translate };
 
 /**
- * The sites with the most installs, each linking to its page. Nothing shows if
- * they don't load, since browsing works without them.
+ * The sites with the most installs, each linking to its page, then a link to
+ * every site. Nothing shows if they don't load, since browsing works without
+ * them.
  */
 export default function TopSites({ locale, t }: Props) {
-  const { data: sites, loading } = useRequest(
-    () => listSites().then((r) => r.sites.slice(0, COUNT)),
-    [],
-    'top-sites',
-  );
+  const { data, loading } = useSites();
+  const sites = data?.slice(0, COUNT);
 
   if (loading) {
     return <TopSitesSkeleton />;
@@ -41,6 +40,14 @@ export default function TopSites({ locale, t }: Props) {
           {site.group}
         </a>
       ))}
+
+      <a class="top-sites-all" href={sitesHref(locale)}>
+        {
+          // i18n: Links to the page listing every site that has styles.
+          t('All sites')
+        }
+        <ChevronRightIcon />
+      </a>
     </nav>
   );
 }
