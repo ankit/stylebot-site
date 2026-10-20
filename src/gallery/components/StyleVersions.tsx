@@ -1,7 +1,7 @@
 import { useVersions } from '@/gallery/hooks/useVersions';
 
 import { type Locale } from '@/i18n/locales';
-import { type Catalog, type Translate } from '@/i18n/t';
+import { type Translate } from '@/i18n/t';
 
 import VersionItem from './VersionItem';
 
@@ -10,14 +10,13 @@ import './StyleVersions.css';
 type Props = {
   styleId: string;
   locale: Locale;
-  strings: Catalog;
   t: Translate;
 };
 
 /**
  * A style's versions, newest first. Nothing while it has only one.
  */
-export default function StyleVersions({ styleId, locale, strings, t }: Props) {
+export default function StyleVersions({ styleId, locale, t }: Props) {
   const { data: versions } = useVersions(styleId);
 
   if (!versions || versions.length < 2) {
@@ -35,7 +34,6 @@ export default function StyleVersions({ styleId, locale, strings, t }: Props) {
             version={version}
             current={i === 0}
             locale={locale}
-            strings={strings}
             t={t}
           />
         ))}

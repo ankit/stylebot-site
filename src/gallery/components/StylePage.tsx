@@ -118,12 +118,7 @@ export default function StylePage({ locale, strings }: Props) {
 
       <StyleCss css={style.css} t={t} />
 
-      <StyleVersions
-        styleId={style.id}
-        locale={locale}
-        strings={strings}
-        t={t}
-      />
+      <StyleVersions styleId={style.id} locale={locale} t={t} />
 
       <MoreForSite style={style} locale={locale} t={t} />
     </div>

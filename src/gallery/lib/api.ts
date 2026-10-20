@@ -41,7 +41,6 @@ export type StyleVersion = {
   version: number;
   createdAt: number;
   notes: string | null;
-  screenshot: string;
 };
 
 // `usernameConfirmed` is false until the person confirms or changes the

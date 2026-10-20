@@ -303,7 +303,6 @@
   "Saving…": "保存中…",
   "Schedule": "スケジュール",
   "Screenshot of {name} on {site}": "{site} に {name} を適用したスクリーンショット",
-  "Screenshot of version {version}": "バージョン {version} のスクリーンショット",
   "Search 400 <a href=\"https://fonts.google.com/\">Google Fonts</a> and Stylebot loads the one you pick, or type any font installed on your computer.": "400 種類の <a href=\"https://fonts.google.com/\">Google Fonts</a> から検索でき、選んだフォントは Stylebot が読み込みます。パソコンにインストール済みのフォント名を入力することもできます。",
   "Search sites and styles": "サイトやスタイルを検索",
   "Sections": "セクション",

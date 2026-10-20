@@ -9,17 +9,6 @@
   }
 }
 
-.version-item-shot {
-  flex: none;
-  width: 120px;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-  object-position: top center;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  background: var(--bg-track);
-}
-
 .version-item-text {
   flex: 1;
   min-width: 0;

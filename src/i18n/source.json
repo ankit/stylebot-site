@@ -1884,12 +1884,6 @@
     ]
   },
   {
-    "text": "Screenshot of version {version}",
-    "files": [
-      "src/gallery/components/VersionItem.tsx"
-    ]
-  },
-  {
     "text": "Search 400 <a href=\"https://fonts.google.com/\">Google Fonts</a> and Stylebot loads the one you pick, or type any font installed on your computer.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
