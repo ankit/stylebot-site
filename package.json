@@ -13,6 +13,7 @@
     "preview": "astro preview",
     "preview:gallery": "astro preview --config astro.gallery.config.mjs",
     "preview:pages": "yarn build:gallery && wrangler pages dev dist-gallery",
+    "deploy:gallery": "yarn build:gallery && wrangler pages deploy dist-gallery --project-name stylebot-gallery --branch main",
     "check": "astro check && tsc -p functions && node scripts/check-messages.ts && node scripts/extension-terms.ts",
     "format": "prettier --write .",
     "format:check": "prettier --check .",

@@ -2,6 +2,9 @@ export type Env = {
   ASSETS: Fetcher;
   // Another styles API, such as a local one at http://localhost:8787.
   STYLES_API?: string;
+  // 'true' once the gallery launches; until then search engines are told to
+  // skip it.
+  GALLERY_PUBLIC?: string;
 };
 
 export type Style = {

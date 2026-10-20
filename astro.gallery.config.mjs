@@ -54,6 +54,16 @@ const routes = {
       };
 
       writeFileSync(new URL('_routes.json', dir), JSON.stringify(routes));
+
+      // Until launch, search engines skip the static files too; the functions
+      // add the same header to the pages they serve.
+      if (process.env.GALLERY_PUBLIC !== 'true') {
+        writeFileSync(
+          new URL('_headers', dir),
+          '/*\n  X-Robots-Tag: noindex\n',
+        );
+      }
+
       writeFileSync(
         new URL('_redirects', dir),
         `${PREFIXES.map((p) => `${p}/mine ${p}/ 200`).join('\n')}\n`,

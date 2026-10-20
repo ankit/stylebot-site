@@ -9,7 +9,7 @@ The [stylebot.dev](https://stylebot.dev) site for the Stylebot browser extension
 - `src/components/`, `src/layouts/`, `src/styles/`, `src/lib/` — pieces shared by every site: the header, footer, base layout, tokens and links
 - `src/theme/` — the site themes: their tokens, the menu that switches them, and the head script that applies the saved one before first paint
 - `src/i18n/` — `t()`, the locales and the middleware that puts them on `Astro.locals`; `catalogs/<locale>.json` holds each locale's translations keyed by the English text, and `source.json`, generated, lists every message with its note and the files that use it
-- `src/assets/` — images; `gallery/`, `manual/` and `tour/` are screenshots taken with the extension repo's capture scripts and copied here (see README)
+- `src/assets/` — images; `gallery/`, `manual/` and `tour/` are screenshots taken with the extension repo's capture scripts and copied here (see docs/extension.md)
 - `scripts/` — `extract-messages.ts`, `check-messages.ts` and `extension-terms.ts`, for the catalogs; `extension-strings.json` is a snapshot of the extension's strings, refreshed with `yarn sync:extension-strings`
 
 ## Commands
@@ -21,6 +21,7 @@ The [stylebot.dev](https://stylebot.dev) site for the Stylebot browser extension
 - `yarn lint` — ESLint, as CI runs it; `yarn lint --fix` fixes what it can, such as import order
 - `yarn build` — build into `dist/`
 - `yarn deploy` — build and publish to the `gh-pages` branch, which serves stylebot.dev
+- `yarn deploy:gallery` — build the gallery and upload it to its Cloudflare Pages project; it tells search engines to skip it until `GALLERY_PUBLIC=true` (see docs/deployment.md)
 
 ## i18n
 
