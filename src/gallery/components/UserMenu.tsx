@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'preact/hooks';
 
+import { useWelcomeSeen } from '@/gallery/hooks/useWelcomeSeen';
 import { type Session } from '@/gallery/lib/api';
 import { signOut } from '@/gallery/lib/auth';
 
@@ -8,20 +9,21 @@ import ChevronDownIcon from '@/components/icons/ChevronDownIcon';
 import { type Locale, localizePath } from '@/i18n/locales';
 import { type Translate } from '@/i18n/t';
 
-import ChangeNameDialog from './ChangeNameDialog';
+import ChangeUsernameDialog from './ChangeUsernameDialog';
+import WelcomeDialog from './WelcomeDialog';
 
 import './UserMenu.css';
 
 type Props = { session: Session; locale: Locale; t: Translate };
 
 /**
- * The signed-in account's name, opening a menu with its styles, for screens
- * too narrow for the header's links, Change name and Sign out.
+ * The account's username, opening its menu. Welcomes a new account once.
  */
 export default function UserMenu({ session, locale, t }: Props) {
   const { account } = session;
   const [open, setOpen] = useState(false);
   const [changingName, setChangingName] = useState(false);
+  const [welcomeSeen, markWelcomeSeen] = useWelcomeSeen(account.id);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -35,9 +37,6 @@ export default function UserMenu({ session, locale, t }: Props) {
     return () => window.removeEventListener('keydown', onKey);
   }, []);
 
-  // i18n: The account menu's label when the account has no display name.
-  const name = account.name ?? t('Your account');
-
   return (
     <div class="user-menu">
       <button
@@ -46,7 +45,7 @@ export default function UserMenu({ session, locale, t }: Props) {
         aria-expanded={open}
         onClick={() => setOpen(!open)}
       >
-        <span class="user-menu-name">{name}</span>
+        <span class="user-menu-name">{account.username}</span>
 
         <ChevronDownIcon />
       </button>
@@ -72,7 +71,7 @@ export default function UserMenu({ session, locale, t }: Props) {
                 setChangingName(true);
               }}
             >
-              {t('Change name')}
+              {t('Change username')}
             </button>
 
             <button
@@ -89,8 +88,21 @@ export default function UserMenu({ session, locale, t }: Props) {
         </>
       )}
 
+      {!account.usernameConfirmed && !welcomeSeen && !changingName && (
+        <WelcomeDialog
+          account={account}
+          session={session.session}
+          onChange={() => {
+            markWelcomeSeen();
+            setChangingName(true);
+          }}
+          onClose={() => markWelcomeSeen()}
+          t={t}
+        />
+      )}
+
       {changingName && (
-        <ChangeNameDialog
+        <ChangeUsernameDialog
           account={account}
           session={session.session}
           onClose={() => setChangingName(false)}

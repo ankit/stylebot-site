@@ -101,11 +101,7 @@ export default function StylePage({ locale, strings }: Props) {
 
           <dl class="style-page-facts">
             <dt>{t('Author')}</dt>
-            <dd>
-              {style.author.name ??
-                // i18n: Shown for a style's author who hasn't set a name.
-                t('Anonymous')}
-            </dd>
+            <dd>{style.author.username}</dd>
             <dt>{t('Installs')}</dt>
             <dd>{fullNumber(locale, style.installs)}</dd>
             <dt>{t('Updated')}</dt>

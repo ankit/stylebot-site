@@ -1,0 +1,27 @@
+.username-status {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  min-height: 3em;
+  align-content: flex-start;
+  margin: -6px 0 0;
+  font: 400 var(--text-xs) / 1.5 var(--font-ui);
+  color: var(--fg-muted);
+
+  &.is-available {
+    color: var(--fg-secondary);
+  }
+
+  button {
+    padding: 0;
+    border: none;
+    background: none;
+    font: inherit;
+    font-weight: 600;
+    color: var(--fg);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+  }
+}

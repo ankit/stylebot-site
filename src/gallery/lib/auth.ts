@@ -10,9 +10,9 @@ import {
 const GOOGLE_CLIENT_ID =
   '662998053209-s49tq55ic3td87m08gi8vpjqm5t7r9st.apps.googleusercontent.com';
 
-// The API only needs the Google account id, the same whichever scope or
-// client the extension signed in with.
-const SCOPE = 'openid';
+// The Google account id, the same whichever client signed in, and the name,
+// which the API turns into a username when it creates the account.
+const SCOPE = 'openid profile';
 
 const GOOGLE_SIGN_IN_SCRIPT = 'https://accounts.google.com/gsi/client';
 const STORAGE_KEY = 'stylebot-gallery:session';
@@ -67,7 +67,8 @@ export function readSession(): Session | null {
       localStorage.getItem(STORAGE_KEY) ?? 'null',
     );
 
-    if (saved && saved.expiresAt > Date.now()) {
+    // Sessions saved before usernames have no username: sign in again.
+    if (saved && saved.expiresAt > Date.now() && saved.account.username) {
       return saved;
     }
   } catch {

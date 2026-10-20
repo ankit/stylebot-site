@@ -30,6 +30,11 @@
   p {
     margin: 0;
   }
+
+  strong {
+    font-weight: 600;
+    color: var(--fg);
+  }
 }
 
 .dialog-actions {
@@ -72,6 +77,10 @@
 
     &::placeholder {
       color: var(--fg-subtle);
+    }
+
+    &::-webkit-search-cancel-button {
+      display: none;
     }
 
     &:focus {

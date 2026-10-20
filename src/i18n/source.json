@@ -244,15 +244,6 @@
     ]
   },
   {
-    "text": "Anonymous",
-    "note": "Shown for a style's author who hasn't set a name.",
-    "files": [
-      "src/gallery/components/ChangeNameDialog.tsx",
-      "src/gallery/components/StyleCard.tsx",
-      "src/gallery/components/StylePage.tsx"
-    ]
-  },
-  {
     "text": "Any URL beginning with docs.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
@@ -287,8 +278,13 @@
   {
     "text": "Author",
     "files": [
-      "src/gallery/components/ChangeNameDialog.tsx",
       "src/gallery/components/StylePage.tsx"
+    ]
+  },
+  {
+    "text": "Available",
+    "files": [
+      "src/gallery/components/UsernameStatus.tsx"
     ]
   },
   {
@@ -369,16 +365,22 @@
   {
     "text": "Cancel",
     "files": [
-      "src/gallery/components/ChangeNameDialog.tsx",
+      "src/gallery/components/ChangeUsernameDialog.tsx",
       "src/gallery/components/DeleteStyleButton.tsx",
       "src/gallery/components/EditDetailsButton.tsx",
       "src/gallery/components/UnpublishButton.tsx"
     ]
   },
   {
-    "text": "Change name",
+    "text": "Change",
     "files": [
-      "src/gallery/components/ChangeNameDialog.tsx",
+      "src/gallery/components/WelcomeDialog.tsx"
+    ]
+  },
+  {
+    "text": "Change username",
+    "files": [
+      "src/gallery/components/ChangeUsernameDialog.tsx",
       "src/gallery/components/UserMenu.tsx"
     ]
   },
@@ -398,12 +400,6 @@
     "text": "Changes show right away. Installs aren’t updated.",
     "files": [
       "src/gallery/components/EditDetailsButton.tsx"
-    ]
-  },
-  {
-    "text": "Changes the name on all your published styles.",
-    "files": [
-      "src/gallery/components/ChangeNameDialog.tsx"
     ]
   },
   {
@@ -655,8 +651,9 @@
   {
     "text": "Couldn’t save. Try again.",
     "files": [
-      "src/gallery/components/ChangeNameDialog.tsx",
-      "src/gallery/components/EditDetailsButton.tsx"
+      "src/gallery/components/ChangeUsernameDialog.tsx",
+      "src/gallery/components/EditDetailsButton.tsx",
+      "src/gallery/components/WelcomeDialog.tsx"
     ]
   },
   {
@@ -1270,6 +1267,12 @@
     ]
   },
   {
+    "text": "It shows on the styles you publish, and old links keep working.",
+    "files": [
+      "src/gallery/components/ChangeUsernameDialog.tsx"
+    ]
+  },
+  {
     "text": "Jump to this point",
     "files": [
       "src/www/components/demo/Demo.tsx"
@@ -1321,6 +1324,12 @@
     "text": "Line Height",
     "files": [
       "src/www/components/demo/Demo.tsx"
+    ]
+  },
+  {
+    "text": "Looks good",
+    "files": [
+      "src/gallery/components/WelcomeDialog.tsx"
     ]
   },
   {
@@ -1796,7 +1805,7 @@
   {
     "text": "Save",
     "files": [
-      "src/gallery/components/ChangeNameDialog.tsx",
+      "src/gallery/components/ChangeUsernameDialog.tsx",
       "src/gallery/components/EditDetailsButton.tsx"
     ]
   },
@@ -1836,7 +1845,7 @@
   {
     "text": "Saving…",
     "files": [
-      "src/gallery/components/ChangeNameDialog.tsx",
+      "src/gallery/components/ChangeUsernameDialog.tsx",
       "src/gallery/components/EditDetailsButton.tsx"
     ]
   },
@@ -2247,6 +2256,18 @@
     ]
   },
   {
+    "text": "That username is reserved.",
+    "files": [
+      "src/gallery/components/UsernameStatus.tsx"
+    ]
+  },
+  {
+    "text": "That username is taken.",
+    "files": [
+      "src/gallery/components/UsernameStatus.tsx"
+    ]
+  },
+  {
     "text": "The <code>stylebot</code> command lets a coding agent like Claude Code, Codex or Cursor restyle sites right in your browser, using your own subscription instead of an API key. You can run the commands yourself too.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
@@ -2560,6 +2581,18 @@
     ]
   },
   {
+    "text": "Use {username}",
+    "files": [
+      "src/gallery/components/UsernameStatus.tsx"
+    ]
+  },
+  {
+    "text": "Use 3 to 30 lowercase letters and numbers, with single hyphens between them.",
+    "files": [
+      "src/gallery/components/UsernameStatus.tsx"
+    ]
+  },
+  {
     "text": "Use the Basic controls or write CSS.",
     "files": [
       "src/www/components/demo/scenes.ts"
@@ -2569,6 +2602,12 @@
     "text": "Use the switch in the popup, or [[alt+shift+S]]. The style is kept, just not applied.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
+    "text": "Username",
+    "files": [
+      "src/gallery/components/ChangeUsernameDialog.tsx"
     ]
   },
   {
@@ -2635,6 +2674,12 @@
     ]
   },
   {
+    "text": "Welcome to the Gallery",
+    "files": [
+      "src/gallery/components/WelcomeDialog.tsx"
+    ]
+  },
+  {
     "text": "What Stylebot does with your data: no server, no account, no analytics.",
     "files": [
       "src/www/pages/[...lang]/privacy.astro"
@@ -2697,13 +2742,6 @@
     ]
   },
   {
-    "text": "Your account",
-    "note": "The account menu's label when the account has no display name.",
-    "files": [
-      "src/gallery/components/UserMenu.tsx"
-    ]
-  },
-  {
     "text": "Your styles",
     "files": [
       "src/gallery/components/AccountNav.tsx",
@@ -2727,6 +2765,12 @@
     "text": "Your turn.",
     "files": [
       "src/www/pages/[...lang]/welcome.astro"
+    ]
+  },
+  {
+    "text": "Your username is <strong>{username}</strong>. It shows on the styles you publish, and you can change it any time.",
+    "files": [
+      "src/gallery/components/WelcomeDialog.tsx"
     ]
   }
 ]

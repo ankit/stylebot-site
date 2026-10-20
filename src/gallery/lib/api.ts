@@ -13,7 +13,7 @@ export type Style = {
   slug: string;
   name: string;
   description: string | null;
-  author: { id: string; name: string | null };
+  author: { id: string; username: string };
   version: number;
   installs: number;
   createdAt: number;
@@ -44,7 +44,19 @@ export type StyleVersion = {
   screenshot: string;
 };
 
-export type Account = { id: string; name: string | null };
+// `usernameConfirmed` is false until the person confirms or changes the
+// username made up for them at sign-in.
+export type Account = {
+  id: string;
+  username: string;
+  usernameConfirmed: boolean;
+};
+
+export type UsernameCheck = {
+  available: boolean;
+  reason?: 'invalid' | 'reserved' | 'taken';
+  suggestion?: string;
+};
 
 export type Session = { session: string; expiresAt: number; account: Account };
 
@@ -141,12 +153,17 @@ export const createSession = (googleToken: string) =>
     body: JSON.stringify({ googleToken }),
   });
 
-// Sets the name shown as the author of the account's styles; blank clears it.
-export const setName = (session: string, name: string) =>
+// Changes the account's username, or confirms the current one.
+export const setUsername = (session: string, username: string) =>
   request<Account>('/me', {
     method: 'PATCH',
     session,
-    body: JSON.stringify({ name: name.trim() || null }),
+    body: JSON.stringify({ username }),
+  });
+
+export const checkUsername = (session: string, username: string) =>
+  request<UsernameCheck>(`/usernames/${encodeURIComponent(username)}`, {
+    session,
   });
 
 export const listMyStyles = (session: string) =>

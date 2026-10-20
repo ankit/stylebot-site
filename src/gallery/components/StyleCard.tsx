@@ -57,11 +57,7 @@ export default function StyleCard({
       </div>
 
       <div class="style-card-meta">
-        <span class="style-card-author">
-          {style.author.name ??
-            // i18n: Shown for a style's author who hasn't set a name.
-            t('Anonymous')}
-        </span>
+        <span class="style-card-author">{style.author.username}</span>
 
         <InstallCount installs={style.installs} locale={locale} t={t} />
       </div>
