@@ -40,16 +40,24 @@ const routes = {
         next();
       });
     },
-    // Cloudflare Pages rewrites, which keep the address and a 200 status.
+    // On Cloudflare Pages, functions/ serves the sites, site, style and author
+    // pages and the sitemaps; a rewrite, which keeps the address, serves /mine.
     'astro:build:done': ({ dir }) => {
-      const lines = PREFIXES.flatMap((p) => [
-        `${p}/s/* ${p}/ 200`,
-        `${p}/u/* ${p}/ 200`,
-        `${p}/mine ${p}/ 200`,
-        `${p}/sites ${p}/ 200`,
-      ]);
+      const routes = {
+        version: 1,
+        include: [
+          '/sitemap.xml',
+          '/sitemap-*',
+          ...PREFIXES.flatMap((p) => [`${p}/s/*`, `${p}/u/*`, `${p}/sites`]),
+        ],
+        exclude: [],
+      };
 
-      writeFileSync(new URL('_redirects', dir), `${lines.join('\n')}\n`);
+      writeFileSync(new URL('_routes.json', dir), JSON.stringify(routes));
+      writeFileSync(
+        new URL('_redirects', dir),
+        `${PREFIXES.map((p) => `${p}/mine ${p}/ 200`).join('\n')}\n`,
+      );
     },
   },
 };

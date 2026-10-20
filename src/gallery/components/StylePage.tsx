@@ -52,7 +52,9 @@ export default function StylePage({ locale, strings }: Props) {
     title = t('Style not found');
   }
 
-  usePageMeta(title && t('{title} | Stylebot', { title }));
+  usePageMeta(title && t('{title} | Stylebot', { title }), {
+    noindex: missing,
+  });
 
   if (missing && redirecting) {
     return null;

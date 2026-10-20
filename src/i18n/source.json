@@ -48,6 +48,7 @@
   {
     "text": "{title} | Stylebot",
     "files": [
+      "functions/_lib/preview.ts",
       "src/gallery/components/AuthorPage.tsx",
       "src/gallery/components/Browse.tsx",
       "src/gallery/components/MinePage.tsx",
@@ -216,6 +217,7 @@
     "text": "All sites",
     "note": "Links to the page listing every site that has styles.",
     "files": [
+      "functions/_lib/preview.ts",
       "src/gallery/components/SitesPage.tsx",
       "src/gallery/components/TopSites.tsx"
     ]
@@ -304,6 +306,7 @@
     "text": "Author not found",
     "note": "The title of the page for an author who doesn't exist or has no published styles.",
     "files": [
+      "functions/_lib/preview.ts",
       "src/gallery/components/AuthorPage.tsx"
     ]
   },
@@ -1283,6 +1286,7 @@
   {
     "text": "Installs: {count}",
     "files": [
+      "functions/_lib/preview.ts",
       "src/gallery/components/AuthorPage.tsx",
       "src/gallery/components/InstallCount.tsx"
     ]
@@ -1522,6 +1526,7 @@
   {
     "text": "No styles for {site} yet",
     "files": [
+      "functions/_lib/preview.ts",
       "src/gallery/components/SitePage.tsx"
     ]
   },
@@ -2075,6 +2080,7 @@
   {
     "text": "Style not found",
     "files": [
+      "functions/_lib/preview.ts",
       "src/gallery/components/StylePage.tsx"
     ]
   },
@@ -2213,8 +2219,16 @@
     ]
   },
   {
+    "text": "Styles {username} made with Stylebot.",
+    "note": "The start of an author's description in link previews, followed by their style and install counts.",
+    "files": [
+      "functions/_lib/preview.ts"
+    ]
+  },
+  {
     "text": "Styles for {site}",
     "files": [
+      "functions/_lib/preview.ts",
       "src/gallery/components/SitePage.tsx"
     ]
   },
@@ -2222,6 +2236,13 @@
     "text": "Styles now apply inside shadow DOM, so they work on sites built with web components",
     "files": [
       "src/www/pages/[...lang]/releases/4.0.astro"
+    ]
+  },
+  {
+    "text": "Styles people made with Stylebot for {site}.",
+    "note": "The start of a site's description in link previews, followed by its style and install counts.",
+    "files": [
+      "functions/_lib/preview.ts"
     ]
   },
   {
@@ -2239,6 +2260,7 @@
   {
     "text": "Styles: {count}",
     "files": [
+      "functions/_lib/preview.ts",
       "src/gallery/components/AuthorPage.tsx",
       "src/gallery/components/SiteLink.tsx"
     ]

@@ -42,7 +42,7 @@ export default function AuthorPage({ locale, strings }: Props) {
     title = t('Author not found');
   }
 
-  usePageMeta(t('{title} | Stylebot', { title }));
+  usePageMeta(t('{title} | Stylebot', { title }), { noindex: missing });
 
   useEffect(() => {
     if (author && author.username !== username) {

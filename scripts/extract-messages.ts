@@ -1,8 +1,6 @@
 /**
- * Collects every t() message under src/ into src/i18n/source.json, with its
- * translator note and the files that use it, and drops translations of
- * messages the code no longer uses from every catalog. Prints what's left
- * to translate.
+ * Collects every t() message into src/i18n/source.json and drops unused
+ * translations from the catalogs. Prints what's left to translate.
  */
 import { writeFileSync } from 'node:fs';
 

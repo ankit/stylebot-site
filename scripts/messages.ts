@@ -1,6 +1,6 @@
 /**
- * Finds every `t('…')` call under src/ and reads the locale catalogs, for
- * extract-messages.ts and check-messages.ts.
+ * Finds every `t('…')` call under src/ and functions/ and reads the locale
+ * catalogs, for extract-messages.ts and check-messages.ts.
  */
 import { readdirSync, readFileSync } from 'node:fs';
 import { join, relative } from 'node:path';
@@ -20,6 +20,7 @@ export type Catalog = Record<string, string | Record<string, string>>;
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const SRC = join(ROOT, 'src');
 const SKIP = join(SRC, 'i18n');
+const FUNCTIONS = join(ROOT, 'functions');
 
 export const SOURCE_FILE = new URL('source.json', I18N_DIR);
 
@@ -121,7 +122,7 @@ export function extractMessages(): Array<Message> {
   const found = new Map<string, Message>();
   const errors: Array<string> = [];
 
-  for (const file of sourceFiles(SRC)) {
+  for (const file of [...sourceFiles(SRC), ...sourceFiles(FUNCTIONS)]) {
     const src = readFileSync(file, 'utf8');
     const rel = relative(ROOT, file);
     const pending = notes(src);

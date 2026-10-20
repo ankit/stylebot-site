@@ -42,7 +42,9 @@ export default function SitePage({ locale, strings }: Props) {
     heading = t('No styles for {site} yet', { site: group });
   }
 
-  usePageMeta(t('{title} | Stylebot', { title: heading }));
+  usePageMeta(t('{title} | Stylebot', { title: heading }), {
+    noindex: missing,
+  });
 
   if (missing && redirecting) {
     return null;

@@ -6,3 +6,4 @@ src/www/public/
 yarn.lock
 scripts/extension-strings.json
 src/i18n/source.json
+.wrangler/

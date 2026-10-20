@@ -52,6 +52,7 @@ export default tseslint.config(
       'dist',
       'dist-gallery',
       '.astro',
+      '.wrangler',
       'node_modules',
       'src/www/public',
       'src/gallery/public',
