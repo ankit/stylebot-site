@@ -31,9 +31,9 @@ export default function MoreForSite({ style, locale, t }: Props) {
   return (
     <section class="more-for-site">
       <div class="more-for-site-head">
-        <h2>{t('More for {site}', { site: style.group })}</h2>
+        <h2>{t('More for {site}', { site: style.site })}</h2>
 
-        <a href={siteHref(locale, style.group)}>{t('See all')}</a>
+        <a href={siteHref(locale, style.site)}>{t('See all')}</a>
       </div>
 
       <div class="more-for-site-grid">

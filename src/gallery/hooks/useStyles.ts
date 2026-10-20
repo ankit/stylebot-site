@@ -7,8 +7,8 @@ const PAGE = 24;
 type Filter = {
   search: string;
   sort: Sort;
-  // A site group, such as github; all sites when left out.
-  group?: string;
+  // A hostname, such as github.com; all sites when left out.
+  site?: string;
   // An author's username; everyone when left out.
   author?: string;
 };
@@ -16,12 +16,12 @@ type Filter = {
 /**
  * The styles matching a filter, loaded a page at a time.
  */
-export function useStyles({ search, sort, group = '', author = '' }: Filter) {
+export function useStyles({ search, sort, site = '', author = '' }: Filter) {
   return usePages(
     (offset) =>
-      listStyles({ q: search, group, author, sort, limit: PAGE, offset }).then(
+      listStyles({ q: search, site, author, sort, limit: PAGE, offset }).then(
         (page) => ({ items: page.styles, next: page.nextOffset }),
       ),
-    JSON.stringify([search, sort, group, author]),
+    JSON.stringify([search, sort, site, author]),
   );
 }

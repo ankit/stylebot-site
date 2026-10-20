@@ -4,12 +4,8 @@ import { type Site } from '@/gallery/lib/api';
 
 import { type SiteSort } from './useSiteSort';
 
-const matches = (site: Site, filter: string) =>
-  site.group.includes(filter) ||
-  site.hosts.some((host) => host.site.includes(filter));
-
 /**
- * The sites whose name or hostnames contain `query`, in `sort` order. They
+ * The sites whose hostname contains `query`, in `sort` order. They
  * arrive most installed first.
  */
 export function useMatchingSites(
@@ -19,10 +15,10 @@ export function useMatchingSites(
 ) {
   return useMemo(() => {
     const filter = query.trim().toLowerCase();
-    const found = (sites ?? []).filter((site) => matches(site, filter));
+    const found = (sites ?? []).filter((site) => site.site.includes(filter));
 
     if (sort === 'name') {
-      found.sort((a, b) => a.group.localeCompare(b.group));
+      found.sort((a, b) => a.site.localeCompare(b.site));
     }
 
     return found;

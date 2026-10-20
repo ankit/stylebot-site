@@ -11,11 +11,11 @@ const PREFIXES = [
 
 /**
  * The gallery is one app per locale, served at every route it handles:
- * /sites, /s/<group>, /s/<group>/<slug>, /u/<username> and /mine.
+ * /sites, /site/<hostname>, /style/<id>/<slug>, /author/<username> and /mine.
  */
 const rewrite = (path) => {
   const match = path.match(
-    /^(\/[a-z-]+)?\/(s\/[^/]+(\/[^/]+)?|u\/[^/]+|mine|sites)\/?$/,
+    /^(\/[a-z-]+)?\/(site\/[^/]+|style\/[^/]+(\/[^/]+)?|author\/[^/]+|mine|sites)\/?$/,
   );
 
   if (!match || (match[1] && !PREFIXES.includes(match[1]))) {
@@ -48,7 +48,12 @@ const routes = {
         include: [
           '/sitemap.xml',
           '/sitemap-*',
-          ...PREFIXES.flatMap((p) => [`${p}/s/*`, `${p}/u/*`, `${p}/sites`]),
+          ...PREFIXES.flatMap((p) => [
+            `${p}/site/*`,
+            `${p}/style/*`,
+            `${p}/author/*`,
+            `${p}/sites`,
+          ]),
         ],
         exclude: [],
       };

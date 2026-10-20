@@ -2,17 +2,14 @@ import { type Locale, localizePath } from '@/i18n/locales';
 
 export const styleHref = (
   locale: Locale,
-  style: { group: string; slug: string },
+  style: { id: number; slug: string },
 ) =>
-  localizePath(
-    locale,
-    `/s/${encodeURIComponent(style.group)}/${encodeURIComponent(style.slug)}`,
-  );
+  localizePath(locale, `/style/${style.id}/${encodeURIComponent(style.slug)}`);
 
 export const authorHref = (locale: Locale, username: string) =>
-  localizePath(locale, `/u/${encodeURIComponent(username)}`);
+  localizePath(locale, `/author/${encodeURIComponent(username)}`);
 
-export const siteHref = (locale: Locale, group: string) =>
-  localizePath(locale, `/s/${encodeURIComponent(group)}`);
+export const siteHref = (locale: Locale, site: string) =>
+  localizePath(locale, `/site/${encodeURIComponent(site)}`);
 
 export const sitesHref = (locale: Locale) => localizePath(locale, '/sites');

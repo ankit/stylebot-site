@@ -1,7 +1,7 @@
 import { useRoute } from 'preact-iso';
 
-import { useGroupRedirect } from '@/gallery/hooks/useGroupRedirect';
 import { usePageMeta } from '@/gallery/hooks/usePageMeta';
+import { useSlugRedirect } from '@/gallery/hooks/useSlugRedirect';
 import { useStyle } from '@/gallery/hooks/useStyle';
 import {
   resizedScreenshotUrl,
@@ -44,9 +44,8 @@ type Props = { locale: Locale; strings: Catalog };
  */
 export default function StylePage({ locale, strings }: Props) {
   const t = translator(strings);
-  const { group, slug } = useRoute().params;
-  const { style, missing, failed, reload } = useStyle(group, slug);
-  const redirecting = useGroupRedirect(missing, { group, slug }, locale);
+  const { id, slug } = useRoute().params;
+  const { style, missing, failed, reload } = useStyle(id);
   let title = style?.name;
 
   if (missing) {
@@ -56,10 +55,7 @@ export default function StylePage({ locale, strings }: Props) {
   usePageMeta(title && t('{title} | Stylebot', { title }), {
     noindex: missing,
   });
-
-  if (missing && redirecting) {
-    return null;
-  }
+  useSlugRedirect(style, { id, slug }, locale);
 
   if (missing) {
     return (
@@ -107,7 +103,7 @@ export default function StylePage({ locale, strings }: Props) {
         <div class="style-page-side">
           <h1>{style.name}</h1>
 
-          <a class="style-page-site" href={siteHref(locale, style.group)}>
+          <a class="style-page-site" href={siteHref(locale, style.site)}>
             <Favicon site={style.site} />
             {style.site}
           </a>

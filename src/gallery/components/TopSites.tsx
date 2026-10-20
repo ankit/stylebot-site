@@ -35,9 +35,9 @@ export default function TopSites({ locale, t }: Props) {
   return (
     <nav class="top-sites" aria-label={t('Top sites')}>
       {sites.map((site) => (
-        <a key={site.group} href={siteHref(locale, site.group)}>
+        <a key={site.site} href={siteHref(locale, site.site)}>
           <Favicon site={site.site} />
-          {site.group}
+          {site.site}
         </a>
       ))}
 

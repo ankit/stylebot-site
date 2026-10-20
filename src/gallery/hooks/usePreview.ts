@@ -19,7 +19,7 @@ type PreviewState =
  * Opens a style's preview in Stylebot, and knows when the style is installed,
  * whether before this page opened or from the preview.
  */
-export function usePreview(styleId: string) {
+export function usePreview(styleId: number) {
   const [state, setState] = useState<PreviewState>({ status: 'checking' });
 
   useEffect(() => {

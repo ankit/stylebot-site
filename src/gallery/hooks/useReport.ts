@@ -20,7 +20,7 @@ export type ReportState =
  * Reports a style, signing in first when signed out, since the API only takes
  * reports from accounts (or from installs, which the gallery doesn't have).
  */
-export function useReport(styleId: string) {
+export function useReport(styleId: number) {
   const [state, setState] = useState<ReportState>('idle');
 
   const send = async (reason: string) => {

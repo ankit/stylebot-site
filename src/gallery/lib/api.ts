@@ -5,11 +5,10 @@ export const API_ORIGIN: string =
   'https://stylebot-styles.ahuja-ankit.workers.dev';
 
 export type Style = {
-  id: string;
+  // Styles are numbered in the order they were published.
+  id: number;
   site: string;
-  // The site group the style's hostname belongs to, such as wikipedia.
-  group: string;
-  // The style's name in its URL, unique within its group.
+  // The style's name in its URL, after its id.
   slug: string;
   name: string;
   description: string | null;
@@ -27,15 +26,8 @@ export type StyleWithCss = Style & { css: string };
 // reports; neither they nor `unpublished` ones are listed or served.
 export type OwnStyle = Style & { status: 'live' | 'hidden' | 'unpublished' };
 
-// Hostnames that are the same site, such as en. and es.wikipedia.org. `site`
-// is the most-installed one, shown for the group.
-export type Site = {
-  group: string;
-  site: string;
-  styles: number;
-  installs: number;
-  hosts: Array<{ site: string; styles: number }>;
-};
+// A hostname with live styles.
+export type Site = { site: string; styles: number; installs: number };
 
 export type StyleVersion = {
   version: number;
@@ -65,7 +57,6 @@ export type StyleQuery = {
   site?: string;
   // An author's username, for their styles only.
   author?: string;
-  group?: string;
   q?: string;
   sort?: Sort;
   limit?: number;
@@ -151,17 +142,15 @@ export const getAuthor = (username: string) =>
 
 export const listSites = () => request<{ sites: Array<Site> }>('/sites');
 
-export const getStyle = (group: string, slug: string) =>
-  request<StyleWithCss>(
-    `/sites/${encodeURIComponent(group)}/styles/${encodeURIComponent(slug)}`,
-  );
+export const getStyle = (id: string) =>
+  request<StyleWithCss>(`/styles/${encodeURIComponent(id)}`);
 
-export const listVersions = (id: string) =>
+export const listVersions = (id: number) =>
   request<{ versions: Array<StyleVersion> }>(
     `/styles/${encodeURIComponent(id)}/versions`,
   );
 
-export const getVersion = (id: string, version: number) =>
+export const getVersion = (id: number, version: number) =>
   request<StyleVersion & { css: string }>(
     `/styles/${encodeURIComponent(id)}/versions/${version}`,
   );
@@ -188,24 +177,24 @@ export const checkUsername = (session: string, username: string) =>
 export const listMyStyles = (session: string) =>
   request<{ styles: Array<OwnStyle> }>('/me/styles', { session });
 
-const styleAction = (id: string, action = '') =>
+const styleAction = (id: number, action = '') =>
   `/styles/${encodeURIComponent(id)}${action}`;
 
-export const unpublishStyle = (session: string, id: string) =>
+export const unpublishStyle = (session: string, id: number) =>
   request<void>(styleAction(id, '/unpublish'), { method: 'POST', session });
 
 // Brings an unpublished style back, hidden again if it was hidden before.
-export const publishStyle = (session: string, id: string) =>
+export const publishStyle = (session: string, id: number) =>
   request<OwnStyle>(styleAction(id, '/publish'), { method: 'POST', session });
 
 // Deletes an unpublished style for good.
-export const deleteStyle = (session: string, id: string) =>
+export const deleteStyle = (session: string, id: number) =>
   request<void>(styleAction(id), { method: 'DELETE', session });
 
 // Changes a style's name and description without publishing a new version.
 export const updateStyle = (
   session: string,
-  id: string,
+  id: number,
   details: { name: string; description: string },
 ) =>
   request<StyleWithCss>(styleAction(id), {
@@ -215,7 +204,7 @@ export const updateStyle = (
   });
 
 // Reports a live style as the signed-in account; each account counts once.
-export const reportStyle = (session: string, id: string, reason: string) =>
+export const reportStyle = (session: string, id: number, reason: string) =>
   request<void>(styleAction(id, '/reports'), {
     method: 'POST',
     session,

@@ -46,17 +46,21 @@ export default function GalleryApp({ locale, strings }: Props) {
 
         <Route path={`${base}sites`} component={SitesPage} {...props} />
 
-        <Route path={`${base}s/:group`} component={SitePage} {...props} />
+        <Route path={`${base}site/:site`} component={SitePage} {...props} />
 
         <Route
-          path={`${base}s/:group/:slug`}
+          path={`${base}style/:id/:slug?`}
           component={StylePage}
           {...props}
         />
 
         <Route path={`${base}mine`} component={MinePage} {...props} />
 
-        <Route path={`${base}u/:username`} component={AuthorPage} {...props} />
+        <Route
+          path={`${base}author/:username`}
+          component={AuthorPage}
+          {...props}
+        />
 
         <Route default component={NotFoundPage} {...props} />
       </Router>

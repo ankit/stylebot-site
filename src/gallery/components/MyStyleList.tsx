@@ -38,7 +38,7 @@ export default function MyStyleList({ session, username, locale, t }: Props) {
   };
   const styles = data?.map(current).filter((style) => style !== null);
 
-  const change = (id: string, style: OwnStyle | null) =>
+  const change = (id: number, style: OwnStyle | null) =>
     setChanged((prev) => ({ ...prev, [id]: style }));
 
   if (error) {

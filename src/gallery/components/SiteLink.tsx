@@ -18,10 +18,10 @@ export default function SiteLink({ site, locale, t }: Props) {
   const count = fullNumber(locale, site.styles);
 
   return (
-    <a class="site-link" href={siteHref(locale, site.group)}>
+    <a class="site-link" href={siteHref(locale, site.site)}>
       <Favicon site={site.site} size={16} />
 
-      <span class="site-link-name">{site.group}</span>
+      <span class="site-link-name">{site.site}</span>
 
       <span class="site-link-count" aria-hidden="true">
         {count}

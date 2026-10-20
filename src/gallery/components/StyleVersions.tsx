@@ -8,7 +8,7 @@ import VersionItem from './VersionItem';
 import './StyleVersions.css';
 
 type Props = {
-  styleId: string;
+  styleId: number;
   locale: Locale;
   t: Translate;
 };

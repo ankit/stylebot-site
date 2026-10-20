@@ -1,5 +1,5 @@
 import { compactNumber, fullNumber } from '@/gallery/lib/format';
-import { authorHref, siteHref, styleHref } from '@/gallery/lib/paths';
+import { authorHref, styleHref } from '@/gallery/lib/paths';
 
 import {
   catalog,
@@ -59,80 +59,50 @@ const withCounts = (
 const screenshot = (env: Env, style: Style) =>
   apiOrigin(env) + style.screenshot;
 
-/**
- * The group a hostname belongs to, such as github for github.com, when it
- * isn't one itself, as the app moves there too.
- */
-async function movedGroup(env: Env, group: string) {
-  if (!group.includes('.')) {
-    return null;
+const stylePage: Lookup = async (env, { locale, t, params: [id, slug] }) => {
+  const style = await api<Style>(env, `/styles/${encodeURIComponent(id)}`);
+
+  if (!style) {
+    return { title: fullTitle(t, t('Style not found')), notFound: true };
   }
 
-  const page = await listStyles(env, { site: group, limit: 1 });
-  const actual = page?.styles[0]?.group;
-
-  if (!actual || actual === group) {
-    return null;
-  }
-
-  return actual;
-}
-
-const stylePage: Lookup = async (env, { locale, t, params: [group, slug] }) => {
-  const style = await api<Style>(
-    env,
-    `/sites/${encodeURIComponent(group)}/styles/${encodeURIComponent(slug)}`,
-  );
-
-  if (style) {
-    return {
-      title: fullTitle(t, style.name),
-      description: style.description || undefined,
-      image: screenshot(env, style),
-      imageAlt: style.name,
-    };
-  }
-
-  const actual = await movedGroup(env, group);
-
-  if (actual) {
-    return { redirect: styleHref(locale, { group: actual, slug }) };
-  }
-
-  return { title: fullTitle(t, t('Style not found')), notFound: true };
-};
-
-const sitePage: Lookup = async (env, { locale, t, params: [group] }) => {
-  const [page, sites] = await Promise.all([
-    listStyles(env, { group, limit: 1 }),
-    api<{ sites: Array<Site> }>(env, '/sites'),
-  ]);
-  const first = page?.styles[0];
-  const site = sites?.sites.find((s) => s.group === group);
-
-  if (first) {
-    // i18n: The start of a site's description in link previews, followed by its style and install counts.
-    const lead = t('Styles people made with Stylebot for {site}.', {
-      site: group,
-    });
-
-    return {
-      title: fullTitle(t, t('Styles for {site}', { site: group })),
-      description: site && withCounts(locale, t, lead, site),
-      image: screenshot(env, first),
-      imageAlt: first.name,
-    };
-  }
-
-  const actual = await movedGroup(env, group);
-
-  if (actual) {
-    return { redirect: siteHref(locale, actual) };
+  if (style.slug !== slug) {
+    return { redirect: styleHref(locale, style) };
   }
 
   return {
-    title: fullTitle(t, t('No styles for {site} yet', { site: group })),
-    notFound: true,
+    title: fullTitle(t, style.name),
+    description: style.description || undefined,
+    image: screenshot(env, style),
+    imageAlt: style.name,
+  };
+};
+
+const sitePage: Lookup = async (env, { locale, t, params: [hostname] }) => {
+  const [page, sites] = await Promise.all([
+    listStyles(env, { site: hostname, limit: 1 }),
+    api<{ sites: Array<Site> }>(env, '/sites'),
+  ]);
+  const first = page?.styles[0];
+  const site = sites?.sites.find((s) => s.site === hostname);
+
+  if (!first) {
+    return {
+      title: fullTitle(t, t('No styles for {site} yet', { site: hostname })),
+      notFound: true,
+    };
+  }
+
+  // i18n: The start of a site's description in link previews, followed by its style and install counts.
+  const lead = t('Styles people made with Stylebot for {site}.', {
+    site: hostname,
+  });
+
+  return {
+    title: fullTitle(t, t('Styles for {site}', { site: hostname })),
+    description: site && withCounts(locale, t, lead, site),
+    image: screenshot(env, first),
+    imageAlt: first.name,
   };
 };
 
@@ -170,9 +140,9 @@ const sitesPage: Lookup = async (_env, { t }) => ({
 
 const ROUTES: Array<[RegExp, Lookup]> = [
   [/^\/sites$/, sitesPage],
-  [/^\/s\/([^/]+)\/([^/]+)$/, stylePage],
-  [/^\/s\/([^/]+)$/, sitePage],
-  [/^\/u\/([^/]+)$/, authorPage],
+  [/^\/style\/([^/]+)(?:\/([^/]+))?$/, stylePage],
+  [/^\/site\/([^/]+)$/, sitePage],
+  [/^\/author\/([^/]+)$/, authorPage],
 ];
 
 function decode(segments: Array<string>) {
@@ -283,7 +253,7 @@ export async function preview(request: Request, env: Env) {
 
     if (match) {
       lookup = handler;
-      params = decode(match.slice(1));
+      params = decode(match.slice(1).filter((s) => s !== undefined));
       break;
     }
   }

@@ -89,7 +89,7 @@ export default function SitesPage({ locale, strings }: Props) {
         {loading && <SiteLinkSkeleton count={24} />}
 
         {found.slice(0, shown).map((site) => (
-          <li key={site.group}>
+          <li key={site.site}>
             <SiteLink site={site} locale={locale} t={t} />
           </li>
         ))}

@@ -8,7 +8,7 @@ export type Env = {
 };
 
 export type Style = {
-  group: string;
+  id: number;
   slug: string;
   name: string;
   description: string | null;
@@ -21,14 +21,14 @@ export type Counts = { styles: number; installs: number };
 
 export type Author = Counts & { username: string };
 
-export type Site = Counts & { group: string };
+export type Site = Counts & { site: string };
 
 export const apiOrigin = (env: Env) =>
   env.STYLES_API ?? 'https://stylebot-styles.ahuja-ankit.workers.dev';
 
 /**
- * A GET from the styles API, or null when it's not found. Throws when the API
- * fails or takes longer than `timeout` ms.
+ * A GET from the styles API, or null when it's not found or invalid. Throws
+ * when the API fails or takes longer than `timeout` ms.
  */
 export async function api<T>(
   env: Env,
@@ -40,7 +40,7 @@ export async function api<T>(
     cf: { cacheTtl: 60 },
   });
 
-  if (response.status === 404) {
+  if (response.status === 404 || response.status === 400) {
     return null;
   }
 

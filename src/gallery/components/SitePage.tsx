@@ -1,9 +1,9 @@
 import { useRoute } from 'preact-iso';
 
-import { useGroupRedirect } from '@/gallery/hooks/useGroupRedirect';
 import { usePageMeta } from '@/gallery/hooks/usePageMeta';
 import { useSort } from '@/gallery/hooks/useSort';
 import { useStyles } from '@/gallery/hooks/useStyles';
+import { ApiError } from '@/gallery/lib/api';
 
 import { type Locale, localizePath } from '@/i18n/locales';
 import { type Catalog, translator } from '@/i18n/t';
@@ -19,36 +19,28 @@ import './SitePage.css';
 type Props = { locale: Locale; strings: Catalog };
 
 /**
- * The styles for the site group this page's address names, most installed
+ * The styles for the hostname this page's address names, most installed
  * or most recently updated first.
  */
 export default function SitePage({ locale, strings }: Props) {
   const t = translator(strings);
-  const { group } = useRoute().params;
+  const { site } = useRoute().params;
   const [sort, setSort] = useSort();
-  const feed = useStyles({ search: '', sort, group });
-  const first = feed.items[0];
-  let site: string | undefined;
+  const feed = useStyles({ search: '', sort, site });
 
-  if (first?.group === group) {
-    site = first.site;
-  }
-
-  const missing = !feed.loading && !feed.error && feed.items.length === 0;
-  const redirecting = useGroupRedirect(missing, { group }, locale);
-  let heading = t('Styles for {site}', { site: group });
+  // The API turns down a site that isn't a hostname, such as an old group.
+  const invalid = feed.error instanceof ApiError && feed.error.status === 400;
+  const empty = !feed.loading && !feed.error && !feed.items.length;
+  const missing = invalid || empty;
+  let heading = t('Styles for {site}', { site });
 
   if (missing) {
-    heading = t('No styles for {site} yet', { site: group });
+    heading = t('No styles for {site} yet', { site });
   }
 
   usePageMeta(t('{title} | Stylebot', { title: heading }), {
     noindex: missing,
   });
-
-  if (missing && redirecting) {
-    return null;
-  }
 
   if (missing) {
     return <NotFound title={heading} locale={locale} t={t} />;

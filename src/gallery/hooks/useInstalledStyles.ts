@@ -7,9 +7,9 @@ import { getInstalledStyles, hasStylebot } from '@/gallery/lib/bridge';
  * Asks only about ids it hasn't asked about yet, so a growing list costs one
  * request per page of it.
  */
-export function useInstalledStyles(styleIds: Array<string>) {
+export function useInstalledStyles(styleIds: Array<number>) {
   const [installed, setInstalled] = useState<Record<string, string>>({});
-  const asked = useRef(new Set<string>());
+  const asked = useRef(new Set<number>());
   const key = styleIds.join(',');
 
   useEffect(() => {

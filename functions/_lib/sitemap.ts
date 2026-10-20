@@ -100,7 +100,7 @@ export async function localeSitemap(
   const urls = [
     entry(localizePath(locale, '/')),
     entry(sitesHref(locale)),
-    ...(sites?.sites ?? []).map((s) => entry(siteHref(locale, s.group))),
+    ...(sites?.sites ?? []).map((s) => entry(siteHref(locale, s.site))),
     ...styles.map((s) => entry(styleHref(locale, s), s.updatedAt)),
     ...[...authors].map((a) => entry(authorHref(locale, a))),
   ];

@@ -1,6 +1,7 @@
 // Talks to Stylebot's site bridge, a content script that marks the page's
 // <html> with data-stylebot-bridge as it loads, previews the styles a page
-// asks it to, and says which are installed.
+// asks it to, and says which are installed. Style ids go to it as strings,
+// as Stylebot stores them.
 
 // Stylebot fetches the style before it opens the preview's tab.
 const PREVIEW_TIMEOUT_MS = 8000;
@@ -53,10 +54,12 @@ function sendBridgeRequest<T>(
  * The profile each of these styles is installed as in Stylebot, by style id.
  * Styles that aren't installed are left out.
  */
-export async function getInstalledStyles(styleIds: Array<string>) {
+export async function getInstalledStyles(styleIds: Array<number>) {
   const answer = await sendBridgeRequest<{
     installed: Record<string, string>;
-  }>('stylebot:status', crypto.randomUUID(), STATUS_TIMEOUT_MS, { styleIds });
+  }>('stylebot:status', crypto.randomUUID(), STATUS_TIMEOUT_MS, {
+    styleIds: styleIds.map(String),
+  });
 
   return answer?.installed ?? {};
 }
@@ -66,10 +69,10 @@ export async function getInstalledStyles(styleIds: Array<string>) {
  * try before installing. Resolves whether it did. Stylebot only does so right
  * after a click.
  */
-export async function previewInStylebot(styleId: string) {
+export async function previewInStylebot(styleId: number) {
   const answer = await sendBridgeRequest<{ ok: boolean }>(
     'stylebot:preview',
-    styleId,
+    String(styleId),
     PREVIEW_TIMEOUT_MS,
   );
 
@@ -81,14 +84,14 @@ export async function previewInStylebot(styleId: string) {
  * its preview. Returns a function that stops listening.
  */
 export function listenForInstall(
-  styleId: string,
+  styleId: number,
   onInstalled: (profile: string) => void,
 ) {
   const onMessage = (e: MessageEvent) => {
     if (
       e.source === window &&
       e.data?.type === 'stylebot:event:installed' &&
-      e.data.id === styleId &&
+      e.data.id === String(styleId) &&
       e.data.profileName
     ) {
       onInstalled(e.data.profileName);
