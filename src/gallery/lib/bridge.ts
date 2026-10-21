@@ -1,7 +1,6 @@
 // Talks to Stylebot's site bridge, a content script that marks the page's
 // <html> with data-stylebot-bridge as it loads, previews the styles a page
-// asks it to, and says which are installed. Style ids go to it as strings,
-// as Stylebot stores them.
+// asks it to, and says which are installed.
 
 // Stylebot fetches the style before it opens the preview's tab.
 const PREVIEW_TIMEOUT_MS = 8000;
@@ -22,7 +21,7 @@ export const hasStylebot = () =>
  */
 function sendBridgeRequest<T>(
   type: string,
-  id: string,
+  id: string | number,
   timeoutMs: number,
   payload: Record<string, unknown> = {},
 ) {
@@ -57,9 +56,7 @@ function sendBridgeRequest<T>(
 export async function getInstalledStyles(styleIds: Array<number>) {
   const answer = await sendBridgeRequest<{
     installed: Record<string, string>;
-  }>('stylebot:status', crypto.randomUUID(), STATUS_TIMEOUT_MS, {
-    styleIds: styleIds.map(String),
-  });
+  }>('stylebot:status', crypto.randomUUID(), STATUS_TIMEOUT_MS, { styleIds });
 
   return answer?.installed ?? {};
 }
@@ -72,7 +69,7 @@ export async function getInstalledStyles(styleIds: Array<number>) {
 export async function previewInStylebot(styleId: number) {
   const answer = await sendBridgeRequest<{ ok: boolean }>(
     'stylebot:preview',
-    String(styleId),
+    styleId,
     PREVIEW_TIMEOUT_MS,
   );
 
@@ -91,7 +88,7 @@ export function listenForInstall(
     if (
       e.source === window &&
       e.data?.type === 'stylebot:event:installed' &&
-      e.data.id === String(styleId) &&
+      e.data.id === styleId &&
       e.data.profileName
     ) {
       onInstalled(e.data.profileName);
