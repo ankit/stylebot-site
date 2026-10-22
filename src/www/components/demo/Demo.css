@@ -187,7 +187,7 @@
     background 0.5s;
 }
 
-:root:is([data-theme='dark'], [data-theme='stylebot']) .demo-page {
+:root:is([data-theme='dark'], [data-theme='monospace']) .demo-page {
   --page-bg: #17191d;
   --page-bar: #1e2126;
   --page-line: #2a2d33;

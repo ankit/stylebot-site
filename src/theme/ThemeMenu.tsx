@@ -16,9 +16,9 @@ export default function ThemeMenu({ strings }: { strings: Catalog }) {
   const t = translator(strings);
   const names: Record<ThemeKey, string> = {
     light: t('Light'),
-    dark: t('Dark'),
-    stylebot: t('Stylebot'),
     newsprint: t('Newsprint'),
+    dark: t('Dark'),
+    monospace: t('Monospace'),
   };
   const [theme, setTheme] = useState<ThemeKey>('light');
   const [open, setOpen] = useState(false);

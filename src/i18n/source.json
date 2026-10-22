@@ -1472,6 +1472,12 @@
     ]
   },
   {
+    "text": "Monospace",
+    "files": [
+      "src/theme/ThemeMenu.tsx"
+    ]
+  },
+  {
     "text": "More for {site}",
     "files": [
       "src/gallery/components/MoreForSite.tsx"
@@ -2187,12 +2193,6 @@
     "text": "Style this page",
     "files": [
       "src/www/components/demo/Demo.tsx"
-    ]
-  },
-  {
-    "text": "Stylebot",
-    "files": [
-      "src/theme/ThemeMenu.tsx"
     ]
   },
   {
