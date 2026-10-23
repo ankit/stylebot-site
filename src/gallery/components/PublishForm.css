@@ -1,7 +1,7 @@
 .publish-form {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 40px;
 }
 
 .publish-form-top {
@@ -68,20 +68,4 @@
 
 .publish-form-submit {
   align-self: flex-start;
-}
-
-.publish-form-css {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-
-  summary {
-    cursor: pointer;
-    font: 600 var(--text-lg) / 1.2 var(--font-display);
-    color: var(--fg);
-  }
-
-  &[open] summary {
-    margin-bottom: 14px;
-  }
 }

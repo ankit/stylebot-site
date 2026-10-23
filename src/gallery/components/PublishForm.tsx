@@ -9,11 +9,11 @@ import Button from '@/components/Button';
 
 import { type Translate } from '@/i18n/t';
 
-import CssCode from './CssCode';
 import CssUnchangedNotice from './CssUnchangedNotice';
 import Favicon from './Favicon';
 import PublishError from './PublishError';
 import ScreenshotPicker from './ScreenshotPicker';
+import StyleCss from './StyleCss';
 
 import './PublishForm.css';
 
@@ -150,11 +150,7 @@ export default function PublishForm({
         </div>
       </div>
 
-      <details class="publish-form-css">
-        <summary>{t('CSS')}</summary>
-
-        <CssCode css={draft.css} label={t('CSS')} />
-      </details>
+      <StyleCss css={draft.css} t={t} />
     </form>
   );
 }
