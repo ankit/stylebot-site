@@ -23,7 +23,7 @@
 .screenshot-picker-frame {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 10;
   display: grid;
   place-items: center;
   overflow: hidden;
@@ -38,7 +38,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: top left;
+    object-position: top center;
   }
 
   label {
