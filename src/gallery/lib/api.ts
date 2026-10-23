@@ -25,6 +25,20 @@ export type StyleWithCss = Style & { css: string };
 // reports; neither they nor `unpublished` ones are listed or served.
 export type OwnStyle = Style & { status: 'live' | 'hidden' | 'unpublished' };
 
+// A style just published, with what the API took out of its CSS: rules that
+// load from other sites, and large `data:` URIs.
+export type PublishedStyle = OwnStyle & { removed: Array<string> };
+
+// What publishing a style or a new version of it sends. A new style needs a
+// screenshot; a new version without one keeps the style's.
+export type StyleForm = {
+  name: string;
+  description: string;
+  css: string;
+  notes?: string;
+  screenshot?: Blob;
+};
+
 // A hostname with live styles.
 export type Site = { site: string; styles: number; installs: number };
 
@@ -62,10 +76,12 @@ export type StyleQuery = {
   offset?: number;
 };
 
+// `code` tells apart errors that share a status, such as `css_unchanged`.
 export class ApiError extends Error {
   constructor(
     readonly status: number,
     message: string,
+    readonly code?: string,
   ) {
     super(message);
   }
@@ -78,7 +94,7 @@ async function request<T>(
   const { session, ...rest } = init;
   const headers: Record<string, string> = {};
 
-  if (rest.body) {
+  if (typeof rest.body === 'string') {
     headers['Content-Type'] = 'application/json';
   }
 
@@ -94,7 +110,11 @@ async function request<T>(
   if (!response.ok) {
     const body = await response.json().catch(() => null);
 
-    throw new ApiError(response.status, body?.error ?? response.statusText);
+    throw new ApiError(
+      response.status,
+      body?.error ?? response.statusText,
+      body?.code,
+    );
   }
 
   if (response.status === 204) {
@@ -208,4 +228,47 @@ export const reportStyle = (session: string, id: number, reason: string) =>
     method: 'POST',
     session,
     body: JSON.stringify({ reason }),
+  });
+
+function toFormData(form: StyleForm, site?: string) {
+  const data = new FormData();
+
+  if (site !== undefined) {
+    data.append('site', site);
+  }
+
+  data.append('name', form.name);
+
+  if (form.description) {
+    data.append('description', form.description);
+  }
+
+  if (form.notes) {
+    data.append('notes', form.notes);
+  }
+
+  data.append('css', form.css);
+
+  // The API reads the type from the file itself, so the name is only a label.
+  if (form.screenshot) {
+    data.append('screenshot', form.screenshot, 'screenshot');
+  }
+
+  return data;
+}
+
+export const createStyle = (session: string, site: string, form: StyleForm) =>
+  request<PublishedStyle>('/styles', {
+    method: 'POST',
+    session,
+    body: toFormData(form, site),
+  });
+
+// Publishes a new version of one of the account's styles, replacing its name
+// and description too. One with unchanged CSS fails with `css_unchanged`.
+export const createVersion = (session: string, id: number, form: StyleForm) =>
+  request<PublishedStyle>(styleAction(id, '/versions'), {
+    method: 'POST',
+    session,
+    body: toFormData(form),
   });

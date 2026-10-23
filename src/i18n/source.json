@@ -32,6 +32,18 @@
     ]
   },
   {
+    "text": "{name} is published",
+    "files": [
+      "src/gallery/components/PublishedNotice.tsx"
+    ]
+  },
+  {
+    "text": "{name} is saved",
+    "files": [
+      "src/gallery/components/PublishedNotice.tsx"
+    ]
+  },
+  {
     "text": "{profile} starts clean. {defaultProfile} is still saved.",
     "note": "{profile} is the new profile's name; {defaultProfile} is \"Default\"",
     "files": [
@@ -53,6 +65,7 @@
       "src/gallery/components/Browse.tsx",
       "src/gallery/components/MinePage.tsx",
       "src/gallery/components/NotFoundPage.tsx",
+      "src/gallery/components/PublishPage.tsx",
       "src/gallery/components/SitePage.tsx",
       "src/gallery/components/SitesPage.tsx",
       "src/gallery/components/StylePage.tsx",
@@ -112,6 +125,12 @@
     "text": "A moderator will take a look. Styles reported by several people are hidden until then.",
     "files": [
       "src/gallery/components/ReportDialog.tsx"
+    ]
+  },
+  {
+    "text": "A new style needs a screenshot. Choose Publish in Stylebot again to take one.",
+    "files": [
+      "src/gallery/components/PublishForm.tsx"
     ]
   },
   {
@@ -423,6 +442,7 @@
   {
     "text": "Change",
     "files": [
+      "src/gallery/components/ConfirmUsernameCard.tsx",
       "src/gallery/components/WelcomeDialog.tsx"
     ]
   },
@@ -672,6 +692,12 @@
     ]
   },
   {
+    "text": "Couldn’t load the style this updates.",
+    "files": [
+      "src/gallery/components/PublishFlow.tsx"
+    ]
+  },
+  {
     "text": "Couldn’t load this author.",
     "files": [
       "src/gallery/components/AuthorPage.tsx"
@@ -696,6 +722,12 @@
     ]
   },
   {
+    "text": "Couldn’t publish: {reason}",
+    "files": [
+      "src/gallery/components/PublishError.tsx"
+    ]
+  },
+  {
     "text": "Couldn’t publish. Try again",
     "note": "On the Publish button after it failed.",
     "files": [
@@ -703,9 +735,16 @@
     ]
   },
   {
+    "text": "Couldn’t publish. Try again.",
+    "files": [
+      "src/gallery/components/PublishError.tsx"
+    ]
+  },
+  {
     "text": "Couldn’t save. Try again.",
     "files": [
       "src/gallery/components/ChangeUsernameDialog.tsx",
+      "src/gallery/components/ConfirmUsernameCard.tsx",
       "src/gallery/components/EditDetailsButton.tsx",
       "src/gallery/components/WelcomeDialog.tsx"
     ]
@@ -750,6 +789,7 @@
   {
     "text": "CSS",
     "files": [
+      "src/gallery/components/PublishForm.tsx",
       "src/gallery/components/StyleCss.tsx"
     ]
   },
@@ -833,7 +873,8 @@
   {
     "text": "Description",
     "files": [
-      "src/gallery/components/EditDetailsButton.tsx"
+      "src/gallery/components/EditDetailsButton.tsx",
+      "src/gallery/components/PublishForm.tsx"
     ]
   },
   {
@@ -1064,6 +1105,12 @@
     "text": "Get Stylebot to install this style.",
     "files": [
       "src/gallery/components/GetStylebotCard.tsx"
+    ]
+  },
+  {
+    "text": "Get Stylebot to style a site and publish it here.",
+    "files": [
+      "src/gallery/components/PublishUnavailable.tsx"
     ]
   },
   {
@@ -1348,9 +1395,21 @@
     ]
   },
   {
+    "text": "It’s hidden from the Gallery until a moderator has looked at its screenshot.",
+    "files": [
+      "src/gallery/components/PublishedNotice.tsx"
+    ]
+  },
+  {
     "text": "Jump to this point",
     "files": [
       "src/www/components/demo/Demo.tsx"
+    ]
+  },
+  {
+    "text": "Keep {username}",
+    "files": [
+      "src/gallery/components/ConfirmUsernameCard.tsx"
     ]
   },
   {
@@ -1493,7 +1552,20 @@
   {
     "text": "Name",
     "files": [
-      "src/gallery/components/EditDetailsButton.tsx"
+      "src/gallery/components/EditDetailsButton.tsx",
+      "src/gallery/components/PublishForm.tsx"
+    ]
+  },
+  {
+    "text": "New style for {site}",
+    "files": [
+      "src/gallery/components/PublishForm.tsx"
+    ]
+  },
+  {
+    "text": "New version of {name}",
+    "files": [
+      "src/gallery/components/PublishForm.tsx"
     ]
   },
   {
@@ -1844,7 +1916,20 @@
   {
     "text": "Publish",
     "files": [
-      "src/gallery/components/PublishButton.tsx"
+      "src/gallery/components/PublishButton.tsx",
+      "src/gallery/components/PublishForm.tsx"
+    ]
+  },
+  {
+    "text": "Publish as a new style",
+    "files": [
+      "src/gallery/components/PublishFlow.tsx"
+    ]
+  },
+  {
+    "text": "Publish to the Gallery",
+    "files": [
+      "src/gallery/components/PublishPage.tsx"
     ]
   },
   {
@@ -1854,9 +1939,16 @@
     ]
   },
   {
+    "text": "Publishing starts in Stylebot: style a site, then choose Publish in its editor or popup.",
+    "files": [
+      "src/gallery/components/PublishUnavailable.tsx"
+    ]
+  },
+  {
     "text": "Publishing…",
     "files": [
-      "src/gallery/components/PublishButton.tsx"
+      "src/gallery/components/PublishButton.tsx",
+      "src/gallery/components/PublishForm.tsx"
     ]
   },
   {
@@ -1972,6 +2064,12 @@
     ]
   },
   {
+    "text": "Save name and description",
+    "files": [
+      "src/gallery/components/CssUnchangedNotice.tsx"
+    ]
+  },
+  {
     "text": "Saved in Stylebot as “{name}”.",
     "files": [
       "src/gallery/components/InstalledNotice.tsx"
@@ -2001,6 +2099,7 @@
     "text": "Saving…",
     "files": [
       "src/gallery/components/ChangeUsernameDialog.tsx",
+      "src/gallery/components/CssUnchangedNotice.tsx",
       "src/gallery/components/EditDetailsButton.tsx"
     ]
   },
@@ -2013,6 +2112,7 @@
   {
     "text": "Screenshot of {name} on {site}",
     "files": [
+      "src/gallery/components/PublishForm.tsx",
       "src/gallery/components/StylePage.tsx"
     ]
   },
@@ -2119,6 +2219,12 @@
     "text": "Sign in on the Gallery to rename, unpublish or delete the styles you published, and to change your username.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
+    "text": "Sign in to publish {name} for {site}.",
+    "files": [
+      "src/gallery/components/PublishPage.tsx"
     ]
   },
   {
@@ -2235,6 +2341,12 @@
     "text": "Stylebot and the CLI talk only to each other, on this computer, and send nothing anywhere. An agent sends what it reads to its own provider, as Claude Code does to Anthropic.",
     "files": [
       "src/www/pages/[...lang]/cli.astro"
+    ]
+  },
+  {
+    "text": "Stylebot didn’t hear that it’s published, so publishing from it again would make a second style. Keep this tab open and try again.",
+    "files": [
+      "src/gallery/components/PublishedNotice.tsx"
     ]
   },
   {
@@ -2441,6 +2553,12 @@
     ]
   },
   {
+    "text": "Telling Stylebot…",
+    "files": [
+      "src/gallery/components/PublishedNotice.tsx"
+    ]
+  },
+  {
     "text": "Terminal · coding agent",
     "note": "An animation of a coding agent restyling a made-up news site's article.",
     "files": [
@@ -2509,6 +2627,12 @@
     ]
   },
   {
+    "text": "The CSS is the same as the latest version’s, so there’s no new version to publish. You can still save the name and description; installs aren’t updated.",
+    "files": [
+      "src/gallery/components/CssUnchangedNotice.tsx"
+    ]
+  },
+  {
     "text": "The domain docs.google.com or any of its subdomains.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
@@ -2518,6 +2642,12 @@
     "text": "The editor’s menu, with Position set to the side panel",
     "files": [
       "src/www/pages/[...lang]/releases/4.0.astro"
+    ]
+  },
+  {
+    "text": "The Gallery took out CSS that loads from other sites or embeds large images:",
+    "files": [
+      "src/gallery/components/PublishedNotice.tsx"
     ]
   },
   {
@@ -2572,9 +2702,27 @@
     ]
   },
   {
+    "text": "The screenshot is too large. Choose Publish in Stylebot again to take a new one.",
+    "files": [
+      "src/gallery/components/PublishError.tsx"
+    ]
+  },
+  {
     "text": "The side panel, or its own window",
     "files": [
       "src/www/pages/[...lang]/releases/4.0.astro"
+    ]
+  },
+  {
+    "text": "The style changed while this was publishing. Try again.",
+    "files": [
+      "src/gallery/components/PublishError.tsx"
+    ]
+  },
+  {
+    "text": "The style this updates isn’t one of yours. It may have been deleted, or published from another account.",
+    "files": [
+      "src/gallery/components/PublishFlow.tsx"
     ]
   },
   {
@@ -2602,9 +2750,21 @@
     ]
   },
   {
+    "text": "There’s nothing to publish here. The style may already be published, or it’s been more than 10 minutes. Choose Publish in Stylebot’s editor or popup to start again.",
+    "files": [
+      "src/gallery/components/PublishUnavailable.tsx"
+    ]
+  },
+  {
     "text": "These extensions can see and change information on this site.",
     "files": [
       "src/www/components/demo/Demo.tsx"
+    ]
+  },
+  {
+    "text": "This account can’t publish this style.",
+    "files": [
+      "src/gallery/components/PublishError.tsx"
     ]
   },
   {
@@ -2727,7 +2887,8 @@
   {
     "text": "Try again",
     "files": [
-      "src/gallery/components/LoadError.tsx"
+      "src/gallery/components/LoadError.tsx",
+      "src/gallery/components/PublishedNotice.tsx"
     ]
   },
   {
@@ -2870,6 +3031,12 @@
     ]
   },
   {
+    "text": "Version {version} of {name} is published",
+    "files": [
+      "src/gallery/components/PublishedNotice.tsx"
+    ]
+  },
+  {
     "text": "Version history",
     "files": [
       "src/www/components/Features.astro",
@@ -2888,6 +3055,12 @@
     "text": "Versions",
     "files": [
       "src/gallery/components/StyleVersions.tsx"
+    ]
+  },
+  {
+    "text": "View style",
+    "files": [
+      "src/gallery/components/PublishedNotice.tsx"
     ]
   },
   {
@@ -2913,6 +3086,13 @@
     "text": "Welcome to the Gallery",
     "files": [
       "src/gallery/components/WelcomeDialog.tsx"
+    ]
+  },
+  {
+    "text": "What changed",
+    "note": "A field for notes on what a new version of a style changed.",
+    "files": [
+      "src/gallery/components/PublishForm.tsx"
     ]
   },
   {
@@ -2994,8 +3174,16 @@
     "files": [
       "src/gallery/components/AccountNav.tsx",
       "src/gallery/components/MinePage.tsx",
+      "src/gallery/components/PublishUnavailable.tsx",
+      "src/gallery/components/PublishedNotice.tsx",
       "src/gallery/components/UserMenu.tsx",
       "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
+    "text": "Your styles show <strong>{username}</strong> as their author. Keep it or change it before you publish.",
+    "files": [
+      "src/gallery/components/ConfirmUsernameCard.tsx"
     ]
   },
   {

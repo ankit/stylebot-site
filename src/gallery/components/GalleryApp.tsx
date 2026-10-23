@@ -15,6 +15,7 @@ const StylePage = lazy(() => import('./StylePage'));
 const MinePage = lazy(() => import('./MinePage'));
 const AuthorPage = lazy(() => import('./AuthorPage'));
 const SitesPage = lazy(() => import('./SitesPage'));
+const PublishPage = lazy(() => import('./PublishPage'));
 
 type Props = { locale: Locale; strings: Catalog };
 
@@ -55,6 +56,8 @@ export default function GalleryApp({ locale, strings }: Props) {
         />
 
         <Route path={`${base}mine`} component={MinePage} {...props} />
+
+        <Route path={`${base}publish`} component={PublishPage} {...props} />
 
         <Route
           path={`${base}author/:username`}

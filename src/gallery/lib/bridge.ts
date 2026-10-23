@@ -99,3 +99,49 @@ export function listenForInstall(
 
   return () => window.removeEventListener('message', onMessage);
 }
+
+/**
+ * A style Stylebot handed over to publish: its CSS, the site and page it's
+ * for, the profile's name and the screenshot taken in Stylebot. `styleId` is
+ * set to publish it as a new version of that style.
+ */
+export type PublishDraft = {
+  site: string;
+  url: string;
+  css: string;
+  name: string;
+  screenshot: string | null;
+  styleId: number | null;
+};
+
+/**
+ * The draft Stylebot opened this page with, or null when it has none by that
+ * id, such as once it's expired or been published.
+ */
+export async function getPublishDraft(nonce: string) {
+  const answer = await sendBridgeRequest<{ draft: PublishDraft | null }>(
+    'stylebot:draft',
+    nonce,
+    STATUS_TIMEOUT_MS,
+  );
+
+  return answer?.draft ?? null;
+}
+
+/**
+ * Tells Stylebot the draft is published, so it links the profile to the
+ * style. Resolves whether it did.
+ */
+export async function reportPublished(
+  nonce: string,
+  published: { styleId: number; version: number; slug: string },
+) {
+  const answer = await sendBridgeRequest<{ ok: boolean }>(
+    'stylebot:published',
+    nonce,
+    STATUS_TIMEOUT_MS,
+    published,
+  );
+
+  return answer?.ok === true;
+}

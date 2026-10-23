@@ -1,0 +1,15 @@
+.css-unchanged {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  background: var(--bg-hover);
+
+  p {
+    margin: 0;
+    font: 400 var(--text-sm) / 1.5 var(--font-ui);
+    color: var(--fg-secondary);
+  }
+}

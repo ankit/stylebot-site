@@ -14,12 +14,18 @@ import WelcomeDialog from './WelcomeDialog';
 
 import './UserMenu.css';
 
-type Props = { session: Session; locale: Locale; t: Translate };
+// `welcome` is false where the page asks about the username itself.
+type Props = {
+  session: Session;
+  welcome: boolean;
+  locale: Locale;
+  t: Translate;
+};
 
 /**
  * The account's username, opening its menu. Welcomes a new account once.
  */
-export default function UserMenu({ session, locale, t }: Props) {
+export default function UserMenu({ session, welcome, locale, t }: Props) {
   const { account } = session;
   const [open, setOpen] = useState(false);
   const [changingName, setChangingName] = useState(false);
@@ -88,18 +94,21 @@ export default function UserMenu({ session, locale, t }: Props) {
         </>
       )}
 
-      {!account.usernameConfirmed && !welcomeSeen && !changingName && (
-        <WelcomeDialog
-          account={account}
-          session={session.session}
-          onChange={() => {
-            markWelcomeSeen();
-            setChangingName(true);
-          }}
-          onClose={() => markWelcomeSeen()}
-          t={t}
-        />
-      )}
+      {welcome &&
+        !account.usernameConfirmed &&
+        !welcomeSeen &&
+        !changingName && (
+          <WelcomeDialog
+            account={account}
+            session={session.session}
+            onChange={() => {
+              markWelcomeSeen();
+              setChangingName(true);
+            }}
+            onClose={() => markWelcomeSeen()}
+            t={t}
+          />
+        )}
 
       {changingName && (
         <ChangeUsernameDialog
