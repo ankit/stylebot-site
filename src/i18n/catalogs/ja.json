@@ -526,7 +526,7 @@
   "Welcome": "ようこそ",
   "Welcome to the Gallery": "ギャラリーへようこそ",
   "What changed": "変更内容",
-  "What does it change? For example: serif headlines, a narrower column.": "何を変えるスタイルですか？ 例: 見出しを明朝体に、本文の幅を狭く。",
+  "What does it change?": "何を変えるスタイルですか？",
   "What Stylebot does with your data: no server, no account, no analytics.": "Stylebot によるデータの扱い：サーバーなし、アカウントなし、アクセス解析なし。",
   "What's new in {version}": "{version} の新機能",
   "What’s wrong with it?": "どのような問題がありますか？",

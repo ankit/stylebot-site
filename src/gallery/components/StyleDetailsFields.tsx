@@ -61,9 +61,7 @@ export default function StyleDetailsFields({
           value={description}
           maxLength={DESCRIPTION_MAX}
           rows={3}
-          placeholder={t(
-            'What does it change? For example: serif headlines, a narrower column.',
-          )}
+          placeholder={t('What does it change?')}
           onInput={(e) => onDescription(e.currentTarget.value)}
         />
       </PublishField>

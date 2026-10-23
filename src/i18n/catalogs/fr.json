@@ -526,7 +526,7 @@
   "Welcome": "Bienvenue",
   "Welcome to the Gallery": "Bienvenue dans la Galerie",
   "What changed": "Ce qui a changé",
-  "What does it change? For example: serif headlines, a narrower column.": "Que change-t-il ? Par exemple : titres à empattements, colonne plus étroite.",
+  "What does it change?": "Que change-t-il ?",
   "What Stylebot does with your data: no server, no account, no analytics.": "Ce que Stylebot fait de vos données : pas de serveur, pas de compte, pas de statistiques.",
   "What's new in {version}": "Nouveautés de la version {version}",
   "What’s wrong with it?": "Quel est le problème ?",

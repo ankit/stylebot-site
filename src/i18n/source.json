@@ -3287,7 +3287,7 @@
     ]
   },
   {
-    "text": "What does it change? For example: serif headlines, a narrower column.",
+    "text": "What does it change?",
     "files": [
       "src/gallery/components/StyleDetailsFields.tsx"
     ]
