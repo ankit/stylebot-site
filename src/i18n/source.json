@@ -32,6 +32,12 @@
     ]
   },
   {
+    "text": "{name} is live",
+    "files": [
+      "src/gallery/components/PublishedNotice.tsx"
+    ]
+  },
+  {
     "text": "{name} is published",
     "files": [
       "src/gallery/components/PublishedNotice.tsx"
@@ -289,6 +295,12 @@
     "text": "Anyone can find and install published styles. You can update or unpublish later.",
     "files": [
       "src/gallery/components/PublishForm.tsx"
+    ]
+  },
+  {
+    "text": "Anyone can now install it on {site}.",
+    "files": [
+      "src/gallery/components/PublishedNotice.tsx"
     ]
   },
   {
@@ -694,6 +706,12 @@
     ]
   },
   {
+    "text": "Copy link",
+    "files": [
+      "src/gallery/components/PublishedNotice.tsx"
+    ]
+  },
+  {
     "text": "Couldn’t delete. Try again.",
     "files": [
       "src/gallery/components/DeleteStyleButton.tsx"
@@ -1016,6 +1034,12 @@
     "text": "Every site. Useful for styles you want everywhere.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
+    "text": "Everyone who installed it gets the update.",
+    "files": [
+      "src/gallery/components/PublishedNotice.tsx"
     ]
   },
   {
@@ -1415,6 +1439,12 @@
     ]
   },
   {
+    "text": "Its name and description are updated. Installs aren’t.",
+    "files": [
+      "src/gallery/components/PublishedNotice.tsx"
+    ]
+  },
+  {
     "text": "Jump to this point",
     "files": [
       "src/www/components/demo/Demo.tsx"
@@ -1475,6 +1505,12 @@
     ]
   },
   {
+    "text": "Later edits stay in Stylebot until you publish an update.",
+    "files": [
+      "src/gallery/components/PublishedNotice.tsx"
+    ]
+  },
+  {
     "text": "Light",
     "files": [
       "src/theme/ThemeMenu.tsx"
@@ -1490,6 +1526,13 @@
     "text": "Lines: {count}",
     "files": [
       "src/gallery/components/PublishForm.tsx"
+    ]
+  },
+  {
+    "text": "Link",
+    "note": "The label above the address of a published style, to share.",
+    "files": [
+      "src/gallery/components/PublishedNotice.tsx"
     ]
   },
   {
@@ -1963,7 +2006,14 @@
   {
     "text": "Publish to the Gallery",
     "files": [
+      "src/gallery/components/PublishHead.tsx",
       "src/gallery/components/PublishPage.tsx"
+    ]
+  },
+  {
+    "text": "Published",
+    "files": [
+      "src/gallery/components/PublishedNotice.tsx"
     ]
   },
   {
@@ -2110,6 +2160,13 @@
     ]
   },
   {
+    "text": "Saved",
+    "note": "A tag on the page after saving a style's name and description.",
+    "files": [
+      "src/gallery/components/PublishedNotice.tsx"
+    ]
+  },
+  {
     "text": "Saved in Stylebot as “{name}”.",
     "files": [
       "src/gallery/components/InstalledNotice.tsx"
@@ -2160,6 +2217,7 @@
     "text": "Screenshot of {name} on {site}",
     "files": [
       "src/gallery/components/PublishForm.tsx",
+      "src/gallery/components/PublishedNotice.tsx",
       "src/gallery/components/StylePage.tsx"
     ]
   },
@@ -3127,7 +3185,7 @@
     ]
   },
   {
-    "text": "Version {version} of {name} is published",
+    "text": "Version {version} of {name} is live",
     "files": [
       "src/gallery/components/PublishedNotice.tsx"
     ]
@@ -3154,7 +3212,7 @@
     ]
   },
   {
-    "text": "View style",
+    "text": "View in Gallery",
     "files": [
       "src/gallery/components/PublishedNotice.tsx"
     ]

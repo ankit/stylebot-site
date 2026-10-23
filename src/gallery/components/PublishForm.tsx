@@ -1,7 +1,7 @@
 import { useState } from 'preact/hooks';
 
 import { type usePublish } from '@/gallery/hooks/usePublish';
-import { useScreenshotChoice } from '@/gallery/hooks/useScreenshotChoice';
+import { type useScreenshotChoice } from '@/gallery/hooks/useScreenshotChoice';
 import { type OwnStyle } from '@/gallery/lib/api';
 import { type PublishDraft } from '@/gallery/lib/bridge';
 
@@ -26,6 +26,7 @@ type Props = {
   draft: PublishDraft;
   existing: OwnStyle | null;
   publishing: ReturnType<typeof usePublish>;
+  choice: ReturnType<typeof useScreenshotChoice>;
   canPublish: boolean;
   t: Translate;
 };
@@ -39,13 +40,13 @@ export default function PublishForm({
   draft,
   existing,
   publishing,
+  choice,
   canPublish,
   t,
 }: Props) {
   const [name, setName] = useState(existing?.name ?? draft.name);
   const [description, setDescription] = useState(existing?.description ?? '');
   const [notes, setNotes] = useState('');
-  const choice = useScreenshotChoice(draft, existing);
   const { busy } = publishing;
   const details = {
     name: name.trim(),

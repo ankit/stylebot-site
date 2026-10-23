@@ -3,27 +3,3 @@
   flex-direction: column;
   gap: 32px;
 }
-
-.publish-head {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.publish-title {
-  text-align: left;
-}
-
-.publish-site {
-  align-self: flex-start;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font: 400 var(--text-sm) / 1.3 var(--font-ui);
-  color: var(--fg-muted);
-  overflow-wrap: anywhere;
-
-  &:hover {
-    color: var(--fg);
-  }
-}

@@ -6,8 +6,8 @@ import { useSession } from '@/gallery/hooks/useSession';
 import { type Locale } from '@/i18n/locales';
 import { type Catalog, translator } from '@/i18n/t';
 
-import Favicon from './Favicon';
 import PublishFlow from './PublishFlow';
+import PublishHead from './PublishHead';
 import PublishUnavailable from './PublishUnavailable';
 import SignInButton from './SignInButton';
 
@@ -28,23 +28,23 @@ export default function PublishPage({ locale, strings }: Props) {
 
   usePageMeta(t('{title} | Stylebot', { title }), { noindex: true });
 
+  if (draft && session) {
+    return (
+      <div class="publish-page">
+        <PublishFlow
+          draft={draft}
+          nonce={nonce}
+          session={session}
+          locale={locale}
+          t={t}
+        />
+      </div>
+    );
+  }
+
   return (
     <div class="publish-page">
-      <div class="publish-head">
-        <h1 class="g-title publish-title">{title}</h1>
-
-        {draft && (
-          <a
-            class="publish-site"
-            href={draft.url}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Favicon site={draft.site} />
-            {draft.site}
-          </a>
-        )}
-      </div>
+      <PublishHead draft={draft} t={t} />
 
       {draft === null && <PublishUnavailable locale={locale} t={t} />}
 
@@ -59,16 +59,6 @@ export default function PublishPage({ locale, strings }: Props) {
 
           <SignInButton t={t} />
         </div>
-      )}
-
-      {draft && session && (
-        <PublishFlow
-          draft={draft}
-          nonce={nonce}
-          session={session}
-          locale={locale}
-          t={t}
-        />
       )}
     </div>
   );

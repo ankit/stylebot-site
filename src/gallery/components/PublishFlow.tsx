@@ -10,6 +10,7 @@ import { type Locale } from '@/i18n/locales';
 import { type Translate } from '@/i18n/t';
 
 import LoadError from './LoadError';
+import PublishHead from './PublishHead';
 import PublishSteps from './PublishSteps';
 
 type Props = {
@@ -36,28 +37,36 @@ export default function PublishFlow({
 
   if (own.failed) {
     return (
-      <LoadError
-        message={t('Couldn’t load the style this updates.')}
-        onRetry={own.reload}
-        t={t}
-      />
+      <>
+        <PublishHead draft={draft} t={t} />
+
+        <LoadError
+          message={t('Couldn’t load the style this updates.')}
+          onRetry={own.reload}
+          t={t}
+        />
+      </>
     );
   }
 
   if (own.style === undefined) {
-    return null;
+    return <PublishHead draft={draft} t={t} />;
   }
 
   if (draft.styleId !== null && own.style === null && !asNew) {
     return (
-      <div class="g-note" role="alert">
-        {t(
-          'The style this updates isn’t one of yours. It may have been deleted, or published from another account.',
-        )}
-        <Button variant="outline" size="sm" onClick={() => setAsNew(true)}>
-          {t('Publish as a new style')}
-        </Button>
-      </div>
+      <>
+        <PublishHead draft={draft} t={t} />
+
+        <div class="g-note" role="alert">
+          {t(
+            'The style this updates isn’t one of yours. It may have been deleted, or published from another account.',
+          )}
+          <Button variant="outline" size="sm" onClick={() => setAsNew(true)}>
+            {t('Publish as a new style')}
+          </Button>
+        </div>
+      </>
     );
   }
 
