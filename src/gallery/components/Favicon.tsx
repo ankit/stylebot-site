@@ -57,7 +57,7 @@ export default function Favicon({ site, size = 14 }: Props) {
   return (
     <img
       class={`favicon is-${state}`}
-      src={`${API_ORIGIN}/api/v1/favicons/${encodeURIComponent(site)}`}
+      src={`${API_ORIGIN}/v1/favicons/${encodeURIComponent(site)}`}
       width={size}
       height={size}
       alt=""

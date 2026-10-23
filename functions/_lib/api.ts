@@ -24,7 +24,7 @@ export type Author = Counts & { username: string };
 export type Site = Counts & { site: string };
 
 export const apiOrigin = (env: Env) =>
-  env.STYLES_API ?? 'https://stylebot-styles.ahuja-ankit.workers.dev';
+  env.STYLES_API ?? 'https://api.stylebot.dev';
 
 /**
  * A GET from the styles API, or null when it's not found or invalid. Throws
@@ -35,7 +35,7 @@ export async function api<T>(
   path: string,
   timeout = 1500,
 ): Promise<T | null> {
-  const response = await fetch(`${apiOrigin(env)}/api/v1${path}`, {
+  const response = await fetch(`${apiOrigin(env)}/v1${path}`, {
     signal: AbortSignal.timeout(timeout),
     cf: { cacheTtl: 60 },
   });

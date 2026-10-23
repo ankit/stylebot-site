@@ -2,7 +2,7 @@
 // http://localhost:8787.
 export const API_ORIGIN: string =
   import.meta.env.PUBLIC_STYLES_API ??
-  'https://stylebot-styles.ahuja-ankit.workers.dev';
+  'https://api.stylebot.dev';
 
 export type Style = {
   // Styles are numbered in the order they were published.
@@ -87,7 +87,7 @@ async function request<T>(
     headers.Authorization = `Bearer ${session}`;
   }
 
-  const response = await fetch(`${API_ORIGIN}/api/v1${path}`, {
+  const response = await fetch(`${API_ORIGIN}/v1${path}`, {
     ...rest,
     headers,
   });
