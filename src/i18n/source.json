@@ -294,7 +294,7 @@
   {
     "text": "Anyone can find and install published styles. You can update or unpublish later.",
     "files": [
-      "src/gallery/components/PublishForm.tsx"
+      "src/gallery/components/PublishSubmit.tsx"
     ]
   },
   {
@@ -1993,7 +1993,7 @@
     "text": "Publish",
     "files": [
       "src/gallery/components/PublishButton.tsx",
-      "src/gallery/components/PublishForm.tsx"
+      "src/gallery/components/PublishSubmit.tsx"
     ]
   },
   {
@@ -2018,7 +2018,7 @@
   {
     "text": "Publish update",
     "files": [
-      "src/gallery/components/PublishForm.tsx"
+      "src/gallery/components/PublishSubmit.tsx"
     ]
   },
   {
@@ -2043,7 +2043,7 @@
     "text": "Publishing…",
     "files": [
       "src/gallery/components/PublishButton.tsx",
-      "src/gallery/components/PublishForm.tsx"
+      "src/gallery/components/PublishSubmit.tsx"
     ]
   },
   {
@@ -2321,7 +2321,7 @@
   {
     "text": "Shown in the style’s version history.",
     "files": [
-      "src/gallery/components/PublishForm.tsx"
+      "src/gallery/components/VersionNotesField.tsx"
     ]
   },
   {
@@ -3275,7 +3275,7 @@
     "text": "What changed",
     "note": "A field for notes on what a new version of a style changed.",
     "files": [
-      "src/gallery/components/PublishForm.tsx"
+      "src/gallery/components/VersionNotesField.tsx"
     ]
   },
   {

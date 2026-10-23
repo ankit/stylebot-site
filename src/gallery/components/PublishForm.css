@@ -32,20 +32,3 @@
   font: 500 var(--text-sm) / 1.5 var(--font-ui);
   color: var(--fg);
 }
-
-.publish-form-submit {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-
-  .btn {
-    flex: none;
-  }
-
-  p {
-    margin: 0;
-    font: 400 var(--text-sm) / 1.45 var(--font-ui);
-    color: var(--fg-muted);
-    text-wrap: pretty;
-  }
-}

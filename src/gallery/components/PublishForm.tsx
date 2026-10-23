@@ -1,28 +1,22 @@
-import { useEffect, useRef, useState } from 'preact/hooks';
-
 import { useLatestCss } from '@/gallery/hooks/useLatestCss';
 import { type usePublish } from '@/gallery/hooks/usePublish';
+import { usePublishDetails } from '@/gallery/hooks/usePublishDetails';
 import { type useScreenshotChoice } from '@/gallery/hooks/useScreenshotChoice';
 import { type OwnStyle } from '@/gallery/lib/api';
 import { type PublishDraft } from '@/gallery/lib/bridge';
 import { sameCss } from '@/gallery/lib/diff';
 
-import Button from '@/components/Button';
-
 import { type Translate } from '@/i18n/t';
 
 import CssUnchangedNotice from './CssUnchangedNotice';
 import PublishCssReview from './PublishCssReview';
-import PublishDetailsSummary from './PublishDetailsSummary';
 import PublishError from './PublishError';
-import PublishField from './PublishField';
+import PublishSubmit from './PublishSubmit';
 import ScreenshotPicker from './ScreenshotPicker';
-import StyleDetailsFields from './StyleDetailsFields';
+import StyleDetails from './StyleDetails';
+import VersionNotesField from './VersionNotesField';
 
 import './PublishForm.css';
-
-// The API's limit.
-const NOTES_MAX = 200;
 
 type Props = {
   draft: PublishDraft;
@@ -45,36 +39,13 @@ export default function PublishForm({
   guard,
   t,
 }: Props) {
-  const [name, setName] = useState(existing?.name ?? draft.name);
-  const [description, setDescription] = useState(existing?.description ?? '');
-  const [notes, setNotes] = useState('');
-  const [editingDetails, setEditingDetails] = useState(!existing);
+  const fields = usePublishDetails(draft, existing);
   const latestCss = useLatestCss(existing);
-  const notesRef = useRef<HTMLTextAreaElement>(null);
+  const { details } = fields;
   const { busy } = publishing;
-  const details = {
-    name: name.trim(),
-    description: description.trim(),
-    notes: notes.trim(),
-  };
+  const isUpdate = existing !== null;
   const unchanged =
     publishing.unchanged || (!!latestCss && sameCss(latestCss, draft.css));
-  const showFields = editingDetails || unchanged;
-  const blocked =
-    busy || !details.name || choice.source === 'none' || unchanged;
-  let label = t('Publish');
-
-  if (existing) {
-    label = t('Publish update');
-  }
-
-  if (busy) {
-    label = t('Publishing…');
-  }
-
-  useEffect(() => {
-    notesRef.current?.focus();
-  }, []);
 
   const submit = (e: Event) => {
     e.preventDefault();
@@ -92,47 +63,23 @@ export default function PublishForm({
           </p>
         )}
 
-        {existing && !unchanged && (
-          <PublishField
-            label={
-              // i18n: A field for notes on what a new version of a style changed.
-              t('What changed')
-            }
-            optional
-            hint={t('Shown in the style’s version history.')}
-            length={notes.length}
-            max={NOTES_MAX}
-            t={t}
-          >
-            <textarea
-              ref={notesRef}
-              value={notes}
-              maxLength={NOTES_MAX}
-              rows={2}
-              onInput={(e) => setNotes(e.currentTarget.value)}
-            />
-          </PublishField>
-        )}
-
-        {showFields && (
-          <StyleDetailsFields
-            name={name}
-            description={description}
-            onName={setName}
-            onDescription={setDescription}
-            focusDescription={!existing}
+        {isUpdate && !unchanged && (
+          <VersionNotesField
+            value={fields.notes}
+            onInput={fields.setNotes}
             t={t}
           />
         )}
 
-        {!showFields && (
-          <PublishDetailsSummary
-            name={name}
-            description={description}
-            onEdit={() => setEditingDetails(true)}
-            t={t}
-          />
-        )}
+        <StyleDetails
+          name={fields.name}
+          description={fields.description}
+          onName={fields.setName}
+          onDescription={fields.setDescription}
+          isUpdate={isUpdate}
+          open={unchanged}
+          t={t}
+        />
 
         <PublishCssReview css={draft.css} before={latestCss} t={t} />
 
@@ -149,17 +96,12 @@ export default function PublishForm({
         )}
 
         {!unchanged && (
-          <div class="publish-form-submit">
-            <Button type="submit" disabled={blocked}>
-              {label}
-            </Button>
-
-            <p>
-              {t(
-                'Anyone can find and install published styles. You can update or unpublish later.',
-              )}
-            </p>
-          </div>
+          <PublishSubmit
+            isUpdate={isUpdate}
+            busy={busy}
+            disabled={busy || !details.name || choice.source === 'none'}
+            t={t}
+          />
         )}
       </div>
 
