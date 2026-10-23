@@ -1,3 +1,5 @@
+import { useEffect, useRef } from 'preact/hooks';
+
 import { type Translate } from '@/i18n/t';
 
 import PublishField from './PublishField';
@@ -11,6 +13,8 @@ type Props = {
   description: string;
   onName: (name: string) => void;
   onDescription: (description: string) => void;
+  // Puts the cursor in the description, since the name comes filled in.
+  focusDescription?: boolean;
   t: Translate;
 };
 
@@ -22,8 +26,17 @@ export default function StyleDetailsFields({
   description,
   onName,
   onDescription,
+  focusDescription = false,
   t,
 }: Props) {
+  const descriptionRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    if (focusDescription) {
+      descriptionRef.current?.focus();
+    }
+  }, [focusDescription]);
+
   return (
     <>
       <PublishField label={t('Name')} t={t}>
@@ -44,6 +57,7 @@ export default function StyleDetailsFields({
         t={t}
       >
         <textarea
+          ref={descriptionRef}
           value={description}
           maxLength={DESCRIPTION_MAX}
           rows={3}

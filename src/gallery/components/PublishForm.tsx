@@ -126,6 +126,7 @@ export default function PublishForm({
             description={description}
             onName={setName}
             onDescription={setDescription}
+            focusDescription={!existing}
             t={t}
           />
         )}
@@ -140,8 +141,6 @@ export default function PublishForm({
         )}
 
         <PublishCssReview css={draft.css} before={latestCss} t={t} />
-
-        <hr class="publish-form-rule" />
 
         {unchanged && (
           <CssUnchangedNotice

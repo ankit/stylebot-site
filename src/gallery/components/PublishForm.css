@@ -27,13 +27,6 @@
   color: var(--fg-muted);
 }
 
-.publish-form-rule {
-  width: 100%;
-  margin: 0;
-  border: none;
-  border-top: 1px solid var(--border);
-}
-
 .publish-form-problem {
   margin: 0;
   font: 500 var(--text-sm) / 1.5 var(--font-ui);
