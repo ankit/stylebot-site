@@ -10,13 +10,14 @@ const MAX_BYTES = 1024 * 1024;
 // the style's own, and `none` is a new style still without one.
 export type ScreenshotSource = 'tab' | 'current' | 'upload' | 'none';
 
+// An update keeps the style's screenshot unless the author picks another.
 function initialSource(draft: PublishDraft, existing: OwnStyle | null) {
-  if (draft.screenshot) {
-    return 'tab';
-  }
-
   if (existing) {
     return 'current';
+  }
+
+  if (draft.screenshot) {
+    return 'tab';
   }
 
   return 'none';

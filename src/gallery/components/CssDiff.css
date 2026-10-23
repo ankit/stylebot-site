@@ -1,0 +1,64 @@
+.css-diff {
+  max-height: 320px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  font: 400 13px/1.7 var(--font-mono);
+}
+
+.css-diff-hunk {
+  padding: 8px 0;
+
+  & + & {
+    border-top: 1px dashed var(--border);
+  }
+}
+
+.css-diff-line {
+  display: flex;
+  gap: 10px;
+  min-height: 1.7em;
+  padding: 0 16px 0 10px;
+  white-space: pre-wrap;
+  color: var(--fg-muted);
+
+  &.is-added {
+    background: var(--success-bg);
+    color: var(--fg);
+  }
+
+  &.is-removed {
+    background: var(--danger-bg);
+    color: var(--fg);
+  }
+}
+
+.css-diff-number {
+  flex: none;
+  width: 28px;
+  text-align: right;
+  color: var(--fg-subtle);
+  user-select: none;
+}
+
+.css-diff-sign {
+  flex: none;
+  width: 10px;
+  user-select: none;
+
+  .is-added & {
+    color: var(--success);
+  }
+
+  .is-removed & {
+    color: var(--danger);
+  }
+}
+
+.css-diff-text {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}

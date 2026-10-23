@@ -492,6 +492,12 @@
     ]
   },
   {
+    "text": "Changes since the latest version",
+    "files": [
+      "src/gallery/components/PublishCssReview.tsx"
+    ]
+  },
+  {
     "text": "Choose <strong>Publish to Gallery</strong> from a style’s <strong>⋯</strong> menu in the popup, or from the editor’s <strong>⋯</strong> menu, and sign in with Google. Your edits stay on your computer until you publish an update.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
@@ -827,7 +833,7 @@
   {
     "text": "CSS",
     "files": [
-      "src/gallery/components/PublishForm.tsx",
+      "src/gallery/components/PublishCssReview.tsx",
       "src/gallery/components/StyleCss.tsx"
     ]
   },
@@ -912,7 +918,7 @@
     "text": "Description",
     "files": [
       "src/gallery/components/EditDetailsButton.tsx",
-      "src/gallery/components/PublishForm.tsx"
+      "src/gallery/components/StyleDetailsFields.tsx"
     ]
   },
   {
@@ -954,7 +960,8 @@
   {
     "text": "Edit",
     "files": [
-      "src/gallery/components/EditDetailsButton.tsx"
+      "src/gallery/components/EditDetailsButton.tsx",
+      "src/gallery/components/PublishDetailsSummary.tsx"
     ]
   },
   {
@@ -1525,7 +1532,7 @@
   {
     "text": "Lines: {count}",
     "files": [
-      "src/gallery/components/PublishForm.tsx"
+      "src/gallery/components/PublishCssReview.tsx"
     ]
   },
   {
@@ -1622,7 +1629,7 @@
     "text": "Name",
     "files": [
       "src/gallery/components/EditDetailsButton.tsx",
-      "src/gallery/components/PublishForm.tsx"
+      "src/gallery/components/StyleDetailsFields.tsx"
     ]
   },
   {
@@ -1676,6 +1683,12 @@
     "files": [
       "src/www/components/demo/Demo.tsx",
       "src/www/components/demo/scenes.ts"
+    ]
+  },
+  {
+    "text": "No description",
+    "files": [
+      "src/gallery/components/PublishDetailsSummary.tsx"
     ]
   },
   {
@@ -2011,6 +2024,12 @@
     ]
   },
   {
+    "text": "Publish update",
+    "files": [
+      "src/gallery/components/PublishForm.tsx"
+    ]
+  },
+  {
     "text": "Published",
     "files": [
       "src/gallery/components/PublishedNotice.tsx"
@@ -2296,6 +2315,18 @@
     ]
   },
   {
+    "text": "Show all CSS",
+    "files": [
+      "src/gallery/components/PublishCssReview.tsx"
+    ]
+  },
+  {
+    "text": "Show changes",
+    "files": [
+      "src/gallery/components/PublishCssReview.tsx"
+    ]
+  },
+  {
     "text": "Shown in the style’s version history.",
     "files": [
       "src/gallery/components/PublishForm.tsx"
@@ -2304,7 +2335,7 @@
   {
     "text": "Shown on the style’s Gallery page.",
     "files": [
-      "src/gallery/components/PublishForm.tsx"
+      "src/gallery/components/StyleDetailsFields.tsx"
     ]
   },
   {
@@ -3137,6 +3168,12 @@
     ]
   },
   {
+    "text": "Use a new screenshot of your tab",
+    "files": [
+      "src/gallery/components/ScreenshotPicker.tsx"
+    ]
+  },
+  {
     "text": "Use the Basic controls or write CSS.",
     "files": [
       "src/www/components/demo/scenes.ts"
@@ -3252,7 +3289,7 @@
   {
     "text": "What does it change? For example: serif headlines, a narrower column.",
     "files": [
-      "src/gallery/components/PublishForm.tsx"
+      "src/gallery/components/StyleDetailsFields.tsx"
     ]
   },
   {

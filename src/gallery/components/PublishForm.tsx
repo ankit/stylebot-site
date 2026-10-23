@@ -1,25 +1,27 @@
 import { useState } from 'preact/hooks';
 
+import { useLatestCss } from '@/gallery/hooks/useLatestCss';
 import { type usePublish } from '@/gallery/hooks/usePublish';
 import { type useScreenshotChoice } from '@/gallery/hooks/useScreenshotChoice';
 import { type OwnStyle } from '@/gallery/lib/api';
 import { type PublishDraft } from '@/gallery/lib/bridge';
+import { sameCss } from '@/gallery/lib/diff';
 
 import Button from '@/components/Button';
 
 import { type Translate } from '@/i18n/t';
 
-import CssCode from './CssCode';
 import CssUnchangedNotice from './CssUnchangedNotice';
+import PublishCssReview from './PublishCssReview';
+import PublishDetailsSummary from './PublishDetailsSummary';
 import PublishError from './PublishError';
 import PublishField from './PublishField';
 import ScreenshotPicker from './ScreenshotPicker';
+import StyleDetailsFields from './StyleDetailsFields';
 
 import './PublishForm.css';
 
-// The API's limits.
-const NAME_MAX = 60;
-const DESCRIPTION_MAX = 200;
+// The API's limit.
 const NOTES_MAX = 200;
 
 type Props = {
@@ -32,9 +34,10 @@ type Props = {
 };
 
 /**
- * The draft's name, description and, for a new version, what changed, then
- * its CSS and Publish last, beside the screenshot. A new version starts from
- * the style's details.
+ * The draft's details, its CSS and Publish last, beside the screenshot. A new
+ * style starts with its name and description; an update with what changed,
+ * its details kept unless edited, and its CSS as changes from the latest
+ * version, saying up front when there are none.
  */
 export default function PublishForm({
   draft,
@@ -47,20 +50,28 @@ export default function PublishForm({
   const [name, setName] = useState(existing?.name ?? draft.name);
   const [description, setDescription] = useState(existing?.description ?? '');
   const [notes, setNotes] = useState('');
+  const [editingDetails, setEditingDetails] = useState(!existing);
+  const latestCss = useLatestCss(existing);
   const { busy } = publishing;
   const details = {
     name: name.trim(),
     description: description.trim(),
     notes: notes.trim(),
   };
+  const unchanged =
+    publishing.unchanged || (!!latestCss && sameCss(latestCss, draft.css));
+  const showFields = editingDetails || unchanged;
   const blocked =
     !canPublish ||
     busy ||
     !details.name ||
     choice.source === 'none' ||
-    publishing.unchanged;
-  const cssLabel = t('CSS');
+    unchanged;
   let label = t('Publish');
+
+  if (existing) {
+    label = t('Publish update');
+  }
 
   if (busy) {
     label = t('Publishing…');
@@ -82,35 +93,7 @@ export default function PublishForm({
           </p>
         )}
 
-        <PublishField label={t('Name')} t={t}>
-          <input
-            value={name}
-            maxLength={NAME_MAX}
-            required
-            onInput={(e) => setName(e.currentTarget.value)}
-          />
-        </PublishField>
-
-        <PublishField
-          label={t('Description')}
-          optional
-          hint={t('Shown on the style’s Gallery page.')}
-          length={description.length}
-          max={DESCRIPTION_MAX}
-          t={t}
-        >
-          <textarea
-            value={description}
-            maxLength={DESCRIPTION_MAX}
-            rows={3}
-            placeholder={t(
-              'What does it change? For example: serif headlines, a narrower column.',
-            )}
-            onInput={(e) => setDescription(e.currentTarget.value)}
-          />
-        </PublishField>
-
-        {existing && (
+        {existing && !unchanged && (
           <PublishField
             label={
               // i18n: A field for notes on what a new version of a style changed.
@@ -131,20 +114,30 @@ export default function PublishForm({
           </PublishField>
         )}
 
-        <div class="publish-form-css">
-          <div class="publish-form-css-head">
-            {cssLabel}
-            <span>
-              {t('Lines: {count}', { count: draft.css.split('\n').length })}
-            </span>
-          </div>
+        {showFields && (
+          <StyleDetailsFields
+            name={name}
+            description={description}
+            onName={setName}
+            onDescription={setDescription}
+            t={t}
+          />
+        )}
 
-          <CssCode css={draft.css} label={cssLabel} />
-        </div>
+        {!showFields && (
+          <PublishDetailsSummary
+            name={name}
+            description={description}
+            onEdit={() => setEditingDetails(true)}
+            t={t}
+          />
+        )}
+
+        <PublishCssReview css={draft.css} before={latestCss} t={t} />
 
         <hr class="publish-form-rule" />
 
-        {publishing.unchanged && (
+        {unchanged && (
           <CssUnchangedNotice
             busy={busy}
             onSave={() => publishing.saveDetails(details)}
@@ -152,21 +145,23 @@ export default function PublishForm({
           />
         )}
 
-        {!publishing.unchanged && publishing.error !== undefined && (
+        {!unchanged && publishing.error !== undefined && (
           <PublishError error={publishing.error} t={t} />
         )}
 
-        <div class="publish-form-submit">
-          <Button type="submit" disabled={blocked}>
-            {label}
-          </Button>
+        {!unchanged && (
+          <div class="publish-form-submit">
+            <Button type="submit" disabled={blocked}>
+              {label}
+            </Button>
 
-          <p>
-            {t(
-              'Anyone can find and install published styles. You can update or unpublish later.',
-            )}
-          </p>
-        </div>
+            <p>
+              {t(
+                'Anyone can find and install published styles. You can update or unpublish later.',
+              )}
+            </p>
+          </div>
+        )}
       </div>
 
       <ScreenshotPicker

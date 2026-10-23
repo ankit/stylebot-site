@@ -27,30 +27,6 @@
   color: var(--fg-muted);
 }
 
-.publish-form-css {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-
-  .css-code {
-    max-height: 320px;
-    border-radius: var(--radius-md);
-  }
-}
-
-.publish-form-css-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  font: 500 var(--text-sm) / 1.2 var(--font-ui);
-  color: var(--fg);
-
-  span {
-    font: 400 var(--text-xs) / 1 var(--font-ui);
-    color: var(--fg-subtle);
-  }
-}
-
 .publish-form-rule {
   width: 100%;
   margin: 0;
@@ -75,7 +51,7 @@
 
   p {
     margin: 0;
-    font: 400 var(--text-xs) / 1.45 var(--font-ui);
+    font: 400 var(--text-sm) / 1.45 var(--font-ui);
     color: var(--fg-muted);
     text-wrap: pretty;
   }

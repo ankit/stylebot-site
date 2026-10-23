@@ -1,0 +1,49 @@
+.publish-css {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  .css-code {
+    max-height: 320px;
+    border-radius: var(--radius-md);
+  }
+}
+
+.publish-css-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  font: 500 var(--text-sm) / 1.2 var(--font-ui);
+  color: var(--fg);
+
+  > span {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    font: 400 var(--text-sm) / 1 var(--font-ui);
+    color: var(--fg-subtle);
+  }
+
+  button {
+    margin-left: 8px;
+    padding: 0;
+    border: none;
+    background: none;
+    font: 500 var(--text-sm) / 1 var(--font-ui);
+    color: var(--fg);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+  }
+}
+
+.publish-css-added {
+  font-family: var(--font-mono);
+  color: var(--success);
+}
+
+.publish-css-removed {
+  font-family: var(--font-mono);
+  color: var(--danger);
+}

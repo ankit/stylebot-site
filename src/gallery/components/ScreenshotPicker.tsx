@@ -25,8 +25,13 @@ export default function ScreenshotPicker({ choice, alt, t }: Props) {
     upload: t('Your image. It’s uploaded when you publish.'),
     none: t('Upload a screenshot of the site with the style on.'),
   };
+  let tabLabel = t('Use the screenshot of your tab');
   let uploadLabel = t('Replace image');
   let uploadClass = 'screenshot-picker-replace';
+
+  if (choice.canKeepCurrent) {
+    tabLabel = t('Use a new screenshot of your tab');
+  }
 
   if (!preview) {
     uploadLabel = t('Upload an image');
@@ -81,7 +86,7 @@ export default function ScreenshotPicker({ choice, alt, t }: Props) {
           class="screenshot-picker-switch"
           onClick={() => choice.choose('tab')}
         >
-          {t('Use the screenshot of your tab')}
+          {tabLabel}
         </button>
       )}
 
