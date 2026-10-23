@@ -128,12 +128,6 @@
     ]
   },
   {
-    "text": "A new style needs a screenshot. Choose Publish in Stylebot again to take one.",
-    "files": [
-      "src/gallery/components/PublishForm.tsx"
-    ]
-  },
-  {
     "text": "A new Stylebot icon",
     "files": [
       "src/www/pages/[...lang]/releases/4.0.astro"
@@ -475,6 +469,12 @@
     "text": "Choose <strong>Publish to Gallery</strong> from a style’s <strong>⋯</strong> menu in the popup, or from the editor’s <strong>⋯</strong> menu, and sign in with Google. Your edits stay on your computer until you publish an update.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
+    "text": "Choose an image under 1 MB.",
+    "files": [
+      "src/gallery/components/ScreenshotPicker.tsx"
     ]
   },
   {
@@ -1425,6 +1425,12 @@
     ]
   },
   {
+    "text": "Keep the current screenshot",
+    "files": [
+      "src/gallery/components/ScreenshotPicker.tsx"
+    ]
+  },
+  {
     "text": "Keyboard shortcut to toggle it",
     "files": [
       "src/www/pages/[...lang]/releases/3.2.astro"
@@ -2117,6 +2123,12 @@
     ]
   },
   {
+    "text": "Screenshot of your tab. Check it shows nothing private before you publish.",
+    "files": [
+      "src/gallery/components/ScreenshotPicker.tsx"
+    ]
+  },
+  {
     "text": "Search 400 <a href=\"https://fonts.google.com/\">Google Fonts</a> and Stylebot loads the one you pick, or type any font installed on your computer.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
@@ -2702,7 +2714,7 @@
     ]
   },
   {
-    "text": "The screenshot is too large. Choose Publish in Stylebot again to take a new one.",
+    "text": "The screenshot is too large. Upload an image under 1 MB.",
     "files": [
       "src/gallery/components/PublishError.tsx"
     ]
@@ -2723,6 +2735,12 @@
     "text": "The style this updates isn’t one of yours. It may have been deleted, or published from another account.",
     "files": [
       "src/gallery/components/PublishFlow.tsx"
+    ]
+  },
+  {
+    "text": "The style’s current screenshot.",
+    "files": [
+      "src/gallery/components/ScreenshotPicker.tsx"
     ]
   },
   {
@@ -2971,6 +2989,18 @@
     ]
   },
   {
+    "text": "Upload a screenshot of the site with the style on.",
+    "files": [
+      "src/gallery/components/ScreenshotPicker.tsx"
+    ]
+  },
+  {
+    "text": "Upload an image",
+    "files": [
+      "src/gallery/components/ScreenshotPicker.tsx"
+    ]
+  },
+  {
     "text": "URL rules",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
@@ -2992,6 +3022,12 @@
     "text": "Use the Basic controls or write CSS.",
     "files": [
       "src/www/components/demo/scenes.ts"
+    ]
+  },
+  {
+    "text": "Use the screenshot of your tab",
+    "files": [
+      "src/gallery/components/ScreenshotPicker.tsx"
     ]
   },
   {
@@ -3167,6 +3203,12 @@
     "text": "You’ve been signed out. Sign in again to report it.",
     "files": [
       "src/gallery/components/ReportDialog.tsx"
+    ]
+  },
+  {
+    "text": "Your image. It’s uploaded when you publish.",
+    "files": [
+      "src/gallery/components/ScreenshotPicker.tsx"
     ]
   },
   {

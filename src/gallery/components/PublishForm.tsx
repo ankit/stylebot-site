@@ -1,7 +1,8 @@
 import { useState } from 'preact/hooks';
 
 import { type usePublish } from '@/gallery/hooks/usePublish';
-import { type OwnStyle, resizedScreenshotUrl } from '@/gallery/lib/api';
+import { useScreenshotChoice } from '@/gallery/hooks/useScreenshotChoice';
+import { type OwnStyle } from '@/gallery/lib/api';
 import { type PublishDraft } from '@/gallery/lib/bridge';
 
 import Button from '@/components/Button';
@@ -12,6 +13,7 @@ import CssCode from './CssCode';
 import CssUnchangedNotice from './CssUnchangedNotice';
 import Favicon from './Favicon';
 import PublishError from './PublishError';
+import ScreenshotPicker from './ScreenshotPicker';
 
 import './PublishForm.css';
 
@@ -42,26 +44,22 @@ export default function PublishForm({
   const [name, setName] = useState(existing?.name ?? draft.name);
   const [description, setDescription] = useState(existing?.description ?? '');
   const [notes, setNotes] = useState('');
+  const choice = useScreenshotChoice(draft, existing);
   const { busy } = publishing;
   const details = {
     name: name.trim(),
     description: description.trim(),
     notes: notes.trim(),
   };
-  const needsScreenshot = !existing && !draft.screenshot;
+  const needsScreenshot = choice.source === 'none';
   const blocked =
     !canPublish ||
     busy ||
     !details.name ||
     needsScreenshot ||
     publishing.unchanged;
-  let screenshot = draft.screenshot;
   let heading = t('New style for {site}', { site: draft.site });
   let label = t('Publish');
-
-  if (!screenshot && existing) {
-    screenshot = resizedScreenshotUrl(existing, 960);
-  }
 
   if (existing) {
     heading = t('New version of {name}', { name: existing.name });
@@ -73,24 +71,20 @@ export default function PublishForm({
 
   const submit = (e: Event) => {
     e.preventDefault();
-    publishing.publish(details);
+    publishing.publish(details, choice.screenshot);
   };
 
   return (
     <form class="publish-form" onSubmit={submit}>
       <div class="publish-form-top">
-        {screenshot && (
-          <img
-            class="publish-form-shot"
-            src={screenshot}
-            alt={t('Screenshot of {name} on {site}', {
-              name: details.name,
-              site: draft.site,
-            })}
-          />
-        )}
-
-        {!screenshot && <div class="publish-form-shot" />}
+        <ScreenshotPicker
+          choice={choice}
+          alt={t('Screenshot of {name} on {site}', {
+            name: details.name,
+            site: draft.site,
+          })}
+          t={t}
+        />
 
         <div class="publish-form-fields">
           <a
@@ -136,14 +130,6 @@ export default function PublishForm({
                 onInput={(e) => setNotes(e.currentTarget.value)}
               />
             </label>
-          )}
-
-          {needsScreenshot && (
-            <p class="publish-form-problem" role="alert">
-              {t(
-                'A new style needs a screenshot. Choose Publish in Stylebot again to take one.',
-              )}
-            </p>
           )}
 
           {publishing.unchanged && (

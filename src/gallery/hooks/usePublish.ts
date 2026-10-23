@@ -66,12 +66,15 @@ export function usePublish(
     }
   };
 
-  const publish = (details: PublishDetails) =>
+  // A string screenshot is the data: URL of the one Stylebot took.
+  const publish = (details: PublishDetails, screenshot?: Blob | string) =>
     run(async () => {
       const form: StyleForm = { ...details, css: draft.css };
 
-      if (draft.screenshot) {
-        form.screenshot = await (await fetch(draft.screenshot)).blob();
+      if (typeof screenshot === 'string') {
+        form.screenshot = await (await fetch(screenshot)).blob();
+      } else {
+        form.screenshot = screenshot;
       }
 
       if (!existing) {

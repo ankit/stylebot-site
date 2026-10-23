@@ -18,9 +18,7 @@ export default function PublishError({ error, t }: Props) {
   } else if (error instanceof ApiError && error.status === 409) {
     message = t('The style changed while this was publishing. Try again.');
   } else if (error instanceof ApiError && error.status === 413) {
-    message = t(
-      'The screenshot is too large. Choose Publish in Stylebot again to take a new one.',
-    );
+    message = t('The screenshot is too large. Upload an image under 1 MB.');
   }
 
   return (

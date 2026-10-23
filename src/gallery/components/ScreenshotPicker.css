@@ -1,0 +1,46 @@
+.screenshot-picker {
+  flex: 3 1 480px;
+  min-width: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  figcaption,
+  p {
+    margin: 0;
+    font: 400 var(--text-sm) / 1.5 var(--font-ui);
+    color: var(--fg-muted);
+  }
+}
+
+.screenshot-picker-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top center;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-track);
+}
+
+.screenshot-picker .screenshot-picker-error {
+  font-weight: 500;
+  color: var(--fg);
+}
+
+.screenshot-picker-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  label {
+    cursor: pointer;
+  }
+
+  label:has(:focus-visible) {
+    outline: 2px solid var(--fg);
+    outline-offset: 2px;
+  }
+}
