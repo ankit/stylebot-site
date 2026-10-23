@@ -55,14 +55,6 @@ export default function PublishForm({
   return (
     <form class="publish-form" onSubmit={submit}>
       <div class="publish-form-main">
-        {existing && (
-          <p class="publish-form-update">
-            {t('Publishing a new version of {name}. Installs get the update.', {
-              name: existing.name,
-            })}
-          </p>
-        )}
-
         {isUpdate && !unchanged && (
           <VersionNotesField
             value={fields.notes}

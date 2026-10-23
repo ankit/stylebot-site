@@ -45,14 +45,10 @@ export default function PublishedNotice({
   const url = location.origin + path;
   let tag = t('Published');
   let heading = t('{name} is live', { name: style.name });
-  let summary = t('Anyone can now install it on {site}.', { site: style.site });
+  let summary;
 
-  if (kind === 'version') {
-    heading = t('Version {version} of {name} is live', {
-      version: style.version,
-      name: style.name,
-    });
-    summary = t('Everyone who installed it gets the update.');
+  if (kind === 'new' && live) {
+    summary = t('Anyone can now install it on {site}.', { site: style.site });
   }
 
   if (!live) {
@@ -66,7 +62,6 @@ export default function PublishedNotice({
     // i18n: A tag on the page after saving a style's name and description.
     tag = t('Saved');
     heading = t('{name} is saved', { name: style.name });
-    summary = t('Its name and description are updated. Installs aren’t.');
   }
 
   return (
@@ -80,12 +75,8 @@ export default function PublishedNotice({
 
           <h1>{heading}</h1>
 
-          <p>{summary}</p>
+          {summary && <p>{summary}</p>}
         </div>
-
-        {link === 'linking' && (
-          <p class="published-note">{t('Telling Stylebot…')}</p>
-        )}
 
         {link === 'unlinked' && (
           <div class="published-unlinked" role="alert">
@@ -143,12 +134,6 @@ export default function PublishedNotice({
             </ul>
           </div>
         )}
-
-        <hr class="published-rule" />
-
-        <p class="published-note">
-          {t('Later edits stay in Stylebot until you publish an update.')}
-        </p>
       </div>
 
       {screenshot && (

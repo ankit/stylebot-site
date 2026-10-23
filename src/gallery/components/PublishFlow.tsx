@@ -41,7 +41,7 @@ export default function PublishFlow({
         <PublishHead draft={draft} t={t} />
 
         <LoadError
-          message={t('Couldn’t load the style this updates.')}
+          message={t('Couldn’t load this style.')}
           onRetry={own.reload}
           t={t}
         />

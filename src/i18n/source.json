@@ -491,12 +491,6 @@
     ]
   },
   {
-    "text": "Changes since the latest version",
-    "files": [
-      "src/gallery/components/PublishCssReview.tsx"
-    ]
-  },
-  {
     "text": "Choose <strong>Publish to Gallery</strong> from a style’s <strong>⋯</strong> menu in the popup, or from the editor’s <strong>⋯</strong> menu, and sign in with Google. Your edits stay on your computer until you publish an update.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
@@ -735,12 +729,6 @@
     ]
   },
   {
-    "text": "Couldn’t load the style this updates.",
-    "files": [
-      "src/gallery/components/PublishFlow.tsx"
-    ]
-  },
-  {
     "text": "Couldn’t load this author.",
     "files": [
       "src/gallery/components/AuthorPage.tsx"
@@ -749,6 +737,7 @@
   {
     "text": "Couldn’t load this style.",
     "files": [
+      "src/gallery/components/PublishFlow.tsx",
       "src/gallery/components/StylePage.tsx"
     ]
   },
@@ -1039,12 +1028,6 @@
     "text": "Every site. Useful for styles you want everywhere.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
-    ]
-  },
-  {
-    "text": "Everyone who installed it gets the update.",
-    "files": [
-      "src/gallery/components/PublishedNotice.tsx"
     ]
   },
   {
@@ -1444,12 +1427,6 @@
     ]
   },
   {
-    "text": "Its name and description are updated. Installs aren’t.",
-    "files": [
-      "src/gallery/components/PublishedNotice.tsx"
-    ]
-  },
-  {
     "text": "Jump to this point",
     "files": [
       "src/www/components/demo/Demo.tsx"
@@ -1504,12 +1481,6 @@
     ]
   },
   {
-    "text": "Later edits stay in Stylebot until you publish an update.",
-    "files": [
-      "src/gallery/components/PublishedNotice.tsx"
-    ]
-  },
-  {
     "text": "Light",
     "files": [
       "src/theme/ThemeMenu.tsx"
@@ -1519,12 +1490,6 @@
     "text": "Line Height",
     "files": [
       "src/www/components/demo/Demo.tsx"
-    ]
-  },
-  {
-    "text": "Lines: {count}",
-    "files": [
-      "src/gallery/components/PublishCssReview.tsx"
     ]
   },
   {
@@ -1675,12 +1640,6 @@
     "files": [
       "src/www/components/demo/Demo.tsx",
       "src/www/components/demo/scenes.ts"
-    ]
-  },
-  {
-    "text": "No description",
-    "files": [
-      "src/gallery/components/PublishDetailsSummary.tsx"
     ]
   },
   {
@@ -2028,12 +1987,6 @@
     ]
   },
   {
-    "text": "Publishing a new version of {name}. Installs get the update.",
-    "files": [
-      "src/gallery/components/PublishForm.tsx"
-    ]
-  },
-  {
     "text": "Publishing a style",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
@@ -2319,18 +2272,6 @@
     ]
   },
   {
-    "text": "Shown in the style’s version history.",
-    "files": [
-      "src/gallery/components/VersionNotesField.tsx"
-    ]
-  },
-  {
-    "text": "Shown on the style’s Gallery page.",
-    "files": [
-      "src/gallery/components/StyleDetailsFields.tsx"
-    ]
-  },
-  {
     "text": "Shows when another rule overrides a value",
     "files": [
       "src/www/pages/[...lang]/releases/4.0.astro"
@@ -2596,12 +2537,6 @@
     ]
   },
   {
-    "text": "Styles are published from Stylebot, on the site they’re for, so the Gallery gets the CSS and a screenshot of it working.",
-    "files": [
-      "src/gallery/components/PublishUnavailable.tsx"
-    ]
-  },
-  {
     "text": "Styles for {site}",
     "files": [
       "functions/_lib/preview.ts",
@@ -2703,12 +2638,6 @@
     "text": "Syncing styles with Google Drive",
     "files": [
       "src/www/pages/[...lang]/releases/3.1.astro"
-    ]
-  },
-  {
-    "text": "Telling Stylebot…",
-    "files": [
-      "src/gallery/components/PublishedNotice.tsx"
     ]
   },
   {
@@ -2855,21 +2784,9 @@
     ]
   },
   {
-    "text": "The screenshot is too large. Upload an image under 1 MB.",
-    "files": [
-      "src/gallery/components/PublishError.tsx"
-    ]
-  },
-  {
     "text": "The side panel, or its own window",
     "files": [
       "src/www/pages/[...lang]/releases/4.0.astro"
-    ]
-  },
-  {
-    "text": "The style changed while this was publishing. Try again.",
-    "files": [
-      "src/gallery/components/PublishError.tsx"
     ]
   },
   {
@@ -2882,12 +2799,6 @@
     "text": "The style this updates isn’t one of yours. It may have been deleted, or published from another account.",
     "files": [
       "src/gallery/components/PublishFlow.tsx"
-    ]
-  },
-  {
-    "text": "The style’s current screenshot.",
-    "files": [
-      "src/gallery/components/ScreenshotPicker.tsx"
     ]
   },
   {
@@ -2918,12 +2829,6 @@
     "text": "These extensions can see and change information on this site.",
     "files": [
       "src/www/components/demo/Demo.tsx"
-    ]
-  },
-  {
-    "text": "This account can’t publish this style.",
-    "files": [
-      "src/gallery/components/PublishError.tsx"
     ]
   },
   {
@@ -3130,12 +3035,6 @@
     ]
   },
   {
-    "text": "Upload a screenshot of the site with the style on.",
-    "files": [
-      "src/gallery/components/ScreenshotPicker.tsx"
-    ]
-  },
-  {
     "text": "Upload an image",
     "files": [
       "src/gallery/components/ScreenshotPicker.tsx"
@@ -3157,12 +3056,6 @@
     "text": "Use 3 to 30 lowercase letters and numbers, with single hyphens between them.",
     "files": [
       "src/gallery/components/UsernameStatus.tsx"
-    ]
-  },
-  {
-    "text": "Use a new screenshot of your tab",
-    "files": [
-      "src/gallery/components/ScreenshotPicker.tsx"
     ]
   },
   {
@@ -3211,12 +3104,6 @@
     "text": "Version {version}",
     "files": [
       "src/gallery/components/VersionItem.tsx"
-    ]
-  },
-  {
-    "text": "Version {version} of {name} is live",
-    "files": [
-      "src/gallery/components/PublishedNotice.tsx"
     ]
   },
   {
@@ -3276,12 +3163,6 @@
     "note": "A field for notes on what a new version of a style changed.",
     "files": [
       "src/gallery/components/VersionNotesField.tsx"
-    ]
-  },
-  {
-    "text": "What does it change?",
-    "files": [
-      "src/gallery/components/StyleDetailsFields.tsx"
     ]
   },
   {
@@ -3356,12 +3237,6 @@
     "text": "You’ve been signed out. Sign in again to report it.",
     "files": [
       "src/gallery/components/ReportDialog.tsx"
-    ]
-  },
-  {
-    "text": "Your image. It’s uploaded when you publish.",
-    "files": [
-      "src/gallery/components/ScreenshotPicker.tsx"
     ]
   },
   {

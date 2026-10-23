@@ -19,19 +19,8 @@ type Props = {
  */
 export default function ScreenshotPicker({ choice, alt, t }: Props) {
   const { source, preview } = choice;
-  const captions = {
-    tab: t('Captured from your tab. Check it shows nothing private.'),
-    current: t('The style’s current screenshot.'),
-    upload: t('Your image. It’s uploaded when you publish.'),
-    none: t('Upload a screenshot of the site with the style on.'),
-  };
-  let tabLabel = t('Use the screenshot of your tab');
   let uploadLabel = t('Replace image');
   let uploadClass = 'screenshot-picker-replace';
-
-  if (choice.canKeepCurrent) {
-    tabLabel = t('Use a new screenshot of your tab');
-  }
 
   if (!preview) {
     uploadLabel = t('Upload an image');
@@ -72,7 +61,11 @@ export default function ScreenshotPicker({ choice, alt, t }: Props) {
         </label>
       </div>
 
-      <figcaption>{captions[source]}</figcaption>
+      {source === 'tab' && (
+        <figcaption>
+          {t('Captured from your tab. Check it shows nothing private.')}
+        </figcaption>
+      )}
 
       {choice.tooLarge && (
         <p class="screenshot-picker-error" role="alert">
@@ -86,7 +79,7 @@ export default function ScreenshotPicker({ choice, alt, t }: Props) {
           class="screenshot-picker-switch"
           onClick={() => choice.choose('tab')}
         >
-          {tabLabel}
+          {t('Use the screenshot of your tab')}
         </button>
       )}
 

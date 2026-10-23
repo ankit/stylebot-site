@@ -47,12 +47,6 @@ export default function PublishUnavailable({ locale, t }: Props) {
     <section class="publish-start">
       <h2>{t('Publish from Stylebot')}</h2>
 
-      <p>
-        {t(
-          'Styles are published from Stylebot, on the site they’re for, so the Gallery gets the CSS and a screenshot of it working.',
-        )}
-      </p>
-
       <ol class="publish-start-steps">
         <li>{t('Style a site with Stylebot.')}</li>
 

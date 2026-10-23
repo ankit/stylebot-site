@@ -27,7 +27,6 @@ export default function VersionNotesField({ value, onInput, t }: Props) {
         t('What changed')
       }
       optional
-      hint={t('Shown in the style’s version history.')}
       length={value.length}
       max={NOTES_MAX}
       t={t}

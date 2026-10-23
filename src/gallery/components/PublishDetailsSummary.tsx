@@ -27,8 +27,6 @@ export default function PublishDetailsSummary({
         <strong>{name}</strong>
 
         {description && <p>{description}</p>}
-
-        {!description && <p>{t('No description')}</p>}
       </div>
 
       <Button variant="outline" size="sm" onClick={onEdit}>

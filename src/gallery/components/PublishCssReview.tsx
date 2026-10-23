@@ -30,10 +30,7 @@ export default function PublishCssReview({ css, before, t }: Props) {
   if (!lines || !changed || changed.length === 0) {
     return (
       <div class="publish-css">
-        <div class="publish-css-head">
-          {cssLabel}
-          <span>{t('Lines: {count}', { count: css.split('\n').length })}</span>
-        </div>
+        <div class="publish-css-head">{cssLabel}</div>
 
         <CssCode css={css} label={cssLabel} />
       </div>
@@ -42,7 +39,6 @@ export default function PublishCssReview({ css, before, t }: Props) {
 
   const added = changed.filter((line) => line.kind === 'added').length;
   const removed = changed.length - added;
-  const changesLabel = t('Changes since the latest version');
   let toggle = t('Show all CSS');
 
   if (showAll) {
@@ -52,7 +48,7 @@ export default function PublishCssReview({ css, before, t }: Props) {
   return (
     <div class="publish-css">
       <div class="publish-css-head">
-        {changesLabel}
+        {cssLabel}
         <span>
           <span class="publish-css-added">+{added}</span>{' '}
           <span class="publish-css-removed">−{removed}</span>
@@ -64,7 +60,7 @@ export default function PublishCssReview({ css, before, t }: Props) {
 
       {showAll && <CssCode css={css} label={cssLabel} />}
 
-      {!showAll && <CssDiff hunks={toHunks(lines)} label={changesLabel} />}
+      {!showAll && <CssDiff hunks={toHunks(lines)} label={cssLabel} />}
     </div>
   );
 }

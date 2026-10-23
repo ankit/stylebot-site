@@ -51,7 +51,6 @@ export default function StyleDetailsFields({
       <PublishField
         label={t('Description')}
         optional
-        hint={t('Shown on the style’s Gallery page.')}
         length={description.length}
         max={DESCRIPTION_MAX}
         t={t}
@@ -61,7 +60,6 @@ export default function StyleDetailsFields({
           value={description}
           maxLength={DESCRIPTION_MAX}
           rows={3}
-          placeholder={t('What does it change?')}
           onInput={(e) => onDescription(e.currentTarget.value)}
         />
       </PublishField>

@@ -21,12 +21,6 @@
   min-width: 0;
 }
 
-.publish-form-update {
-  margin: 0;
-  font: 400 var(--text-sm) / 1.5 var(--font-ui);
-  color: var(--fg-muted);
-}
-
 .publish-form-problem {
   margin: 0;
   font: 500 var(--text-sm) / 1.5 var(--font-ui);
