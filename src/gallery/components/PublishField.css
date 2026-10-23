@@ -21,8 +21,8 @@
 
     &:focus {
       outline: none;
-      border-color: var(--fg-muted);
-      box-shadow: 0 0 0 3px color-mix(in oklab, var(--fg) 8%, transparent);
+      border-color: color-mix(in oklab, var(--fg) 25%, var(--border-strong));
+      box-shadow: 0 0 0 3px color-mix(in oklab, var(--fg) 4%, transparent);
     }
   }
 }

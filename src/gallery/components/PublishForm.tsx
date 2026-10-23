@@ -1,4 +1,4 @@
-import { useState } from 'preact/hooks';
+import { useEffect, useRef, useState } from 'preact/hooks';
 
 import { useLatestCss } from '@/gallery/hooks/useLatestCss';
 import { type usePublish } from '@/gallery/hooks/usePublish';
@@ -52,6 +52,7 @@ export default function PublishForm({
   const [notes, setNotes] = useState('');
   const [editingDetails, setEditingDetails] = useState(!existing);
   const latestCss = useLatestCss(existing);
+  const notesRef = useRef<HTMLTextAreaElement>(null);
   const { busy } = publishing;
   const details = {
     name: name.trim(),
@@ -76,6 +77,10 @@ export default function PublishForm({
   if (busy) {
     label = t('Publishing…');
   }
+
+  useEffect(() => {
+    notesRef.current?.focus();
+  }, []);
 
   const submit = (e: Event) => {
     e.preventDefault();
@@ -106,6 +111,7 @@ export default function PublishForm({
             t={t}
           >
             <textarea
+              ref={notesRef}
               value={notes}
               maxLength={NOTES_MAX}
               rows={2}
