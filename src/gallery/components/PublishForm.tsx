@@ -9,11 +9,11 @@ import Button from '@/components/Button';
 
 import { type Translate } from '@/i18n/t';
 
+import CssCode from './CssCode';
 import CssUnchangedNotice from './CssUnchangedNotice';
-import Favicon from './Favicon';
 import PublishError from './PublishError';
+import PublishField from './PublishField';
 import ScreenshotPicker from './ScreenshotPicker';
-import StyleCss from './StyleCss';
 
 import './PublishForm.css';
 
@@ -31,8 +31,9 @@ type Props = {
 };
 
 /**
- * The draft's screenshot and CSS, with its name, description and, for a new
- * version, what changed. A new version starts from the style's details.
+ * The draft's name, description and, for a new version, what changed, then
+ * its CSS and Publish last, beside the screenshot. A new version starts from
+ * the style's details.
  */
 export default function PublishForm({
   draft,
@@ -51,19 +52,14 @@ export default function PublishForm({
     description: description.trim(),
     notes: notes.trim(),
   };
-  const needsScreenshot = choice.source === 'none';
   const blocked =
     !canPublish ||
     busy ||
     !details.name ||
-    needsScreenshot ||
+    choice.source === 'none' ||
     publishing.unchanged;
-  let heading = t('New style for {site}', { site: draft.site });
+  const cssLabel = t('CSS');
   let label = t('Publish');
-
-  if (existing) {
-    heading = t('New version of {name}', { name: existing.name });
-  }
 
   if (busy) {
     label = t('Publishing…');
@@ -76,81 +72,110 @@ export default function PublishForm({
 
   return (
     <form class="publish-form" onSubmit={submit}>
-      <div class="publish-form-top">
-        <ScreenshotPicker
-          choice={choice}
-          alt={t('Screenshot of {name} on {site}', {
-            name: details.name,
-            site: draft.site,
-          })}
+      <div class="publish-form-main">
+        {existing && (
+          <p class="publish-form-update">
+            {t('Publishing a new version of {name}. Installs get the update.', {
+              name: existing.name,
+            })}
+          </p>
+        )}
+
+        <PublishField label={t('Name')} t={t}>
+          <input
+            value={name}
+            maxLength={NAME_MAX}
+            required
+            onInput={(e) => setName(e.currentTarget.value)}
+          />
+        </PublishField>
+
+        <PublishField
+          label={t('Description')}
+          optional
+          hint={t('Shown on the style’s Gallery page.')}
+          length={description.length}
+          max={DESCRIPTION_MAX}
           t={t}
-        />
+        >
+          <textarea
+            value={description}
+            maxLength={DESCRIPTION_MAX}
+            rows={3}
+            placeholder={t(
+              'What does it change? For example: serif headlines, a narrower column.',
+            )}
+            onInput={(e) => setDescription(e.currentTarget.value)}
+          />
+        </PublishField>
 
-        <div class="publish-form-fields">
-          <a
-            class="publish-form-site"
-            href={draft.url}
-            target="_blank"
-            rel="noopener noreferrer"
+        {existing && (
+          <PublishField
+            label={
+              // i18n: A field for notes on what a new version of a style changed.
+              t('What changed')
+            }
+            optional
+            hint={t('Shown in the style’s version history.')}
+            length={notes.length}
+            max={NOTES_MAX}
+            t={t}
           >
-            <Favicon site={draft.site} />
-            {heading}
-          </a>
-
-          <label>
-            {t('Name')}
-            <input
-              value={name}
-              maxLength={NAME_MAX}
-              required
-              onInput={(e) => setName(e.currentTarget.value)}
-            />
-          </label>
-
-          <label>
-            {t('Description')}
             <textarea
-              value={description}
-              maxLength={DESCRIPTION_MAX}
-              rows={3}
-              onInput={(e) => setDescription(e.currentTarget.value)}
+              value={notes}
+              maxLength={NOTES_MAX}
+              rows={2}
+              onInput={(e) => setNotes(e.currentTarget.value)}
             />
-          </label>
+          </PublishField>
+        )}
 
-          {existing && (
-            <label>
-              {
-                // i18n: A field for notes on what a new version of a style changed.
-                t('What changed')
-              }
-              <textarea
-                value={notes}
-                maxLength={NOTES_MAX}
-                rows={2}
-                onInput={(e) => setNotes(e.currentTarget.value)}
-              />
-            </label>
-          )}
+        <div class="publish-form-css">
+          <div class="publish-form-css-head">
+            {cssLabel}
+            <span>
+              {t('Lines: {count}', { count: draft.css.split('\n').length })}
+            </span>
+          </div>
 
-          {publishing.unchanged && (
-            <CssUnchangedNotice
-              busy={busy}
-              onSave={() => publishing.saveDetails(details)}
-              t={t}
-            />
-          )}
+          <CssCode css={draft.css} label={cssLabel} />
+        </div>
 
-          {!publishing.unchanged && publishing.error !== undefined && (
-            <PublishError error={publishing.error} t={t} />
-          )}
+        <hr class="publish-form-rule" />
 
-          <Button type="submit" class="publish-form-submit" disabled={blocked}>
+        {publishing.unchanged && (
+          <CssUnchangedNotice
+            busy={busy}
+            onSave={() => publishing.saveDetails(details)}
+            t={t}
+          />
+        )}
+
+        {!publishing.unchanged && publishing.error !== undefined && (
+          <PublishError error={publishing.error} t={t} />
+        )}
+
+        <div class="publish-form-submit">
+          <Button type="submit" disabled={blocked}>
             {label}
           </Button>
+
+          <p>
+            {t(
+              'Anyone can find and install published styles. You can update or unpublish later.',
+            )}
+          </p>
         </div>
       </div>
 
-      <StyleCss css={draft.css} t={t} />
+      <ScreenshotPicker
+        choice={choice}
+        alt={t('Screenshot of {name} on {site}', {
+          name: details.name,
+          site: draft.site,
+        })}
+        t={t}
+      />
     </form>
   );
 }

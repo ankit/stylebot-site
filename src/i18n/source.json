@@ -286,6 +286,12 @@
     ]
   },
   {
+    "text": "Anyone can find and install published styles. You can update or unpublish later.",
+    "files": [
+      "src/gallery/components/PublishForm.tsx"
+    ]
+  },
+  {
     "text": "Anything else? (optional)",
     "files": [
       "src/www/components/GoodbyeFeedback.tsx"
@@ -433,6 +439,12 @@
       "src/gallery/components/ReportDialog.tsx",
       "src/gallery/components/UnpublishButton.tsx",
       "src/www/components/GalleryMock.astro"
+    ]
+  },
+  {
+    "text": "Captured from your tab. Check it shows nothing private.",
+    "files": [
+      "src/gallery/components/ScreenshotPicker.tsx"
     ]
   },
   {
@@ -797,6 +809,7 @@
   {
     "text": "CSS",
     "files": [
+      "src/gallery/components/PublishForm.tsx",
       "src/gallery/components/StyleCss.tsx"
     ]
   },
@@ -1474,6 +1487,12 @@
     ]
   },
   {
+    "text": "Lines: {count}",
+    "files": [
+      "src/gallery/components/PublishForm.tsx"
+    ]
+  },
+  {
     "text": "Looks good",
     "files": [
       "src/gallery/components/WelcomeDialog.tsx"
@@ -1567,18 +1586,6 @@
     "text": "Name your style, check its screenshot and publish it here.",
     "files": [
       "src/gallery/components/PublishUnavailable.tsx"
-    ]
-  },
-  {
-    "text": "New style for {site}",
-    "files": [
-      "src/gallery/components/PublishForm.tsx"
-    ]
-  },
-  {
-    "text": "New version of {name}",
-    "files": [
-      "src/gallery/components/PublishForm.tsx"
     ]
   },
   {
@@ -1749,7 +1756,9 @@
   },
   {
     "text": "Optional",
+    "note": "Beside the label of a form field that can be left empty.",
     "files": [
+      "src/gallery/components/PublishField.tsx",
       "src/www/pages/[...lang]/cli.astro"
     ]
   },
@@ -1958,6 +1967,12 @@
     ]
   },
   {
+    "text": "Publishing a new version of {name}. Installs get the update.",
+    "files": [
+      "src/gallery/components/PublishForm.tsx"
+    ]
+  },
+  {
     "text": "Publishing a style",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
@@ -2011,6 +2026,12 @@
     "text": "Reinstall for {store}",
     "files": [
       "src/components/StoreLink.astro"
+    ]
+  },
+  {
+    "text": "Replace image",
+    "files": [
+      "src/gallery/components/ScreenshotPicker.tsx"
     ]
   },
   {
@@ -2129,16 +2150,17 @@
     ]
   },
   {
+    "text": "Screenshot",
+    "note": "The label above the image published with a style.",
+    "files": [
+      "src/gallery/components/ScreenshotPicker.tsx"
+    ]
+  },
+  {
     "text": "Screenshot of {name} on {site}",
     "files": [
       "src/gallery/components/PublishForm.tsx",
       "src/gallery/components/StylePage.tsx"
-    ]
-  },
-  {
-    "text": "Screenshot of your tab. Check it shows nothing private before you publish.",
-    "files": [
-      "src/gallery/components/ScreenshotPicker.tsx"
     ]
   },
   {
@@ -2213,6 +2235,18 @@
     "text": "Setup",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
+    "text": "Shown in the style’s version history.",
+    "files": [
+      "src/gallery/components/PublishForm.tsx"
+    ]
+  },
+  {
+    "text": "Shown on the style’s Gallery page.",
+    "files": [
+      "src/gallery/components/PublishForm.tsx"
     ]
   },
   {
@@ -3153,6 +3187,12 @@
   {
     "text": "What changed",
     "note": "A field for notes on what a new version of a style changed.",
+    "files": [
+      "src/gallery/components/PublishForm.tsx"
+    ]
+  },
+  {
+    "text": "What does it change? For example: serif headlines, a narrower column.",
     "files": [
       "src/gallery/components/PublishForm.tsx"
     ]

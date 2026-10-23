@@ -1,6 +1,6 @@
 import { type useScreenshotChoice } from '@/gallery/hooks/useScreenshotChoice';
 
-import Button, { buttonClass } from '@/components/Button';
+import { buttonClass } from '@/components/Button';
 
 import { type Translate } from '@/i18n/t';
 
@@ -14,19 +14,24 @@ type Props = {
 
 /**
  * The screenshot to publish, saying where it's from, with an image to upload
- * instead and, where there's one, the tab's or the style's current one to go
- * back to.
+ * in its place and, where there's one, the tab's or the style's current one
+ * to go back to.
  */
 export default function ScreenshotPicker({ choice, alt, t }: Props) {
   const { source, preview } = choice;
   const captions = {
-    tab: t(
-      'Screenshot of your tab. Check it shows nothing private before you publish.',
-    ),
+    tab: t('Captured from your tab. Check it shows nothing private.'),
     current: t('The style’s current screenshot.'),
     upload: t('Your image. It’s uploaded when you publish.'),
     none: t('Upload a screenshot of the site with the style on.'),
   };
+  let uploadLabel = t('Replace image');
+  let uploadClass = 'screenshot-picker-replace';
+
+  if (!preview) {
+    uploadLabel = t('Upload an image');
+    uploadClass = buttonClass({ variant: 'outline', size: 'sm' });
+  }
 
   const onChange = (e: Event) => {
     const input = e.currentTarget as HTMLInputElement;
@@ -41,11 +46,26 @@ export default function ScreenshotPicker({ choice, alt, t }: Props) {
 
   return (
     <figure class="screenshot-picker">
-      {preview && (
-        <img class="screenshot-picker-image" src={preview} alt={alt} />
-      )}
+      <span class="screenshot-picker-label">
+        {
+          // i18n: The label above the image published with a style.
+          t('Screenshot')
+        }
+      </span>
 
-      {!preview && <div class="screenshot-picker-image" />}
+      <div class="screenshot-picker-frame">
+        {preview && <img src={preview} alt={alt} />}
+
+        <label class={uploadClass}>
+          {uploadLabel}
+          <input
+            type="file"
+            class="sr-only"
+            accept="image/png,image/jpeg,image/webp"
+            onChange={onChange}
+          />
+        </label>
+      </div>
 
       <figcaption>{captions[source]}</figcaption>
 
@@ -55,37 +75,25 @@ export default function ScreenshotPicker({ choice, alt, t }: Props) {
         </p>
       )}
 
-      <div class="screenshot-picker-actions">
-        <label class={buttonClass({ variant: 'outline', size: 'sm' })}>
-          {t('Upload an image')}
-          <input
-            type="file"
-            class="sr-only"
-            accept="image/png,image/jpeg,image/webp"
-            onChange={onChange}
-          />
-        </label>
+      {choice.canUseTab && source !== 'tab' && (
+        <button
+          type="button"
+          class="screenshot-picker-switch"
+          onClick={() => choice.choose('tab')}
+        >
+          {t('Use the screenshot of your tab')}
+        </button>
+      )}
 
-        {choice.canUseTab && source !== 'tab' && (
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => choice.choose('tab')}
-          >
-            {t('Use the screenshot of your tab')}
-          </Button>
-        )}
-
-        {choice.canKeepCurrent && source !== 'current' && (
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => choice.choose('current')}
-          >
-            {t('Keep the current screenshot')}
-          </Button>
-        )}
-      </div>
+      {choice.canKeepCurrent && source !== 'current' && (
+        <button
+          type="button"
+          class="screenshot-picker-switch"
+          onClick={() => choice.choose('current')}
+        >
+          {t('Keep the current screenshot')}
+        </button>
+      )}
     </figure>
   );
 }

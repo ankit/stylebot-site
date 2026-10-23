@@ -1,0 +1,49 @@
+.publish-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  input,
+  textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 11px 14px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-md);
+    background: var(--bg-surface);
+    font: 400 var(--text-base) / 1.5 var(--font-ui);
+    color: var(--fg);
+    resize: vertical;
+
+    &::placeholder {
+      color: var(--fg-subtle);
+    }
+
+    &:focus {
+      outline: none;
+      border-color: var(--fg-muted);
+      box-shadow: 0 0 0 3px color-mix(in oklab, var(--fg) 8%, transparent);
+    }
+  }
+}
+
+.publish-field-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  font: 500 var(--text-sm) / 1.2 var(--font-ui);
+  color: var(--fg);
+}
+
+.publish-field-optional,
+.publish-field-foot {
+  font: 400 var(--text-xs) / 1.3 var(--font-ui);
+  color: var(--fg-subtle);
+}
+
+.publish-field-foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}

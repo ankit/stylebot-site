@@ -6,6 +6,7 @@ import { useSession } from '@/gallery/hooks/useSession';
 import { type Locale } from '@/i18n/locales';
 import { type Catalog, translator } from '@/i18n/t';
 
+import Favicon from './Favicon';
 import PublishFlow from './PublishFlow';
 import PublishUnavailable from './PublishUnavailable';
 import SignInButton from './SignInButton';
@@ -29,7 +30,21 @@ export default function PublishPage({ locale, strings }: Props) {
 
   return (
     <div class="publish-page">
-      <h1 class="g-title publish-title">{title}</h1>
+      <div class="publish-head">
+        <h1 class="g-title publish-title">{title}</h1>
+
+        {draft && (
+          <a
+            class="publish-site"
+            href={draft.url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Favicon site={draft.site} />
+            {draft.site}
+          </a>
+        )}
+      </div>
 
       {draft === null && <PublishUnavailable locale={locale} t={t} />}
 
