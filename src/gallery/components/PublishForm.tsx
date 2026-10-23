@@ -35,10 +35,7 @@ type Props = {
 };
 
 /**
- * The draft's details, its CSS and Publish last, beside the screenshot. A new
- * style starts with its name and description; an update with what changed,
- * its details kept unless edited, and its CSS as changes from the latest
- * version, saying up front when there are none.
+ * The draft's details and CSS, with Publish last, beside the screenshot.
  */
 export default function PublishForm({
   draft,
