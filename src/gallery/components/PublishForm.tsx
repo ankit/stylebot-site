@@ -29,7 +29,8 @@ type Props = {
   existing: OwnStyle | null;
   publishing: ReturnType<typeof usePublish>;
   choice: ReturnType<typeof useScreenshotChoice>;
-  canPublish: boolean;
+  // Runs publishing once the username is confirmed.
+  guard: (run: () => void) => void;
   t: Translate;
 };
 
@@ -44,7 +45,7 @@ export default function PublishForm({
   existing,
   publishing,
   choice,
-  canPublish,
+  guard,
   t,
 }: Props) {
   const [name, setName] = useState(existing?.name ?? draft.name);
@@ -63,11 +64,7 @@ export default function PublishForm({
     publishing.unchanged || (!!latestCss && sameCss(latestCss, draft.css));
   const showFields = editingDetails || unchanged;
   const blocked =
-    !canPublish ||
-    busy ||
-    !details.name ||
-    choice.source === 'none' ||
-    unchanged;
+    busy || !details.name || choice.source === 'none' || unchanged;
   let label = t('Publish');
 
   if (existing) {
@@ -84,7 +81,7 @@ export default function PublishForm({
 
   const submit = (e: Event) => {
     e.preventDefault();
-    publishing.publish(details, choice.screenshot);
+    guard(() => publishing.publish(details, choice.screenshot));
   };
 
   return (

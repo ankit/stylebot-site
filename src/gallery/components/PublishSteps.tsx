@@ -1,15 +1,19 @@
+import { useState } from 'preact/hooks';
+
 import { usePublish } from '@/gallery/hooks/usePublish';
 import { useScreenshotChoice } from '@/gallery/hooks/useScreenshotChoice';
+import { useUsernameGate } from '@/gallery/hooks/useUsernameGate';
 import { type OwnStyle, type Session } from '@/gallery/lib/api';
 import { type PublishDraft } from '@/gallery/lib/bridge';
 
 import { type Locale } from '@/i18n/locales';
 import { type Translate } from '@/i18n/t';
 
-import ConfirmUsernameCard from './ConfirmUsernameCard';
+import ChangeUsernameDialog from './ChangeUsernameDialog';
 import PublishedNotice, { type PublishedKind } from './PublishedNotice';
 import PublishForm from './PublishForm';
 import PublishHead from './PublishHead';
+import WelcomeDialog from './WelcomeDialog';
 
 type Props = {
   draft: PublishDraft;
@@ -21,8 +25,9 @@ type Props = {
 };
 
 /**
- * The form, after the username is confirmed, then what was published. The
- * screenshot choice lives here so the published page shows the same one.
+ * The form, then what was published. Publishing with the username made up
+ * at sign-in first asks to keep or change it. The screenshot choice lives
+ * here so the published page shows the same one.
  */
 export default function PublishSteps({
   draft,
@@ -35,6 +40,8 @@ export default function PublishSteps({
   const publishing = usePublish(session.session, nonce, draft, existing);
   const choice = useScreenshotChoice(draft, existing);
   const { account } = session;
+  const gate = useUsernameGate(account.usernameConfirmed);
+  const [changingName, setChangingName] = useState(false);
   let kind: PublishedKind = 'new';
 
   if (publishing.detailsOnly) {
@@ -61,22 +68,33 @@ export default function PublishSteps({
     <>
       <PublishHead draft={draft} t={t} />
 
-      {!account.usernameConfirmed && (
-        <ConfirmUsernameCard
-          account={account}
-          session={session.session}
-          t={t}
-        />
-      )}
-
       <PublishForm
         draft={draft}
         existing={existing}
         publishing={publishing}
         choice={choice}
-        canPublish={account.usernameConfirmed}
+        guard={gate.guard}
         t={t}
       />
+
+      {gate.asking && !changingName && (
+        <WelcomeDialog
+          account={account}
+          session={session.session}
+          onChange={() => setChangingName(true)}
+          onClose={gate.cancel}
+          t={t}
+        />
+      )}
+
+      {gate.asking && changingName && (
+        <ChangeUsernameDialog
+          account={account}
+          session={session.session}
+          onClose={() => setChangingName(false)}
+          t={t}
+        />
+      )}
     </>
   );
 }

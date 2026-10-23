@@ -462,7 +462,6 @@
   {
     "text": "Change",
     "files": [
-      "src/gallery/components/ConfirmUsernameCard.tsx",
       "src/gallery/components/WelcomeDialog.tsx"
     ]
   },
@@ -788,7 +787,6 @@
     "text": "Couldn’t save. Try again.",
     "files": [
       "src/gallery/components/ChangeUsernameDialog.tsx",
-      "src/gallery/components/ConfirmUsernameCard.tsx",
       "src/gallery/components/EditDetailsButton.tsx",
       "src/gallery/components/WelcomeDialog.tsx"
     ]
@@ -1455,12 +1453,6 @@
     "text": "Jump to this point",
     "files": [
       "src/www/components/demo/Demo.tsx"
-    ]
-  },
-  {
-    "text": "Keep {username}",
-    "files": [
-      "src/gallery/components/ConfirmUsernameCard.tsx"
     ]
   },
   {
@@ -3381,12 +3373,6 @@
       "src/gallery/components/PublishedNotice.tsx",
       "src/gallery/components/UserMenu.tsx",
       "src/www/pages/[...lang]/manual.astro"
-    ]
-  },
-  {
-    "text": "Your styles show <strong>{username}</strong> as their author. Keep it or change it before you publish.",
-    "files": [
-      "src/gallery/components/ConfirmUsernameCard.tsx"
     ]
   },
   {

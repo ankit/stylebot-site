@@ -55,12 +55,7 @@ export default function AccountNav({ locale, strings }: Props) {
         ))}
       </nav>
 
-      <UserMenu
-        session={session}
-        welcome={path !== localizePath(locale, '/publish')}
-        locale={locale}
-        t={t}
-      />
+      <UserMenu session={session} locale={locale} t={t} />
     </>
   );
 }
