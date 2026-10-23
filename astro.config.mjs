@@ -2,6 +2,7 @@ import preact from '@astrojs/preact';
 import sitemap from '@astrojs/sitemap';
 import { defineConfig } from 'astro/config';
 
+import { API_ORIGIN } from './src/gallery/lib/api.ts';
 import {
   DEFAULT_LOCALE,
   LOCALES,
@@ -27,5 +28,6 @@ export default defineConfig({
       },
     }),
   ],
+  image: { domains: [new URL(API_ORIGIN).hostname] },
   redirects: { '/help': '/manual/' },
 });

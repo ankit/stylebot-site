@@ -1,0 +1,209 @@
+---
+import ChevronDownIcon from '@/components/icons/ChevronDownIcon';
+import GitHubIcon from '@/components/icons/GitHubIcon';
+import HackerNewsIcon from '@/components/icons/HackerNewsIcon';
+import RedditIcon from '@/components/icons/RedditIcon';
+
+const { t } = Astro.locals;
+
+type Row = {
+  site: string;
+  icon: typeof GitHubIcon;
+  edited: boolean;
+  current?: boolean;
+  added?: number;
+  removed?: number;
+  time: string;
+};
+
+const today: Array<Row> = [
+  {
+    site: 'github.com',
+    icon: GitHubIcon,
+    edited: true,
+    current: true,
+    added: 42,
+    removed: 8,
+    time: t('1:04 AM'),
+  },
+  {
+    site: 'news.ycombinator.com',
+    icon: HackerNewsIcon,
+    edited: true,
+    added: 215,
+    time: t('12:41 AM'),
+  },
+];
+
+const yesterday: Array<Row> = [
+  {
+    site: 'www.reddit.com',
+    icon: RedditIcon,
+    edited: false,
+    removed: 12,
+    time: t('11:41 PM'),
+  },
+];
+
+const days = [
+  { label: t('Today, Sep 25'), rows: today },
+  { label: t('Yesterday, Sep 24'), rows: yesterday },
+];
+---
+
+<div data-ed class="mock-card">
+  {days.map((day) => (
+    <>
+      <div class="hist-day">{day.label}</div>
+
+      {day.rows.map((row) => (
+        <div class="hist-row">
+          <span class="hist-icon">
+            <row.icon size={12} />
+          </span>
+
+          <span class="hist-main">
+            <b class="hist-site">{row.site}</b>
+            <span class="hist-meta">
+              {row.edited && t('Edited')}
+              {!row.edited && t('Deleted')}
+              {row.current && (
+                <span class="hist-current">· {t('Current')}</span>
+              )}
+            </span>
+          </span>
+
+          <span class="hist-counts">
+            {row.added && <span class="hist-added">+{row.added}</span>}
+            {row.removed && <span class="hist-removed">−{row.removed}</span>}
+          </span>
+
+          <span class="hist-time">{row.time}</span>
+
+          <span class="hist-chev">
+            <ChevronDownIcon />
+          </span>
+        </div>
+      ))}
+    </>
+  ))}
+</div>
+
+<style>
+  .hist-day {
+    padding: 10px 16px;
+    background: var(--bg-muted);
+    border-bottom: 1px solid var(--border);
+    color: var(--fg-muted);
+    line-height: 1.2;
+  }
+
+  .hist-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--border);
+    font: 400 12px/1.2 var(--font-ui);
+  }
+
+  .hist-row:last-child {
+    border-bottom: none;
+  }
+
+  .hist-icon {
+    flex: none;
+    width: 26px;
+    height: 26px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg-surface);
+    color: var(--fg-muted);
+  }
+
+  .hist-main {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .hist-site {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font: 600 13px/1.2 var(--font-ui);
+    color: var(--fg);
+  }
+
+  .hist-meta {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap;
+    color: var(--fg-muted);
+  }
+
+  .hist-current {
+    color: var(--accent);
+  }
+
+  .hist-counts {
+    flex: none;
+    display: flex;
+    overflow: hidden;
+    border-radius: 5px;
+    font: 500 10.5px/1 var(--font-mono);
+  }
+
+  .hist-counts > span {
+    padding: 3px 5px;
+  }
+
+  .hist-added {
+    background: #e6f4ea;
+    color: #1a7f37;
+  }
+
+  .hist-removed {
+    background: #fdecec;
+    color: #c62828;
+  }
+
+  :global(:root:is([data-theme='dark'], [data-theme='late-edition']))
+    .hist-added {
+    background: #173a24;
+    color: #6fdd8b;
+  }
+
+  :global(:root:is([data-theme='dark'], [data-theme='late-edition']))
+    .hist-removed {
+    background: #3d1f1f;
+    color: #ff8a80;
+  }
+
+  .hist-time {
+    flex: none;
+    color: var(--fg-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .hist-chev {
+    flex: none;
+    display: flex;
+    color: var(--fg-subtle);
+  }
+
+  @media (max-width: 420px) {
+    .hist-row {
+      gap: 9px;
+    }
+
+    .hist-counts {
+      display: none;
+    }
+  }
+</style>

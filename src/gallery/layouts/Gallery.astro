@@ -1,5 +1,6 @@
 ---
 import Header from '@/components/Header.astro';
+import GalleryFooter from '@/gallery/components/GalleryFooter.astro';
 
 import Base from '@/layouts/Base.astro';
 
@@ -24,6 +25,7 @@ const {
 ---
 
 <Base
+  footer={false}
   description={description}
   fullTitle={t('{title} | Stylebot', { title })}
   noindex={noindex}
@@ -31,7 +33,7 @@ const {
 >
   <link
     slot="head"
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@1,6..72,400&display=swap"
     rel="stylesheet"
   />
   <Header
@@ -47,4 +49,7 @@ const {
   <main class="g-main">
     <slot />
   </main>
+  <div class="container">
+    <GalleryFooter />
+  </div>
 </Base>

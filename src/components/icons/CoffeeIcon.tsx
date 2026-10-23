@@ -1,4 +1,4 @@
-export default function CoffeeIcon({ size = 15 }: { size?: number }) {
+export default function CoffeeIcon({ size = 14 }: { size?: number }) {
   return (
     <svg
       width={size}
@@ -11,9 +11,9 @@ export default function CoffeeIcon({ size = 15 }: { size?: number }) {
       stroke-linejoin="round"
       aria-hidden="true"
     >
-      <path d="M2.5 6h9v4.5a3 3 0 0 1-3 3h-3a3 3 0 0 1-3-3z" />
-      <path d="M11.5 7.2h.8a1.9 1.9 0 0 1 0 3.8h-.9" />
-      <path d="M5 1.8c-.5.6-.5 1.2 0 1.8M8 1.8c-.5.6-.5 1.2 0 1.8" />
+      <path d="M2 6.5h9v3.5a3.5 3.5 0 0 1-3.5 3.5h-2A3.5 3.5 0 0 1 2 10z" />
+      <path d="M11 7.5h1a2 2 0 0 1 0 4h-1.2" />
+      <path d="M4.5 2v2M6.5 2v2M8.5 2v2" />
     </svg>
   );
 }

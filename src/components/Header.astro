@@ -1,7 +1,6 @@
 ---
 import ButtonLink from '@/components/ButtonLink';
 import Tooltip from '@/components/Tooltip';
-import BookIcon from '@/components/icons/BookIcon';
 import GitHubIcon from '@/components/icons/GitHubIcon';
 
 import { ThemeMenu } from '@/theme';
@@ -13,7 +12,6 @@ import StoreLink from './StoreLink.astro';
 import LanguageMenu from './LanguageMenu.astro';
 
 type Props = {
-  current?: 'manual';
   storeCta?: boolean;
   install?: boolean;
   // For another site on the header: the logo's label and a tag beside it.
@@ -23,7 +21,6 @@ type Props = {
 
 const { path, strings, t } = Astro.locals;
 const {
-  current,
   storeCta = false,
   install = true,
   homeLabel = t('Stylebot home'),
@@ -33,29 +30,17 @@ const {
 
 <header class="site-header">
   <div class="site-header-inner">
-    <Logo client:idle href={path('/')} label={homeLabel} />
-    {tag && (
-      <a href={path('/')} class="logo-tag">
-        <span class="logo-tag-rule" aria-hidden="true" />
-        {tag}
-      </a>
-    )}
+    <Logo client:idle href={path('/')} label={homeLabel} tag={tag} />
     <div class="header-actions">
       <LanguageMenu />
       <ThemeMenu client:idle strings={strings('theme/')} />
       <slot name="actions">
-        <a
-          href={path(LINKS.manual)}
-          class:list={['icon-btn', { 'is-current': current === 'manual' }]}
-          aria-label={t('Manual')}
-          aria-current={current === 'manual' ? 'page' : undefined}
-        >
-          <BookIcon />
-          <Tooltip>{t('Manual')}</Tooltip>
-        </a>
         <a href={LINKS.github} class="icon-btn" aria-label="GitHub">
           <GitHubIcon />
           <Tooltip>GitHub</Tooltip>
+        </a>
+        <a href={LINKS.gallery} class="header-gallery">
+          {t('Gallery')}
         </a>
         {install &&
           (storeCta ? (
@@ -67,7 +52,11 @@ const {
               class="header-store"
             />
           ) : (
-            <ButtonLink href={path('/#install')} size="sm">
+            <ButtonLink
+              href={path('/#install')}
+              size="sm"
+              class="header-install"
+            >
               {t('Install')}
             </ButtonLink>
           ))}
@@ -128,33 +117,28 @@ const {
     gap: 10px;
   }
 
-  .logo-tag {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-left: -2px;
-    font:
-      italic 500 21px/1 'Cormorant Garamond',
-      Georgia,
-      serif;
-    color: var(--fg-secondary);
-  }
-
-  .logo-tag:hover {
-    color: var(--fg);
-  }
-
-  .logo-tag-rule {
-    width: 1px;
-    height: 16px;
-    background: var(--border-strong);
-  }
-
   .header-actions {
     margin-left: auto;
     display: flex;
     align-items: center;
     gap: 4px;
+  }
+
+  .header-gallery {
+    display: flex;
+    align-items: center;
+    height: 34px;
+    margin-left: 6px;
+    padding: 0 10px;
+    border-radius: var(--radius-md);
+    font: 500 var(--text-sm) / 1 var(--font-ui);
+    color: var(--fg-secondary);
+    white-space: nowrap;
+  }
+
+  .header-gallery:hover {
+    background: var(--bg-hover);
+    color: var(--fg);
   }
 
   @media (max-width: 639px) {
@@ -175,6 +159,13 @@ const {
     .header-actions :global(.btn-sm) {
       margin-left: 6px;
       padding: 9px 12px;
+    }
+  }
+
+  @media (max-width: 359px) {
+    .header-actions :global(.header-install),
+    .site-header-inner :global(.logo-name) {
+      display: none;
     }
   }
 </style>

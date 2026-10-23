@@ -1,8 +1,7 @@
 // Set PUBLIC_STYLES_API to use another server, such as a local one at
 // http://localhost:8787.
 export const API_ORIGIN: string =
-  import.meta.env.PUBLIC_STYLES_API ??
-  'https://api.stylebot.dev';
+  import.meta.env.PUBLIC_STYLES_API ?? 'https://api.stylebot.dev';
 
 export type Style = {
   // Styles are numbered in the order they were published.

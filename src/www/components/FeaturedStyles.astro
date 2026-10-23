@@ -1,0 +1,191 @@
+---
+import { Image } from 'astro:assets';
+
+import DownloadIcon from '@/components/icons/DownloadIcon';
+import { screenshotUrl } from '@/gallery/lib/api';
+import { styleHref } from '@/gallery/lib/paths';
+
+import { LINKS } from '@/lib/links';
+import { featuredStyles } from '@/www/lib/featured';
+
+const { locale, t } = Astro.locals;
+
+const styles = await featuredStyles();
+const count = new Intl.NumberFormat(locale, { notation: 'compact' });
+---
+
+<section id="examples" class="section">
+  <div class="section-inner">
+    <div class="section-head featured-head">
+      <div>
+        <h2 class="section-title">{t('Styles from the Gallery')}</h2>
+        <p class="section-subtitle">
+          {t('Open one to preview it on its site and install it.')}
+        </p>
+      </div>
+      <a href={LINKS.gallery} class="featured-browse">
+        {t('Browse the Gallery →')}
+      </a>
+    </div>
+
+    <div class="featured-grid">
+      {styles.map((style) => (
+        <a
+          class="featured-card"
+          href={LINKS.gallery + styleHref(locale, style)}
+        >
+          <span class="featured-frame">
+            <span class="featured-site">{style.site}</span>
+            <Image
+              src={screenshotUrl(style)}
+              inferSize
+              widths={[480, 720, 960]}
+              sizes="(min-width: 1180px) 360px, (min-width: 700px) 45vw, 90vw"
+              alt=""
+              class="featured-shot"
+            />
+          </span>
+
+          <span class="featured-name">{style.name}</span>
+
+          <span class="featured-meta">
+            {style.author.username}
+            <span
+              class="featured-installs"
+              aria-label={t('{count} installs', {
+                count: count.format(style.installs),
+              })}
+            >
+              <DownloadIcon size={12} />
+              {count.format(style.installs)}
+            </span>
+          </span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .featured-head {
+    flex-wrap: wrap;
+  }
+
+  .featured-browse {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 16px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-strong);
+    background: var(--bg-surface);
+    font: 600 var(--text-sm)/1 var(--font-ui);
+    color: var(--fg);
+    white-space: nowrap;
+  }
+
+  .featured-browse:hover {
+    background: var(--bg-hover);
+    color: var(--fg);
+  }
+
+  .featured-grid {
+    display: grid;
+    gap: 36px 24px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+
+  .featured-card {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    color: var(--fg);
+  }
+
+  .featured-frame {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--bg-surface);
+    transition:
+      box-shadow 0.25s ease,
+      border-color 0.25s ease;
+  }
+
+  .featured-card:hover .featured-frame {
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow-card);
+  }
+
+  .featured-site {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    font: 400 var(--text-xs) / 1.4 var(--font-ui);
+    color: var(--fg-muted);
+  }
+
+  .featured-shot {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  .featured-name {
+    font: 600 var(--text-base) / 1.3 var(--font-ui);
+  }
+
+  .featured-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font: 400 var(--text-sm)/1.2 var(--font-ui);
+    color: var(--fg-muted);
+  }
+
+  .featured-installs {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  @media (max-width: 639px) {
+    .featured-browse {
+      padding: 0;
+      border: none;
+      background: none;
+      font-size: var(--text-base);
+      color: var(--link, var(--accent));
+    }
+
+    .featured-browse:hover {
+      background: none;
+    }
+
+    .featured-grid {
+      grid-template-columns: none;
+      grid-auto-flow: column;
+      grid-auto-columns: min(400px, calc(100% - 28px));
+      gap: 12px;
+      margin: 0 calc(-1 * var(--gutter));
+      padding: 0 var(--gutter) 4px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-padding-inline: var(--gutter);
+      scrollbar-width: none;
+    }
+
+    .featured-grid::-webkit-scrollbar {
+      display: none;
+    }
+
+    .featured-card {
+      scroll-snap-align: start;
+    }
+  }
+</style>

@@ -12,11 +12,14 @@
   border-radius: 10px;
   overflow: hidden;
   background: var(--bg-surface);
-  transition: box-shadow 0.35s ease;
+  transition:
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .style-card:hover .style-card-frame {
-  box-shadow: var(--shadow-md);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-card);
 }
 
 .style-card-bar {

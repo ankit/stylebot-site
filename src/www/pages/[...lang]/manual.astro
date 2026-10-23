@@ -31,6 +31,7 @@ const toc = Object.entries({
   profiles: t('Profiles'),
   presets: t('Presets'),
   sync: t('Sync and version history'),
+  gallery: t('Gallery'),
   urls: t('URL rules'),
   cli: t('CLI'),
   shortcuts: t('Keyboard shortcuts'),
@@ -92,7 +93,6 @@ const shortcutGroups = [
   description={t(
     'How to use Stylebot: styling a site, profiles, the command line, sync, URL rules and shortcuts.',
   )}
-  current="manual"
 >
   <div class="manual">
     <div class="manual-intro">
@@ -245,6 +245,30 @@ const shortcutGroups = [
             src={historyShot}
             dark={historyDarkShot}
           />
+        </section>
+
+        <section id="gallery">
+          <h2>{t('Gallery')}</h2>
+          <p
+            set:html={t(
+              'The <a href="{gallery}">Gallery</a> has styles other people made with Stylebot. Preview one on the site it’s for, read its CSS, and install it in a click.',
+              { gallery: LINKS.gallery },
+            )}
+          />
+          <Terms>
+            <Term term={t('Publishing a style')}>
+              <Fragment
+                set:html={t(
+                  'Choose <strong>Publish to Gallery</strong> from a style’s <strong>⋯</strong> menu in the popup, or from the editor’s <strong>⋯</strong> menu, and sign in with Google. Your edits stay on your computer until you publish an update.',
+                )}
+              />
+            </Term>
+            <Term term={t('Your styles')}>
+              {t(
+                'Sign in on the Gallery to rename, unpublish or delete the styles you published, and to change your username.',
+              )}
+            </Term>
+          </Terms>
         </section>
 
         <section id="urls">

@@ -18,7 +18,7 @@ export default function ThemeMenu({ strings }: { strings: Catalog }) {
     light: t('Light'),
     newsprint: t('Newsprint'),
     dark: t('Dark'),
-    monospace: t('Monospace'),
+    'late-edition': t('Late Edition'),
   };
   const [theme, setTheme] = useState<ThemeKey>('light');
   const [open, setOpen] = useState(false);
@@ -44,19 +44,19 @@ export default function ThemeMenu({ strings }: { strings: Catalog }) {
     setOpen(false);
   };
 
-  const title = t('Theme: {theme}', { theme: names[theme] });
+  const label = t('Theme: {theme}', { theme: names[theme] });
 
   return (
     <div class="theme-menu">
       <button
         class={`icon-btn${open ? ' is-open' : ''}`}
-        aria-label={title}
+        aria-label={label}
         aria-haspopup="menu"
         aria-expanded={open}
         onClick={() => setOpen(!open)}
       >
         <ContrastIcon />
-        <Tooltip>{title}</Tooltip>
+        <Tooltip>{t('Theme')}</Tooltip>
       </button>
       {open && (
         <>

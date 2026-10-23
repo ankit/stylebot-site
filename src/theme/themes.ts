@@ -1,10 +1,9 @@
-export type ThemeKey = 'light' | 'newsprint' | 'dark' | 'monospace';
+export type ThemeKey = 'light' | 'newsprint' | 'dark' | 'late-edition';
 
 type Theme = Record<string, string>;
 
 const geist = "'Geist',system-ui,sans-serif";
 const geistMono = "'Geist Mono',ui-monospace,monospace";
-const firaCode = "'Fira Code',ui-monospace,monospace";
 
 const lightCode = {
   'code-selector': '#b8406c',
@@ -81,37 +80,37 @@ export const THEMES: Record<ThemeKey, Theme> = {
     'code-number': '#f0d38a',
     'code-comment': '#7d8593',
   },
-  monospace: {
-    'font-ui': firaCode,
-    'font-display': firaCode,
-    'font-mono': firaCode,
-    'text-card-title': 'var(--text-sm)',
-    'bg-surface': '#1e1e2e',
-    'bg-page': '#181825',
-    'bg-muted': '#232334',
-    'bg-hover': '#2a2b3c',
-    'bg-track': '#313244',
-    border: '#313244',
-    'border-strong': '#45475a',
-    fg: '#cdd6f4',
-    'fg-secondary': '#bac2de',
-    'fg-muted': '#a6adc8',
-    'fg-subtle': '#7f849c',
-    accent: '#cba6f7',
-    'accent-bg': '#2b2840',
-    'accent-border': '#45395f',
-    'code-selector': '#f38ba8',
-    'code-brace': '#9399b2',
-    'code-property': '#89b4fa',
-    'code-value': '#a6e3a1',
-    'code-number': '#fab387',
-    'code-comment': '#7f849c',
+  'late-edition': {
+    'font-ui': geist,
+    'font-display': "'Newsreader',Georgia,serif",
+    'font-mono': geistMono,
+    link: '#8e9cc4',
+    'bg-surface': '#1f2027',
+    'bg-page': '#17181c',
+    'bg-muted': '#23242b',
+    'bg-hover': '#292a31',
+    'bg-track': '#2e3037',
+    border: '#2c2d33',
+    'border-strong': '#3a3c43',
+    fg: '#d5d7d6',
+    'fg-secondary': '#c8cac9',
+    'fg-muted': '#babcbc',
+    'fg-subtle': '#8a8d92',
+    accent: '#8e9cc4',
+    'accent-bg': '#22263a',
+    'accent-border': '#343b55',
+    'code-selector': '#e0a0b4',
+    'code-brace': '#8a8d92',
+    'code-property': '#9db4e0',
+    'code-value': '#d8c48e',
+    'code-number': '#d8c48e',
+    'code-comment': '#8a8d92',
   },
 };
 
 export const THEME_KEYS = Object.keys(THEMES) as Array<ThemeKey>;
 
-export const DARK_THEMES: Array<ThemeKey> = ['dark', 'monospace'];
+export const DARK_THEMES: Array<ThemeKey> = ['dark', 'late-edition'];
 
 export const STORAGE_KEY = 'stylebot-site-theme';
 

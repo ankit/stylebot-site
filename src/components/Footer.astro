@@ -3,15 +3,21 @@ import CoffeeIcon from '@/components/icons/CoffeeIcon';
 
 import { LINKS } from '@/lib/links';
 
-const { t } = Astro.locals;
+const { path, t } = Astro.locals;
+
+const links = [
+  { label: t('Manual'), href: path(LINKS.manual) },
+  { label: t('CLI'), href: path(LINKS.cli) },
+  { label: t('Gallery'), href: LINKS.gallery + path('/') },
+  { label: t('Changelog'), href: LINKS.changelog },
+];
 ---
 
 <footer class="site-footer">
   <div class="site-footer-links">
-    <a href={LINKS.changelog} class="mono">
-      v4
-    </a>
-    <a href={LINKS.changelog}>{t('Changelog')}</a>
+    {links.map((link) => (
+      <a href={link.href}>{link.label}</a>
+    ))}
     <a href={LINKS.donate} class="coffee">
       <CoffeeIcon />
       {t('Buy me a coffee')}
@@ -61,6 +67,5 @@ const { t } = Astro.locals;
   .coffee svg {
     display: block;
     flex: none;
-    margin-top: -3px;
   }
 </style>

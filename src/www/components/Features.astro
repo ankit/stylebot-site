@@ -1,8 +1,9 @@
 ---
-import ChevronDownIcon from '@/components/icons/ChevronDownIcon';
 import SyncIcon from '@/components/icons/SyncIcon';
 
 import CarouselNav from './CarouselNav.astro';
+import GalleryMock from './GalleryMock.astro';
+import HistoryMock from './HistoryMock.astro';
 
 const { t } = Astro.locals;
 ---
@@ -20,6 +21,20 @@ const { t } = Astro.locals;
       />
     </div>
     <div id="features-track" class="carousel features-track">
+      <article class="feature">
+        <div class="feature-mock" aria-hidden="true">
+          <GalleryMock />
+        </div>
+        <div class="feature-text">
+          <h3>{t('Gallery')}</h3>
+          <p>
+            {t(
+              'Open Stylebot on a site and it suggests popular styles from the Gallery. Preview one on the page, then install it. Made one you like? Publish it from its ⋯ menu in the popup or the editor.',
+            )}
+          </p>
+        </div>
+      </article>
+
       <article class="feature">
         <div class="feature-mock" aria-hidden="true">
           <div data-ed class="mock-card">
@@ -64,39 +79,7 @@ const { t } = Astro.locals;
 
       <article class="feature">
         <div class="feature-mock" aria-hidden="true">
-          <div data-ed class="mock-card">
-            <div class="hist-day">{t('Today, Sep 25')}</div>
-            <div class="hist-row">
-              <span class="hist-time">{t('1:04 AM')}</span>
-              <span class="hist-what">
-                <span style="color:var(--fg-secondary)">{t('No changes')}</span>
-              </span>
-              <span class="faint hist-sites">{t('10 sites')}</span>
-              <span class="hist-current">{t('Current')}</span>
-            </div>
-            <div class="hist-row">
-              <span class="hist-time">{t('12:41 AM')}</span>
-              <span class="hist-what">
-                <span class="acc">{t('Edited')}</span>&nbsp; <b>github.com</b>
-              </span>
-              <span class="faint hist-sites">{t('10 sites')}</span>
-              <span class="hist-chev">
-                <ChevronDownIcon />
-              </span>
-            </div>
-            <div class="hist-day">{t('Yesterday, Sep 24')}</div>
-            <div class="hist-row last">
-              <span class="hist-time">{t('11:41 PM')}</span>
-              <span class="hist-what">
-                <span class="acc">{t('Edited')}</span>&nbsp;{' '}
-                <b>news.ycombinator.com</b>
-              </span>
-              <span class="faint hist-sites">{t('10 sites')}</span>
-              <span class="hist-chev">
-                <ChevronDownIcon />
-              </span>
-            </div>
-          </div>
+          <HistoryMock />
         </div>
         <div class="feature-text">
           <h3>{t('Version history')}</h3>
@@ -222,15 +205,24 @@ const { t } = Astro.locals;
     font: 400 12.5px/1.4 var(--font-ui);
   }
 
-  .feature-mock > [data-ed] {
+  .feature-mock > :global([data-ed]) {
+    --accent: #276cd8;
+
     color: var(--fg);
   }
 
-  .mock-card {
+  :global(:root:is([data-theme='dark'], [data-theme='late-edition']))
+    .feature-mock
+    > :global([data-ed]) {
+    --accent: #80a4e1;
+  }
+
+  .feature-mock :global(.mock-card) {
     background: var(--bg-surface);
     border: 1px solid var(--border);
     border-radius: 12px;
     overflow: hidden;
+    box-shadow: var(--shadow-card);
   }
 
   .mock-title {
@@ -297,13 +289,14 @@ const { t } = Astro.locals;
     background: #1f8a4c;
   }
 
-  :global(:root:is([data-theme='dark'], [data-theme='monospace'])) .sync-pill {
+  :global(:root:is([data-theme='dark'], [data-theme='late-edition']))
+    .sync-pill {
     border-color: #24563a;
     background: #173a24;
     color: #6fdd8b;
   }
 
-  :global(:root:is([data-theme='dark'], [data-theme='monospace'])) .dot {
+  :global(:root:is([data-theme='dark'], [data-theme='late-edition'])) .dot {
     background: #4ac26b;
   }
 
@@ -333,63 +326,6 @@ const { t } = Astro.locals;
     margin-left: 0.3em;
     font: 400 11.5px/1.4 var(--font-mono);
     color: var(--accent);
-  }
-
-  .hist-day {
-    padding: 10px 16px;
-    background: var(--bg-muted);
-    border-bottom: 1px solid var(--border);
-    color: var(--fg-muted);
-    line-height: 1.2;
-  }
-
-  .hist-row {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 12px 16px;
-    border-bottom: 1px solid var(--border);
-    font: 400 13px/1.2 var(--font-ui);
-  }
-
-  .hist-row.last {
-    border-bottom: none;
-  }
-
-  .hist-row b {
-    font-weight: 600;
-  }
-
-  .hist-time {
-    width: 66px;
-    flex: none;
-    color: var(--fg-muted);
-  }
-
-  .hist-what {
-    flex: 1;
-    min-width: 0;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-
-  .hist-current {
-    padding: 4px 9px;
-    border-radius: 10px;
-    border: 1px solid var(--accent-border);
-    background: var(--accent-bg);
-    font: 600 11.5px/1 var(--font-ui);
-    color: var(--accent);
-    flex: none;
-  }
-
-  .hist-chev {
-    width: 52px;
-    flex: none;
-    display: flex;
-    justify-content: flex-end;
-    color: var(--fg-subtle);
   }
 
   .preset-list {
@@ -457,20 +393,6 @@ const { t } = Astro.locals;
       height: auto;
       min-height: 360px;
       padding: 12px;
-    }
-  }
-
-  @media (max-width: 420px) {
-    .hist-row {
-      gap: 10px;
-    }
-
-    .hist-sites {
-      display: none;
-    }
-
-    .hist-chev {
-      width: auto;
     }
   }
 </style>

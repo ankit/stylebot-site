@@ -124,11 +124,11 @@ a.icon-btn:hover {
 
 .shot-image.is-dark,
 :root[data-theme='dark'] .shot-image.is-light,
-:root[data-theme='monospace'] .shot-image.is-light {
+:root[data-theme='late-edition'] .shot-image.is-light {
   display: none;
 }
 
 :root[data-theme='dark'] .shot-image.is-dark,
-:root[data-theme='monospace'] .shot-image.is-dark {
+:root[data-theme='late-edition'] .shot-image.is-dark {
   display: block;
 }

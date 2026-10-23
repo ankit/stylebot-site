@@ -19,6 +19,12 @@
     ]
   },
   {
+    "text": "{count} installs",
+    "files": [
+      "src/www/components/FeaturedStyles.astro"
+    ]
+  },
+  {
     "text": "{current} / {total}",
     "note": "The current step out of the total, e.g. \"2 / 6\"",
     "files": [
@@ -30,12 +36,6 @@
     "note": "{profile} is the new profile's name; {defaultProfile} is \"Default\"",
     "files": [
       "src/www/components/demo/scenes.ts"
-    ]
-  },
-  {
-    "text": "{site} restyled with Stylebot: {name}",
-    "files": [
-      "src/www/components/Examples.astro"
     ]
   },
   {
@@ -75,25 +75,19 @@
   {
     "text": "1:04 AM",
     "files": [
-      "src/www/components/Features.astro"
-    ]
-  },
-  {
-    "text": "10 sites",
-    "files": [
-      "src/www/components/Features.astro"
+      "src/www/components/HistoryMock.astro"
     ]
   },
   {
     "text": "11:41 PM",
     "files": [
-      "src/www/components/Features.astro"
+      "src/www/components/HistoryMock.astro"
     ]
   },
   {
     "text": "12:41 AM",
     "files": [
-      "src/www/components/Features.astro"
+      "src/www/components/HistoryMock.astro"
     ]
   },
   {
@@ -385,10 +379,22 @@
     ]
   },
   {
+    "text": "Browse all",
+    "files": [
+      "src/www/components/GalleryMock.astro"
+    ]
+  },
+  {
     "text": "Browse Styles",
     "files": [
       "src/gallery/components/Browse.tsx",
       "src/gallery/layouts/Gallery.astro"
+    ]
+  },
+  {
+    "text": "Browse the Gallery →",
+    "files": [
+      "src/www/components/FeaturedStyles.astro"
     ]
   },
   {
@@ -410,7 +416,8 @@
       "src/gallery/components/DeleteStyleButton.tsx",
       "src/gallery/components/EditDetailsButton.tsx",
       "src/gallery/components/ReportDialog.tsx",
-      "src/gallery/components/UnpublishButton.tsx"
+      "src/gallery/components/UnpublishButton.tsx",
+      "src/www/components/GalleryMock.astro"
     ]
   },
   {
@@ -445,6 +452,12 @@
     ]
   },
   {
+    "text": "Choose <strong>Publish to Gallery</strong> from a style’s <strong>⋯</strong> menu in the popup, or from the editor’s <strong>⋯</strong> menu, and sign in with Google. Your edits stay on your computer until you publish an update.",
+    "files": [
+      "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
     "text": "Clear search",
     "files": [
       "src/gallery/components/SearchBox.tsx"
@@ -453,6 +466,7 @@
   {
     "text": "CLI",
     "files": [
+      "src/components/Footer.astro",
       "src/www/pages/[...lang]/manual.astro"
     ]
   },
@@ -517,8 +531,7 @@
     "text": "Close",
     "files": [
       "src/components/ZoomableImage.tsx",
-      "src/gallery/components/ReportDialog.tsx",
-      "src/www/components/Examples.astro"
+      "src/gallery/components/ReportDialog.tsx"
     ]
   },
   {
@@ -618,7 +631,6 @@
     "text": "Copied",
     "files": [
       "src/gallery/components/CopyButton.tsx",
-      "src/www/components/Examples.astro",
       "src/www/components/cli/CliCommand.astro"
     ]
   },
@@ -638,26 +650,13 @@
   {
     "text": "Copy CSS",
     "files": [
-      "src/gallery/components/StyleCss.tsx",
-      "src/www/components/Examples.astro"
-    ]
-  },
-  {
-    "text": "Copy one and tweak it, or start from scratch.",
-    "files": [
-      "src/www/components/Examples.astro"
+      "src/gallery/components/StyleCss.tsx"
     ]
   },
   {
     "text": "Couldn’t delete. Try again.",
     "files": [
       "src/gallery/components/DeleteStyleButton.tsx"
-    ]
-  },
-  {
-    "text": "Couldn’t install",
-    "files": [
-      "src/www/components/Examples.astro"
     ]
   },
   {
@@ -764,7 +763,7 @@
     "text": "Current",
     "files": [
       "src/gallery/components/VersionItem.tsx",
-      "src/www/components/Features.astro"
+      "src/www/components/HistoryMock.astro"
     ]
   },
   {
@@ -817,6 +816,12 @@
     "text": "Delete {name}?",
     "files": [
       "src/gallery/components/DeleteStyleButton.tsx"
+    ]
+  },
+  {
+    "text": "Deleted",
+    "files": [
+      "src/www/components/HistoryMock.astro"
     ]
   },
   {
@@ -889,7 +894,7 @@
   {
     "text": "Edited",
     "files": [
-      "src/www/components/Features.astro"
+      "src/www/components/HistoryMock.astro"
     ]
   },
   {
@@ -908,13 +913,6 @@
     "text": "Either domain, or any of their subdomains.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
-    ]
-  },
-  {
-    "text": "Enlarge {site}: {name}",
-    "note": "{site} is a website, {name} the name of one of its styles, such as Dracula.",
-    "files": [
-      "src/www/components/Examples.astro"
     ]
   },
   {
@@ -1055,7 +1053,11 @@
     "text": "Gallery",
     "note": "A short tag next to the Stylebot logo, naming this part of the site.",
     "files": [
-      "src/gallery/layouts/Gallery.astro"
+      "src/components/Footer.astro",
+      "src/components/Header.astro",
+      "src/gallery/layouts/Gallery.astro",
+      "src/www/components/Features.astro",
+      "src/www/pages/[...lang]/manual.astro"
     ]
   },
   {
@@ -1263,13 +1265,7 @@
     "text": "Install",
     "files": [
       "src/components/Header.astro",
-      "src/www/components/Examples.astro"
-    ]
-  },
-  {
-    "text": "Install in Stylebot",
-    "files": [
-      "src/www/components/Examples.astro"
+      "src/www/components/GalleryMock.astro"
     ]
   },
   {
@@ -1303,15 +1299,7 @@
     "text": "Installed",
     "files": [
       "src/gallery/components/InstalledBadge.tsx",
-      "src/gallery/components/InstalledNotice.tsx",
-      "src/www/components/Examples.astro"
-    ]
-  },
-  {
-    "text": "Installed as {name}",
-    "note": "{name} is the name of the profile Stylebot added the style as.",
-    "files": [
-      "src/www/components/Examples.astro"
+      "src/gallery/components/InstalledNotice.tsx"
     ]
   },
   {
@@ -1402,6 +1390,12 @@
     ]
   },
   {
+    "text": "Late Edition",
+    "files": [
+      "src/theme/ThemeMenu.tsx"
+    ]
+  },
+  {
     "text": "Light",
     "files": [
       "src/theme/ThemeMenu.tsx"
@@ -1435,7 +1429,7 @@
   {
     "text": "Manual",
     "files": [
-      "src/components/Header.astro",
+      "src/components/Footer.astro",
       "src/www/pages/[...lang]/manual.astro",
       "src/www/pages/[...lang]/welcome.astro"
     ]
@@ -1469,12 +1463,6 @@
     "text": "Missing a feature",
     "files": [
       "src/www/components/GoodbyeFeedback.tsx"
-    ]
-  },
-  {
-    "text": "Monospace",
-    "files": [
-      "src/theme/ThemeMenu.tsx"
     ]
   },
   {
@@ -1556,15 +1544,15 @@
     ]
   },
   {
-    "text": "No changes",
-    "files": [
-      "src/www/components/Features.astro"
-    ]
-  },
-  {
     "text": "No sites match “{query}”.",
     "files": [
       "src/gallery/components/SitesPage.tsx"
+    ]
+  },
+  {
+    "text": "No style",
+    "files": [
+      "src/www/components/GalleryMock.astro"
     ]
   },
   {
@@ -1635,6 +1623,18 @@
     "text": "Open any site and press the shortcut. Nothing changes until you do.",
     "files": [
       "src/www/pages/[...lang]/welcome.astro"
+    ]
+  },
+  {
+    "text": "Open one to preview it on its site and install it.",
+    "files": [
+      "src/www/components/FeaturedStyles.astro"
+    ]
+  },
+  {
+    "text": "Open Stylebot on a site and it suggests popular styles from the Gallery. Preview one on the page, then install it. Made one you like? Publish it from its ⋯ menu in the popup or the editor.",
+    "files": [
+      "src/www/components/Features.astro"
     ]
   },
   {
@@ -1711,13 +1711,6 @@
     ]
   },
   {
-    "text": "Paste it into the Code tab on {site}.",
-    "note": "Shown after copying a style's CSS; {site} is a website, such as github.com. \"Code\" is the editor tab's name in Stylebot; use the extension's own translation.",
-    "files": [
-      "src/www/components/Examples.astro"
-    ]
-  },
-  {
     "text": "People love Stylebot",
     "files": [
       "src/www/components/Quotes.astro"
@@ -1775,6 +1768,12 @@
     ]
   },
   {
+    "text": "Popular in Gallery",
+    "files": [
+      "src/www/components/GalleryMock.astro"
+    ]
+  },
+  {
     "text": "Presets",
     "files": [
       "src/www/components/Features.astro",
@@ -1786,6 +1785,12 @@
     "text": "Press / to search",
     "files": [
       "src/gallery/components/SearchBox.tsx"
+    ]
+  },
+  {
+    "text": "Preview · not installed",
+    "files": [
+      "src/www/components/GalleryMock.astro"
     ]
   },
   {
@@ -1840,6 +1845,12 @@
     "text": "Publish",
     "files": [
       "src/gallery/components/PublishButton.tsx"
+    ]
+  },
+  {
+    "text": "Publishing a style",
+    "files": [
+      "src/www/pages/[...lang]/manual.astro"
     ]
   },
   {
@@ -1944,12 +1955,6 @@
     "note": "A single word, ideally short: the page cycles it through decorative fonts.",
     "files": [
       "src/www/pages/[...lang]/index.astro"
-    ]
-  },
-  {
-    "text": "Restyled site",
-    "files": [
-      "src/www/components/Examples.astro"
     ]
   },
   {
@@ -2111,6 +2116,12 @@
     ]
   },
   {
+    "text": "Sign in on the Gallery to rename, unpublish or delete the styles you published, and to change your username.",
+    "files": [
+      "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
     "text": "Sign in to report this style.",
     "files": [
       "src/gallery/components/ReportDialog.tsx"
@@ -2192,6 +2203,7 @@
   {
     "text": "Style this page",
     "files": [
+      "src/www/components/GalleryMock.astro",
       "src/www/components/demo/Demo.tsx"
     ]
   },
@@ -2332,6 +2344,19 @@
     ]
   },
   {
+    "text": "Styles from the Gallery",
+    "files": [
+      "src/www/components/FeaturedStyles.astro"
+    ]
+  },
+  {
+    "text": "Styles made with {stylebot}. Get it for {store1}, {store2} or {store3}.",
+    "note": "{stylebot} links to stylebot.dev; {store1}, {store2} and {store3} are Chrome, Firefox and Edge, each linking to its store.",
+    "files": [
+      "src/gallery/components/GalleryFooter.astro"
+    ]
+  },
+  {
     "text": "Styles now apply inside shadow DOM, so they work on sites built with web components",
     "files": [
       "src/www/pages/[...lang]/releases/4.0.astro"
@@ -2348,12 +2373,6 @@
     "text": "Styles people made with Stylebot for the sites they use. Pick one and install it in a click.",
     "files": [
       "src/gallery/layouts/Gallery.astro"
-    ]
-  },
-  {
-    "text": "Styles to start from",
-    "files": [
-      "src/www/components/Examples.astro"
     ]
   },
   {
@@ -2466,6 +2485,12 @@
     ]
   },
   {
+    "text": "The <a href=\"{gallery}\">Gallery</a> has styles other people made with Stylebot. Preview one on the site it’s for, read its CSS, and install it in a click.",
+    "files": [
+      "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
     "text": "The <code>stylebot</code> command lets a coding agent like Claude Code, Codex or Cursor restyle sites right in your browser, using your own subscription instead of an API key. You can run the commands yourself too.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
@@ -2559,6 +2584,12 @@
     ]
   },
   {
+    "text": "Theme",
+    "files": [
+      "src/theme/ThemeMenu.tsx"
+    ]
+  },
+  {
     "text": "Theme: {theme}",
     "files": [
       "src/theme/ThemeMenu.tsx"
@@ -2635,7 +2666,7 @@
   {
     "text": "Today, Sep 25",
     "files": [
-      "src/www/components/Features.astro"
+      "src/www/components/HistoryMock.astro"
     ]
   },
   {
@@ -2860,12 +2891,6 @@
     ]
   },
   {
-    "text": "View on GitHub",
-    "files": [
-      "src/www/components/Examples.astro"
-    ]
-  },
-  {
     "text": "View your page",
     "note": "Links to the public page listing your styles.",
     "files": [
@@ -2937,7 +2962,7 @@
   {
     "text": "Yesterday, Sep 24",
     "files": [
-      "src/www/components/Features.astro"
+      "src/www/components/HistoryMock.astro"
     ]
   },
   {
@@ -2969,7 +2994,8 @@
     "files": [
       "src/gallery/components/AccountNav.tsx",
       "src/gallery/components/MinePage.tsx",
-      "src/gallery/components/UserMenu.tsx"
+      "src/gallery/components/UserMenu.tsx",
+      "src/www/pages/[...lang]/manual.astro"
     ]
   },
   {

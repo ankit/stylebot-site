@@ -55,6 +55,7 @@ export const LINKS = {
   changelog: 'https://github.com/ankit/stylebot/releases',
   donate: 'https://ko-fi.com/stylebot',
   manual: '/manual',
+  gallery: 'https://gallery.stylebot.dev',
   author: 'https://ankitahuja.com',
   feedbackEmail: 'stylebot+ahuja.ankit@gmail.com',
   cli: '/cli',
