@@ -2,10 +2,12 @@ import { useStylebotAvailability } from '@/gallery/hooks/useStylebotAvailability
 
 import ButtonLink from '@/components/ButtonLink';
 
+import { currentBrowser, LINKS, STORES } from '@/lib/links';
+
 import { type Locale, localizePath } from '@/i18n/locales';
 import { type Translate } from '@/i18n/t';
 
-import GetStylebotCard from './GetStylebotCard';
+import './PublishUnavailable.css';
 
 type Props = { locale: Locale; t: Translate };
 
@@ -15,40 +17,74 @@ type Props = { locale: Locale; t: Translate };
  */
 export default function PublishUnavailable({ locale, t }: Props) {
   const availability = useStylebotAvailability();
+  const browser = currentBrowser();
 
   if (availability === 'checking') {
     return null;
   }
 
-  if (availability === 'unavailable') {
+  if (availability === 'available') {
     return (
-      <div class="g-empty">
+      <section class="publish-start">
+        <h2>{t('Nothing to publish')}</h2>
+
         <p>
           {t(
-            'Publishing starts in Stylebot: style a site, then choose Publish in its editor or popup.',
+            'The style may already be published, or Stylebot opened this page more than 10 minutes ago. Choose Publish in Stylebot again to start over.',
           )}
         </p>
 
-        <GetStylebotCard
-          message={t('Get Stylebot to style a site and publish it here.')}
-          locale={locale}
-          t={t}
-        />
-      </div>
+        <div class="publish-start-actions">
+          <ButtonLink href={localizePath(locale, '/mine')} variant="outline">
+            {t('Your styles')}
+          </ButtonLink>
+        </div>
+      </section>
     );
   }
 
   return (
-    <div class="g-empty">
+    <section class="publish-start">
+      <h2>{t('Publish from Stylebot')}</h2>
+
       <p>
         {t(
-          'There’s nothing to publish here. The style may already be published, or it’s been more than 10 minutes. Choose Publish in Stylebot’s editor or popup to start again.',
+          'Styles are published from Stylebot, on the site they’re for, so the Gallery gets the CSS and a screenshot of it working.',
         )}
       </p>
 
-      <ButtonLink href={localizePath(locale, '/mine')} variant="outline">
-        {t('Your styles')}
-      </ButtonLink>
-    </div>
+      <ol class="publish-start-steps">
+        <li>{t('Style a site with Stylebot.')}</li>
+
+        <li>{t('Choose Publish in Stylebot’s editor or popup.')}</li>
+
+        <li>
+          {t('Name your style, check its screenshot and publish it here.')}
+        </li>
+      </ol>
+
+      {browser && (
+        <div class="publish-start-actions">
+          <ButtonLink href={STORES[browser].href}>
+            {t('Add Stylebot to {store}', { store: STORES[browser].name })}
+          </ButtonLink>
+        </div>
+      )}
+
+      {!browser && (
+        <div class="publish-start-actions">
+          <p>
+            {t('Stylebot works in Chrome, Firefox and Edge on a computer.')}
+          </p>
+
+          <ButtonLink
+            href={LINKS.site + localizePath(locale, '/')}
+            variant="outline"
+          >
+            {t('About Stylebot')}
+          </ButtonLink>
+        </div>
+      )}
+    </section>
   );
 }

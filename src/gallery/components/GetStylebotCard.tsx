@@ -7,15 +7,14 @@ import { type Translate } from '@/i18n/t';
 
 import './GetStylebotCard.css';
 
-// `message` says what Stylebot is needed for; installing a style by default.
-type Props = { locale: Locale; t: Translate; message?: string };
+type Props = { locale: Locale; t: Translate };
 
 /**
  * Offers Stylebot, from this browser's store, to someone who doesn't have it
  * yet, since installing a style needs it. Where Stylebot doesn't run, says
  * where it does.
  */
-export default function GetStylebotCard({ locale, t, message }: Props) {
+export default function GetStylebotCard({ locale, t }: Props) {
   const browser = currentBrowser();
 
   if (!browser) {
@@ -37,7 +36,7 @@ export default function GetStylebotCard({ locale, t, message }: Props) {
 
   return (
     <div class="get-stylebot-card">
-      <p>{message ?? t('Get Stylebot to install this style.')}</p>
+      <p>{t('Get Stylebot to install this style.')}</p>
 
       <ButtonLink href={store.href}>
         {t('Add Stylebot to {store}', { store: store.name })}
