@@ -1,0 +1,13 @@
+.publish-css-dialog {
+  margin-top: 8px;
+
+  .css-code,
+  .css-diff {
+    max-height: calc(100vh - 240px);
+    border-radius: var(--radius-md);
+  }
+}
+
+.publish-css-dialog-toggle {
+  margin-right: auto;
+}

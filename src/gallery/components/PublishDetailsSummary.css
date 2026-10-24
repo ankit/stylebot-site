@@ -1,6 +1,6 @@
 .publish-details {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 16px;
   padding: 14px 16px;

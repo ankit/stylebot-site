@@ -8,6 +8,8 @@ type Props = {
   onClose: () => void;
   // False for a dialog that needs an answer from its buttons.
   dismissible?: boolean;
+  // For content that needs room, such as code.
+  wide?: boolean;
   children: ComponentChildren;
   actions: ComponentChildren;
 };
@@ -21,10 +23,16 @@ export default function Dialog({
   title,
   onClose,
   dismissible = true,
+  wide = false,
   children,
   actions,
 }: Props) {
   const dialog = useRef<HTMLDialogElement>(null);
+  const classes = ['dialog'];
+
+  if (wide) {
+    classes.push('dialog-wide');
+  }
 
   useEffect(() => {
     dialog.current?.showModal();
@@ -53,7 +61,7 @@ export default function Dialog({
   return (
     <dialog
       ref={dialog}
-      class="dialog"
+      class={classes.join(' ')}
       aria-labelledby="dialog-title"
       onClose={onClose}
       onCancel={onCancel}

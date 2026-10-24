@@ -1,11 +1,12 @@
 import { useState } from 'preact/hooks';
 
-import { diffLines, toHunks } from '@/gallery/lib/diff';
+import { diffLines } from '@/gallery/lib/diff';
+
+import Button from '@/components/Button';
 
 import { type Translate } from '@/i18n/t';
 
-import CssCode from './CssCode';
-import CssDiff from './CssDiff';
+import PublishCssDialog from './PublishCssDialog';
 
 import './PublishCssReview.css';
 
@@ -13,54 +14,56 @@ import './PublishCssReview.css';
 type Props = { css: string; before: string | null | undefined; t: Translate };
 
 /**
- * The CSS to publish: for an update, what it changes from the latest version,
- * with the whole CSS a click away; otherwise all of it.
+ * A button that opens the CSS to publish in a dialog: for an update, its
+ * changes, with how many lines it adds and removes on the button; otherwise
+ * all of it.
  */
 export default function PublishCssReview({ css, before, t }: Props) {
-  const [showAll, setShowAll] = useState(false);
-  const cssLabel = t('CSS');
+  const [open, setOpen] = useState(false);
   let lines = null;
 
   if (before) {
     lines = diffLines(before, css);
   }
 
-  const changed = lines?.filter((line) => line.kind !== 'same');
-
-  if (!lines || !changed || changed.length === 0) {
-    return (
-      <div class="publish-css">
-        <div class="publish-css-head">{cssLabel}</div>
-
-        <CssCode css={css} label={cssLabel} />
-      </div>
-    );
-  }
-
+  const changed = lines?.filter((line) => line.kind !== 'same') ?? [];
   const added = changed.filter((line) => line.kind === 'added').length;
   const removed = changed.length - added;
-  let toggle = t('Show all CSS');
+  let diff = null;
+  let view = t('View CSS');
 
-  if (showAll) {
-    toggle = t('Show changes');
+  if (lines && changed.length > 0) {
+    diff = lines;
+    view = t('View changes');
   }
 
   return (
     <div class="publish-css">
-      <div class="publish-css-head">
-        {cssLabel}
-        <span>
-          <span class="publish-css-added">+{added}</span>{' '}
-          <span class="publish-css-removed">−{removed}</span>
-          <button type="button" onClick={() => setShowAll(!showAll)}>
-            {toggle}
-          </button>
-        </span>
-      </div>
+      <Button
+        type="button"
+        variant="outline"
+        size="sm"
+        onClick={() => setOpen(true)}
+      >
+        {view}
 
-      {showAll && <CssCode css={css} label={cssLabel} />}
+        {diff && (
+          <span class="publish-css-counts">
+            {added > 0 && <span class="publish-css-added">+{added}</span>}
 
-      {!showAll && <CssDiff hunks={toHunks(lines)} label={cssLabel} />}
+            {removed > 0 && <span class="publish-css-removed">−{removed}</span>}
+          </span>
+        )}
+      </Button>
+
+      {open && (
+        <PublishCssDialog
+          css={css}
+          diff={diff}
+          onClose={() => setOpen(false)}
+          t={t}
+        />
+      )}
     </div>
   );
 }

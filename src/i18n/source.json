@@ -599,6 +599,7 @@
     "text": "Close",
     "files": [
       "src/components/ZoomableImage.tsx",
+      "src/gallery/components/PublishCssDialog.tsx",
       "src/gallery/components/ReportDialog.tsx"
     ]
   },
@@ -825,7 +826,7 @@
   {
     "text": "CSS",
     "files": [
-      "src/gallery/components/PublishCssReview.tsx",
+      "src/gallery/components/PublishCssDialog.tsx",
       "src/gallery/components/StyleCss.tsx"
     ]
   },
@@ -2275,13 +2276,13 @@
   {
     "text": "Show all CSS",
     "files": [
-      "src/gallery/components/PublishCssReview.tsx"
+      "src/gallery/components/PublishCssDialog.tsx"
     ]
   },
   {
     "text": "Show changes",
     "files": [
-      "src/gallery/components/PublishCssReview.tsx"
+      "src/gallery/components/PublishCssDialog.tsx"
     ]
   },
   {
@@ -3126,6 +3127,18 @@
     "text": "Versions",
     "files": [
       "src/gallery/components/StyleVersions.tsx"
+    ]
+  },
+  {
+    "text": "View changes",
+    "files": [
+      "src/gallery/components/PublishCssReview.tsx"
+    ]
+  },
+  {
+    "text": "View CSS",
+    "files": [
+      "src/gallery/components/PublishCssReview.tsx"
     ]
   },
   {
