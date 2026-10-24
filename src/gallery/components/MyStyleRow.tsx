@@ -9,15 +9,12 @@ import { type Translate } from '@/i18n/t';
 
 import DeleteStyleButton from './DeleteStyleButton';
 import Favicon from './Favicon';
-import PublishButton from './PublishButton';
-import UnpublishButton from './UnpublishButton';
 
 import './MyStyleRow.css';
 
 type Props = {
   style: OwnStyle;
   session: string;
-  onChange: (style: OwnStyle) => void;
   onDeleted: () => void;
   locale: Locale;
   t: Translate;
@@ -25,19 +22,17 @@ type Props = {
 
 /**
  * One of the account's styles: its screenshot and name, linking to its page
- * while it's live, its site, when it was updated, its installs, and Edit and
- * Unpublish, or Publish and Delete once it's unpublished.
+ * while it's live, its site, when it was updated, its installs, and Edit
+ * and Delete.
  */
 export default function MyStyleRow({
   style,
   session,
-  onChange,
   onDeleted,
   locale,
   t,
 }: Props) {
   const live = style.status === 'live';
-  const unpublished = style.status === 'unpublished';
 
   return (
     <li class="my-style-row">
@@ -63,15 +58,6 @@ export default function MyStyleRow({
               }
             </span>
           )}
-
-          {unpublished && (
-            <span class="my-style-badge">
-              {
-                // i18n: A badge on one of your styles that you took out of the Gallery.
-                t('Unpublished')
-              }
-            </span>
-          )}
         </div>
 
         <div class="my-style-meta">
@@ -94,42 +80,22 @@ export default function MyStyleRow({
           {t('Installs')}
         </div>
 
-        {!unpublished && (
-          <div class="my-style-actions">
-            <ButtonLink
-              href={editHref(locale, style)}
-              variant="outline"
-              size="sm"
-            >
-              {t('Edit')}
-            </ButtonLink>
+        <div class="my-style-actions">
+          <ButtonLink
+            href={editHref(locale, style)}
+            variant="outline"
+            size="sm"
+          >
+            {t('Edit')}
+          </ButtonLink>
 
-            <UnpublishButton
-              style={style}
-              session={session}
-              onChange={onChange}
-              t={t}
-            />
-          </div>
-        )}
-
-        {unpublished && (
-          <div class="my-style-actions">
-            <PublishButton
-              style={style}
-              session={session}
-              onChange={onChange}
-              t={t}
-            />
-
-            <DeleteStyleButton
-              style={style}
-              session={session}
-              onDeleted={onDeleted}
-              t={t}
-            />
-          </div>
-        )}
+          <DeleteStyleButton
+            style={style}
+            session={session}
+            onDeleted={onDeleted}
+            t={t}
+          />
+        </div>
       </div>
     </li>
   );

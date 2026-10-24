@@ -22,24 +22,13 @@ type Props = {
 
 /**
  * The account's styles as rows, those in the Gallery first, then those
- * unpublished or hidden, with how to publish more.
+ * hidden after reports, with how to publish more.
  */
 export default function MyStyleList({ session, username, locale, t }: Props) {
   const { data, error, loading, reload } = useMyStyles(session);
 
-  // Styles changed on this page, by id; null once deleted.
-  const [changed, setChanged] = useState<Record<string, OwnStyle | null>>({});
-  const current = (style: OwnStyle) => {
-    if (style.id in changed) {
-      return changed[style.id];
-    }
-
-    return style;
-  };
-  const styles = data?.map(current).filter((style) => style !== null);
-
-  const change = (id: number, style: OwnStyle | null) =>
-    setChanged((prev) => ({ ...prev, [id]: style }));
+  const [deleted, setDeleted] = useState<Array<number>>([]);
+  const styles = data?.filter((style) => !deleted.includes(style.id));
 
   if (error) {
     return (
@@ -60,8 +49,7 @@ export default function MyStyleList({ session, username, locale, t }: Props) {
         key={style.id}
         style={style}
         session={session}
-        onChange={(next) => change(style.id, next)}
-        onDeleted={() => change(style.id, null)}
+        onDeleted={() => setDeleted((prev) => [...prev, style.id])}
         locale={locale}
         t={t}
       />
@@ -122,7 +110,7 @@ export default function MyStyleList({ session, username, locale, t }: Props) {
         <section class="my-style-section">
           <h2 class="my-style-section-title">
             {
-              // i18n: Heading over your styles that you unpublished or that were hidden after reports.
+              // i18n: Heading over your styles that were hidden after reports.
               t('Not in the Gallery')
             }
           </h2>

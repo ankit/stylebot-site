@@ -86,7 +86,7 @@ export default function PublishForm({
             <PublishSubmit
               label={submitLabel(isUpdate, busy, t)}
               hint={t(
-                'Anyone can find and install published styles. You can update or unpublish later.',
+                'Anyone can find and install published styles. You can update or delete them later.',
               )}
               disabled={busy || !details.name || choice.source === 'none'}
             />

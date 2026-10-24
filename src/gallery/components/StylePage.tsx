@@ -61,7 +61,7 @@ export default function StylePage({ locale, strings }: Props) {
     return (
       <NotFound
         title={t('Style not found')}
-        message={t('It may have been unpublished, or the link is wrong.')}
+        message={t('It may have been deleted, or the link is wrong.')}
         locale={locale}
         t={t}
       />

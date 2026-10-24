@@ -22,8 +22,8 @@ export type Style = {
 export type StyleWithCss = Style & { css: string };
 
 // One of the signed-in account's styles. `hidden` ones were hidden after
-// reports; neither they nor `unpublished` ones are listed or served.
-export type OwnStyle = Style & { status: 'live' | 'hidden' | 'unpublished' };
+// reports, and aren't listed or served.
+export type OwnStyle = Style & { status: 'live' | 'hidden' };
 
 // A style just published, with what the API took out of its CSS: rules that
 // load from other sites, and large `data:` URIs.
@@ -199,14 +199,7 @@ export const listMyStyles = (session: string) =>
 const styleAction = (id: number, action = '') =>
   `/styles/${encodeURIComponent(id)}${action}`;
 
-export const unpublishStyle = (session: string, id: number) =>
-  request<void>(styleAction(id, '/unpublish'), { method: 'POST', session });
-
-// Brings an unpublished style back, hidden again if it was hidden before.
-export const publishStyle = (session: string, id: number) =>
-  request<OwnStyle>(styleAction(id, '/publish'), { method: 'POST', session });
-
-// Deletes an unpublished style for good.
+// Deletes a style for good.
 export const deleteStyle = (session: string, id: number) =>
   request<void>(styleAction(id), { method: 'DELETE', session });
 

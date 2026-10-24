@@ -18,7 +18,7 @@ type Props = {
 };
 
 /**
- * Deletes an unpublished style for good, asking first.
+ * Deletes a style for good, asking first.
  */
 export default function DeleteStyleButton({
   style,
