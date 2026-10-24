@@ -2,6 +2,7 @@ import { useState } from 'preact/hooks';
 
 import { useAction } from '@/gallery/hooks/useAction';
 import { deleteStyle, type OwnStyle } from '@/gallery/lib/api';
+import { reportDeleted } from '@/gallery/lib/bridge';
 
 import Button from '@/components/Button';
 
@@ -28,7 +29,10 @@ export default function DeleteStyleButton({
   const [confirming, setConfirming] = useState(false);
   const { run, busy, failed, reset } = useAction(
     () => deleteStyle(session, style.id),
-    onDeleted,
+    () => {
+      void reportDeleted(style.id);
+      onDeleted();
+    },
   );
 
   const close = () => {

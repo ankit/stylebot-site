@@ -145,3 +145,21 @@ export async function reportPublished(
 
   return answer?.ok === true;
 }
+
+/**
+ * Tells Stylebot the style is deleted, so profiles published or installed
+ * from it stop linking to it. Resolves whether it did.
+ */
+export async function reportDeleted(styleId: number) {
+  if (!hasStylebot()) {
+    return false;
+  }
+
+  const answer = await sendBridgeRequest<{ ok: boolean }>(
+    'stylebot:deleted',
+    styleId,
+    STATUS_TIMEOUT_MS,
+  );
+
+  return answer?.ok === true;
+}
