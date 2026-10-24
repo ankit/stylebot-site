@@ -48,6 +48,7 @@
     font: 400 var(--text-base) / 1.55 var(--font-ui);
     color: var(--fg-secondary);
     text-wrap: pretty;
+    white-space: pre-line;
   }
 }
 

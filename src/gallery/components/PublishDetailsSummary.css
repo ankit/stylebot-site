@@ -30,5 +30,6 @@
   p {
     margin: 0;
     overflow-wrap: anywhere;
+    white-space: pre-line;
   }
 }
