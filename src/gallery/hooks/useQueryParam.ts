@@ -1,4 +1,4 @@
-import { useLocation } from 'preact-iso';
+import { useLocation, useRoute } from 'preact-iso';
 
 /**
  * A parameter in the page's address, such as ?q=, and a setter that updates
@@ -6,7 +6,9 @@ import { useLocation } from 'preact-iso';
  * out of the address.
  */
 export function useQueryParam(name: string, fallback = '') {
-  const { query, route } = useLocation();
+  const { route } = useLocation();
+  // The route's own query, which stays put while the next route's page loads.
+  const { query } = useRoute();
 
   const change = (next: string) => {
     const url = new URL(location.href);
