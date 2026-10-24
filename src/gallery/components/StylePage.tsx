@@ -17,6 +17,7 @@ import { type Locale, localizePath } from '@/i18n/locales';
 import { type Catalog, translator } from '@/i18n/t';
 
 import BackLink from './BackLink';
+import EditStyleButton from './EditStyleButton';
 import Favicon from './Favicon';
 import LoadError from './LoadError';
 import MoreForSite from './MoreForSite';
@@ -126,6 +127,8 @@ export default function StylePage({ locale, strings }: Props) {
             <dt>{t('Version')}</dt>
             <dd>{style.version}</dd>
           </dl>
+
+          <EditStyleButton style={style} locale={locale} t={t} />
 
           <ReportStyleButton style={style} t={t} />
         </div>

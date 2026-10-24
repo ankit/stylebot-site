@@ -958,6 +958,7 @@
   {
     "text": "Edit",
     "files": [
+      "src/gallery/components/EditStyleButton.tsx",
       "src/gallery/components/MyStyleRow.tsx",
       "src/gallery/components/PublishDetailsSummary.tsx"
     ]
