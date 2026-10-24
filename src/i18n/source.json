@@ -129,6 +129,13 @@
     ]
   },
   {
+    "text": "A font weight control in the editor’s Basic tab",
+    "note": "\"Basic\" is a tab in Stylebot's editor; use the extension's own translation.",
+    "files": [
+      "src/www/pages/[...lang]/releases/4.1.astro"
+    ]
+  },
+  {
     "text": "A moderator will take a look. Styles reported by several people are hidden until then.",
     "files": [
       "src/gallery/components/ReportDialog.tsx"
@@ -255,6 +262,12 @@
     ]
   },
   {
+    "text": "Also new",
+    "files": [
+      "src/www/pages/[...lang]/releases/4.1.astro"
+    ]
+  },
+  {
     "text": "Also on {first} and {second}",
     "files": [
       "src/www/pages/[...lang]/index.astro"
@@ -270,6 +283,12 @@
     "text": "An improved color picker with palettes makes it easier to pick good colors.",
     "files": [
       "src/www/pages/[...lang]/releases/3.1.astro"
+    ]
+  },
+  {
+    "text": "And a few more <a href=\"{changelog}\">bug fixes</a>",
+    "files": [
+      "src/www/pages/[...lang]/releases/4.1.astro"
     ]
   },
   {
@@ -434,7 +453,8 @@
   {
     "text": "Browse the Gallery →",
     "files": [
-      "src/www/components/FeaturedStyles.astro"
+      "src/www/components/FeaturedStyles.astro",
+      "src/www/pages/[...lang]/releases/4.1.astro"
     ]
   },
   {
@@ -1110,6 +1130,12 @@
     ]
   },
   {
+    "text": "Find styles other people made for the sites you use, and share your own.",
+    "files": [
+      "src/www/pages/[...lang]/releases/4.1.astro"
+    ]
+  },
+  {
     "text": "Font",
     "files": [
       "src/www/components/demo/Demo.tsx"
@@ -1161,7 +1187,8 @@
       "src/gallery/layouts/Gallery.astro",
       "src/www/components/Features.astro",
       "src/www/components/GalleryMock.astro",
-      "src/www/pages/[...lang]/manual.astro"
+      "src/www/pages/[...lang]/manual.astro",
+      "src/www/pages/[...lang]/releases/4.1.astro"
     ]
   },
   {
@@ -1761,6 +1788,12 @@
     ]
   },
   {
+    "text": "Open Stylebot on a site to see styles made for it.",
+    "files": [
+      "src/www/pages/[...lang]/releases/4.1.astro"
+    ]
+  },
+  {
     "text": "Open the editor",
     "files": [
       "src/www/components/demo/scenes.ts"
@@ -1993,6 +2026,12 @@
     ]
   },
   {
+    "text": "Publish your own from its ⋯ menu in the popup or the editor.",
+    "files": [
+      "src/www/pages/[...lang]/releases/4.1.astro"
+    ]
+  },
+  {
     "text": "Published",
     "files": [
       "src/gallery/components/PublishedNotice.tsx"
@@ -2051,6 +2090,12 @@
     "text": "Reinstall for {store}",
     "files": [
       "src/components/StoreLink.astro"
+    ]
+  },
+  {
+    "text": "Rename, edit or delete a profile from its menu in the popup",
+    "files": [
+      "src/www/pages/[...lang]/releases/4.1.astro"
     ]
   },
   {
@@ -2434,6 +2479,12 @@
     ]
   },
   {
+    "text": "Stylebot 4.1 brings the Gallery: styles other people made for the sites you use, ready to install in a click.",
+    "files": [
+      "src/www/pages/[...lang]/releases/4.1.astro"
+    ]
+  },
+  {
     "text": "Stylebot and the CLI talk only to each other, on this computer, and send nothing anywhere. An agent sends what it reads to its own provider, as Claude Code does to Anthropic.",
     "files": [
       "src/www/pages/[...lang]/cli.astro"
@@ -2492,6 +2543,12 @@
     "text": "Stylebot is now available in Vietnamese",
     "files": [
       "src/www/pages/[...lang]/releases/4.0.astro"
+    ]
+  },
+  {
+    "text": "Stylebot only asks the Gallery about sites it has styles for. You can turn off suggestions in Options.",
+    "files": [
+      "src/www/pages/[...lang]/releases/4.1.astro"
     ]
   },
   {
@@ -2582,6 +2639,12 @@
     "text": "Styles people made with Stylebot for the sites they use. Pick one and install it in a click.",
     "files": [
       "src/gallery/layouts/Gallery.astro"
+    ]
+  },
+  {
+    "text": "Styles you install stay up to date, unless you edit them.",
+    "files": [
+      "src/www/pages/[...lang]/releases/4.1.astro"
     ]
   },
   {
@@ -2723,6 +2786,12 @@
     "text": "The Basic tab, picking a link in a Wikipedia article",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
+    "text": "The code editor can fold blocks of CSS and keeps their selectors in view as you scroll. Its search and color picker are restyled too.",
+    "files": [
+      "src/www/pages/[...lang]/releases/4.1.astro"
     ]
   },
   {
@@ -2969,6 +3038,12 @@
     "text": "Travel · Long read",
     "files": [
       "src/www/components/demo/Demo.tsx"
+    ]
+  },
+  {
+    "text": "Try a style on the page before installing it. Hold to compare it with the original.",
+    "files": [
+      "src/www/pages/[...lang]/releases/4.1.astro"
     ]
   },
   {
@@ -3222,7 +3297,8 @@
     "files": [
       "src/www/pages/[...lang]/releases/3.1.astro",
       "src/www/pages/[...lang]/releases/3.2.astro",
-      "src/www/pages/[...lang]/releases/4.0.astro"
+      "src/www/pages/[...lang]/releases/4.0.astro",
+      "src/www/pages/[...lang]/releases/4.1.astro"
     ]
   },
   {

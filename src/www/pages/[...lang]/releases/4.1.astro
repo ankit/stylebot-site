@@ -1,0 +1,245 @@
+---
+import ButtonLink from '@/components/ButtonLink';
+import Base from '@/layouts/Base.astro';
+
+import GalleryMock from '@/www/components/GalleryMock.astro';
+
+import { LINKS } from '@/lib/links';
+
+import { localeStaticPaths, rich } from '@/i18n';
+
+export const getStaticPaths = localeStaticPaths;
+
+const { t } = Astro.locals;
+const title = t("What's new in {version}", { version: '4.1' });
+---
+
+<Base
+  title={title}
+  description={t(
+    'Stylebot 4.1 brings the Gallery: styles other people made for the sites you use, ready to install in a click.',
+  )}
+>
+  <main class="release">
+    <div class="release-intro">
+      <h1>{title}</h1>
+      <p>
+        {t(
+          'Find styles other people made for the sites you use, and share your own.',
+        )}
+      </p>
+    </div>
+
+    <div class="release-body">
+      <section id="gallery" class="release-split">
+        <div class="release-text">
+          <h2>{t('Gallery')}</h2>
+          <p>{t('Open Stylebot on a site to see styles made for it.')}</p>
+          <ul>
+            {[
+              t(
+                'Try a style on the page before installing it. Hold to compare it with the original.',
+              ),
+              t('Styles you install stay up to date, unless you edit them.'),
+              t('Publish your own from its ⋯ menu in the popup or the editor.'),
+            ].map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+          <div>
+            <ButtonLink href={LINKS.gallery}>
+              {t('Browse the Gallery →')}
+            </ButtonLink>
+          </div>
+          <p class="release-note">
+            {t(
+              'Stylebot only asks the Gallery about sites it has styles for. You can turn off suggestions in Options.',
+            )}
+          </p>
+        </div>
+        <div class="release-mock" aria-hidden="true">
+          <GalleryMock />
+        </div>
+      </section>
+
+      <hr />
+
+      <section id="more" class="release-more">
+        <h2>{t('Also new')}</h2>
+        <ul>
+          {[
+            // i18n: "Basic" is a tab in Stylebot's editor; use the extension's own translation.
+            t('A font weight control in the editor’s Basic tab'),
+            t(
+              'The code editor can fold blocks of CSS and keeps their selectors in view as you scroll. Its search and color picker are restyled too.',
+            ),
+            t('Rename, edit or delete a profile from its menu in the popup'),
+          ].map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+        <p
+          class="release-fixes"
+          set:html={rich(
+            t('And a few more <a href="{changelog}">bug fixes</a>'),
+            {
+              changelog: LINKS.changelog,
+            },
+          )}
+        />
+      </section>
+    </div>
+  </main>
+</Base>
+
+<style>
+  .release {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 64px var(--gutter) 0;
+    color: var(--fg-secondary);
+  }
+
+  .release-intro {
+    max-width: var(--width-text);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .release-intro h1 {
+    margin: 0;
+    font: 700 var(--text-4xl) / 1.04 var(--font-display);
+    letter-spacing: -0.035em;
+    color: var(--fg);
+    text-wrap: balance;
+  }
+
+  .release-intro p {
+    margin: 0;
+    font: 400 var(--text-lg)/1.55 var(--font-ui);
+    color: var(--fg-muted);
+    text-wrap: pretty;
+  }
+
+  .release-body {
+    margin-top: 56px;
+    display: flex;
+    flex-direction: column;
+    gap: 72px;
+  }
+
+  .release-body hr {
+    width: 100%;
+    height: 1px;
+    margin: 0;
+    border: none;
+    background: var(--border);
+  }
+
+  .release h2 {
+    margin: 0;
+    font: 650 var(--text-2xl) / 1.15 var(--font-display);
+    letter-spacing: -0.02em;
+    color: var(--fg);
+    text-wrap: balance;
+  }
+
+  .release [id] {
+    scroll-margin-top: 80px;
+  }
+
+  .release-split {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+    gap: clamp(24px, 4vw, 56px);
+    align-items: center;
+  }
+
+  .release-text {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .release-text p {
+    margin: 0;
+    max-width: 60ch;
+    font: 400 var(--text-base)/1.65 var(--font-ui);
+    text-wrap: pretty;
+  }
+
+  .release .release-note {
+    font-size: var(--text-sm);
+    line-height: 1.5;
+    color: var(--fg-muted);
+  }
+
+  .release ul {
+    margin: 4px 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .release li {
+    position: relative;
+    padding-left: 17px;
+    font: 400 var(--text-base)/1.55 var(--font-ui);
+    text-wrap: pretty;
+  }
+
+  .release li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 5px;
+    height: 5px;
+    border-radius: 3px;
+    background: var(--accent);
+  }
+
+  .release-mock {
+    min-height: 360px;
+    padding: 28px;
+    border-radius: var(--radius-xl);
+    background: var(--bg-muted);
+    border: 1px solid var(--border);
+    display: grid;
+    align-content: center;
+    color: var(--fg);
+  }
+
+  .release-mock > :global([data-ed]) {
+    color: var(--fg);
+  }
+
+  .release-mock :global(.mock-card) {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+  }
+
+  .release-more {
+    max-width: var(--width-text);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .release-fixes {
+    margin: 8px 0 0;
+    font: 600 var(--text-base)/1.5 var(--font-ui);
+    color: var(--fg);
+  }
+
+  .release-fixes a {
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+</style>
