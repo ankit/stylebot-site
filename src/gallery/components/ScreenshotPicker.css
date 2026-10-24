@@ -37,11 +37,11 @@
     border-color: var(--fg);
   }
 
-  &[data-over] img {
+  &[data-over] .screenshot-picker-image {
     opacity: 0.5;
   }
 
-  img {
+  .screenshot-picker-image {
     position: absolute;
     inset: 0;
     width: 100%;

@@ -1,0 +1,68 @@
+.screenshot-blur {
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  cursor: default;
+}
+
+.screenshot-blur-canvas {
+  position: relative;
+  max-width: 100%;
+  cursor: crosshair;
+  touch-action: none;
+  user-select: none;
+
+  img {
+    display: block;
+    max-width: min(1400px, 100%);
+    max-height: calc(100vh - 160px);
+    border-radius: var(--radius-md);
+    filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.5));
+  }
+}
+
+.screenshot-blur-region {
+  position: absolute;
+  outline: 1px dashed rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  pointer-events: none;
+}
+
+.screenshot-blur-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font: 400 var(--text-sm) / 1.3 var(--font-ui);
+  color: rgba(255, 255, 255, 0.85);
+
+  button {
+    padding: 8px 14px;
+    border: none;
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.14);
+    font: 500 var(--text-sm) / 1 var(--font-ui);
+    color: #fff;
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+      background: rgba(255, 255, 255, 0.24);
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
+  }
+
+  .screenshot-blur-apply,
+  .screenshot-blur-apply:hover:not(:disabled) {
+    background: #fff;
+    color: #111;
+  }
+}

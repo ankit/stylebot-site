@@ -1,8 +1,9 @@
+import { type ComponentChildren } from 'preact';
 import { useState } from 'preact/hooks';
 
 import Modal from '@/components/Modal';
 
-import { type Catalog, translator } from '@/i18n/t';
+import { type Catalog, type Translate, translator } from '@/i18n/t';
 
 import './ZoomableImage.css';
 
@@ -18,7 +19,11 @@ type Props = {
   full?: string;
   // The original's width in pixels, so a retina screen never stretches it.
   fullWidth?: number;
-  strings: Catalog;
+  // What to show zoomed in place of the image, given a way to close it.
+  renderZoomed?: (close: () => void) => ComponentChildren;
+  // Islands pass `strings`; a Preact parent that already has `t` passes that.
+  strings?: Catalog;
+  t?: Translate;
 };
 
 function zoomedWidth(fullWidth?: number) {
@@ -43,10 +48,12 @@ export default function ZoomableImage({
   class: className = '',
   full,
   fullWidth,
+  renderZoomed,
   strings,
+  t = translator(strings),
 }: Props) {
-  const t = translator(strings);
   const [zoomed, setZoomed] = useState(false);
+  const close = () => setZoomed(false);
 
   const onKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Enter' || e.key === ' ') {
@@ -75,18 +82,20 @@ export default function ZoomableImage({
 
       <Modal
         open={zoomed}
-        onClose={() => setZoomed(false)}
+        onClose={close}
         label={t('Enlarged screenshot')}
         closeLabel={t('Close')}
         class="zoomable-image-modal"
       >
-        {zoomed && (
+        {zoomed && renderZoomed?.(close)}
+
+        {zoomed && !renderZoomed && (
           <img
             class="zoomable-image-full"
             src={full ?? src}
             alt={alt}
             style={{ maxWidth: zoomedWidth(fullWidth) }}
-            onClick={() => setZoomed(false)}
+            onClick={close}
           />
         )}
       </Modal>

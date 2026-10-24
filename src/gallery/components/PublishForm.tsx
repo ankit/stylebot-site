@@ -76,6 +76,23 @@ export default function PublishForm({
           t={t}
         />
       }
+      footer={
+        !unchanged && (
+          <>
+            {publishing.error !== undefined && (
+              <PublishError error={publishing.error} t={t} />
+            )}
+
+            <PublishSubmit
+              label={submitLabel(isUpdate, busy, t)}
+              hint={t(
+                'Anyone can find and install published styles. You can update or unpublish later.',
+              )}
+              disabled={busy || !details.name || choice.source === 'none'}
+            />
+          </>
+        )
+      }
     >
       {isUpdate && !unchanged && (
         <VersionNotesField
@@ -100,22 +117,8 @@ export default function PublishForm({
       {unchanged && (
         <CssUnchangedNotice
           busy={busy}
-          onSave={() => publishing.saveDetails(details)}
+          onSave={() => publishing.saveDetails(details, choice.screenshot)}
           t={t}
-        />
-      )}
-
-      {!unchanged && publishing.error !== undefined && (
-        <PublishError error={publishing.error} t={t} />
-      )}
-
-      {!unchanged && (
-        <PublishSubmit
-          label={submitLabel(isUpdate, busy, t)}
-          hint={t(
-            'Anyone can find and install published styles. You can update or unpublish later.',
-          )}
-          disabled={busy || !details.name || choice.source === 'none'}
         />
       )}
     </PublishFormLayout>

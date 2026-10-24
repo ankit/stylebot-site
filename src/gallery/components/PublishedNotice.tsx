@@ -59,7 +59,8 @@ export default function PublishedNotice({
   }
 
   if (kind === 'details') {
-    // i18n: A tag on the page after saving a style's name and description.
+    // i18n: A tag on the page after saving a style's name, description or
+    // screenshot without a new version.
     tag = t('Saved');
     heading = t('{name} is saved', { name: style.name });
   }

@@ -388,6 +388,12 @@
     ]
   },
   {
+    "text": "Blur marked areas",
+    "files": [
+      "src/gallery/components/ScreenshotBlur.tsx"
+    ]
+  },
+  {
     "text": "Bookings on the first reopened line sold out for the summer within a week. Most passengers are under forty, and many have never taken a sleeper of any kind. Operators say the cabins fill first, then the reclining seats, then the deck.",
     "files": [
       "src/www/components/demo/Demo.tsx"
@@ -454,7 +460,7 @@
     ]
   },
   {
-    "text": "Captured from your tab. Check it shows nothing private.",
+    "text": "Captured from your tab. Click it to blur anything private.",
     "files": [
       "src/gallery/components/ScreenshotPicker.tsx"
     ]
@@ -550,6 +556,12 @@
     "text": "Click the profile name next to the site in the editor's header to create, rename, duplicate or delete profiles. Switch between them there or in the popup, where <strong>No style</strong> turns styling off for the site. New profiles start empty.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
+    "text": "Click the screenshot to blur anything private.",
+    "files": [
+      "src/gallery/components/ScreenshotPicker.tsx"
     ]
   },
   {
@@ -942,6 +954,12 @@
     "text": "docs.google.com, docs1.google.com, docs2.google.com and so on.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
+    "text": "Drag over anything private to blur it.",
+    "files": [
+      "src/gallery/components/ScreenshotBlur.tsx"
     ]
   },
   {
@@ -2127,6 +2145,7 @@
     "text": "Save",
     "files": [
       "src/gallery/components/ChangeUsernameDialog.tsx",
+      "src/gallery/components/CssUnchangedNotice.tsx",
       "src/gallery/components/EditForm.tsx"
     ]
   },
@@ -2138,14 +2157,8 @@
     ]
   },
   {
-    "text": "Save name and description",
-    "files": [
-      "src/gallery/components/CssUnchangedNotice.tsx"
-    ]
-  },
-  {
     "text": "Saved",
-    "note": "A tag on the page after saving a style's name and description.",
+    "note": "A tag on the page after saving a style's name, description or screenshot without a new version.",
     "files": [
       "src/gallery/components/EditForm.tsx",
       "src/gallery/components/PublishedNotice.tsx"
@@ -2732,7 +2745,7 @@
     ]
   },
   {
-    "text": "The CSS is the same as the latest version’s, so there’s no new version to publish. You can still save the name and description; installs aren’t updated.",
+    "text": "The CSS is the same as the latest version’s, so there’s no new version to publish. You can still save the name, description and screenshot; installs aren’t updated.",
     "files": [
       "src/gallery/components/CssUnchangedNotice.tsx"
     ]
@@ -3018,6 +3031,12 @@
     "text": "Twenty years after the last overnight crossing was cut, three operators are putting cabins back on the water. The pitch is simple: board after dinner, sleep through the crossing, and wake up in another country.",
     "files": [
       "src/www/components/demo/Demo.tsx"
+    ]
+  },
+  {
+    "text": "Undo",
+    "files": [
+      "src/gallery/components/ScreenshotBlur.tsx"
     ]
   },
   {

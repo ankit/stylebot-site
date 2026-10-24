@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'preact/hooks';
 
-import { type OwnStyle, resizedScreenshotUrl } from '@/gallery/lib/api';
+import {
+  type OwnStyle,
+  resizedScreenshotUrl,
+  screenshotUrl,
+} from '@/gallery/lib/api';
 
 // The API takes screenshots up to 1 MB.
 const MAX_BYTES = 1024 * 1024;
@@ -29,7 +33,8 @@ function initialSource(tabShot: string | null, existing: OwnStyle | null) {
 /**
  * Which screenshot to publish: `tabShot`, the one Stylebot took of the
  * person's tab, the style's current one, or an image they pick, which stays
- * in the browser until they publish. `screenshot` is what to send, if anything.
+ * in the browser until they publish. `full` is `preview`'s original when
+ * `preview` is a smaller copy, and `screenshot` is what to send, if anything.
  */
 export function useScreenshotChoice(
   tabShot: string | null,
@@ -78,6 +83,7 @@ export function useScreenshotChoice(
   };
 
   let preview: string | undefined;
+  let full: string | undefined;
   let screenshot: Blob | string | undefined;
 
   if (source === 'tab' && tabShot) {
@@ -88,13 +94,17 @@ export function useScreenshotChoice(
     screenshot = file;
   } else if (source === 'current' && existing) {
     preview = resizedScreenshotUrl(existing, 960);
+    full = screenshotUrl(existing);
   }
 
   return {
     source,
     preview,
+    full,
     screenshot,
     error,
+    // The style's current screenshot is on the API, which a canvas can't read.
+    canBlur: source === 'tab' || source === 'upload',
     canUseTab: tabShot !== null,
     canKeepCurrent: existing !== null,
     upload,

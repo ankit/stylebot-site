@@ -8,6 +8,8 @@ import { buttonClass } from '@/components/Button';
 
 import { type Translate } from '@/i18n/t';
 
+import ScreenshotPickerImage from './ScreenshotPickerImage';
+
 import './ScreenshotPicker.css';
 
 type Props = {
@@ -57,7 +59,15 @@ export default function ScreenshotPicker({ choice, alt, t }: Props) {
         data-over={drop.over || undefined}
         {...drop.handlers}
       >
-        {preview && <img src={preview} alt={alt} />}
+        {preview && (
+          <ScreenshotPickerImage
+            key={preview}
+            choice={choice}
+            src={preview}
+            alt={alt}
+            t={t}
+          />
+        )}
 
         <div class="screenshot-picker-upload">
           <label class={uploadClass}>
@@ -84,7 +94,13 @@ export default function ScreenshotPicker({ choice, alt, t }: Props) {
 
       {source === 'tab' && (
         <figcaption>
-          {t('Captured from your tab. Check it shows nothing private.')}
+          {t('Captured from your tab. Click it to blur anything private.')}
+        </figcaption>
+      )}
+
+      {source === 'upload' && (
+        <figcaption>
+          {t('Click the screenshot to blur anything private.')}
         </figcaption>
       )}
 

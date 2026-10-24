@@ -7,11 +7,11 @@ import './CssUnchangedNotice.css';
 type Props = { busy: boolean; onSave: () => void; t: Translate };
 
 /**
- * Says a new version needs changed CSS, offering to save the name and
- * description without one.
+ * Says a new version needs changed CSS, offering to save the name,
+ * description and screenshot without one.
  */
 export default function CssUnchangedNotice({ busy, onSave, t }: Props) {
-  let label = t('Save name and description');
+  let label = t('Save');
 
   if (busy) {
     label = t('Saving…');
@@ -21,7 +21,7 @@ export default function CssUnchangedNotice({ busy, onSave, t }: Props) {
     <div class="css-unchanged" role="alert">
       <p>
         {t(
-          'The CSS is the same as the latest version’s, so there’s no new version to publish. You can still save the name and description; installs aren’t updated.',
+          'The CSS is the same as the latest version’s, so there’s no new version to publish. You can still save the name, description and screenshot; installs aren’t updated.',
         )}
       </p>
 

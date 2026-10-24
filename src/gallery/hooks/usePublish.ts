@@ -17,10 +17,19 @@ export type PublishDetails = Pick<StyleForm, 'name' | 'description' | 'notes'>;
 // Whether Stylebot has linked its profile to the published style.
 export type LinkState = 'linking' | 'linked' | 'unlinked';
 
+// A string screenshot is the data: URL of the one Stylebot took.
+async function screenshotBlob(screenshot?: Blob | string) {
+  if (typeof screenshot === 'string') {
+    return (await fetch(screenshot)).blob();
+  }
+
+  return screenshot;
+}
+
 /**
  * Publishes a draft as a new style, or as a new version of `existing`, then
  * tells Stylebot. When the version's CSS is unchanged, `unchanged` is set and
- * `saveDetails` saves the name and description only.
+ * `saveDetails` saves the name, description and any new screenshot only.
  */
 export function usePublish(
   session: string,
@@ -66,16 +75,13 @@ export function usePublish(
     }
   };
 
-  // A string screenshot is the data: URL of the one Stylebot took.
   const publish = (details: PublishDetails, screenshot?: Blob | string) =>
     run(async () => {
-      const form: StyleForm = { ...details, css: draft.css };
-
-      if (typeof screenshot === 'string') {
-        form.screenshot = await (await fetch(screenshot)).blob();
-      } else {
-        form.screenshot = screenshot;
-      }
+      const form: StyleForm = {
+        ...details,
+        css: draft.css,
+        screenshot: await screenshotBlob(screenshot),
+      };
 
       if (!existing) {
         return createStyle(session, draft.site, form);
@@ -84,16 +90,20 @@ export function usePublish(
       return createVersion(session, existing.id, form);
     });
 
-  const saveDetails = async (details: PublishDetails) => {
+  const saveDetails = async (
+    details: PublishDetails,
+    screenshot?: Blob | string,
+  ) => {
     if (!existing) {
       return;
     }
 
     setDetailsOnly(true);
-    await run(() =>
+    await run(async () =>
       updateStyle(session, existing.id, {
         name: details.name,
         description: details.description,
+        screenshot: await screenshotBlob(screenshot),
       }),
     );
   };
