@@ -8,7 +8,7 @@ import { localeStaticPaths } from '@/i18n';
 
 export const getStaticPaths = localeStaticPaths;
 
-const { strings, t } = Astro.locals;
+const { lang, strings, t } = Astro.locals;
 ---
 
 <Base
@@ -18,14 +18,10 @@ const { strings, t } = Astro.locals;
 >
   <main class="gb">
     <h1>{t('Thanks for using Stylebot.')}</h1>
-    <p class="gb-subtitle">
-      {t(
-        'Your styles were removed from this browser. If you turned on sync, a backup is still in your Google Drive.',
-      )}
-    </p>
     <GoodbyeFeedback
       client:visible
       strings={strings('www/components/GoodbyeFeedback.tsx')}
+      locale={lang}
     />
     <div class="gb-reinstall">
       <span>{t('Changed your mind?')}</span>
@@ -48,96 +44,10 @@ const { strings, t } = Astro.locals;
 
   .gb h1 {
     margin: 14px 0 0;
-    font: 700 var(--text-3xl) / 1.1 var(--font-display);
+    font: 700 var(--text-2xl) / 1.1 var(--font-display);
     letter-spacing: -0.03em;
     color: var(--fg);
     text-wrap: balance;
-  }
-
-  .gb-subtitle {
-    margin: 0;
-    max-width: 46ch;
-    font: 400 var(--text-base)/1.6 var(--font-ui);
-    color: var(--fg-muted);
-    text-wrap: pretty;
-  }
-
-  .gb-form,
-  .gb-thanks {
-    width: 100%;
-    margin-top: 10px;
-    padding: 22px;
-    border-radius: var(--radius-lg);
-    text-align: left;
-  }
-
-  .gb-form {
-    background: var(--bg-surface);
-    border: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-
-  .gb-thanks {
-    background: var(--accent-bg);
-    border: 1px solid var(--accent-border);
-    font: 500 var(--text-base)/1.5 var(--font-ui);
-    color: var(--fg);
-  }
-
-  .gb-q {
-    font: 600 var(--text-base)/1.3 var(--font-ui);
-    color: var(--fg);
-  }
-
-  .gb-reasons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .gb-chip {
-    padding: 8px 12px;
-    border-radius: var(--radius-xl);
-    cursor: pointer;
-    font: 500 var(--text-sm)/1 var(--font-ui);
-    border: 1px solid var(--border-strong);
-    background: var(--bg-surface);
-    color: var(--fg-secondary);
-    transition:
-      border-color 0.12s,
-      background 0.12s,
-      color 0.12s;
-  }
-
-  .gb-chip.is-on {
-    border-color: var(--accent);
-    background: var(--accent-bg);
-    color: var(--accent);
-  }
-
-  .gb-form textarea {
-    width: 100%;
-    resize: vertical;
-    padding: 10px 12px;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--border-strong);
-    background: var(--bg-page);
-    color: var(--fg);
-    font: 400 var(--text-sm)/1.5 var(--font-ui);
-  }
-
-  .gb-send {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-
-  .gb-send .btn {
-    padding: 10px 16px;
-    font-size: var(--text-sm);
   }
 
   .gb-reinstall {

@@ -1,3 +1,5 @@
+import { type Browser } from '@/lib/links';
+
 // Set PUBLIC_STYLES_API to use another server, such as a local one at
 // http://localhost:8787.
 export const API_ORIGIN: string =
@@ -63,6 +65,29 @@ export type UsernameCheck = {
 };
 
 export type Session = { session: string; expiresAt: number; account: Account };
+
+export const UNINSTALL_REASONS = [
+  'not-needed',
+  'hard-to-use',
+  'broke-a-site',
+  'missing-feature',
+  'too-slow',
+  'other',
+] as const;
+
+export type UninstallReason = (typeof UNINSTALL_REASONS)[number];
+
+// The goodbye page's survey. It's anonymous: `site` and `feature` are only
+// what the person typed.
+export type UninstallFeedback = {
+  reasons: Array<UninstallReason>;
+  site?: string;
+  feature?: string;
+  note?: string;
+  browser?: Browser;
+  version?: string;
+  locale?: string;
+};
 
 export type Sort = 'popular' | 'new';
 
@@ -234,6 +259,13 @@ export const reportStyle = (session: string, id: number, reason: string) =>
     method: 'POST',
     session,
     body: JSON.stringify({ reason }),
+  });
+
+// Fails with 429 after 5 a minute from one address.
+export const sendUninstallFeedback = (feedback: UninstallFeedback) =>
+  request<void>('/feedback', {
+    method: 'POST',
+    body: JSON.stringify({ kind: 'uninstall', ...feedback }),
   });
 
 function toFormData(form: StyleForm, site?: string) {

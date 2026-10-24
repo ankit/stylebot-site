@@ -799,6 +799,12 @@
     ]
   },
   {
+    "text": "Couldn’t send your feedback. Try again.",
+    "files": [
+      "src/www/components/GoodbyeFeedback.tsx"
+    ]
+  },
+  {
     "text": "Couldn’t sign in. Try again",
     "note": "On the sign-in button after signing in with Google failed.",
     "files": [
@@ -1090,6 +1096,12 @@
     "note": "Headlines of the swipeable feature cards on phones, each over a screenshot of the feature.",
     "files": [
       "src/www/components/FeatureTour.astro"
+    ]
+  },
+  {
+    "text": "Feedback is anonymous",
+    "files": [
+      "src/www/components/GoodbyeFeedback.tsx"
     ]
   },
   {
@@ -2701,6 +2713,12 @@
     ]
   },
   {
+    "text": "That’s a lot of feedback at once. Try again in a minute.",
+    "files": [
+      "src/www/components/GoodbyeFeedback.tsx"
+    ]
+  },
+  {
     "text": "The <a href=\"{gallery}\">Gallery</a> has styles other people made with Stylebot. Preview one on the site it’s for, read its CSS, and install it in a click.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
@@ -3181,9 +3199,39 @@
     ]
   },
   {
+    "text": "What did you use Stylebot for?",
+    "files": [
+      "src/www/components/GoodbyeFeedback.tsx"
+    ]
+  },
+  {
+    "text": "What felt slow?",
+    "files": [
+      "src/www/components/GoodbyeFeedback.tsx"
+    ]
+  },
+  {
+    "text": "What made you uninstall it?",
+    "files": [
+      "src/www/components/GoodbyeFeedback.tsx"
+    ]
+  },
+  {
     "text": "What Stylebot does with your data: no server, no account, no analytics.",
     "files": [
       "src/www/pages/[...lang]/privacy.astro"
+    ]
+  },
+  {
+    "text": "What was hard to do?",
+    "files": [
+      "src/www/components/GoodbyeFeedback.tsx"
+    ]
+  },
+  {
+    "text": "What were you looking for?",
+    "files": [
+      "src/www/components/GoodbyeFeedback.tsx"
     ]
   },
   {
@@ -3198,6 +3246,12 @@
     "text": "What’s wrong with it?",
     "files": [
       "src/gallery/components/ReportDialog.tsx"
+    ]
+  },
+  {
+    "text": "Which site did it break?",
+    "files": [
+      "src/www/components/GoodbyeFeedback.tsx"
     ]
   },
   {
@@ -3264,12 +3318,6 @@
       "src/gallery/components/PublishedNotice.tsx",
       "src/gallery/components/UserMenu.tsx",
       "src/www/pages/[...lang]/manual.astro"
-    ]
-  },
-  {
-    "text": "Your styles were removed from this browser. If you turned on sync, a backup is still in your Google Drive.",
-    "files": [
-      "src/www/pages/[...lang]/goodbye.astro"
     ]
   },
   {
