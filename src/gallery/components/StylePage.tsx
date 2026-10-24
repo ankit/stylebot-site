@@ -113,8 +113,6 @@ export default function StylePage({ locale, strings }: Props) {
             {style.site}
           </a>
 
-          {style.description && <p>{style.description}</p>}
-
           <PreviewCard style={style} locale={locale} t={t} />
 
           <dl class="style-page-facts">
@@ -134,6 +132,10 @@ export default function StylePage({ locale, strings }: Props) {
 
           <ReportStyleButton style={style} t={t} />
         </div>
+
+        {style.description && (
+          <p class="style-page-about">{style.description}</p>
+        )}
       </div>
 
       <StyleCss css={style.css} t={t} />
