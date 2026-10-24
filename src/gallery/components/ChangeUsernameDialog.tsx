@@ -96,10 +96,6 @@ export default function ChangeUsernameDialog({
 
         <UsernameStatus check={check} onUse={setValue} t={t} />
 
-        <p class="dialog-hint">
-          {t('It shows on the styles you publish, and old links keep working.')}
-        </p>
-
         {failed && (
           <p class="dialog-error" role="alert">
             {t('Couldn’t save. Try again.')}

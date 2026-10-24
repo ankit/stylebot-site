@@ -1466,12 +1466,6 @@
     ]
   },
   {
-    "text": "It shows on the styles you publish, and old links keep working.",
-    "files": [
-      "src/gallery/components/ChangeUsernameDialog.tsx"
-    ]
-  },
-  {
     "text": "It’s hidden from the Gallery until a moderator has looked at its screenshot.",
     "files": [
       "src/gallery/components/EditForm.tsx",
