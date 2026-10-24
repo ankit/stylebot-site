@@ -3,7 +3,12 @@ import { lazy, LocationProvider, Route, Router } from 'preact-iso';
 
 import { restoreScroll } from '@/gallery/lib/scroll';
 
-import { type Locale, LOCALES, localizePath } from '@/i18n/locales';
+import {
+  DEFAULT_LOCALE,
+  type Locale,
+  LOCALES,
+  localizePath,
+} from '@/i18n/locales';
 import { type Catalog } from '@/i18n/t';
 
 import AccountNav from './AccountNav';
@@ -22,10 +27,17 @@ type Props = { locale: Locale; strings: Catalog };
 
 /**
  * Links the app handles itself: its own locale's pages. Another locale's are
- * full loads, since each locale is its own built page.
+ * full loads, since each locale is its own built page. English pages have no
+ * prefix, so they're the paths without another locale's.
  */
 function localeScope(locale: Locale) {
-  const others = LOCALES.filter((l) => l.code !== locale).map((l) => l.code);
+  if (locale !== DEFAULT_LOCALE) {
+    return new RegExp(`^/${locale}(/|$)`);
+  }
+
+  const others = LOCALES.filter((l) => l.code !== DEFAULT_LOCALE).map(
+    (l) => l.code,
+  );
 
   return new RegExp(`^/(?!(${others.join('|')})(/|$))`);
 }
