@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'preact/hooks';
 
 import { type OwnStyle, resizedScreenshotUrl } from '@/gallery/lib/api';
-import { type PublishDraft } from '@/gallery/lib/bridge';
 
 // The API takes screenshots up to 1 MB.
 const MAX_BYTES = 1024 * 1024;
@@ -11,12 +10,12 @@ const MAX_BYTES = 1024 * 1024;
 export type ScreenshotSource = 'tab' | 'current' | 'upload' | 'none';
 
 // An update keeps the style's screenshot unless the author picks another.
-function initialSource(draft: PublishDraft, existing: OwnStyle | null) {
+function initialSource(tabShot: string | null, existing: OwnStyle | null) {
   if (existing) {
     return 'current';
   }
 
-  if (draft.screenshot) {
+  if (tabShot) {
     return 'tab';
   }
 
@@ -24,16 +23,16 @@ function initialSource(draft: PublishDraft, existing: OwnStyle | null) {
 }
 
 /**
- * Which screenshot to publish: the one of the person's tab, the style's
- * current one, or an image they pick, which stays in the browser until they
- * publish. `screenshot` is what to send, if anything.
+ * Which screenshot to publish: `tabShot`, the one Stylebot took of the
+ * person's tab, the style's current one, or an image they pick, which stays
+ * in the browser until they publish. `screenshot` is what to send, if anything.
  */
 export function useScreenshotChoice(
-  draft: PublishDraft,
+  tabShot: string | null,
   existing: OwnStyle | null,
 ) {
   const [source, setSource] = useState<ScreenshotSource>(() =>
-    initialSource(draft, existing),
+    initialSource(tabShot, existing),
   );
   const [file, setFile] = useState<File>();
   const [fileUrl, setFileUrl] = useState<string>();
@@ -71,9 +70,9 @@ export function useScreenshotChoice(
   let preview: string | undefined;
   let screenshot: Blob | string | undefined;
 
-  if (source === 'tab' && draft.screenshot) {
-    preview = draft.screenshot;
-    screenshot = draft.screenshot;
+  if (source === 'tab' && tabShot) {
+    preview = tabShot;
+    screenshot = tabShot;
   } else if (source === 'upload') {
     preview = fileUrl;
     screenshot = file;
@@ -86,7 +85,7 @@ export function useScreenshotChoice(
     preview,
     screenshot,
     tooLarge,
-    canUseTab: draft.screenshot !== null,
+    canUseTab: tabShot !== null,
     canKeepCurrent: existing !== null,
     upload,
     choose,

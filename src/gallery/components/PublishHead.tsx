@@ -6,16 +6,22 @@ import Favicon from './Favicon';
 
 import './PublishHead.css';
 
-type Props = { draft?: PublishDraft | null; t: Translate };
+type Props = {
+  title?: string;
+  draft?: Pick<PublishDraft, 'site' | 'url'> | null;
+  t: Translate;
+};
 
 /**
  * The publish page's title and, once the draft is known, the site it's for,
  * linking to the page Stylebot published from.
  */
-export default function PublishHead({ draft, t }: Props) {
+export default function PublishHead({ title, draft, t }: Props) {
   return (
     <div class="publish-head">
-      <h1 class="g-title publish-title">{t('Publish to the Gallery')}</h1>
+      <h1 class="g-title publish-title">
+        {title ?? t('Publish to the Gallery')}
+      </h1>
 
       {draft && (
         <a

@@ -38,7 +38,7 @@ export default function PublishSteps({
   t,
 }: Props) {
   const publishing = usePublish(session.session, nonce, draft, existing);
-  const choice = useScreenshotChoice(draft, existing);
+  const choice = useScreenshotChoice(draft.screenshot, existing);
   const { account } = session;
   const gate = useUsernameGate(account.usernameConfirmed);
   const [changingName, setChangingName] = useState(false);

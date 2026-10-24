@@ -11,12 +11,11 @@ import { type Translate } from '@/i18n/t';
 import CssUnchangedNotice from './CssUnchangedNotice';
 import PublishCssReview from './PublishCssReview';
 import PublishError from './PublishError';
+import PublishFormLayout from './PublishFormLayout';
 import PublishSubmit from './PublishSubmit';
 import ScreenshotPicker from './ScreenshotPicker';
 import StyleDetails from './StyleDetails';
 import VersionNotesField from './VersionNotesField';
-
-import './PublishForm.css';
 
 type Props = {
   draft: PublishDraft;
@@ -27,6 +26,18 @@ type Props = {
   guard: (run: () => void) => void;
   t: Translate;
 };
+
+function submitLabel(isUpdate: boolean, busy: boolean, t: Translate) {
+  if (busy) {
+    return t('Publishing…');
+  }
+
+  if (isUpdate) {
+    return t('Publish update');
+  }
+
+  return t('Publish');
+}
 
 /**
  * The draft's details and CSS, with Publish last, beside the screenshot.
@@ -53,58 +64,60 @@ export default function PublishForm({
   };
 
   return (
-    <form class="publish-form" onSubmit={submit}>
-      <div class="publish-form-main">
-        {isUpdate && !unchanged && (
-          <VersionNotesField
-            value={fields.notes}
-            onInput={fields.setNotes}
-            t={t}
-          />
-        )}
-
-        <StyleDetails
-          name={fields.name}
-          description={fields.description}
-          onName={fields.setName}
-          onDescription={fields.setDescription}
-          isUpdate={isUpdate}
-          open={unchanged}
+    <PublishFormLayout
+      onSubmit={submit}
+      aside={
+        <ScreenshotPicker
+          choice={choice}
+          alt={t('Screenshot of {name} on {site}', {
+            name: details.name,
+            site: draft.site,
+          })}
           t={t}
         />
+      }
+    >
+      {isUpdate && !unchanged && (
+        <VersionNotesField
+          value={fields.notes}
+          onInput={fields.setNotes}
+          t={t}
+        />
+      )}
 
-        <PublishCssReview css={draft.css} before={latestCss} t={t} />
-
-        {unchanged && (
-          <CssUnchangedNotice
-            busy={busy}
-            onSave={() => publishing.saveDetails(details)}
-            t={t}
-          />
-        )}
-
-        {!unchanged && publishing.error !== undefined && (
-          <PublishError error={publishing.error} t={t} />
-        )}
-
-        {!unchanged && (
-          <PublishSubmit
-            isUpdate={isUpdate}
-            busy={busy}
-            disabled={busy || !details.name || choice.source === 'none'}
-            t={t}
-          />
-        )}
-      </div>
-
-      <ScreenshotPicker
-        choice={choice}
-        alt={t('Screenshot of {name} on {site}', {
-          name: details.name,
-          site: draft.site,
-        })}
+      <StyleDetails
+        name={fields.name}
+        description={fields.description}
+        onName={fields.setName}
+        onDescription={fields.setDescription}
+        isUpdate={isUpdate}
+        open={unchanged}
         t={t}
       />
-    </form>
+
+      <PublishCssReview css={draft.css} before={latestCss} t={t} />
+
+      {unchanged && (
+        <CssUnchangedNotice
+          busy={busy}
+          onSave={() => publishing.saveDetails(details)}
+          t={t}
+        />
+      )}
+
+      {!unchanged && publishing.error !== undefined && (
+        <PublishError error={publishing.error} t={t} />
+      )}
+
+      {!unchanged && (
+        <PublishSubmit
+          label={submitLabel(isUpdate, busy, t)}
+          hint={t(
+            'Anyone can find and install published styles. You can update or unpublish later.',
+          )}
+          disabled={busy || !details.name || choice.source === 'none'}
+        />
+      )}
+    </PublishFormLayout>
   );
 }

@@ -69,6 +69,7 @@
       "functions/_lib/preview.ts",
       "src/gallery/components/AuthorPage.tsx",
       "src/gallery/components/Browse.tsx",
+      "src/gallery/components/EditPage.tsx",
       "src/gallery/components/MinePage.tsx",
       "src/gallery/components/NotFoundPage.tsx",
       "src/gallery/components/PublishPage.tsx",
@@ -294,7 +295,7 @@
   {
     "text": "Anyone can find and install published styles. You can update or unpublish later.",
     "files": [
-      "src/gallery/components/PublishSubmit.tsx"
+      "src/gallery/components/PublishForm.tsx"
     ]
   },
   {
@@ -447,7 +448,6 @@
     "files": [
       "src/gallery/components/ChangeUsernameDialog.tsx",
       "src/gallery/components/DeleteStyleButton.tsx",
-      "src/gallery/components/EditDetailsButton.tsx",
       "src/gallery/components/ReportDialog.tsx",
       "src/gallery/components/UnpublishButton.tsx",
       "src/www/components/GalleryMock.astro"
@@ -485,9 +485,9 @@
     ]
   },
   {
-    "text": "Changes show right away. Installs aren’t updated.",
+    "text": "Changes show right away. To change the CSS, publish an update from Stylebot.",
     "files": [
-      "src/gallery/components/EditDetailsButton.tsx"
+      "src/gallery/components/EditForm.tsx"
     ]
   },
   {
@@ -737,6 +737,7 @@
   {
     "text": "Couldn’t load this style.",
     "files": [
+      "src/gallery/components/EditFlow.tsx",
       "src/gallery/components/PublishFlow.tsx",
       "src/gallery/components/StylePage.tsx"
     ]
@@ -776,7 +777,7 @@
     "text": "Couldn’t save. Try again.",
     "files": [
       "src/gallery/components/ChangeUsernameDialog.tsx",
-      "src/gallery/components/EditDetailsButton.tsx",
+      "src/gallery/components/EditForm.tsx",
       "src/gallery/components/WelcomeDialog.tsx"
     ]
   },
@@ -904,7 +905,6 @@
   {
     "text": "Description",
     "files": [
-      "src/gallery/components/EditDetailsButton.tsx",
       "src/gallery/components/StyleDetailsFields.tsx"
     ]
   },
@@ -947,14 +947,14 @@
   {
     "text": "Edit",
     "files": [
-      "src/gallery/components/EditDetailsButton.tsx",
+      "src/gallery/components/MyStyleRow.tsx",
       "src/gallery/components/PublishDetailsSummary.tsx"
     ]
   },
   {
     "text": "Edit {name}",
     "files": [
-      "src/gallery/components/EditDetailsButton.tsx"
+      "src/gallery/components/EditSteps.tsx"
     ]
   },
   {
@@ -962,6 +962,13 @@
     "note": "\"More properties\" is a label in Stylebot's editor; use the extension's own translation.",
     "files": [
       "src/www/pages/[...lang]/releases/4.0.astro"
+    ]
+  },
+  {
+    "text": "Edit style",
+    "files": [
+      "src/gallery/components/EditFlow.tsx",
+      "src/gallery/components/EditPage.tsx"
     ]
   },
   {
@@ -1423,6 +1430,7 @@
   {
     "text": "It’s hidden from the Gallery until a moderator has looked at its screenshot.",
     "files": [
+      "src/gallery/components/EditForm.tsx",
       "src/gallery/components/PublishedNotice.tsx"
     ]
   },
@@ -1585,7 +1593,6 @@
   {
     "text": "Name",
     "files": [
-      "src/gallery/components/EditDetailsButton.tsx",
       "src/gallery/components/StyleDetailsFields.tsx"
     ]
   },
@@ -1952,7 +1959,7 @@
     "text": "Publish",
     "files": [
       "src/gallery/components/PublishButton.tsx",
-      "src/gallery/components/PublishSubmit.tsx"
+      "src/gallery/components/PublishForm.tsx"
     ]
   },
   {
@@ -1977,7 +1984,7 @@
   {
     "text": "Publish update",
     "files": [
-      "src/gallery/components/PublishSubmit.tsx"
+      "src/gallery/components/PublishForm.tsx"
     ]
   },
   {
@@ -1996,7 +2003,7 @@
     "text": "Publishing…",
     "files": [
       "src/gallery/components/PublishButton.tsx",
-      "src/gallery/components/PublishSubmit.tsx"
+      "src/gallery/components/PublishForm.tsx"
     ]
   },
   {
@@ -2107,7 +2114,7 @@
     "text": "Save",
     "files": [
       "src/gallery/components/ChangeUsernameDialog.tsx",
-      "src/gallery/components/EditDetailsButton.tsx"
+      "src/gallery/components/EditForm.tsx"
     ]
   },
   {
@@ -2127,6 +2134,7 @@
     "text": "Saved",
     "note": "A tag on the page after saving a style's name and description.",
     "files": [
+      "src/gallery/components/EditForm.tsx",
       "src/gallery/components/PublishedNotice.tsx"
     ]
   },
@@ -2161,7 +2169,7 @@
     "files": [
       "src/gallery/components/ChangeUsernameDialog.tsx",
       "src/gallery/components/CssUnchangedNotice.tsx",
-      "src/gallery/components/EditDetailsButton.tsx"
+      "src/gallery/components/EditForm.tsx"
     ]
   },
   {
@@ -2180,6 +2188,7 @@
   {
     "text": "Screenshot of {name} on {site}",
     "files": [
+      "src/gallery/components/EditForm.tsx",
       "src/gallery/components/PublishForm.tsx",
       "src/gallery/components/PublishedNotice.tsx",
       "src/gallery/components/StylePage.tsx"
@@ -2317,6 +2326,7 @@
   {
     "text": "Sign in to see and manage the styles you’ve published.",
     "files": [
+      "src/gallery/components/EditPage.tsx",
       "src/gallery/components/MinePage.tsx"
     ]
   },
@@ -2865,6 +2875,12 @@
     "text": "This style is no longer published.",
     "files": [
       "src/gallery/components/ReportDialog.tsx"
+    ]
+  },
+  {
+    "text": "This style isn’t one of yours. It may have been deleted, or published from another account.",
+    "files": [
+      "src/gallery/components/EditFlow.tsx"
     ]
   },
   {

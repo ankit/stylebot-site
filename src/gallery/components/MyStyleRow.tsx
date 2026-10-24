@@ -1,12 +1,13 @@
 import { type OwnStyle, resizedScreenshotUrl } from '@/gallery/lib/api';
 import { compactNumber, timeAgo } from '@/gallery/lib/format';
-import { styleHref } from '@/gallery/lib/paths';
+import { editHref, styleHref } from '@/gallery/lib/paths';
+
+import ButtonLink from '@/components/ButtonLink';
 
 import { type Locale } from '@/i18n/locales';
 import { type Translate } from '@/i18n/t';
 
 import DeleteStyleButton from './DeleteStyleButton';
-import EditDetailsButton from './EditDetailsButton';
 import Favicon from './Favicon';
 import PublishButton from './PublishButton';
 import UnpublishButton from './UnpublishButton';
@@ -95,12 +96,13 @@ export default function MyStyleRow({
 
         {!unpublished && (
           <div class="my-style-actions">
-            <EditDetailsButton
-              style={style}
-              session={session}
-              onChange={onChange}
-              t={t}
-            />
+            <ButtonLink
+              href={editHref(locale, style)}
+              variant="outline"
+              size="sm"
+            >
+              {t('Edit')}
+            </ButtonLink>
 
             <UnpublishButton
               style={style}

@@ -90,20 +90,12 @@ export function usePublish(
     }
 
     setDetailsOnly(true);
-    await run(async () => {
-      const saved = await updateStyle(session, existing.id, {
+    await run(() =>
+      updateStyle(session, existing.id, {
         name: details.name,
         description: details.description,
-      });
-
-      return {
-        ...existing,
-        name: saved.name,
-        description: saved.description,
-        slug: saved.slug,
-        removed: [],
-      };
-    });
+      }),
+    );
   };
 
   const unchanged = error instanceof ApiError && error.code === 'css_unchanged';

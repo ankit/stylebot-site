@@ -1,41 +1,20 @@
 import Button from '@/components/Button';
 
-import { type Translate } from '@/i18n/t';
-
 import './PublishSubmit.css';
 
-type Props = {
-  isUpdate: boolean;
-  busy: boolean;
-  disabled: boolean;
-  t: Translate;
-};
+type Props = { label: string; hint?: string; disabled: boolean };
 
 /**
- * Publish, or Publish update, with a line on what publishing means.
+ * The form's submit button, with any line on what it does.
  */
-export default function PublishSubmit({ isUpdate, busy, disabled, t }: Props) {
-  let label = t('Publish');
-
-  if (isUpdate) {
-    label = t('Publish update');
-  }
-
-  if (busy) {
-    label = t('Publishing…');
-  }
-
+export default function PublishSubmit({ label, hint, disabled }: Props) {
   return (
     <div class="publish-submit">
       <Button type="submit" disabled={disabled}>
         {label}
       </Button>
 
-      <p>
-        {t(
-          'Anyone can find and install published styles. You can update or unpublish later.',
-        )}
-      </p>
+      {hint && <p>{hint}</p>}
     </div>
   );
 }

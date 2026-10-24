@@ -11,12 +11,12 @@ const PREFIXES = [
 
 /**
  * The gallery is one app per locale, served at every route it handles:
- * /sites, /site/<hostname>, /style/<id>/<slug>, /author/<username>, /mine
- * and /publish.
+ * /sites, /site/<hostname>, /style/<id>/<slug>, /author/<username>, /mine,
+ * /publish and /edit/<id>.
  */
 const rewrite = (path) => {
   const match = path.match(
-    /^(\/[a-z-]+)?\/(site\/[^/]+|style\/[^/]+(\/[^/]+)?|author\/[^/]+|mine|publish|sites)\/?$/,
+    /^(\/[a-z-]+)?\/(site\/[^/]+|style\/[^/]+(\/[^/]+)?|author\/[^/]+|edit\/[^/]+|mine|publish|sites)\/?$/,
   );
 
   if (!match || (match[1] && !PREFIXES.includes(match[1]))) {
@@ -42,8 +42,8 @@ const routes = {
       });
     },
     // On Cloudflare Pages, functions/ serves the sites, site, style and author
-    // pages and the sitemaps; rewrites, which keep the address, serve /mine and
-    // /publish.
+    // pages and the sitemaps; rewrites, which keep the address, serve /mine,
+    // /publish and /edit.
     'astro:build:done': ({ dir }) => {
       const routes = {
         version: 1,
@@ -73,7 +73,7 @@ const routes = {
 
       writeFileSync(
         new URL('_redirects', dir),
-        `${PREFIXES.flatMap((p) => [`${p}/mine ${p}/ 200`, `${p}/publish ${p}/ 200`]).join('\n')}\n`,
+        `${PREFIXES.flatMap((p) => [`${p}/mine ${p}/ 200`, `${p}/publish ${p}/ 200`, `${p}/edit/* ${p}/ 200`]).join('\n')}\n`,
       );
     },
   },

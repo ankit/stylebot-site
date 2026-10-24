@@ -210,17 +210,30 @@ export const publishStyle = (session: string, id: number) =>
 export const deleteStyle = (session: string, id: number) =>
   request<void>(styleAction(id), { method: 'DELETE', session });
 
-// Changes a style's name and description without publishing a new version.
+// Changes a style's name, description and screenshot without publishing a
+// new version. A new screenshot is checked like a published one's, so a live
+// style can come back hidden.
 export const updateStyle = (
   session: string,
   id: number,
-  details: { name: string; description: string },
-) =>
-  request<StyleWithCss>(styleAction(id), {
+  details: { name: string; description: string; screenshot?: Blob },
+) => {
+  const { screenshot, ...fields } = details;
+  let body: string | FormData = JSON.stringify(fields);
+
+  if (screenshot) {
+    body = new FormData();
+    body.append('name', fields.name);
+    body.append('description', fields.description);
+    body.append('screenshot', screenshot, 'screenshot');
+  }
+
+  return request<PublishedStyle>(styleAction(id), {
     method: 'PATCH',
     session,
-    body: JSON.stringify(details),
+    body,
   });
+};
 
 // Reports a live style as the signed-in account; each account counts once.
 export const reportStyle = (session: string, id: number, reason: string) =>
