@@ -32,6 +32,15 @@
   background: var(--bg-track);
   box-shadow: var(--shadow-sm);
 
+  &[data-over] {
+    border-style: dashed;
+    border-color: var(--fg);
+  }
+
+  &[data-over] img {
+    opacity: 0.5;
+  }
+
   img {
     position: absolute;
     inset: 0;
@@ -49,6 +58,18 @@
     outline: 2px solid var(--fg);
     outline-offset: 2px;
   }
+}
+
+.screenshot-picker-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.screenshot-picker-hint {
+  font: 400 var(--text-sm) / 1.2 var(--font-ui);
+  color: var(--fg-muted);
 }
 
 .screenshot-picker-replace {

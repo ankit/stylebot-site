@@ -5,6 +5,10 @@ import { type OwnStyle, resizedScreenshotUrl } from '@/gallery/lib/api';
 // The API takes screenshots up to 1 MB.
 const MAX_BYTES = 1024 * 1024;
 
+export const SCREENSHOT_TYPES = ['image/png', 'image/jpeg', 'image/webp'];
+
+export type ScreenshotError = 'tooLarge' | 'wrongType';
+
 // `tab` is the screenshot Stylebot took of the person's tab, `current` keeps
 // the style's own, and `none` is a new style still without one.
 export type ScreenshotSource = 'tab' | 'current' | 'upload' | 'none';
@@ -36,7 +40,7 @@ export function useScreenshotChoice(
   );
   const [file, setFile] = useState<File>();
   const [fileUrl, setFileUrl] = useState<string>();
-  const [tooLarge, setTooLarge] = useState(false);
+  const [error, setError] = useState<ScreenshotError>();
 
   useEffect(() => {
     if (!file) {
@@ -51,19 +55,25 @@ export function useScreenshotChoice(
   }, [file]);
 
   const upload = (picked: File) => {
-    if (picked.size > MAX_BYTES) {
-      setTooLarge(true);
+    if (!SCREENSHOT_TYPES.includes(picked.type)) {
+      setError('wrongType');
 
       return;
     }
 
-    setTooLarge(false);
+    if (picked.size > MAX_BYTES) {
+      setError('tooLarge');
+
+      return;
+    }
+
+    setError(undefined);
     setFile(picked);
     setSource('upload');
   };
 
   const choose = (next: 'tab' | 'current') => {
-    setTooLarge(false);
+    setError(undefined);
     setSource(next);
   };
 
@@ -84,7 +94,7 @@ export function useScreenshotChoice(
     source,
     preview,
     screenshot,
-    tooLarge,
+    error,
     canUseTab: tabShot !== null,
     canKeepCurrent: existing !== null,
     upload,

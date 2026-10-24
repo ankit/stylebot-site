@@ -1,4 +1,8 @@
-import { type useScreenshotChoice } from '@/gallery/hooks/useScreenshotChoice';
+import { useFileDrop } from '@/gallery/hooks/useFileDrop';
+import {
+  SCREENSHOT_TYPES,
+  type useScreenshotChoice,
+} from '@/gallery/hooks/useScreenshotChoice';
 
 import { buttonClass } from '@/components/Button';
 
@@ -14,11 +18,12 @@ type Props = {
 
 /**
  * The screenshot to publish, saying where it's from, with an image to upload
- * in its place and, where there's one, the tab's or the style's current one
+ * or drop in its place and, where there's one, the tab's or the style's current one
  * to go back to.
  */
 export default function ScreenshotPicker({ choice, alt, t }: Props) {
   const { source, preview } = choice;
+  const drop = useFileDrop(choice.upload);
   let uploadLabel = t('Replace image');
   let uploadClass = 'screenshot-picker-replace';
 
@@ -47,18 +52,34 @@ export default function ScreenshotPicker({ choice, alt, t }: Props) {
         }
       </span>
 
-      <div class="screenshot-picker-frame">
+      <div
+        class="screenshot-picker-frame"
+        data-over={drop.over || undefined}
+        {...drop.handlers}
+      >
         {preview && <img src={preview} alt={alt} />}
 
-        <label class={uploadClass}>
-          {uploadLabel}
-          <input
-            type="file"
-            class="sr-only"
-            accept="image/png,image/jpeg,image/webp"
-            onChange={onChange}
-          />
-        </label>
+        <div class="screenshot-picker-upload">
+          <label class={uploadClass}>
+            {uploadLabel}
+            <input
+              type="file"
+              class="sr-only"
+              accept={SCREENSHOT_TYPES.join(',')}
+              onChange={onChange}
+            />
+          </label>
+
+          {!preview && (
+            <span class="screenshot-picker-hint">
+              {
+                // i18n: Under the "Upload an image" button, in the empty
+                // screenshot frame.
+                t('or drop one here')
+              }
+            </span>
+          )}
+        </div>
       </div>
 
       {source === 'tab' && (
@@ -67,9 +88,15 @@ export default function ScreenshotPicker({ choice, alt, t }: Props) {
         </figcaption>
       )}
 
-      {choice.tooLarge && (
+      {choice.error === 'tooLarge' && (
         <p class="screenshot-picker-error" role="alert">
           {t('Choose an image under 1 MB.')}
+        </p>
+      )}
+
+      {choice.error === 'wrongType' && (
+        <p class="screenshot-picker-error" role="alert">
+          {t('Choose a PNG, JPEG or WebP image.')}
         </p>
       )}
 

@@ -497,6 +497,12 @@
     ]
   },
   {
+    "text": "Choose a PNG, JPEG or WebP image.",
+    "files": [
+      "src/gallery/components/ScreenshotPicker.tsx"
+    ]
+  },
+  {
     "text": "Choose an image under 1 MB.",
     "files": [
       "src/gallery/components/ScreenshotPicker.tsx"
@@ -1787,6 +1793,13 @@
     "text": "or",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
+    "text": "or drop one here",
+    "note": "Under the \"Upload an image\" button, in the empty screenshot frame.",
+    "files": [
+      "src/gallery/components/ScreenshotPicker.tsx"
     ]
   },
   {
