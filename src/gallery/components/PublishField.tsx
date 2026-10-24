@@ -8,7 +8,7 @@ type Props = {
   label: string;
   optional?: boolean;
   hint?: string;
-  // How much of `max` the value takes, shown under the field.
+  // How much of `max` the value takes, shown under the field once it's over.
   length?: number;
   max?: number;
   children: ComponentChildren;
@@ -17,7 +17,7 @@ type Props = {
 
 /**
  * A publish form field: its label, marked when it's optional, then the
- * control, then a hint and a character count.
+ * control, then a hint and, once the value is too long, a character count.
  */
 export default function PublishField({
   label,
@@ -28,7 +28,7 @@ export default function PublishField({
   children,
   t,
 }: Props) {
-  const counted = length !== undefined && max !== undefined;
+  const over = length !== undefined && max !== undefined && length > max;
 
   return (
     <label class="publish-field">
@@ -47,12 +47,12 @@ export default function PublishField({
 
       {children}
 
-      {(hint || counted) && (
+      {(hint || over) && (
         <span class="publish-field-foot">
           <span>{hint}</span>
 
-          {counted && (
-            <span>
+          {over && (
+            <span class="publish-field-over" role="alert">
               {length} / {max}
             </span>
           )}

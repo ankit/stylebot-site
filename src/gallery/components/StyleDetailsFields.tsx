@@ -1,12 +1,11 @@
-import { useEffect, useRef } from 'preact/hooks';
-
 import { type Translate } from '@/i18n/t';
 
 import PublishField from './PublishField';
+import PublishTextarea from './PublishTextarea';
 
 // The API's limits.
 const NAME_MAX = 60;
-const DESCRIPTION_MAX = 200;
+const DESCRIPTION_MAX = 1000;
 
 type Props = {
   name: string;
@@ -29,14 +28,6 @@ export default function StyleDetailsFields({
   focusDescription = false,
   t,
 }: Props) {
-  const descriptionRef = useRef<HTMLTextAreaElement>(null);
-
-  useEffect(() => {
-    if (focusDescription) {
-      descriptionRef.current?.focus();
-    }
-  }, [focusDescription]);
-
   return (
     <>
       <PublishField label={t('Name')} t={t}>
@@ -55,12 +46,13 @@ export default function StyleDetailsFields({
         max={DESCRIPTION_MAX}
         t={t}
       >
-        <textarea
-          ref={descriptionRef}
+        <PublishTextarea
           value={description}
-          maxLength={DESCRIPTION_MAX}
+          max={DESCRIPTION_MAX}
           rows={3}
-          onInput={(e) => onDescription(e.currentTarget.value)}
+          focus={focusDescription}
+          onInput={onDescription}
+          t={t}
         />
       </PublishField>
     </>

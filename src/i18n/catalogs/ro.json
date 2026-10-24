@@ -367,6 +367,7 @@
   "Set the size…": "Setează mărimea…",
   "Set up the CLI →": "Configurează CLI →",
   "Setup": "Configurare",
+  "Shorten this to {max} characters or fewer.": "Scurtează textul la cel mult {max} caractere.",
   "Show all CSS": "Arată tot CSS-ul",
   "Show changes": "Arată modificările",
   "Shows when another rule overrides a value": "Arată când o altă regulă suprascrie o valoare",

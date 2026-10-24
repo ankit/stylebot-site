@@ -367,6 +367,7 @@
   "Set the size…": "크기를 정하고…",
   "Set up the CLI →": "CLI 설정하기 →",
   "Setup": "설정",
+  "Shorten this to {max} characters or fewer.": "{max}자 이하로 줄여 주세요.",
   "Show all CSS": "CSS 전체 보기",
   "Show changes": "변경 사항 보기",
   "Shows when another rule overrides a value": "다른 규칙이 값을 덮어쓰면 표시",

@@ -367,6 +367,7 @@
   "Set the size…": "Đặt cỡ chữ…",
   "Set up the CLI →": "Thiết lập CLI →",
   "Setup": "Thiết lập",
+  "Shorten this to {max} characters or fewer.": "Hãy rút gọn còn tối đa {max} ký tự.",
   "Show all CSS": "Hiện toàn bộ CSS",
   "Show changes": "Hiện thay đổi",
   "Shows when another rule overrides a value": "Cho biết khi giá trị bị quy tắc khác ghi đè",

@@ -367,6 +367,7 @@
   "Set the size…": "サイズを設定して…",
   "Set up the CLI →": "CLI を設定 →",
   "Setup": "設定",
+  "Shorten this to {max} characters or fewer.": "{max} 文字以内にしてください。",
   "Show all CSS": "CSS をすべて表示",
   "Show changes": "変更を表示",
   "Shows when another rule overrides a value": "ほかのルールで値が上書きされているときに表示",

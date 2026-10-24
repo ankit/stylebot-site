@@ -367,6 +367,7 @@
   "Set the size…": "Defina o tamanho…",
   "Set up the CLI →": "Configurar a CLI →",
   "Setup": "Configuração",
+  "Shorten this to {max} characters or fewer.": "Encurte para no máximo {max} caracteres.",
   "Show all CSS": "Mostrar todo o CSS",
   "Show changes": "Mostrar alterações",
   "Shows when another rule overrides a value": "Indica quando outra regra substitui um valor",

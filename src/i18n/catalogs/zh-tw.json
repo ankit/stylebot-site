@@ -367,6 +367,7 @@
   "Set the size…": "設定字級…",
   "Set up the CLI →": "設定 CLI →",
   "Setup": "設定",
+  "Shorten this to {max} characters or fewer.": "請縮短至 {max} 個字元以內。",
   "Show all CSS": "顯示全部 CSS",
   "Show changes": "顯示變更",
   "Shows when another rule overrides a value": "其他規則覆寫某個值時會顯示出來",

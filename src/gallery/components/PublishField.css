@@ -13,7 +13,6 @@
     background: var(--bg-surface);
     font: 400 var(--text-base) / 1.5 var(--font-ui);
     color: var(--fg);
-    resize: vertical;
 
     &::placeholder {
       color: var(--fg-subtle);
@@ -24,6 +23,15 @@
       border-color: color-mix(in oklab, var(--fg) 25%, var(--border-strong));
       box-shadow: 0 0 0 3px color-mix(in oklab, var(--fg) 4%, transparent);
     }
+
+    &[aria-invalid='true'] {
+      border-color: var(--danger);
+    }
+  }
+
+  textarea {
+    resize: none;
+    overflow: hidden;
   }
 }
 
@@ -46,4 +54,8 @@
   display: flex;
   justify-content: space-between;
   gap: 12px;
+}
+
+.publish-field-over {
+  color: var(--danger);
 }

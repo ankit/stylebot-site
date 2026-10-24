@@ -2307,6 +2307,13 @@
     ]
   },
   {
+    "text": "Shorten this to {max} characters or fewer.",
+    "note": "Shown when a form field has more characters than it allows.",
+    "files": [
+      "src/gallery/components/PublishTextarea.tsx"
+    ]
+  },
+  {
     "text": "Show all CSS",
     "files": [
       "src/gallery/components/PublishCssDialog.tsx"

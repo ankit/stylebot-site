@@ -367,6 +367,7 @@
   "Set the size…": "Задайте размер…",
   "Set up the CLI →": "Настроить CLI →",
   "Setup": "Настройка",
+  "Shorten this to {max} characters or fewer.": "Сократите текст до {max} символов.",
   "Show all CSS": "Показать весь CSS",
   "Show changes": "Показать изменения",
   "Shows when another rule overrides a value": "Видно, когда значение переопределено другим правилом",

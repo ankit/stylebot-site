@@ -1,8 +1,7 @@
-import { useEffect, useRef } from 'preact/hooks';
-
 import { type Translate } from '@/i18n/t';
 
 import PublishField from './PublishField';
+import PublishTextarea from './PublishTextarea';
 
 // The API's limit.
 const NOTES_MAX = 200;
@@ -14,12 +13,6 @@ type Props = { value: string; onInput: (notes: string) => void; t: Translate };
  * update asks for first.
  */
 export default function VersionNotesField({ value, onInput, t }: Props) {
-  const ref = useRef<HTMLTextAreaElement>(null);
-
-  useEffect(() => {
-    ref.current?.focus();
-  }, []);
-
   return (
     <PublishField
       label={
@@ -31,12 +24,13 @@ export default function VersionNotesField({ value, onInput, t }: Props) {
       max={NOTES_MAX}
       t={t}
     >
-      <textarea
-        ref={ref}
+      <PublishTextarea
         value={value}
-        maxLength={NOTES_MAX}
+        max={NOTES_MAX}
         rows={2}
-        onInput={(e) => onInput(e.currentTarget.value)}
+        focus
+        onInput={onInput}
+        t={t}
       />
     </PublishField>
   );
