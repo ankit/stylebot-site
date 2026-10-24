@@ -16,7 +16,7 @@ type Props = { id: string; locale: Locale; strings: Catalog };
  * Edits one of the account's styles without publishing a new version: its
  * name, description and screenshot, not its CSS. Stylebot links here.
  */
-export default function EditPage({ id, strings }: Props) {
+export default function EditPage({ id, locale, strings }: Props) {
   const t = translator(strings);
   const session = useSession();
   const title = t('Edit style');
@@ -37,7 +37,14 @@ export default function EditPage({ id, strings }: Props) {
         </>
       )}
 
-      {session && <EditFlow id={Number(id)} session={session.session} t={t} />}
+      {session && (
+        <EditFlow
+          id={Number(id)}
+          locale={locale}
+          session={session.session}
+          t={t}
+        />
+      )}
     </div>
   );
 }

@@ -60,7 +60,7 @@ export default function PublishFlow({
 
         <div class="g-note" role="alert">
           {t(
-            'The style this updates isn’t one of yours. It may have been deleted, or published from another account.',
+            'The style this updates isn’t in your account. It may have been deleted, or published from another account.',
           )}
           <Button variant="outline" size="sm" onClick={() => setAsNew(true)}>
             {t('Publish as a new style')}

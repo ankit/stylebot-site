@@ -2811,7 +2811,7 @@
     ]
   },
   {
-    "text": "The style this updates isn’t one of yours. It may have been deleted, or published from another account.",
+    "text": "The style this updates isn’t in your account. It may have been deleted, or published from another account.",
     "files": [
       "src/gallery/components/PublishFlow.tsx"
     ]
@@ -2883,7 +2883,7 @@
     ]
   },
   {
-    "text": "This style isn’t one of yours. It may have been deleted, or published from another account.",
+    "text": "This style isn’t in your account. It may have been deleted, or published from another account.",
     "files": [
       "src/gallery/components/EditFlow.tsx"
     ]
@@ -3257,6 +3257,7 @@
     "text": "Your styles",
     "files": [
       "src/gallery/components/AccountNav.tsx",
+      "src/gallery/components/EditFlow.tsx",
       "src/gallery/components/MinePage.tsx",
       "src/gallery/components/PublishUnavailable.tsx",
       "src/gallery/components/PublishedNotice.tsx",
