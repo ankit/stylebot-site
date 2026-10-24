@@ -26,10 +26,8 @@
   align-items: center;
   gap: 14px;
   padding: 40px;
-  border: 1px dashed var(--border-strong);
-  border-radius: var(--radius-lg);
   text-align: center;
-  font: 400 var(--text-sm) / 1.5 var(--font-ui);
+  font: 400 var(--text-base) / 1.5 var(--font-ui);
   color: var(--fg-muted);
 }
 
