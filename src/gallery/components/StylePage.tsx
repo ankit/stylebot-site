@@ -102,7 +102,11 @@ export default function StylePage({ locale, strings }: Props) {
         />
 
         <div class="style-page-side">
-          <h1>{style.name}</h1>
+          <div class="style-page-title">
+            <h1>{style.name}</h1>
+
+            <EditStyleButton style={style} locale={locale} t={t} />
+          </div>
 
           <a class="style-page-site" href={siteHref(locale, style.site)}>
             <Favicon site={style.site} />
@@ -127,8 +131,6 @@ export default function StylePage({ locale, strings }: Props) {
             <dt>{t('Version')}</dt>
             <dd>{style.version}</dd>
           </dl>
-
-          <EditStyleButton style={style} locale={locale} t={t} />
 
           <ReportStyleButton style={style} t={t} />
         </div>

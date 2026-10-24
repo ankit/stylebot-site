@@ -52,6 +52,13 @@
   }
 }
 
+.style-page-title {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
 .style-page-site {
   align-self: flex-start;
   display: flex;

@@ -1,3 +1,4 @@
 .edit-style-button {
-  align-self: flex-start;
+  flex: none;
+  margin-top: 4px;
 }
