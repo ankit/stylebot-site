@@ -1,44 +1,11 @@
-.theme-menu {
-  position: relative;
-}
-
-.theme-menu-scrim {
-  position: fixed;
-  inset: 0;
-  z-index: var(--layer-dialog);
-}
-
 .theme-menu-list {
-  position: absolute;
-  top: 40px;
-  right: 0;
-  z-index: calc(var(--layer-dialog) + 1);
   width: 200px;
-  padding: 6px;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border);
-  background: var(--bg-surface);
-  box-shadow: var(--shadow-xl);
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
 }
 
-.theme-option {
+.menu-item.theme-option {
   display: flex;
   align-items: center;
   gap: 10px;
-  width: 100%;
-  padding: 8px 10px;
-  border: none;
-  border-radius: var(--radius-md);
-  cursor: pointer;
-  text-align: left;
-  background: transparent;
-}
-
-.theme-option:hover {
-  background: var(--bg-hover);
 }
 
 .theme-option.is-on {

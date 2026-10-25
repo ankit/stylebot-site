@@ -1,6 +1,6 @@
 // Talks to Stylebot's site bridge, a content script that marks the page's
 // <html> with data-stylebot-bridge as it loads, previews the styles a page
-// asks it to, and says which are installed.
+// asks it to, and says which are installed or published from a profile.
 
 // Stylebot fetches the style before it opens the preview's tab.
 const PREVIEW_TIMEOUT_MS = 8000;
@@ -50,15 +50,33 @@ function sendBridgeRequest<T>(
 }
 
 /**
+ * The version of a style a Stylebot profile was last published as, and
+ * whether the profile has changed since.
+ */
+export type PublishedStatus = { version: number; changed: boolean };
+
+/**
+ * The profile each of these styles is installed as, and the published status
+ * of each published from Stylebot, by style id.
+ */
+export async function getStyleStatus(styleIds: Array<number>) {
+  const answer = await sendBridgeRequest<{
+    installed?: Record<string, string>;
+    published?: Record<string, PublishedStatus>;
+  }>('stylebot:status', crypto.randomUUID(), STATUS_TIMEOUT_MS, { styleIds });
+
+  return {
+    installed: answer?.installed ?? {},
+    published: answer?.published ?? {},
+  };
+}
+
+/**
  * The profile each of these styles is installed as in Stylebot, by style id.
  * Styles that aren't installed are left out.
  */
 export async function getInstalledStyles(styleIds: Array<number>) {
-  const answer = await sendBridgeRequest<{
-    installed: Record<string, string>;
-  }>('stylebot:status', crypto.randomUUID(), STATUS_TIMEOUT_MS, { styleIds });
-
-  return answer?.installed ?? {};
+  return (await getStyleStatus(styleIds)).installed;
 }
 
 /**
@@ -69,6 +87,20 @@ export async function getInstalledStyles(styleIds: Array<number>) {
 export async function previewInStylebot(styleId: number) {
   const answer = await sendBridgeRequest<{ ok: boolean }>(
     'stylebot:preview',
+    styleId,
+    PREVIEW_TIMEOUT_MS,
+  );
+
+  return answer?.ok === true;
+}
+
+/**
+ * Asks Stylebot to open the style's unpublished changes in /publish. Resolves
+ * whether it did. Only works right after a click.
+ */
+export async function publishFromStylebot(styleId: number) {
+  const answer = await sendBridgeRequest<{ ok: boolean }>(
+    'stylebot:publish',
     styleId,
     PREVIEW_TIMEOUT_MS,
   );

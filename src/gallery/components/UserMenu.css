@@ -1,5 +1,4 @@
 .user-menu {
-  position: relative;
   margin-left: 4px;
 }
 
@@ -20,7 +19,7 @@
 
 .user-menu-button:hover,
 .user-menu-button:focus-visible,
-.user-menu-button[aria-expanded='true'] {
+.user-menu-button.is-open {
   background: var(--bg-hover);
 }
 
@@ -35,47 +34,7 @@
   white-space: nowrap;
 }
 
-.user-menu-scrim {
-  position: fixed;
-  inset: 0;
-  z-index: var(--layer-dialog);
-}
-
-.user-menu-list {
-  position: absolute;
-  top: 40px;
-  right: 0;
-  z-index: calc(var(--layer-dialog) + 1);
-  min-width: 180px;
-  padding: 6px;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border);
-  background: var(--bg-surface);
-  box-shadow: var(--shadow-xl);
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-}
-
-.user-menu-item {
-  display: block;
-  width: 100%;
-  padding: 8px 10px;
-  border: none;
-  border-radius: var(--radius-md);
-  background: transparent;
-  color: var(--fg);
-  font: 400 var(--text-sm) / 1.2 var(--font-ui);
-  text-align: left;
-  cursor: pointer;
-}
-
-.user-menu-item:hover,
-.user-menu-item:focus-visible {
-  background: var(--bg-hover);
-}
-
-.user-menu-mine {
+.menu-item.user-menu-mine {
   display: none;
 }
 
@@ -84,7 +43,7 @@
     max-width: 140px;
   }
 
-  .user-menu-mine {
+  .menu-item.user-menu-mine {
     display: block;
   }
 }

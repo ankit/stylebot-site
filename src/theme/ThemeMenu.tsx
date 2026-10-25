@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'preact/hooks';
 
 import ContrastIcon from '@/components/icons/ContrastIcon';
+import Menu from '@/components/Menu';
 import Tooltip from '@/components/Tooltip';
 
 import { track } from '@/lib/analytics';
@@ -21,79 +22,57 @@ export default function ThemeMenu({ strings }: { strings: Catalog }) {
     'late-edition': t('Late Edition'),
   };
   const [theme, setTheme] = useState<ThemeKey>('light');
-  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     setTheme(currentTheme());
-
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        setOpen(false);
-      }
-    };
-
-    window.addEventListener('keydown', onKey);
-
-    return () => window.removeEventListener('keydown', onKey);
   }, []);
 
   const pick = (key: ThemeKey) => {
     applyTheme(key);
     track('Site theme', { theme: key });
     setTheme(key);
-    setOpen(false);
   };
 
   const label = t('Theme: {theme}', { theme: names[theme] });
 
   return (
-    <div class="theme-menu">
-      <button
-        class={`icon-btn${open ? ' is-open' : ''}`}
-        aria-label={label}
-        aria-haspopup="menu"
-        aria-expanded={open}
-        onClick={() => setOpen(!open)}
-      >
-        <ContrastIcon />
-        <Tooltip>{t('Theme')}</Tooltip>
-      </button>
-      {open && (
+    <Menu
+      buttonClass="icon-btn"
+      label={label}
+      listClass="theme-menu-list"
+      button={
         <>
-          <div class="theme-menu-scrim" onClick={() => setOpen(false)} />
-          <div class="theme-menu-list" role="menu">
-            {THEME_KEYS.map((key) => {
-              const colors = THEMES[key];
-              const on = key === theme;
-
-              return (
-                <button
-                  key={key}
-                  role="menuitemradio"
-                  aria-checked={on}
-                  class={`theme-option${on ? ' is-on' : ''}`}
-                  onClick={() => pick(key)}
-                >
-                  <span
-                    class="theme-dot"
-                    style={{
-                      background: `linear-gradient(135deg,${colors['bg-surface']} 0 50%,${colors.accent} 50% 100%)`,
-                      boxShadow: `inset 0 0 0 1px ${colors['border-strong']}`,
-                    }}
-                  />
-                  <span
-                    class="theme-name"
-                    style={{ fontFamily: colors['font-ui'] }}
-                  >
-                    {names[key]}
-                  </span>
-                  <span class="theme-check">✓</span>
-                </button>
-              );
-            })}
-          </div>
+          <ContrastIcon />
+          <Tooltip>{t('Theme')}</Tooltip>
         </>
-      )}
-    </div>
+      }
+    >
+      {THEME_KEYS.map((key) => {
+        const colors = THEMES[key];
+        const on = key === theme;
+
+        return (
+          <button
+            key={key}
+            role="menuitemradio"
+            aria-checked={on}
+            class={`menu-item theme-option${on ? ' is-on' : ''}`}
+            onClick={() => pick(key)}
+          >
+            <span
+              class="theme-dot"
+              style={{
+                background: `linear-gradient(135deg,${colors['bg-surface']} 0 50%,${colors.accent} 50% 100%)`,
+                boxShadow: `inset 0 0 0 1px ${colors['border-strong']}`,
+              }}
+            />
+            <span class="theme-name" style={{ fontFamily: colors['font-ui'] }}>
+              {names[key]}
+            </span>
+            <span class="theme-check">✓</span>
+          </button>
+        );
+      })}
+    </Menu>
   );
 }

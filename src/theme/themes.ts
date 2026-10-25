@@ -30,7 +30,7 @@ export const THEMES: Record<ThemeKey, Theme> = {
     'fg-secondary': '#3f4550',
     'fg-muted': '#5f6672',
     'fg-subtle': '#8b919c',
-    accent: '#2563eb',
+    accent: '#3660ba',
     'accent-bg': '#f2f6fe',
     'accent-border': '#dfe8fc',
     success: '#1f7a45',

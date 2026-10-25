@@ -47,9 +47,6 @@ export default function EditForm({ edit, t }: Props) {
         <>
           <PublishSubmit
             label={label}
-            hint={t(
-              'Changes show right away. To change the CSS, publish an update from Stylebot.',
-            )}
             disabled={busy || !!saved || !edit.name.trim()}
           />
 

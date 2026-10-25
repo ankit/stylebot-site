@@ -1,19 +1,20 @@
 import { type OwnStyle, resizedScreenshotUrl } from '@/gallery/lib/api';
-import { compactNumber, timeAgo } from '@/gallery/lib/format';
-import { editHref, styleHref } from '@/gallery/lib/paths';
-
-import ButtonLink from '@/components/ButtonLink';
+import { type PublishedStatus } from '@/gallery/lib/bridge';
+import { timeAgo } from '@/gallery/lib/format';
+import { styleHref } from '@/gallery/lib/paths';
 
 import { type Locale } from '@/i18n/locales';
 import { type Translate } from '@/i18n/t';
 
-import DeleteStyleButton from './DeleteStyleButton';
 import Favicon from './Favicon';
+import MyStyleMenu from './MyStyleMenu';
+import MyStyleStatus from './MyStyleStatus';
 
 import './MyStyleRow.css';
 
 type Props = {
   style: OwnStyle;
+  published?: PublishedStatus;
   session: string;
   onDeleted: () => void;
   locale: Locale;
@@ -22,17 +23,20 @@ type Props = {
 
 /**
  * One of the account's styles: its screenshot and name, linking to its page
- * while it's live, its site, when it was updated, its installs, and Edit
- * and Delete.
+ * while it's live, its site, when it was updated, where it stands in the
+ * Gallery, and a menu with Edit and Delete.
  */
 export default function MyStyleRow({
   style,
+  published,
   session,
   onDeleted,
   locale,
   t,
 }: Props) {
   const live = style.status === 'live';
+  const changed =
+    published?.changed === true && published.version === style.version;
 
   return (
     <li class="my-style-row">
@@ -49,15 +53,6 @@ export default function MyStyleRow({
           {live && <a href={styleHref(locale, style)}>{style.name}</a>}
 
           {!live && <span>{style.name}</span>}
-
-          {style.status === 'hidden' && (
-            <span class="my-style-badge">
-              {
-                // i18n: A badge on one of your styles that was hidden after people reported it.
-                t('Hidden after reports')
-              }
-            </span>
-          )}
         </div>
 
         <div class="my-style-meta">
@@ -74,29 +69,15 @@ export default function MyStyleRow({
         </div>
       </div>
 
-      <div class="my-style-side">
-        <div class="my-style-installs">
-          <strong>{compactNumber(locale, style.installs)}</strong>
-          {t('Installs')}
-        </div>
+      <MyStyleStatus style={style} changed={changed} locale={locale} t={t} />
 
-        <div class="my-style-actions">
-          <ButtonLink
-            href={editHref(locale, style)}
-            variant="outline"
-            size="sm"
-          >
-            {t('Edit')}
-          </ButtonLink>
-
-          <DeleteStyleButton
-            style={style}
-            session={session}
-            onDeleted={onDeleted}
-            t={t}
-          />
-        </div>
-      </div>
+      <MyStyleMenu
+        style={style}
+        session={session}
+        onDeleted={onDeleted}
+        locale={locale}
+        t={t}
+      />
     </li>
   );
 }

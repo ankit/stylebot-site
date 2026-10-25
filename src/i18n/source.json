@@ -21,6 +21,7 @@
   {
     "text": "{count} installs",
     "files": [
+      "src/gallery/components/MyStyleInstalls.tsx",
       "src/www/components/FeaturedStyles.astro"
     ]
   },
@@ -90,6 +91,12 @@
     "text": "✨ Just make it nice",
     "files": [
       "src/www/components/NotFound.tsx"
+    ]
+  },
+  {
+    "text": "1 install",
+    "files": [
+      "src/gallery/components/MyStyleInstalls.tsx"
     ]
   },
   {
@@ -473,7 +480,7 @@
     "text": "Cancel",
     "files": [
       "src/gallery/components/ChangeUsernameDialog.tsx",
-      "src/gallery/components/DeleteStyleButton.tsx",
+      "src/gallery/components/DeleteStyleDialog.tsx",
       "src/gallery/components/ReportDialog.tsx"
     ]
   },
@@ -506,12 +513,6 @@
     "text": "Changelog",
     "files": [
       "src/components/Footer.astro"
-    ]
-  },
-  {
-    "text": "Changes show right away. To change the CSS, publish an update from Stylebot.",
-    "files": [
-      "src/gallery/components/EditForm.tsx"
     ]
   },
   {
@@ -750,7 +751,7 @@
   {
     "text": "Couldn’t delete. Try again.",
     "files": [
-      "src/gallery/components/DeleteStyleButton.tsx"
+      "src/gallery/components/DeleteStyleDialog.tsx"
     ]
   },
   {
@@ -789,6 +790,13 @@
     "text": "Couldn’t open the preview. Try again.",
     "files": [
       "src/gallery/components/PreviewCard.tsx"
+    ]
+  },
+  {
+    "text": "Couldn’t open your changes from Stylebot. Try again.",
+    "note": "Shown when Stylebot couldn't open your unpublished changes to publish them.",
+    "files": [
+      "src/gallery/components/PublishUpdateLink.tsx"
     ]
   },
   {
@@ -911,13 +919,14 @@
   {
     "text": "Delete",
     "files": [
-      "src/gallery/components/DeleteStyleButton.tsx"
+      "src/gallery/components/DeleteStyleDialog.tsx",
+      "src/gallery/components/MyStyleMenu.tsx"
     ]
   },
   {
     "text": "Delete {name}?",
     "files": [
-      "src/gallery/components/DeleteStyleButton.tsx"
+      "src/gallery/components/DeleteStyleDialog.tsx"
     ]
   },
   {
@@ -929,7 +938,7 @@
   {
     "text": "Deleting…",
     "files": [
-      "src/gallery/components/DeleteStyleButton.tsx"
+      "src/gallery/components/DeleteStyleDialog.tsx"
     ]
   },
   {
@@ -984,7 +993,7 @@
     "text": "Edit",
     "files": [
       "src/gallery/components/EditStyleButton.tsx",
-      "src/gallery/components/MyStyleRow.tsx",
+      "src/gallery/components/MyStyleMenu.tsx",
       "src/gallery/components/PublishDetailsSummary.tsx"
     ]
   },
@@ -1180,10 +1189,11 @@
   },
   {
     "text": "Gallery",
-    "note": "A short tag next to the Stylebot logo, naming this part of the site.",
+    "note": "Column heading over where each of your styles stands in the Gallery. A short tag next to the Stylebot logo, naming this part of the site.",
     "files": [
       "src/components/Footer.astro",
       "src/components/Header.astro",
+      "src/gallery/components/MyStyleList.tsx",
       "src/gallery/layouts/Gallery.astro",
       "src/www/components/Features.astro",
       "src/www/components/GalleryMock.astro",
@@ -1296,7 +1306,7 @@
     "text": "Hidden after reports",
     "note": "A badge on one of your styles that was hidden after people reported it.",
     "files": [
-      "src/gallery/components/MyStyleRow.tsx"
+      "src/gallery/components/MyStyleStatusLine.tsx"
     ]
   },
   {
@@ -1368,13 +1378,6 @@
     ]
   },
   {
-    "text": "In the Gallery",
-    "note": "Heading over your styles that are listed in the Gallery.",
-    "files": [
-      "src/gallery/components/MyStyleList.tsx"
-    ]
-  },
-  {
     "text": "In your browser",
     "files": [
       "src/www/pages/[...lang]/privacy.astro"
@@ -1435,7 +1438,6 @@
   {
     "text": "Installs",
     "files": [
-      "src/gallery/components/MyStyleRow.tsx",
       "src/gallery/components/StylePage.tsx"
     ]
   },
@@ -1604,6 +1606,13 @@
     ]
   },
   {
+    "text": "More for {name}",
+    "note": "The ⋯ button on one of your styles, opening Edit and Delete.",
+    "files": [
+      "src/gallery/components/MyStyleMenu.tsx"
+    ]
+  },
+  {
     "text": "More for {site}",
     "files": [
       "src/gallery/components/MoreForSite.tsx"
@@ -1688,6 +1697,13 @@
     ]
   },
   {
+    "text": "No installs yet",
+    "note": "Under a style's status on Your styles, when nobody has installed it.",
+    "files": [
+      "src/gallery/components/MyStyleInstalls.tsx"
+    ]
+  },
+  {
     "text": "No sites match “{query}”.",
     "files": [
       "src/gallery/components/SitesPage.tsx"
@@ -1724,19 +1740,6 @@
     "note": "Text decoration option: no underline, strikethrough or overline",
     "files": [
       "src/www/components/demo/Demo.tsx"
-    ]
-  },
-  {
-    "text": "None of your styles are in the Gallery right now.",
-    "files": [
-      "src/gallery/components/MyStyleList.tsx"
-    ]
-  },
-  {
-    "text": "Not in the Gallery",
-    "note": "Heading over your styles that were hidden after reports.",
-    "files": [
-      "src/gallery/components/MyStyleList.tsx"
     ]
   },
   {
@@ -2016,7 +2019,8 @@
   {
     "text": "Publish update",
     "files": [
-      "src/gallery/components/PublishForm.tsx"
+      "src/gallery/components/PublishForm.tsx",
+      "src/gallery/components/PublishUpdateLink.tsx"
     ]
   },
   {
@@ -2027,7 +2031,9 @@
   },
   {
     "text": "Published",
+    "note": "The status of one of your styles that's listed in the Gallery.",
     "files": [
+      "src/gallery/components/MyStyleStatusLine.tsx",
       "src/gallery/components/PublishedNotice.tsx"
     ]
   },
@@ -2427,6 +2433,13 @@
     "text": "Spam or misleading",
     "files": [
       "src/gallery/components/ReportDialog.tsx"
+    ]
+  },
+  {
+    "text": "Style",
+    "note": "Column heading over your styles' names on Your styles.",
+    "files": [
+      "src/gallery/components/MyStyleList.tsx"
     ]
   },
   {
@@ -2921,7 +2934,7 @@
   {
     "text": "This can’t be undone. Existing installs keep working but won’t get updates.",
     "files": [
-      "src/gallery/components/DeleteStyleButton.tsx"
+      "src/gallery/components/DeleteStyleDialog.tsx"
     ]
   },
   {
@@ -3100,6 +3113,13 @@
     "text": "Undo support",
     "files": [
       "src/www/pages/[...lang]/releases/4.0.astro"
+    ]
+  },
+  {
+    "text": "Unpublished changes",
+    "note": "A badge on one of your styles whose profile in Stylebot has changes you haven't published.",
+    "files": [
+      "src/gallery/components/MyStyleStatusLine.tsx"
     ]
   },
   {

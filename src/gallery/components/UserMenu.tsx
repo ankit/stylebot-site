@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'preact/hooks';
+import { useState } from 'preact/hooks';
 
 import { useWelcomeSeen } from '@/gallery/hooks/useWelcomeSeen';
 import { type Session } from '@/gallery/lib/api';
 import { signOut } from '@/gallery/lib/auth';
 
 import ChevronDownIcon from '@/components/icons/ChevronDownIcon';
+import Menu from '@/components/Menu';
 
 import { type Locale, localizePath } from '@/i18n/locales';
 import { type Translate } from '@/i18n/t';
@@ -21,72 +22,41 @@ type Props = { session: Session; locale: Locale; t: Translate };
  */
 export default function UserMenu({ session, locale, t }: Props) {
   const { account } = session;
-  const [open, setOpen] = useState(false);
   const [changingName, setChangingName] = useState(false);
   const [welcomeSeen, markWelcomeSeen] = useWelcomeSeen(account.id);
 
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        setOpen(false);
-      }
-    };
-
-    window.addEventListener('keydown', onKey);
-
-    return () => window.removeEventListener('keydown', onKey);
-  }, []);
-
   return (
     <div class="user-menu">
-      <button
-        class="user-menu-button"
-        aria-haspopup="menu"
-        aria-expanded={open}
-        onClick={() => setOpen(!open)}
+      <Menu
+        buttonClass="user-menu-button"
+        button={
+          <>
+            <span class="user-menu-name">{account.username}</span>
+
+            <ChevronDownIcon />
+          </>
+        }
       >
-        <span class="user-menu-name">{account.username}</span>
+        <a
+          role="menuitem"
+          class="menu-item user-menu-mine"
+          href={localizePath(locale, '/mine')}
+        >
+          {t('Your styles')}
+        </a>
 
-        <ChevronDownIcon />
-      </button>
+        <button
+          role="menuitem"
+          class="menu-item"
+          onClick={() => setChangingName(true)}
+        >
+          {t('Change username')}
+        </button>
 
-      {open && (
-        <>
-          <div class="user-menu-scrim" onClick={() => setOpen(false)} />
-
-          <div class="user-menu-list" role="menu">
-            <a
-              role="menuitem"
-              class="user-menu-item user-menu-mine"
-              href={localizePath(locale, '/mine')}
-            >
-              {t('Your styles')}
-            </a>
-
-            <button
-              role="menuitem"
-              class="user-menu-item"
-              onClick={() => {
-                setOpen(false);
-                setChangingName(true);
-              }}
-            >
-              {t('Change username')}
-            </button>
-
-            <button
-              role="menuitem"
-              class="user-menu-item"
-              onClick={() => {
-                setOpen(false);
-                signOut();
-              }}
-            >
-              {t('Sign out')}
-            </button>
-          </div>
-        </>
-      )}
+        <button role="menuitem" class="menu-item" onClick={() => signOut()}>
+          {t('Sign out')}
+        </button>
+      </Menu>
 
       {!account.usernameConfirmed && !welcomeSeen && !changingName && (
         <WelcomeDialog

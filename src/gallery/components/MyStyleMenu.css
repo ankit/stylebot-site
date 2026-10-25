@@ -1,0 +1,18 @@
+.my-style-menu-button {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--fg-muted);
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible,
+  &.is-open {
+    background: var(--bg-hover);
+    color: var(--fg);
+  }
+}
