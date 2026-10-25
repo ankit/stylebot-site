@@ -1,14 +1,44 @@
 ---
-import { STORAGE_KEY, THEME_KEYS, themeStylesheet } from './themes';
+import {
+  COOKIE_DOMAIN,
+  COOKIE_MAX_AGE,
+  STORAGE_KEY,
+  THEME_KEYS,
+  themeStylesheet,
+} from './themes';
 ---
 
-<script is:inline define:vars={{ STORAGE_KEY, THEME_KEYS }}>
-  let saved = null;
+<script
+  is:inline
+  define:vars={{ COOKIE_DOMAIN, COOKIE_MAX_AGE, STORAGE_KEY, THEME_KEYS }}
+>
+  const cookie = document.cookie
+    .split('; ')
+    .find((entry) => entry.startsWith(`${STORAGE_KEY}=`));
+  let saved = cookie && cookie.slice(STORAGE_KEY.length + 1);
 
-  try {
-    saved = localStorage.getItem(STORAGE_KEY);
-  } catch {
-    // Storage can be blocked; fall back to the system theme.
+  if (!saved) {
+    try {
+      saved = localStorage.getItem(STORAGE_KEY);
+      localStorage.removeItem(STORAGE_KEY);
+    } catch {
+      // Storage can be blocked; fall back to the system theme.
+    }
+
+    // Moves a theme saved before the cookie into it, so both sites share it.
+    if (THEME_KEYS.indexOf(saved) >= 0) {
+      const { hostname } = location;
+      let entry = `${STORAGE_KEY}=${saved}; path=/; max-age=${COOKIE_MAX_AGE}; samesite=lax`;
+
+      if (
+        hostname === COOKIE_DOMAIN ||
+        hostname.endsWith(`.${COOKIE_DOMAIN}`)
+      ) {
+        entry += `; domain=${COOKIE_DOMAIN}`;
+      }
+
+      document.cookie = entry;
+    }
   }
 
   document.documentElement.dataset.theme =

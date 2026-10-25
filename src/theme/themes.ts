@@ -130,6 +130,11 @@ export const DARK_THEMES: Array<ThemeKey> = ['dark', 'late-edition'];
 
 export const STORAGE_KEY = 'stylebot-site-theme';
 
+/** The domain whose subdomains share the saved theme cookie. */
+export const COOKIE_DOMAIN = 'stylebot.dev';
+
+export const COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
+
 /**
  * Whether a theme has a dark page, which also switches the product mocks
  * to the dark editor palette.
