@@ -10,7 +10,7 @@ type Props = {
 };
 
 /**
- * The publish and edit forms' columns: the fields, then the screenshot beside
+ * The publish and edit forms' columns: the fields, then the screenshots beside
  * them, or above them on a narrow screen, with `footer`, the submit button,
  * under both, since it saves both.
  */

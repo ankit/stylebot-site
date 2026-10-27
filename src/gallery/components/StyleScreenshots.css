@@ -1,0 +1,52 @@
+.style-screenshots {
+  grid-area: shot;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.style-screenshots-thumbs {
+  display: flex;
+  gap: 12px;
+}
+
+.style-screenshots-thumb {
+  width: 120px;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg-track);
+  cursor: pointer;
+  opacity: 0.7;
+  transition:
+    opacity 0.15s ease,
+    box-shadow 0.15s ease;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &[aria-pressed='true'] {
+    opacity: 1;
+    box-shadow:
+      0 0 0 2px var(--bg-page),
+      0 0 0 4px var(--border-strong);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 2px var(--bg-page),
+      0 0 0 4px var(--fg);
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: top center;
+  }
+}

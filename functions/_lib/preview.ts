@@ -57,7 +57,7 @@ const withCounts = (
   ].join(' ');
 
 const screenshot = (env: Env, style: Style) =>
-  apiOrigin(env) + style.screenshot;
+  apiOrigin(env) + style.screenshots[0];
 
 const stylePage: Lookup = async (env, { locale, t, params: [id, slug] }) => {
   const style = await api<Style>(env, `/styles/${encodeURIComponent(id)}`);

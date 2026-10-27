@@ -21,6 +21,9 @@ type Props = {
   fullWidth?: number;
   // What to show zoomed in place of the image, given a way to close it.
   renderZoomed?: (close: () => void) => ComponentChildren;
+  // Set both to open and close it from outside, too.
+  zoomed?: boolean;
+  onZoomChange?: (zoomed: boolean) => void;
   // Islands pass `strings`; a Preact parent that already has `t` passes that.
   strings?: Catalog;
   t?: Translate;
@@ -49,10 +52,20 @@ export default function ZoomableImage({
   full,
   fullWidth,
   renderZoomed,
+  zoomed: zoomedProp,
+  onZoomChange,
   strings,
   t = translator(strings),
 }: Props) {
-  const [zoomed, setZoomed] = useState(false);
+  const [ownZoomed, setOwnZoomed] = useState(false);
+  let zoomed = ownZoomed;
+  let setZoomed = (next: boolean) => setOwnZoomed(next);
+
+  if (onZoomChange) {
+    zoomed = zoomedProp ?? false;
+    setZoomed = onZoomChange;
+  }
+
   const close = () => setZoomed(false);
 
   const onKeyDown = (e: KeyboardEvent) => {

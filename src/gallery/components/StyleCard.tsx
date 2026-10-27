@@ -42,6 +42,7 @@ export default function StyleCard({
   t,
 }: Props) {
   const href = styleHref(locale, style);
+  const [cover] = style.screenshots;
 
   return (
     <div class="style-card">
@@ -54,8 +55,8 @@ export default function StyleCard({
         )}
         <img
           class="style-card-shot"
-          src={resizedScreenshotUrl(style, 960)}
-          srcSet={screenshotSrcset(style)}
+          src={resizedScreenshotUrl(cover, 960)}
+          srcSet={screenshotSrcset(cover)}
           sizes={sizes}
           alt=""
           loading="lazy"

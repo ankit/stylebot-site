@@ -3,20 +3,12 @@ import { useRoute } from 'preact-iso';
 import { usePageMeta } from '@/gallery/hooks/usePageMeta';
 import { useSlugRedirect } from '@/gallery/hooks/useSlugRedirect';
 import { useStyle } from '@/gallery/hooks/useStyle';
-import {
-  resizedScreenshotUrl,
-  screenshotSrcset,
-  screenshotUrl,
-} from '@/gallery/lib/api';
 import { fullNumber, timeAgo } from '@/gallery/lib/format';
 import { authorHref, siteHref } from '@/gallery/lib/paths';
 
-import ZoomableImage from '@/components/ZoomableImage';
-
-import { type Locale, localizePath } from '@/i18n/locales';
+import { type Locale } from '@/i18n/locales';
 import { type Catalog, translator } from '@/i18n/t';
 
-import BackLink from './BackLink';
 import EditStyleButton from './EditStyleButton';
 import Favicon from './Favicon';
 import LoadError from './LoadError';
@@ -26,22 +18,16 @@ import PreviewCard from './PreviewCard';
 import ReportStyleButton from './ReportStyleButton';
 import StyleCss from './StyleCss';
 import StylePageSkeleton from './StylePageSkeleton';
+import StyleScreenshots from './StyleScreenshots';
 import StyleVersions from './StyleVersions';
 import UrlPattern from './UrlPattern';
 
 import './StylePage.css';
 
-// Beside the details it grows to about 707px; below 900px it takes the width.
-const SHOT_SIZES = '(min-width: 900px) 707px, calc(100vw - 32px)';
-
-// The API doesn't give the original's width, but screenshots are usually about
-// 2600px wide, so a Retina screen takes the original once 960 would blur.
-const ORIGINAL_WIDTH = 2560;
-
 type Props = { locale: Locale; strings: Catalog };
 
 /**
- * The style this page's address names: its screenshot, name, site,
+ * The style this page's address names: its screenshots, name, site,
  * description and facts.
  */
 export default function StylePage({ locale, strings }: Props) {
@@ -86,20 +72,15 @@ export default function StylePage({ locale, strings }: Props) {
 
   return (
     <div class="style-page">
-      <BackLink href={localizePath(locale, '/')}>{t('All styles')}</BackLink>
-
       <div class="style-page-top">
-        <ZoomableImage
-          class="style-page-shot"
-          src={resizedScreenshotUrl(style, 960)}
-          srcset={`${screenshotSrcset(style)}, ${screenshotUrl(style)} ${ORIGINAL_WIDTH}w`}
-          sizes={SHOT_SIZES}
-          full={screenshotUrl(style)}
+        <StyleScreenshots
+          screenshots={style.screenshots}
           alt={t('Screenshot of {name} on {site}', {
             name: style.name,
             site: style.site,
           })}
           strings={strings}
+          t={t}
         />
 
         <div class="style-page-side">

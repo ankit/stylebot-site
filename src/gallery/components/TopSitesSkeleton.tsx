@@ -8,9 +8,11 @@ const WIDTHS = [96, 120, 104, 84, 112, 92, 108, 88];
 export default function TopSitesSkeleton() {
   return (
     <div class="top-sites" aria-hidden="true">
-      {WIDTHS.map((width, i) => (
-        <span key={i} class="top-sites-pill" style={{ width }} />
-      ))}
+      <div class="top-sites-list">
+        {WIDTHS.map((width, i) => (
+          <span key={i} class="top-sites-pill" style={{ width }} />
+        ))}
+      </div>
     </div>
   );
 }

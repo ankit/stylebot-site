@@ -17,8 +17,8 @@ type Props = { locale: Locale; t: Translate };
 
 /**
  * The sites with the most installs, each linking to its page, then a link to
- * every site. Nothing shows if they don't load, since browsing works without
- * them.
+ * every site, which stays in view while the sites scroll sideways on a narrow
+ * screen. Nothing shows if they don't load, since browsing works without them.
  */
 export default function TopSites({ locale, t }: Props) {
   const { data, loading } = useSites();
@@ -34,12 +34,14 @@ export default function TopSites({ locale, t }: Props) {
 
   return (
     <nav class="top-sites" aria-label={t('Top sites')}>
-      {sites.map((site) => (
-        <a key={site.site} href={siteHref(locale, site.site)}>
-          <Favicon site={site.site} />
-          {site.site}
-        </a>
-      ))}
+      <div class="top-sites-list">
+        {sites.map((site) => (
+          <a key={site.site} href={siteHref(locale, site.site)}>
+            <Favicon site={site.site} />
+            {site.site}
+          </a>
+        ))}
+      </div>
 
       <a class="top-sites-all" href={sitesHref(locale)}>
         {

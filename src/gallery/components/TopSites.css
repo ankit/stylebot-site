@@ -3,8 +3,6 @@
   justify-content: safe center;
   gap: 8px;
   margin-top: -12px;
-  overflow-x: auto;
-  scrollbar-width: none;
 
   a {
     flex: none;
@@ -25,11 +23,26 @@
   }
 
   .top-sites-all {
-    position: sticky;
-    right: 0;
     gap: 4px;
     color: var(--fg);
   }
+}
+
+.top-sites-list {
+  min-width: 0;
+  display: flex;
+  gap: 8px;
+  padding-inline: 16px;
+  margin-inline: -16px -8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 16px,
+    #000 calc(100% - 16px),
+    transparent
+  );
 }
 
 .top-sites-pill {

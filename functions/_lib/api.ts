@@ -14,7 +14,8 @@ export type Style = {
   description: string | null;
   author: { username: string };
   updatedAt: number;
-  screenshot: string;
+  // The first is its cover.
+  screenshots: Array<string>;
 };
 
 export type Counts = { styles: number; installs: number };

@@ -1,0 +1,29 @@
+.screenshot-slot-menu {
+  flex: none;
+  margin: -4px -6px -4px 0;
+}
+
+.screenshot-slot-menu-button {
+  padding: 4px 6px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  font: 400 var(--text-sm) / 1.2 var(--font-ui);
+  color: var(--fg-muted);
+  cursor: pointer;
+
+  &:hover,
+  &.is-open {
+    background: var(--bg-hover);
+    color: var(--fg);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--fg);
+    outline-offset: 2px;
+  }
+}
+
+.screenshot-slot-menu-list {
+  min-width: 150px;
+}

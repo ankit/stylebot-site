@@ -37,7 +37,7 @@ const count = new Intl.NumberFormat(locale, { notation: 'compact' });
           <span class="featured-frame">
             <span class="featured-site">{style.site}</span>
             <Image
-              src={screenshotUrl(style)}
+              src={screenshotUrl(style.screenshots[0])}
               inferSize
               widths={[480, 720, 960]}
               sizes="(min-width: 1180px) 360px, (min-width: 700px) 45vw, 90vw"

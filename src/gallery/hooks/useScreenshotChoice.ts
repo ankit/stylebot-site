@@ -1,10 +1,6 @@
 import { useEffect, useState } from 'preact/hooks';
 
-import {
-  type OwnStyle,
-  resizedScreenshotUrl,
-  screenshotUrl,
-} from '@/gallery/lib/api';
+import { resizedScreenshotUrl, screenshotUrl } from '@/gallery/lib/api';
 import { blurRegions, type Region } from '@/gallery/lib/blur';
 
 // The API takes screenshots up to 1 MB.
@@ -15,7 +11,7 @@ export const SCREENSHOT_TYPES = ['image/png', 'image/jpeg', 'image/webp'];
 export type ScreenshotError = 'tooLarge' | 'wrongType';
 
 // `tab` is the screenshot Stylebot took of the person's tab, `current` keeps
-// the style's own, and `none` is a new style still without one.
+// the style's own, and `none` leaves the slot empty.
 export type ScreenshotSource = 'tab' | 'current' | 'upload' | 'none';
 
 // `original` blurred over `regions`, which it was made for.
@@ -27,8 +23,8 @@ type Blurred = {
 };
 
 // An update keeps the style's screenshot unless the author picks another.
-function initialSource(tabShot: string | null, existing: OwnStyle | null) {
-  if (existing) {
+function initialSource(tabShot: string | null, current: string | undefined) {
+  if (current) {
     return 'current';
   }
 
@@ -40,16 +36,16 @@ function initialSource(tabShot: string | null, existing: OwnStyle | null) {
 }
 
 /**
- * Which screenshot to publish: the tab's, the style's current one, or a
- * picked image. `screenshot` is what to send, with `regions` blurred over
- * `original`; while the blurred copy is `pending`, there's none.
+ * One slot's screenshot: the tab's, the style's `current` one, a picked image
+ * or none. `screenshot` is a new image to send, unset while it's `pending`
+ * blurring, and `kept` the current one's path.
  */
 export function useScreenshotChoice(
   tabShot: string | null,
-  existing: OwnStyle | null,
+  current: string | undefined,
 ) {
   const [source, setSource] = useState<ScreenshotSource>(() =>
-    initialSource(tabShot, existing),
+    initialSource(tabShot, current),
   );
   const [file, setFile] = useState<File>();
   const [fileUrl, setFileUrl] = useState<string>();
@@ -83,16 +79,16 @@ export function useScreenshotChoice(
       return;
     }
 
-    let current = true;
+    let live = true;
 
     blurRegions(original, regions).then((file) => {
-      if (current) {
+      if (live) {
         setBlurred({ original, regions, file, url: URL.createObjectURL(file) });
       }
     });
 
     return () => {
-      current = false;
+      live = false;
     };
   }, [original, regions]);
 
@@ -132,6 +128,13 @@ export function useScreenshotChoice(
     setSource(next);
   };
 
+  const remove = () => {
+    setError(undefined);
+    setRegions([]);
+    setFile(undefined);
+    setSource('none');
+  };
+
   let latest: Blurred | undefined;
 
   if (blurred?.original === original) {
@@ -144,6 +147,7 @@ export function useScreenshotChoice(
   let preview: string | undefined;
   let full: string | undefined;
   let screenshot: Blob | string | undefined;
+  let kept: string | undefined;
 
   if (latest && ready) {
     preview = latest.url;
@@ -154,9 +158,10 @@ export function useScreenshotChoice(
   } else if (source === 'upload') {
     preview = fileUrl;
     screenshot = file;
-  } else if (source === 'current' && existing) {
-    preview = resizedScreenshotUrl(existing, 960);
-    full = screenshotUrl(existing);
+  } else if (source === 'current' && current) {
+    preview = resizedScreenshotUrl(current, 960);
+    full = screenshotUrl(current);
+    kept = current;
   }
 
   if (pending) {
@@ -168,6 +173,7 @@ export function useScreenshotChoice(
     preview,
     full,
     screenshot,
+    kept,
     original,
     blurred: latest?.url,
     blurredRegions: latest?.regions ?? [],
@@ -178,8 +184,9 @@ export function useScreenshotChoice(
     // The style's current screenshot is on the API, which a canvas can't read.
     canBlur: source === 'tab' || source === 'upload',
     canUseTab: tabShot !== null,
-    canKeepCurrent: existing !== null,
+    canKeepCurrent: current !== undefined,
     upload,
     choose,
+    remove,
   };
 }

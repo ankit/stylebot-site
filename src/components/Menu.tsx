@@ -49,6 +49,7 @@ export default function Menu({
   return (
     <div class={['menu', className].filter(Boolean).join(' ')}>
       <button
+        type="button"
         class={buttonClasses.join(' ')}
         aria-label={label}
         aria-haspopup="menu"

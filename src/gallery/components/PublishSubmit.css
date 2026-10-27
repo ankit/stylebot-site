@@ -1,21 +1,8 @@
 .publish-submit {
   display: flex;
-  align-items: center;
-  gap: 16px;
+  gap: 10px;
 
   .btn {
     flex: none;
-  }
-
-  .publish-submit-buttons {
-    display: flex;
-    gap: 10px;
-  }
-
-  p {
-    margin: 0;
-    font: 400 var(--text-sm) / 1.45 var(--font-ui);
-    color: var(--fg-muted);
-    text-wrap: pretty;
   }
 }

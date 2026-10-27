@@ -6,6 +6,7 @@ import {
   createVersion,
   type OwnStyle,
   type PublishedStyle,
+  type ScreenshotEntry,
   type StyleForm,
   updateStyle,
 } from '@/gallery/lib/api';
@@ -17,19 +18,15 @@ export type PublishDetails = Pick<StyleForm, 'name' | 'description' | 'notes'>;
 // Whether Stylebot has linked its profile to the published style.
 export type LinkState = 'linking' | 'linked' | 'unlinked';
 
-// A string screenshot is the data: URL of the one Stylebot took.
-async function screenshotBlob(screenshot?: Blob | string) {
-  if (typeof screenshot === 'string') {
-    return (await fetch(screenshot)).blob();
-  }
-
-  return screenshot;
-}
+// The screenshots to send in order, or undefined to keep the style's.
+export type ScreenshotEntries = () => Promise<
+  Array<ScreenshotEntry> | undefined
+>;
 
 /**
  * Publishes a draft as a new style, or as a new version of `existing`, then
  * tells Stylebot. When the version's CSS is unchanged, `unchanged` is set and
- * `saveDetails` saves the name, description and any new screenshot only.
+ * `saveDetails` saves the name, description and screenshots only.
  */
 export function usePublish(
   session: string,
@@ -75,12 +72,12 @@ export function usePublish(
     }
   };
 
-  const publish = (details: PublishDetails, screenshot?: Blob | string) =>
+  const publish = (details: PublishDetails, screenshots: ScreenshotEntries) =>
     run(async () => {
       const form: StyleForm = {
         ...details,
         css: draft.css,
-        screenshot: await screenshotBlob(screenshot),
+        screenshots: await screenshots(),
       };
 
       if (!existing) {
@@ -92,7 +89,7 @@ export function usePublish(
 
   const saveDetails = async (
     details: PublishDetails,
-    screenshot?: Blob | string,
+    screenshots: ScreenshotEntries,
   ) => {
     if (!existing) {
       return;
@@ -103,7 +100,7 @@ export function usePublish(
       updateStyle(session, existing.id, {
         name: details.name,
         description: details.description,
-        screenshot: await screenshotBlob(screenshot),
+        screenshots: await screenshots(),
       }),
     );
   };

@@ -20,7 +20,8 @@ export type Style = {
   installs: number;
   createdAt: number;
   updatedAt: number;
-  screenshot: string;
+  // Paths of its one or two screenshots; the first is its cover.
+  screenshots: Array<string>;
 };
 
 export type StyleWithCss = Style & { css: string };
@@ -33,14 +34,18 @@ export type OwnStyle = Style & { status: 'live' | 'hidden' };
 // load from other sites, and large `data:` URIs.
 export type PublishedStyle = OwnStyle & { removed: Array<string> };
 
+// A screenshot to send: a new image, or the path of a current one to keep.
+export type ScreenshotEntry = Blob | string;
+
 // What publishing a style or a new version of it sends. A new style needs a
-// screenshot; a new version without one keeps the style's.
+// screenshot; without `screenshots`, a new version keeps the style's, and with
+// them, current ones left out are removed.
 export type StyleForm = {
   name: string;
   description: string;
   css: string;
   notes?: string;
-  screenshot?: Blob;
+  screenshots?: Array<ScreenshotEntry>;
 };
 
 // A hostname with live styles.
@@ -151,19 +156,16 @@ async function request<T>(
   return response.json();
 }
 
-export const screenshotUrl = (style: { screenshot: string }) =>
-  API_ORIGIN + style.screenshot;
+export const screenshotUrl = (path: string) => API_ORIGIN + path;
 
 // The API resizes screenshots to these widths only; any other returns 400.
 export type ScreenshotWidth = 480 | 960;
 
-export const resizedScreenshotUrl = (
-  style: { screenshot: string },
-  width: ScreenshotWidth,
-) => `${screenshotUrl(style)}?w=${width}`;
+export const resizedScreenshotUrl = (path: string, width: ScreenshotWidth) =>
+  `${screenshotUrl(path)}?w=${width}`;
 
-export const screenshotSrcset = (style: { screenshot: string }) =>
-  `${resizedScreenshotUrl(style, 480)} 480w, ${resizedScreenshotUrl(style, 960)} 960w`;
+export const screenshotSrcset = (path: string) =>
+  `${resizedScreenshotUrl(path, 480)} 480w, ${resizedScreenshotUrl(path, 960)} 960w`;
 
 export function listStyles(query: StyleQuery) {
   const params = new URLSearchParams();
@@ -230,22 +232,40 @@ const styleAction = (id: number, action = '') =>
 export const deleteStyle = (session: string, id: number) =>
   request<void>(styleAction(id), { method: 'DELETE', session });
 
-// Changes a style's name, description and screenshot without publishing a
-// new version. A new screenshot is checked like a published one's, so a live
+// The API reads the type from the file itself, so the name is only a label.
+function appendScreenshots(
+  data: FormData,
+  screenshots: Array<ScreenshotEntry>,
+) {
+  for (const entry of screenshots) {
+    if (typeof entry === 'string') {
+      data.append('screenshots', entry);
+    } else {
+      data.append('screenshots', entry, 'screenshot');
+    }
+  }
+}
+
+// Changes a style's name, description and screenshots without publishing a
+// new version. New screenshots are checked like published ones, so a live
 // style can come back hidden.
 export const updateStyle = (
   session: string,
   id: number,
-  details: { name: string; description: string; screenshot?: Blob },
+  details: {
+    name: string;
+    description: string;
+    screenshots?: Array<ScreenshotEntry>;
+  },
 ) => {
-  const { screenshot, ...fields } = details;
+  const { screenshots, ...fields } = details;
   let body: string | FormData = JSON.stringify(fields);
 
-  if (screenshot) {
+  if (screenshots) {
     body = new FormData();
     body.append('name', fields.name);
     body.append('description', fields.description);
-    body.append('screenshot', screenshot, 'screenshot');
+    appendScreenshots(body, screenshots);
   }
 
   return request<PublishedStyle>(styleAction(id), {
@@ -297,9 +317,8 @@ function toFormData(
 
   data.append('css', form.css);
 
-  // The API reads the type from the file itself, so the name is only a label.
-  if (form.screenshot) {
-    data.append('screenshot', form.screenshot, 'screenshot');
+  if (form.screenshots) {
+    appendScreenshots(data, form.screenshots);
   }
 
   return data;

@@ -20,7 +20,7 @@ type Props = {
 };
 
 /**
- * The style's name and description beside its screenshot, with Save under
+ * The style's name and description beside its screenshots, with Save under
  * both, which reads Saved until the next change, and Delete beside it.
  * Messages go below them, so they stay put.
  */
@@ -47,7 +47,7 @@ export default function EditForm({ edit, session, onDeleted, t }: Props) {
         onSubmit={submit}
         aside={
           <ScreenshotPicker
-            choice={edit.choice}
+            choices={edit.choices}
             alt={t('Screenshot of {name} on {site}', {
               name: edit.name,
               site: style.site,
@@ -60,7 +60,7 @@ export default function EditForm({ edit, session, onDeleted, t }: Props) {
             <PublishSubmit
               label={label}
               disabled={
-                busy || !!saved || edit.choice.pending || !edit.name.trim()
+                busy || !!saved || edit.choices.pending || !edit.name.trim()
               }
             >
               <Button

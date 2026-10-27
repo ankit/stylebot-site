@@ -1,140 +1,110 @@
-import { useFileDrop } from '@/gallery/hooks/useFileDrop';
-import {
-  SCREENSHOT_TYPES,
-  type useScreenshotChoice,
-} from '@/gallery/hooks/useScreenshotChoice';
+import { useState } from 'preact/hooks';
 
-import { buttonClass } from '@/components/Button';
+import { type useScreenshotChoices } from '@/gallery/hooks/useScreenshotChoices';
 
 import { type Translate } from '@/i18n/t';
 
-import ScreenshotPickerImage from './ScreenshotPickerImage';
+import ScreenshotSlot from './ScreenshotSlot';
+import ScreenshotSlotMenu from './ScreenshotSlotMenu';
+import ScreenshotThumbnails from './ScreenshotThumbnails';
 
 import './ScreenshotPicker.css';
 
 type Props = {
-  choice: ReturnType<typeof useScreenshotChoice>;
+  choices: ReturnType<typeof useScreenshotChoices>;
   alt: string;
   t: Translate;
 };
 
 /**
- * The screenshot to publish, saying where it's from, with an image to upload
- * or drop in its place and, where there's one, the tab's or the style's current one
- * to go back to.
+ * The screenshots to publish: one shown large with an Edit menu, thumbnails to
+ * switch between the cover and an optional second, and a prompt to blur.
  */
-export default function ScreenshotPicker({ choice, alt, t }: Props) {
-  const { source, preview } = choice;
-  const drop = useFileDrop(choice.upload);
-  let uploadLabel = t('Replace image');
-  let uploadClass = 'screenshot-picker-replace';
+export default function ScreenshotPicker({ choices, alt, t }: Props) {
+  const { cover, second, shown } = choices;
+  const [zoomed, setZoomed] = useState(false);
+  // i18n: The label above the images published with a style.
+  const label = t('Screenshots');
+  let choice = cover;
+  let number: 1 | 2 = 1;
+  let emptyLabel = t('Upload an image');
 
-  if (!preview) {
-    uploadLabel = t('Upload an image');
-    uploadClass = buttonClass({ variant: 'outline', size: 'sm' });
+  if (shown === 1) {
+    choice = second;
+    number = 2;
+    // i18n: Adds a second screenshot beside the cover.
+    emptyLabel = t('Add image');
   }
 
-  const onChange = (e: Event) => {
-    const input = e.currentTarget as HTMLInputElement;
-    const picked = input.files?.[0];
-
-    if (picked) {
-      choice.upload(picked);
-    }
-
-    input.value = '';
-  };
-
   return (
-    <figure class="screenshot-picker">
-      <span class="screenshot-picker-label">
-        {
-          // i18n: The label above the image published with a style.
-          t('Screenshot')
-        }
-      </span>
+    <div class="screenshot-picker" role="group" aria-label={label}>
+      <div class="screenshot-picker-head">
+        <span aria-hidden="true">{label}</span>
 
-      <div
-        class="screenshot-picker-frame"
-        data-over={drop.over || undefined}
-        {...drop.handlers}
-      >
-        {preview && (
-          <ScreenshotPickerImage
-            key={choice.original ?? preview}
+        {choice.preview && (
+          <ScreenshotSlotMenu
             choice={choice}
-            src={preview}
-            alt={alt}
+            number={number}
+            onBlur={() => setZoomed(true)}
             t={t}
-          />
+          >
+            {shown === 1 && (
+              <>
+                <button
+                  type="button"
+                  role="menuitem"
+                  class="menu-item"
+                  onClick={choices.swap}
+                >
+                  {
+                    // i18n: Makes this screenshot the style's first, the one
+                    // shown on its card.
+                    t('Make cover')
+                  }
+                </button>
+
+                <button
+                  type="button"
+                  role="menuitem"
+                  class="menu-item"
+                  onClick={second.remove}
+                >
+                  {
+                    // i18n: Removes the second screenshot from the style.
+                    t('Remove')
+                  }
+                </button>
+              </>
+            )}
+          </ScreenshotSlotMenu>
         )}
-
-        <div class="screenshot-picker-upload">
-          <label class={uploadClass}>
-            {uploadLabel}
-            <input
-              type="file"
-              class="sr-only"
-              accept={SCREENSHOT_TYPES.join(',')}
-              onChange={onChange}
-            />
-          </label>
-
-          {!preview && (
-            <span class="screenshot-picker-hint">
-              {
-                // i18n: Under the "Upload an image" button, in the empty
-                // screenshot frame.
-                t('or drop one here')
-              }
-            </span>
-          )}
-        </div>
       </div>
 
-      {source === 'tab' && (
-        <figcaption>
-          {t('Captured from your tab. Click it to blur anything private.')}
-        </figcaption>
-      )}
+      <ScreenshotSlot
+        key={shown}
+        choice={choice}
+        alt={alt}
+        emptyLabel={emptyLabel}
+        zoomed={zoomed}
+        onZoomChange={setZoomed}
+        t={t}
+      />
 
-      {source === 'upload' && (
-        <figcaption>
-          {t('Click the screenshot to blur anything private.')}
-        </figcaption>
-      )}
+      {cover.preview && <ScreenshotThumbnails choices={choices} t={t} />}
 
-      {choice.error === 'tooLarge' && (
-        <p class="screenshot-picker-error" role="alert">
-          {t('Choose an image under 1 MB.')}
-        </p>
-      )}
-
-      {choice.error === 'wrongType' && (
-        <p class="screenshot-picker-error" role="alert">
-          {t('Choose a PNG, JPEG or WebP image.')}
-        </p>
-      )}
-
-      {choice.canUseTab && source !== 'tab' && (
+      {choice.canBlur && choice.original && (
         <button
           type="button"
-          class="screenshot-picker-switch"
-          onClick={() => choice.choose('tab')}
+          class="screenshot-picker-blur"
+          onClick={() => setZoomed(true)}
         >
-          {t('Use the screenshot of your tab')}
+          {
+            // i18n: Under the screenshots, opens the shown one full size to
+            // mark parts to blur, such as chat titles or email addresses.
+            t('Blur anything private')
+          }
         </button>
       )}
-
-      {choice.canKeepCurrent && source !== 'current' && (
-        <button
-          type="button"
-          class="screenshot-picker-switch"
-          onClick={() => choice.choose('current')}
-        >
-          {t('Keep the current screenshot')}
-        </button>
-      )}
-    </figure>
+    </div>
   );
 }

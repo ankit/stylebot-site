@@ -1,7 +1,7 @@
 import { useLatestCss } from '@/gallery/hooks/useLatestCss';
 import { type usePublish } from '@/gallery/hooks/usePublish';
 import { usePublishDetails } from '@/gallery/hooks/usePublishDetails';
-import { type useScreenshotChoice } from '@/gallery/hooks/useScreenshotChoice';
+import { type useScreenshotChoices } from '@/gallery/hooks/useScreenshotChoices';
 import { type OwnStyle } from '@/gallery/lib/api';
 import { type PublishDraft } from '@/gallery/lib/bridge';
 import { sameCss } from '@/gallery/lib/diff';
@@ -21,7 +21,7 @@ type Props = {
   draft: PublishDraft;
   existing: OwnStyle | null;
   publishing: ReturnType<typeof usePublish>;
-  choice: ReturnType<typeof useScreenshotChoice>;
+  choices: ReturnType<typeof useScreenshotChoices>;
   // Runs publishing once the username is confirmed.
   guard: (run: () => void) => void;
   t: Translate;
@@ -40,13 +40,13 @@ function submitLabel(isUpdate: boolean, busy: boolean, t: Translate) {
 }
 
 /**
- * The draft's details and CSS, with Publish last, beside the screenshot.
+ * The draft's details and CSS, with Publish last, beside the screenshots.
  */
 export default function PublishForm({
   draft,
   existing,
   publishing,
-  choice,
+  choices,
   guard,
   t,
 }: Props) {
@@ -60,7 +60,7 @@ export default function PublishForm({
 
   const submit = (e: Event) => {
     e.preventDefault();
-    guard(() => publishing.publish(details, choice.screenshot));
+    guard(() => publishing.publish(details, choices.entries));
   };
 
   return (
@@ -68,7 +68,7 @@ export default function PublishForm({
       onSubmit={submit}
       aside={
         <ScreenshotPicker
-          choice={choice}
+          choices={choices}
           alt={t('Screenshot of {name} on {site}', {
             name: details.name,
             site: draft.site,
@@ -85,14 +85,11 @@ export default function PublishForm({
 
             <PublishSubmit
               label={submitLabel(isUpdate, busy, t)}
-              hint={t(
-                'Anyone can find and install published styles. You can update or delete them later.',
-              )}
               disabled={
                 busy ||
-                choice.pending ||
+                choices.pending ||
                 !details.name ||
-                choice.source === 'none'
+                choices.cover.source === 'none'
               }
             />
           </>
@@ -121,8 +118,8 @@ export default function PublishForm({
 
       {unchanged && (
         <CssUnchangedNotice
-          busy={busy || choice.pending}
-          onSave={() => publishing.saveDetails(details, choice.screenshot)}
+          busy={busy || choices.pending}
+          onSave={() => publishing.saveDetails(details, choices.entries)}
           t={t}
         />
       )}

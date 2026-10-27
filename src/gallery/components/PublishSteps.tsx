@@ -1,7 +1,7 @@
 import { useState } from 'preact/hooks';
 
 import { usePublish } from '@/gallery/hooks/usePublish';
-import { useScreenshotChoice } from '@/gallery/hooks/useScreenshotChoice';
+import { useScreenshotChoices } from '@/gallery/hooks/useScreenshotChoices';
 import { useUsernameGate } from '@/gallery/hooks/useUsernameGate';
 import { type OwnStyle, type Session } from '@/gallery/lib/api';
 import { type PublishDraft } from '@/gallery/lib/bridge';
@@ -26,8 +26,8 @@ type Props = {
 
 /**
  * The form, then what was published. Publishing with the username made up
- * at sign-in first asks to keep or change it. The screenshot choice lives
- * here so the published page shows the same one.
+ * at sign-in first asks to keep or change it. The screenshot choices live
+ * here so the published page shows the same cover.
  */
 export default function PublishSteps({
   draft,
@@ -38,7 +38,10 @@ export default function PublishSteps({
   t,
 }: Props) {
   const publishing = usePublish(session.session, nonce, draft, existing);
-  const choice = useScreenshotChoice(draft.screenshot, existing);
+  const choices = useScreenshotChoices(
+    draft.screenshot,
+    existing?.screenshots ?? [],
+  );
   const { account } = session;
   const gate = useUsernameGate(account.usernameConfirmed);
   const [changingName, setChangingName] = useState(false);
@@ -55,7 +58,7 @@ export default function PublishSteps({
       <PublishedNotice
         style={publishing.published}
         kind={kind}
-        screenshot={choice.preview}
+        screenshot={choices.cover.preview}
         link={publishing.link}
         onRetryLink={publishing.retryLink}
         locale={locale}
@@ -72,7 +75,7 @@ export default function PublishSteps({
         draft={draft}
         existing={existing}
         publishing={publishing}
-        choice={choice}
+        choices={choices}
         guard={gate.guard}
         t={t}
       />

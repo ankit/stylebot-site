@@ -42,7 +42,11 @@ export default function MyStyleRow({
     <li class="my-style-row">
       {live && (
         <a class="my-style-shot" href={styleHref(locale, style)} tabIndex={-1}>
-          <img src={resizedScreenshotUrl(style, 480)} alt="" loading="lazy" />
+          <img
+            src={resizedScreenshotUrl(style.screenshots[0], 480)}
+            alt=""
+            loading="lazy"
+          />
         </a>
       )}
 
