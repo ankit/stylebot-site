@@ -6,7 +6,7 @@
   gap: 5px;
   padding: 3px 8px;
   border-radius: var(--radius-full);
-  background: var(--bg-hover);
+  background: var(--bg-track);
   font: 500 var(--text-xs) / 1.2 var(--font-ui);
   color: var(--fg-secondary);
   cursor: default;
