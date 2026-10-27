@@ -246,6 +246,7 @@
   "Last updated {date}": "最后更新：{date}",
   "Late Edition": "晚报",
   "Light": "浅色",
+  "Light and dark": "浅色和深色",
   "Line Height": "行高",
   "Link": "链接",
   "Looks good": "就用这个",
@@ -549,5 +550,7 @@
   "Your styles": "我的样式",
   "Your styles, settings and history are saved in your browser, and uninstalling Stylebot removes them. Google Fonts and stylesheets you <code>@import</code> are downloaded from where they're hosted, which sees your IP address.": "你的样式、设置和历史记录都保存在浏览器中，卸载 Stylebot 会将它们删除。Google Fonts 字体和通过 <code>@import</code> 引入的样式表会从其托管位置下载，托管方会看到你的 IP 地址。",
   "Your turn.": "轮到你了。",
-  "Your username is <strong>{username}</strong>. It shows on the styles you publish, and you can change it any time.": "你的用户名是 <strong>{username}</strong>。它会显示在你发布的样式上，你可以随时更改。"
+  "Your username is <strong>{username}</strong>. It shows on the styles you publish, and you can change it any time.": "你的用户名是 <strong>{username}</strong>。它会显示在你发布的样式上，你可以随时更改。",
+  "Switch between them in Stylebot’s popup.": "在 Stylebot 弹出式窗口中切换。",
+  "Follows {site}’s own light and dark setting.": "跟随 {site} 自己的浅色/深色设置。"
 }

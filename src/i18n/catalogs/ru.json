@@ -246,6 +246,7 @@
   "Last updated {date}": "Последнее обновление: {date}",
   "Late Edition": "Ночной выпуск",
   "Light": "Светлая",
+  "Light and dark": "Светлый и тёмный",
   "Line Height": "Высота строки",
   "Link": "Ссылка",
   "Looks good": "Оставить",
@@ -549,5 +550,7 @@
   "Your styles": "Ваши стили",
   "Your styles, settings and history are saved in your browser, and uninstalling Stylebot removes them. Google Fonts and stylesheets you <code>@import</code> are downloaded from where they're hosted, which sees your IP address.": "Ваши стили, настройки и история хранятся в браузере и удаляются вместе со Stylebot. Шрифты Google Fonts и таблицы стилей, подключённые через <code>@import</code>, загружаются с серверов, где они размещены, и эти серверы видят ваш IP-адрес.",
   "Your turn.": "Теперь вы.",
-  "Your username is <strong>{username}</strong>. It shows on the styles you publish, and you can change it any time.": "Ваше имя пользователя — <strong>{username}</strong>. Оно видно на опубликованных вами стилях, и его можно изменить в любой момент."
+  "Your username is <strong>{username}</strong>. It shows on the styles you publish, and you can change it any time.": "Ваше имя пользователя — <strong>{username}</strong>. Оно видно на опубликованных вами стилях, и его можно изменить в любой момент.",
+  "Switch between them in Stylebot’s popup.": "Переключайтесь между ними во всплывающем окне Stylebot.",
+  "Follows {site}’s own light and dark setting.": "Следует светлой или тёмной теме, выбранной на {site}."
 }

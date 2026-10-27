@@ -1173,6 +1173,13 @@
     ]
   },
   {
+    "text": "Follows {site}’s own light and dark setting.",
+    "note": "On a style that follows the site's own light/dark setting, such as claude.ai's.",
+    "files": [
+      "src/gallery/components/LightDarkBadge.tsx"
+    ]
+  },
+  {
     "text": "Font",
     "files": [
       "src/www/components/demo/Demo.tsx"
@@ -1560,6 +1567,13 @@
     "text": "Light",
     "files": [
       "src/theme/ThemeMenu.tsx"
+    ]
+  },
+  {
+    "text": "Light and dark",
+    "note": "A badge on a style that has both a light and a dark version.",
+    "files": [
+      "src/gallery/components/LightDarkBadge.tsx"
     ]
   },
   {
@@ -2731,6 +2745,13 @@
     "note": "\"them\" is the two profiles",
     "files": [
       "src/www/components/demo/scenes.ts"
+    ]
+  },
+  {
+    "text": "Switch between them in Stylebot’s popup.",
+    "note": "On a style that switches between light and dark in Stylebot's popup.",
+    "files": [
+      "src/gallery/components/LightDarkBadge.tsx"
     ]
   },
   {

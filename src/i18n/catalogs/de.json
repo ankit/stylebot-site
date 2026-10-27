@@ -246,6 +246,7 @@
   "Last updated {date}": "Zuletzt aktualisiert: {date}",
   "Late Edition": "Spätausgabe",
   "Light": "Hell",
+  "Light and dark": "Hell und dunkel",
   "Line Height": "Zeilenhöhe",
   "Link": "Link",
   "Looks good": "Passt",
@@ -549,5 +550,7 @@
   "Your styles": "Ihre Stile",
   "Your styles, settings and history are saved in your browser, and uninstalling Stylebot removes them. Google Fonts and stylesheets you <code>@import</code> are downloaded from where they're hosted, which sees your IP address.": "Ihre Stile, Einstellungen, und der Verlauf werden in Ihrem Browser gespeichert und beim Deinstallieren von Stylebot entfernt. Google Fonts und Stylesheets, die Sie per <code>@import</code> einbinden, werden von ihrem jeweiligen Server geladen, der dabei Ihre IP-Adresse sieht.",
   "Your turn.": "Jetzt sind Sie dran.",
-  "Your username is <strong>{username}</strong>. It shows on the styles you publish, and you can change it any time.": "Ihr Benutzername ist <strong>{username}</strong>. Er erscheint bei den Stilen, die Sie veröffentlichen, und Sie können ihn jederzeit ändern."
+  "Your username is <strong>{username}</strong>. It shows on the styles you publish, and you can change it any time.": "Ihr Benutzername ist <strong>{username}</strong>. Er erscheint bei den Stilen, die Sie veröffentlichen, und Sie können ihn jederzeit ändern.",
+  "Switch between them in Stylebot’s popup.": "Wechseln Sie im Popup von Stylebot zwischen beiden.",
+  "Follows {site}’s own light and dark setting.": "Folgt der Hell-/Dunkel-Einstellung von {site}."
 }

@@ -5,12 +5,14 @@ import { useSlugRedirect } from '@/gallery/hooks/useSlugRedirect';
 import { useStyle } from '@/gallery/hooks/useStyle';
 import { fullNumber, timeAgo } from '@/gallery/lib/format';
 import { authorHref, siteHref } from '@/gallery/lib/paths';
+import { lightDark } from '@/gallery/lib/styleOptions';
 
 import { type Locale } from '@/i18n/locales';
 import { type Catalog, translator } from '@/i18n/t';
 
 import EditStyleButton from './EditStyleButton';
 import Favicon from './Favicon';
+import LightDarkBadge from './LightDarkBadge';
 import LoadError from './LoadError';
 import MoreForSite from './MoreForSite';
 import NotFound from './NotFound';
@@ -70,6 +72,8 @@ export default function StylePage({ locale, strings }: Props) {
     return <StylePageSkeleton />;
   }
 
+  const modes = lightDark(style.css);
+
   return (
     <div class="style-page">
       <div class="style-page-top">
@@ -90,10 +94,14 @@ export default function StylePage({ locale, strings }: Props) {
             <EditStyleButton style={style} locale={locale} t={t} />
           </div>
 
-          <a class="style-page-site" href={siteHref(locale, style.site)}>
-            <Favicon site={style.site} size={16} />
-            {style.site}
-          </a>
+          <div class="style-page-site-row">
+            <a class="style-page-site" href={siteHref(locale, style.site)}>
+              <Favicon site={style.site} size={16} />
+              {style.site}
+            </a>
+
+            {modes && <LightDarkBadge kind={modes} site={style.site} t={t} />}
+          </div>
 
           <PreviewCard style={style} locale={locale} t={t} />
 

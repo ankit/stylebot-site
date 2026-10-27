@@ -246,6 +246,7 @@
   "Last updated {date}": "最終更新：{date}",
   "Late Edition": "夕刊",
   "Light": "ライト",
+  "Light and dark": "ライトとダーク",
   "Line Height": "行の高さ",
   "Link": "リンク",
   "Looks good": "このままにする",
@@ -549,5 +550,7 @@
   "Your styles": "自分のスタイル",
   "Your styles, settings and history are saved in your browser, and uninstalling Stylebot removes them. Google Fonts and stylesheets you <code>@import</code> are downloaded from where they're hosted, which sees your IP address.": "スタイル、設定、履歴はブラウザに保存され、Stylebot をアンインストールすると削除されます。Google Fonts と <code>@import</code> したスタイルシートはそれぞれのホストからダウンロードされ、ホストには IP アドレスが伝わります。",
   "Your turn.": "さあ、試してみましょう。",
-  "Your username is <strong>{username}</strong>. It shows on the styles you publish, and you can change it any time.": "ユーザー名は <strong>{username}</strong> です。公開したスタイルに表示され、いつでも変更できます。"
+  "Your username is <strong>{username}</strong>. It shows on the styles you publish, and you can change it any time.": "ユーザー名は <strong>{username}</strong> です。公開したスタイルに表示され、いつでも変更できます。",
+  "Switch between them in Stylebot’s popup.": "Stylebot のポップアップで切り替えます。",
+  "Follows {site}’s own light and dark setting.": "{site} のライト／ダーク設定に従います。"
 }

@@ -136,3 +136,10 @@
     opacity: 0.55;
   }
 }
+
+.style-page-site-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}

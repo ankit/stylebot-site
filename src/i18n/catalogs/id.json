@@ -246,6 +246,7 @@
   "Last updated {date}": "Terakhir diperbarui {date}",
   "Late Edition": "Edisi malam",
   "Light": "Terang",
+  "Light and dark": "Terang dan gelap",
   "Line Height": "Tinggi baris",
   "Link": "Tautan",
   "Looks good": "Oke",
@@ -549,5 +550,7 @@
   "Your styles": "Gaya Anda",
   "Your styles, settings and history are saved in your browser, and uninstalling Stylebot removes them. Google Fonts and stylesheets you <code>@import</code> are downloaded from where they're hosted, which sees your IP address.": "Gaya, setelan, dan riwayat Anda disimpan di browser, dan menghapus instalan Stylebot akan menghapusnya. Google Fonts dan stylesheet yang Anda <code>@import</code> diunduh dari server tempatnya di-hosting, yang dapat melihat alamat IP Anda.",
   "Your turn.": "Sekarang giliran Anda.",
-  "Your username is <strong>{username}</strong>. It shows on the styles you publish, and you can change it any time.": "Nama pengguna Anda <strong>{username}</strong>. Nama ini muncul di gaya yang Anda publikasikan, dan Anda dapat mengubahnya kapan saja."
+  "Your username is <strong>{username}</strong>. It shows on the styles you publish, and you can change it any time.": "Nama pengguna Anda <strong>{username}</strong>. Nama ini muncul di gaya yang Anda publikasikan, dan Anda dapat mengubahnya kapan saja.",
+  "Switch between them in Stylebot’s popup.": "Beralih di antara keduanya di popup Stylebot.",
+  "Follows {site}’s own light and dark setting.": "Mengikuti setelan terang dan gelap {site}."
 }

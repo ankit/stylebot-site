@@ -1,0 +1,13 @@
+.light-dark-badge {
+  position: relative;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  background: var(--bg-hover);
+  font: 500 var(--text-xs) / 1.2 var(--font-ui);
+  color: var(--fg-secondary);
+  cursor: default;
+}
