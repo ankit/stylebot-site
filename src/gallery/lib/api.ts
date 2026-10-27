@@ -9,6 +9,8 @@ export type Style = {
   // Styles are numbered in the order they were published.
   id: number;
   site: string;
+  // The Stylebot URL pattern it installs under, when it's more than the site.
+  urlPattern: string | null;
   // The style's name in its URL, after its id.
   slug: string;
   name: string;
@@ -268,11 +270,19 @@ export const sendUninstallFeedback = (feedback: UninstallFeedback) =>
     body: JSON.stringify({ kind: 'uninstall', ...feedback }),
   });
 
-function toFormData(form: StyleForm, site?: string) {
+function toFormData(
+  form: StyleForm,
+  site?: string,
+  urlPattern?: string | null,
+) {
   const data = new FormData();
 
   if (site !== undefined) {
     data.append('site', site);
+  }
+
+  if (urlPattern) {
+    data.append('urlPattern', urlPattern);
   }
 
   data.append('name', form.name);
@@ -295,11 +305,17 @@ function toFormData(form: StyleForm, site?: string) {
   return data;
 }
 
-export const createStyle = (session: string, site: string, form: StyleForm) =>
+// `urlPattern` is the Stylebot URL pattern it's for, when it's more than `site`.
+export const createStyle = (
+  session: string,
+  site: string,
+  urlPattern: string | null,
+  form: StyleForm,
+) =>
   request<PublishedStyle>('/styles', {
     method: 'POST',
     session,
-    body: toFormData(form, site),
+    body: toFormData(form, site, urlPattern),
   });
 
 // Publishes a new version of one of the account's styles, replacing its name

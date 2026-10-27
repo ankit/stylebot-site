@@ -88,7 +88,12 @@ export default function PublishForm({
               hint={t(
                 'Anyone can find and install published styles. You can update or delete them later.',
               )}
-              disabled={busy || !details.name || choice.source === 'none'}
+              disabled={
+                busy ||
+                choice.pending ||
+                !details.name ||
+                choice.source === 'none'
+              }
             />
           </>
         )
@@ -116,7 +121,7 @@ export default function PublishForm({
 
       {unchanged && (
         <CssUnchangedNotice
-          busy={busy}
+          busy={busy || choice.pending}
           onSave={() => publishing.saveDetails(details, choice.screenshot)}
           t={t}
         />

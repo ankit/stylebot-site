@@ -40,6 +40,31 @@
   color: var(--fg);
 }
 
+.btn-danger {
+  background: var(--danger);
+  color: var(--bg-surface);
+}
+
+.btn-danger:hover {
+  background: color-mix(in oklab, var(--danger) 86%, var(--fg));
+  color: var(--bg-surface);
+}
+
+.btn-danger:disabled {
+  background: var(--danger);
+}
+
+.btn-danger-outline {
+  border: 1px solid var(--border-strong);
+  background: var(--bg-surface);
+  color: var(--danger);
+}
+
+.btn-danger-outline:hover {
+  background: var(--bg-hover);
+  color: var(--danger);
+}
+
 .btn-sm {
   padding: 9px 14px;
   border-radius: var(--radius-md);

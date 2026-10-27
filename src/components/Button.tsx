@@ -3,7 +3,8 @@ import { type JSX } from 'preact';
 import './Button.css';
 
 export type ButtonStyle = {
-  variant?: 'primary' | 'outline';
+  // The `danger` ones are for an action that removes something.
+  variant?: 'primary' | 'outline' | 'danger' | 'danger-outline';
   size?: 'md' | 'sm';
 };
 

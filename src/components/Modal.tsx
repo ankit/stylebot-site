@@ -56,7 +56,12 @@ export default function Modal({
     >
       {children}
 
-      <button class="modal-close" aria-label={closeLabel} onClick={onClose}>
+      <button
+        type="button"
+        class="modal-close"
+        aria-label={closeLabel}
+        onClick={onClose}
+      >
         <CloseIcon strokeWidth={1.6} />
       </button>
     </dialog>

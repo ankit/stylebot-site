@@ -7,6 +7,11 @@
     flex: none;
   }
 
+  .publish-submit-buttons {
+    display: flex;
+    gap: 10px;
+  }
+
   p {
     margin: 0;
     font: 400 var(--text-sm) / 1.45 var(--font-ui);

@@ -57,5 +57,7 @@ export default function EditFlow({ id, locale, session, t }: Props) {
     );
   }
 
-  return <EditSteps style={own.style} session={session} t={t} />;
+  return (
+    <EditSteps style={own.style} session={session} locale={locale} t={t} />
+  );
 }

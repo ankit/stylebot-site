@@ -133,13 +133,13 @@ export function listenForInstall(
 }
 
 /**
- * A style Stylebot handed over to publish: its CSS, the site and page it's
- * for, the profile's name and the screenshot taken in Stylebot. `styleId` is
- * set to publish it as a new version of that style.
+ * A style Stylebot handed over to publish. `urlPattern` is the profile's URL
+ * pattern when it's more than `site`; `styleId` is set to publish a new
+ * version of that style.
  */
 export type PublishDraft = {
   site: string;
-  url: string;
+  urlPattern: string | null;
   css: string;
   name: string;
   screenshot: string | null;

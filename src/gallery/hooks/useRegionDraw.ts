@@ -29,10 +29,13 @@ function between(a: Point, b: Point): Region {
 
 /**
  * Rectangles drawn by dragging over the element `handlers` go on, as
- * fractions of its size, with `drawing` the one being dragged out.
+ * fractions of its size, added to `regions` through `setRegions`, with
+ * `drawing` the one being dragged out.
  */
-export function useRegionDraw() {
-  const [regions, setRegions] = useState<Array<Region>>([]);
+export function useRegionDraw(
+  regions: Array<Region>,
+  setRegions: (regions: Array<Region>) => void,
+) {
   const [drawing, setDrawing] = useState<Region>();
   const start = useRef<Point>();
 
@@ -68,16 +71,18 @@ export function useRegionDraw() {
     stop();
 
     if (region.width > MIN_SIZE && region.height > MIN_SIZE) {
-      setRegions((drawn) => [...drawn, region]);
+      setRegions([...regions, region]);
     }
   };
 
-  const undo = () => setRegions((drawn) => drawn.slice(0, -1));
+  const remove = (index: number) =>
+    setRegions(regions.filter((_, i) => i !== index));
 
   return {
     regions,
     drawing,
-    undo,
+    remove,
+    cancel: stop,
     handlers: {
       onPointerDown,
       onPointerMove,

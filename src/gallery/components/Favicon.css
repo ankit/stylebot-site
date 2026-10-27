@@ -4,6 +4,10 @@
   border-radius: 3px;
 }
 
+.favicon.is-small {
+  object-fit: none;
+}
+
 .favicon.is-loading {
   background: var(--bg-track);
 }

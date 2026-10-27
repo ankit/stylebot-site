@@ -1,20 +1,21 @@
-import { type PublishDraft } from '@/gallery/lib/bridge';
-
 import { type Translate } from '@/i18n/t';
 
 import Favicon from './Favicon';
+import UrlPatternNote from './UrlPatternNote';
 
 import './PublishHead.css';
 
+type Draft = { site: string; urlPattern: string | null };
+
 type Props = {
   title?: string;
-  draft?: Pick<PublishDraft, 'site' | 'url'> | null;
+  draft?: Draft | null;
   t: Translate;
 };
 
 /**
- * The publish page's title and, once the draft is known, the site it's for,
- * linking to the page Stylebot published from.
+ * The publish page's title and, once the draft is known, the site it's for
+ * and any URL pattern within it.
  */
 export default function PublishHead({ title, draft, t }: Props) {
   return (
@@ -24,15 +25,16 @@ export default function PublishHead({ title, draft, t }: Props) {
       </h1>
 
       {draft && (
-        <a
-          class="publish-site"
-          href={draft.url}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Favicon site={draft.site} />
-          {draft.site}
-        </a>
+        <div class="publish-where">
+          <span class="publish-site">
+            <Favicon site={draft.site} size={18} />
+            {draft.site}
+          </span>
+
+          {draft.urlPattern && (
+            <UrlPatternNote pattern={draft.urlPattern} t={t} />
+          )}
+        </div>
       )}
     </div>
   );

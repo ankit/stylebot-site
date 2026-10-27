@@ -50,7 +50,7 @@ export default function DeleteStyleDialog({
             {t('Cancel')}
           </Button>
 
-          <Button size="sm" onClick={run} disabled={busy}>
+          <Button variant="danger" size="sm" onClick={run} disabled={busy}>
             {confirmLabel}
           </Button>
         </>

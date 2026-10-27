@@ -27,6 +27,7 @@ import ReportStyleButton from './ReportStyleButton';
 import StyleCss from './StyleCss';
 import StylePageSkeleton from './StylePageSkeleton';
 import StyleVersions from './StyleVersions';
+import UrlPattern from './UrlPattern';
 
 import './StylePage.css';
 
@@ -109,7 +110,7 @@ export default function StylePage({ locale, strings }: Props) {
           </div>
 
           <a class="style-page-site" href={siteHref(locale, style.site)}>
-            <Favicon site={style.site} />
+            <Favicon site={style.site} size={16} />
             {style.site}
           </a>
 
@@ -122,6 +123,21 @@ export default function StylePage({ locale, strings }: Props) {
                 {style.author.username}
               </a>
             </dd>
+
+            {style.urlPattern && (
+              <>
+                <dt>
+                  {
+                    // i18n: Beside the URL pattern of the pages a style applies to.
+                    t('Pages')
+                  }
+                </dt>
+                <dd>
+                  <UrlPattern pattern={style.urlPattern} />
+                </dd>
+              </>
+            )}
+
             <dt>{t('Installs')}</dt>
             <dd>{fullNumber(locale, style.installs)}</dd>
             <dt>{t('Updated')}</dt>

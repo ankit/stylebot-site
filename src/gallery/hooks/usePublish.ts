@@ -84,7 +84,7 @@ export function usePublish(
       };
 
       if (!existing) {
-        return createStyle(session, draft.site, form);
+        return createStyle(session, draft.site, draft.urlPattern, form);
       }
 
       return createVersion(session, existing.id, form);

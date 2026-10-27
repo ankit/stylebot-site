@@ -1,0 +1,10 @@
+.url-pattern {
+  padding: 2px 6px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-muted);
+  font: 500 0.9em / 1 var(--font-mono);
+  color: var(--code-selector);
+  overflow-wrap: anywhere;
+  box-decoration-break: clone;
+}

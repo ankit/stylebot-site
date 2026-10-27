@@ -61,7 +61,7 @@ export default function ScreenshotPicker({ choice, alt, t }: Props) {
       >
         {preview && (
           <ScreenshotPickerImage
-            key={preview}
+            key={choice.original ?? preview}
             choice={choice}
             src={preview}
             alt={alt}

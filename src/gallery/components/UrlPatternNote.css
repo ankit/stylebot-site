@@ -1,0 +1,5 @@
+.url-pattern-note {
+  margin: 0;
+  font: 400 var(--text-sm) / 1.7 var(--font-ui);
+  color: var(--fg-muted);
+}

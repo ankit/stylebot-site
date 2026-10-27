@@ -1,8 +1,5 @@
-import { useState } from 'preact/hooks';
-
 import { useRegionDraw } from '@/gallery/hooks/useRegionDraw';
 import { type useScreenshotChoice } from '@/gallery/hooks/useScreenshotChoice';
-import { blurRegions } from '@/gallery/lib/blur';
 
 import ZoomableImage from '@/components/ZoomableImage';
 
@@ -19,13 +16,12 @@ type Props = {
 
 /**
  * The screenshot in the picker, which opens full size, where the author can
- * blur parts of it unless it's the style's current one.
+ * mark parts of it to blur unless it's the style's current one.
  */
 export default function ScreenshotPickerImage({ choice, src, alt, t }: Props) {
-  const draw = useRegionDraw();
-  const [busy, setBusy] = useState(false);
+  const draw = useRegionDraw(choice.regions, choice.setRegions);
 
-  if (!choice.canBlur) {
+  if (!choice.canBlur || !choice.original) {
     return (
       <ZoomableImage
         class="screenshot-picker-image"
@@ -37,16 +33,7 @@ export default function ScreenshotPickerImage({ choice, src, alt, t }: Props) {
     );
   }
 
-  const apply = async (close: () => void) => {
-    setBusy(true);
-
-    try {
-      choice.upload(await blurRegions(src, draw.regions));
-      close();
-    } finally {
-      setBusy(false);
-    }
-  };
+  const shown = choice.blurred ?? choice.original;
 
   return (
     <ZoomableImage
@@ -56,11 +43,11 @@ export default function ScreenshotPickerImage({ choice, src, alt, t }: Props) {
       t={t}
       renderZoomed={(close) => (
         <ScreenshotBlur
-          src={src}
+          src={shown}
           alt={alt}
           draw={draw}
-          busy={busy}
-          onApply={() => apply(close)}
+          blurred={choice.blurredRegions}
+          onDone={close}
           t={t}
         />
       )}

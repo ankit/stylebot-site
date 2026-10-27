@@ -337,6 +337,13 @@
     ]
   },
   {
+    "text": "Applies to pages matching {pattern}",
+    "note": "{pattern} is a URL pattern or regular expression, such as ^https://chatgpt\\.com/(?!codex), shown as code.",
+    "files": [
+      "src/gallery/components/UrlPatternNote.tsx"
+    ]
+  },
+  {
     "text": "Apply grayscale to the page.",
     "files": [
       "src/www/components/Features.astro",
@@ -411,12 +418,6 @@
     "text": "Better selector generation, with selectors that keep working when a site updates and others to choose from",
     "files": [
       "src/www/pages/[...lang]/releases/4.0.astro"
-    ]
-  },
-  {
-    "text": "Blur marked areas",
-    "files": [
-      "src/gallery/components/ScreenshotBlur.tsx"
     ]
   },
   {
@@ -920,6 +921,7 @@
     "text": "Delete",
     "files": [
       "src/gallery/components/DeleteStyleDialog.tsx",
+      "src/gallery/components/EditForm.tsx",
       "src/gallery/components/MyStyleMenu.tsx"
     ]
   },
@@ -975,6 +977,13 @@
     "text": "docs.google.com, docs1.google.com, docs2.google.com and so on.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
+    "text": "Done",
+    "note": "Closes the full-size screenshot, keeping the areas marked to blur.",
+    "files": [
+      "src/gallery/components/ScreenshotBlur.tsx"
     ]
   },
   {
@@ -1867,6 +1876,13 @@
     ]
   },
   {
+    "text": "Pages",
+    "note": "Beside the URL pattern of the pages a style applies to.",
+    "files": [
+      "src/gallery/components/StylePage.tsx"
+    ]
+  },
+  {
     "text": "Password manager",
     "files": [
       "src/www/components/demo/Demo.tsx"
@@ -2090,6 +2106,12 @@
     "text": "Reinstall for {store}",
     "files": [
       "src/components/StoreLink.astro"
+    ]
+  },
+  {
+    "text": "Remove this area",
+    "files": [
+      "src/gallery/components/ScreenshotBlur.tsx"
     ]
   },
   {
@@ -3101,12 +3123,6 @@
     "text": "Twenty years after the last overnight crossing was cut, three operators are putting cabins back on the water. The pitch is simple: board after dinner, sleep through the crossing, and wake up in another country.",
     "files": [
       "src/www/components/demo/Demo.tsx"
-    ]
-  },
-  {
-    "text": "Undo",
-    "files": [
-      "src/gallery/components/ScreenshotBlur.tsx"
     ]
   },
   {

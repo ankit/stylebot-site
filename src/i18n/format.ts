@@ -1,6 +1,6 @@
 const MAC_KEYS: Record<string, string> = { ctrl: 'cmd', alt: 'option' };
 
-const escape = (s: string) =>
+const escapeHtml = (s: string) =>
   s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 /**
@@ -20,11 +20,11 @@ export function keysHtml(keys: Array<string>, sep = '+') {
   const kbds = keys.map((key) => {
     const mac = MAC_KEYS[key] ? ` data-mac="${MAC_KEYS[key]}"` : '';
 
-    return `<kbd${mac}>${escape(key)}</kbd>`;
+    return `<kbd${mac}>${escapeHtml(key)}</kbd>`;
   });
 
   return `<span class="keys">${kbds.join(
-    `<span class="keys-sep">${escape(sep)}</span>`,
+    `<span class="keys-sep">${escapeHtml(sep)}</span>`,
   )}</span>`;
 }
 
