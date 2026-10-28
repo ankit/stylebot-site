@@ -559,5 +559,5 @@
   "Your styles": "Stilurile tale",
   "Your styles, settings and history are saved in your browser, and uninstalling Stylebot removes them. Google Fonts and stylesheets you <code>@import</code> are downloaded from where they're hosted, which sees your IP address.": "Stilurile, setările și istoricul sunt salvate în browser, iar dezinstalarea Stylebot le elimină. Fonturile Google Fonts și foile de stil importate cu <code>@import</code> sunt descărcate de pe serverele care le găzduiesc, iar acestea îți văd adresa IP.",
   "Your turn.": "E rândul tău.",
-  "Your username is <strong>{username}</strong>. It shows on the styles you publish, and you can change it any time.": "Numele tău de utilizator este <strong>{username}</strong>. Apare pe stilurile pe care le publici și îl poți schimba oricând."
+  "Your username is {username}. It shows on the styles you publish, and you can change it any time.": "Numele tău de utilizator este {username}. Apare pe stilurile pe care le publici și îl poți schimba oricând."
 }

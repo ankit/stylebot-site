@@ -3527,7 +3527,7 @@
     ]
   },
   {
-    "text": "Your username is <strong>{username}</strong>. It shows on the styles you publish, and you can change it any time.",
+    "text": "Your username is {username}. It shows on the styles you publish, and you can change it any time.",
     "files": [
       "src/gallery/components/WelcomeDialog.tsx"
     ]

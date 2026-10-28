@@ -62,14 +62,21 @@ const routes = {
 
       writeFileSync(new URL('_routes.json', dir), JSON.stringify(routes));
 
-      // Until launch, search engines skip the static files too; the functions
-      // add the same header to the pages they serve.
+      // The functions add the same headers to the pages they serve. Until
+      // launch, search engines skip the static files too.
+      const headers = [
+        "Content-Security-Policy: frame-ancestors 'none'",
+        'X-Content-Type-Options: nosniff',
+      ];
+
       if (process.env.GALLERY_PUBLIC !== 'true') {
-        writeFileSync(
-          new URL('_headers', dir),
-          '/*\n  X-Robots-Tag: noindex\n',
-        );
+        headers.push('X-Robots-Tag: noindex');
       }
+
+      writeFileSync(
+        new URL('_headers', dir),
+        `/*\n${headers.map((h) => `  ${h}\n`).join('')}`,
+      );
 
       writeFileSync(
         new URL('_redirects', dir),

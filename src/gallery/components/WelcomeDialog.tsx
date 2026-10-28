@@ -4,6 +4,7 @@ import { updateAccount } from '@/gallery/lib/auth';
 
 import Button from '@/components/Button';
 
+import { parts } from '@/i18n/format';
 import { type Translate } from '@/i18n/t';
 
 import Dialog from './Dialog';
@@ -48,14 +49,19 @@ export default function WelcomeDialog({
         </>
       }
     >
-      <p
-        dangerouslySetInnerHTML={{
-          __html: t(
-            'Your username is <strong>{username}</strong>. It shows on the styles you publish, and you can change it any time.',
-            { username: account.username },
+      <p>
+        {parts(
+          t(
+            'Your username is {username}. It shows on the styles you publish, and you can change it any time.',
           ),
-        }}
-      />
+        ).map((part) => {
+          if (part === '{username}') {
+            return <strong key={part}>{account.username}</strong>;
+          }
+
+          return part;
+        })}
+      </p>
 
       {failed && (
         <p class="dialog-error" role="alert">

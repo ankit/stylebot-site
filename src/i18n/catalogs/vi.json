@@ -559,5 +559,5 @@
   "Your styles": "Kiểu của bạn",
   "Your styles, settings and history are saved in your browser, and uninstalling Stylebot removes them. Google Fonts and stylesheets you <code>@import</code> are downloaded from where they're hosted, which sees your IP address.": "Kiểu, cài đặt và lịch sử của bạn được lưu trong trình duyệt, và gỡ cài đặt Stylebot sẽ xóa tất cả. Google Fonts và các bảng kiểu bạn <code>@import</code> được tải từ nơi lưu trữ chúng, và nơi đó thấy được địa chỉ IP của bạn.",
   "Your turn.": "Đến lượt bạn.",
-  "Your username is <strong>{username}</strong>. It shows on the styles you publish, and you can change it any time.": "Tên người dùng của bạn là <strong>{username}</strong>. Tên này hiển thị trên các kiểu bạn đăng, và bạn có thể đổi bất cứ lúc nào."
+  "Your username is {username}. It shows on the styles you publish, and you can change it any time.": "Tên người dùng của bạn là {username}. Tên này hiển thị trên các kiểu bạn đăng, và bạn có thể đổi bất cứ lúc nào."
 }

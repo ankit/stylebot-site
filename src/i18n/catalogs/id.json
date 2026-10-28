@@ -559,5 +559,5 @@
   "Your styles": "Gaya Anda",
   "Your styles, settings and history are saved in your browser, and uninstalling Stylebot removes them. Google Fonts and stylesheets you <code>@import</code> are downloaded from where they're hosted, which sees your IP address.": "Gaya, setelan, dan riwayat Anda disimpan di browser, dan menghapus instalan Stylebot akan menghapusnya. Google Fonts dan stylesheet yang Anda <code>@import</code> diunduh dari server tempatnya di-hosting, yang dapat melihat alamat IP Anda.",
   "Your turn.": "Sekarang giliran Anda.",
-  "Your username is <strong>{username}</strong>. It shows on the styles you publish, and you can change it any time.": "Nama pengguna Anda <strong>{username}</strong>. Nama ini muncul di gaya yang Anda publikasikan, dan Anda dapat mengubahnya kapan saja."
+  "Your username is {username}. It shows on the styles you publish, and you can change it any time.": "Nama pengguna Anda {username}. Nama ini muncul di gaya yang Anda publikasikan, dan Anda dapat mengubahnya kapan saja."
 }

@@ -21,6 +21,6 @@ Builds `dist-gallery/` and uploads it, with the Pages Functions in `functions/`,
 Until launch the gallery stays private:
 
 - A Cloudflare Access application covers `gallery.stylebot.dev` and `*.stylebot-gallery.pages.dev`, letting in only the emails on its policy.
-- Every response carries `X-Robots-Tag: noindex`: the build writes it to `_headers` for the static files, and `functions/_middleware.ts` adds it to the pages the functions serve.
+- Every response carries `X-Robots-Tag: noindex`: the build writes it to `_headers` for the static files, and `functions/_middleware.ts` adds it to the pages the functions serve. They do the same with `Content-Security-Policy: frame-ancestors 'none'` and `X-Content-Type-Options: nosniff`, which stay after launch.
 
 To launch, set the Pages environment variable `GALLERY_PUBLIC` to `true` (for the build and the functions) and redeploy, then delete the Access application and submit `https://gallery.stylebot.dev/sitemap.xml` to search engines.
