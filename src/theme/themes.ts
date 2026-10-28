@@ -94,7 +94,7 @@ export const THEMES: Record<ThemeKey, Theme> = {
   },
   'late-edition': {
     'font-ui': geist,
-    'font-display': "'Newsreader',Georgia,serif",
+    'font-display': "'Literata',Georgia,serif",
     'font-mono': geistMono,
     link: '#7db6c4',
     'bg-surface': '#17181b',
