@@ -38,10 +38,10 @@ const title = t("What's new in {version}", { version: '4.1' });
           <ul>
             {[
               t(
-                'Try a style on the page before installing it. Hold to compare it with the original.',
+                'Try a style on the page, hold to compare, and install it in a click.',
               ),
-              t('Styles you install stay up to date, unless you edit them.'),
-              t('Publish your own from its ⋯ menu in the popup or the editor.'),
+              t('Installed styles stay up to date until you edit them.'),
+              t('Publish your own from the popup or the editor.'),
             ].map((item) => (
               <li>{item}</li>
             ))}
@@ -73,7 +73,31 @@ const title = t("What's new in {version}", { version: '4.1' });
             t(
               'The code editor can fold blocks of CSS and keeps their selectors in view as you scroll. Its search and color picker are restyled too.',
             ),
-            t('Rename, edit or delete a profile from its menu in the popup'),
+            t(
+              'Styles can come in light and dark versions. Pick one in the popup, or before installing from the Gallery.',
+            ),
+            t('Create, rename, edit or delete a profile from the popup'),
+          ].map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </section>
+
+      <hr />
+
+      <section id="fixes" class="release-more">
+        <h2>{t('Fixes')}</h2>
+        <ul>
+          {[
+            t(
+              'Sync signs in to the right Google account, and stops asking you to sign in again',
+            ),
+            t('Sites’ text styles no longer leak into Stylebot’s panels'),
+            t('The editor forgets the selected element when its panel closes'),
+            t('Dropdown menus in the editor use the editor’s text size'),
+            t(
+              'No stray scrollbar beside the profile tabs in Options’ style editor',
+            ),
           ].map((item) => (
             <li>{item}</li>
           ))}
@@ -81,7 +105,7 @@ const title = t("What's new in {version}", { version: '4.1' });
         <p
           class="release-fixes"
           set:html={rich(
-            t('And a few more <a href="{changelog}">bug fixes</a>'),
+            t('See every change in the <a href="{changelog}">changelog</a>'),
             {
               changelog: LINKS.changelog,
             },

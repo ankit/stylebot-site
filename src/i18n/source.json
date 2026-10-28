@@ -300,12 +300,6 @@
     ]
   },
   {
-    "text": "And a few more <a href=\"{changelog}\">bug fixes</a>",
-    "files": [
-      "src/www/pages/[...lang]/releases/4.1.astro"
-    ]
-  },
-  {
     "text": "And lots of <a href=\"{changelog}\">bug fixes</a>",
     "files": [
       "src/www/pages/[...lang]/releases/3.1.astro",
@@ -868,6 +862,12 @@
     ]
   },
   {
+    "text": "Create, rename, edit or delete a profile from the popup",
+    "files": [
+      "src/www/pages/[...lang]/releases/4.1.astro"
+    ]
+  },
+  {
     "text": "CSS",
     "files": [
       "src/gallery/components/PublishCssDialog.tsx",
@@ -1000,6 +1000,12 @@
     "text": "Drag over anything private to blur it.",
     "files": [
       "src/gallery/components/ScreenshotBlur.tsx"
+    ]
+  },
+  {
+    "text": "Dropdown menus in the editor use the editor’s text size",
+    "files": [
+      "src/www/pages/[...lang]/releases/4.1.astro"
     ]
   },
   {
@@ -1168,6 +1174,12 @@
   },
   {
     "text": "Find styles other people made for the sites you use, and share your own.",
+    "files": [
+      "src/www/pages/[...lang]/releases/4.1.astro"
+    ]
+  },
+  {
+    "text": "Fixes",
     "files": [
       "src/www/pages/[...lang]/releases/4.1.astro"
     ]
@@ -1471,6 +1483,12 @@
     ]
   },
   {
+    "text": "Installed styles stay up to date until you edit them.",
+    "files": [
+      "src/www/pages/[...lang]/releases/4.1.astro"
+    ]
+  },
+  {
     "text": "Installs",
     "files": [
       "src/gallery/components/StylePage.tsx"
@@ -1756,6 +1774,12 @@
     "text": "No sites match “{query}”.",
     "files": [
       "src/gallery/components/SitesPage.tsx"
+    ]
+  },
+  {
+    "text": "No stray scrollbar beside the profile tabs in Options’ style editor",
+    "files": [
+      "src/www/pages/[...lang]/releases/4.1.astro"
     ]
   },
   {
@@ -2073,7 +2097,7 @@
     ]
   },
   {
-    "text": "Publish your own from its ⋯ menu in the popup or the editor.",
+    "text": "Publish your own from the popup or the editor.",
     "files": [
       "src/www/pages/[...lang]/releases/4.1.astro"
     ]
@@ -2152,12 +2176,6 @@
     "text": "Remove this area",
     "files": [
       "src/gallery/components/ScreenshotBlur.tsx"
-    ]
-  },
-  {
-    "text": "Rename, edit or delete a profile from its menu in the popup",
-    "files": [
-      "src/www/pages/[...lang]/releases/4.1.astro"
     ]
   },
   {
@@ -2326,6 +2344,12 @@
     ]
   },
   {
+    "text": "See every change in the <a href=\"{changelog}\">changelog</a>",
+    "files": [
+      "src/www/pages/[...lang]/releases/4.1.astro"
+    ]
+  },
+  {
     "text": "Select the highlighted element",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
@@ -2462,6 +2486,12 @@
     "text": "Sites: {count}",
     "files": [
       "src/gallery/components/SitesPage.tsx"
+    ]
+  },
+  {
+    "text": "Sites’ text styles no longer leak into Stylebot’s panels",
+    "files": [
+      "src/www/pages/[...lang]/releases/4.1.astro"
     ]
   },
   {
@@ -2688,6 +2718,12 @@
     ]
   },
   {
+    "text": "Styles can come in light and dark versions. Pick one in the popup, or before installing from the Gallery.",
+    "files": [
+      "src/www/pages/[...lang]/releases/4.1.astro"
+    ]
+  },
+  {
     "text": "Styles for {site}",
     "files": [
       "functions/_lib/preview.ts",
@@ -2724,12 +2760,6 @@
     "text": "Styles people made with Stylebot for the sites they use. Pick one and install it in a click.",
     "files": [
       "src/gallery/layouts/Gallery.astro"
-    ]
-  },
-  {
-    "text": "Styles you install stay up to date, unless you edit them.",
-    "files": [
-      "src/www/pages/[...lang]/releases/4.1.astro"
     ]
   },
   {
@@ -2791,6 +2821,12 @@
     "files": [
       "src/www/components/Features.astro",
       "src/www/components/GalleryMock.astro"
+    ]
+  },
+  {
+    "text": "Sync signs in to the right Google account, and stops asking you to sign in again",
+    "files": [
+      "src/www/pages/[...lang]/releases/4.1.astro"
     ]
   },
   {
@@ -2896,6 +2932,12 @@
     "text": "The domain docs.google.com or any of its subdomains.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
+    "text": "The editor forgets the selected element when its panel closes",
+    "files": [
+      "src/www/pages/[...lang]/releases/4.1.astro"
     ]
   },
   {
@@ -3133,7 +3175,7 @@
     ]
   },
   {
-    "text": "Try a style on the page before installing it. Hold to compare it with the original.",
+    "text": "Try a style on the page, hold to compare, and install it in a click.",
     "files": [
       "src/www/pages/[...lang]/releases/4.1.astro"
     ]

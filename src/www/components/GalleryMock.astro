@@ -6,14 +6,14 @@ const { locale, t } = Astro.locals;
 
 const compact = new Intl.NumberFormat(locale, { notation: 'compact' });
 const styles = [
-  { name: 'Parchment & Ink', installs: compact.format(1240) },
-  { name: 'Slate & Ash', installs: compact.format(743) },
+  { name: 'Sepia Print', installs: compact.format(1240) },
+  { name: 'Quiet Print', installs: compact.format(743) },
 ];
 ---
 
 <div data-ed class="mock-card pop">
   <div class="pop-head">
-    <b>en.wikipedia.org</b>
+    <b>nytimes.com</b>
     <svg
       viewBox="0 0 24 24"
       width="15"
