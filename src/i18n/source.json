@@ -1245,6 +1245,7 @@
       "src/www/components/Features.astro",
       "src/www/components/GalleryMock.astro",
       "src/www/pages/[...lang]/manual.astro",
+      "src/www/pages/[...lang]/privacy.astro",
       "src/www/pages/[...lang]/releases/4.1.astro"
     ]
   },
@@ -2483,6 +2484,12 @@
     ]
   },
   {
+    "text": "Signing in to the gallery with Google gives it your Google account ID and name, which it uses to suggest your username. Styles you publish, with their screenshots, versions and your username, are public until you delete them, and reports you send are tied to your account. Cloudflare hosts the gallery and keeps server logs.",
+    "files": [
+      "src/www/pages/[...lang]/privacy.astro"
+    ]
+  },
+  {
     "text": "Sites: {count}",
     "files": [
       "src/gallery/components/SitesPage.tsx"
@@ -2612,6 +2619,12 @@
     ]
   },
   {
+    "text": "Stylebot doesn't need an account, and doesn't collect, sell or share your data. It only leaves your browser when you use one of the features below.",
+    "files": [
+      "src/www/pages/[...lang]/privacy.astro"
+    ]
+  },
+  {
     "text": "Stylebot from your terminal",
     "files": [
       "src/www/pages/[...lang]/cli.astro",
@@ -2628,12 +2641,6 @@
     "text": "Stylebot has a CLI, so any agent that can run commands can restyle a site.",
     "files": [
       "src/www/components/cli/CliSection.astro"
-    ]
-  },
-  {
-    "text": "Stylebot has no server, no account and no analytics, and doesn't collect, sell or share your data. It only leaves your browser when you use one of the features below.",
-    "files": [
-      "src/www/pages/[...lang]/privacy.astro"
     ]
   },
   {
@@ -3410,7 +3417,7 @@
     ]
   },
   {
-    "text": "What Stylebot does with your data: no server, no account, no analytics.",
+    "text": "What Stylebot does with your data: what stays in your browser, and what leaves it.",
     "files": [
       "src/www/pages/[...lang]/privacy.astro"
     ]
