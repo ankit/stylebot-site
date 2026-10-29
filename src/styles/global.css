@@ -104,7 +104,7 @@ a.icon-btn:hover {
 }
 
 .section-title {
-  font: 700 var(--text-2xl) / 1.15 var(--font-display);
+  font: 700 clamp(26px, 3vw, 34px) / 1.15 var(--font-display);
   letter-spacing: -0.025em;
   margin: 0;
   color: var(--fg);

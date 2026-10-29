@@ -7,7 +7,7 @@
 }
 
 .prose h1 {
-  font: 700 var(--text-3xl) / 1.08 var(--font-display);
+  font: 700 clamp(32px, 4.4vw, 46px) / 1.08 var(--font-display);
   letter-spacing: -0.03em;
   color: var(--fg);
   margin: 0 0 12px;
@@ -15,7 +15,7 @@
 }
 
 .prose h2 {
-  font: 600 var(--text-xl)/1.25 var(--font-display);
+  font: 600 22px/1.25 var(--font-display);
   letter-spacing: -0.015em;
   color: var(--fg);
   margin: 56px 0 12px;

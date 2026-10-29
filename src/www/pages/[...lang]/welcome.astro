@@ -124,7 +124,7 @@ const { path, strings, t } = Astro.locals;
   }
 
   .hero h1 {
-    font: 700 var(--text-4xl) / 1.04 var(--font-display);
+    font: 700 clamp(36px, 5.4vw, 58px) / 1.04 var(--font-display);
     letter-spacing: -0.035em;
     margin: 0;
     text-wrap: balance;
@@ -231,7 +231,7 @@ const { path, strings, t } = Astro.locals;
   }
 
   .agent-text h2 {
-    font: 700 var(--text-2xl) / 1.15 var(--font-display);
+    font: 700 clamp(24px, 2.6vw, 30px) / 1.15 var(--font-display);
     letter-spacing: -0.025em;
     margin: 0;
     color: var(--fg);
@@ -329,7 +329,7 @@ const { path, strings, t } = Astro.locals;
     }
 
     .hero h1 {
-      font-size: var(--text-3xl);
+      font-size: clamp(32px, 4vw, 44px);
       line-height: 1.06;
       letter-spacing: -0.03em;
     }

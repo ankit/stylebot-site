@@ -308,7 +308,7 @@ const cardShots = await Promise.all(
 
   .release-intro h1 {
     margin: 0;
-    font: 700 var(--text-4xl) / 1.04 var(--font-display);
+    font: 700 clamp(38px, 5.4vw, 60px) / 1.04 var(--font-display);
     letter-spacing: -0.035em;
     color: var(--fg);
     text-wrap: balance;
@@ -316,7 +316,7 @@ const cardShots = await Promise.all(
 
   .release-intro p {
     margin: 0;
-    font: 400 var(--text-lg)/1.55 var(--font-ui);
+    font: 400 19px/1.55 var(--font-ui);
     color: var(--fg-muted);
     text-wrap: pretty;
   }
@@ -368,7 +368,7 @@ const cardShots = await Promise.all(
   }
 
   .release h2 {
-    font: 650 var(--text-2xl) / 1.15 var(--font-display);
+    font: 650 clamp(24px, 2.6vw, 30px) / 1.15 var(--font-display);
     letter-spacing: -0.02em;
     text-wrap: balance;
   }
@@ -398,7 +398,7 @@ const cardShots = await Promise.all(
   .release-text p {
     margin: 0;
     max-width: 60ch;
-    font: 400 var(--text-base)/1.65 var(--font-ui);
+    font: 400 17px/1.65 var(--font-ui);
     text-wrap: pretty;
   }
 
