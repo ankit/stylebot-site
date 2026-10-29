@@ -1965,12 +1965,6 @@
     ]
   },
   {
-    "text": "Picking a color from a palette",
-    "files": [
-      "src/www/pages/[...lang]/releases/3.1.astro"
-    ]
-  },
-  {
     "text": "Pin it to the toolbar",
     "files": [
       "src/www/components/demo/scenes.ts"
@@ -2251,12 +2245,6 @@
     ]
   },
   {
-    "text": "Resizing the Stylebot editor",
-    "files": [
-      "src/www/pages/[...lang]/releases/3.1.astro"
-    ]
-  },
-  {
     "text": "Restyle",
     "note": "A single word, ideally short: the page cycles it through decorative fonts.",
     "files": [
@@ -2506,7 +2494,7 @@
     ]
   },
   {
-    "text": "Signing in to the gallery with Google gives it your Google account ID and name, which it uses to suggest your username. Styles you publish, with their screenshots, versions and your username, are public until you delete them, and reports you send are tied to your account. Cloudflare hosts the gallery and keeps server logs.",
+    "text": "Signing in to the gallery with Google gives it your Google account ID and name, which it uses to suggest your username. Styles you publish, with their screenshots, versions and your username, are public until you delete them, and reports you send are tied to your account. Cloudflare hosts the gallery, keeps server logs and counts visits without cookies or identifying you.",
     "files": [
       "src/www/pages/[...lang]/privacy.astro"
     ]
@@ -2722,7 +2710,7 @@
     ]
   },
   {
-    "text": "stylebot.dev has no ads or cookies. GitHub Pages hosts it and keeps server logs, and Plausible counts visits and clicks without identifying you.",
+    "text": "stylebot.dev has no ads or cookies. Cloudflare hosts it, keeps server logs and counts visits without identifying you.",
     "files": [
       "src/www/pages/[...lang]/privacy.astro"
     ]
@@ -2863,12 +2851,6 @@
     "files": [
       "src/www/components/Features.astro",
       "src/www/components/GalleryMock.astro"
-    ]
-  },
-  {
-    "text": "Syncing styles with Google Drive",
-    "files": [
-      "src/www/pages/[...lang]/releases/3.1.astro"
     ]
   },
   {

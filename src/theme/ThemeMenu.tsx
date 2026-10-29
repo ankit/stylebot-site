@@ -4,8 +4,6 @@ import ContrastIcon from '@/components/icons/ContrastIcon';
 import Menu from '@/components/Menu';
 import Tooltip from '@/components/Tooltip';
 
-import { track } from '@/lib/analytics';
-
 import { type Catalog, translator } from '@/i18n/t';
 
 import { applyTheme, currentTheme } from './state';
@@ -29,7 +27,6 @@ export default function ThemeMenu({ strings }: { strings: Catalog }) {
 
   const pick = (key: ThemeKey) => {
     applyTheme(key);
-    track('Site theme', { theme: key });
     setTheme(key);
   };
 

@@ -6,14 +6,11 @@ import {
   type UninstallFeedback,
 } from '@/gallery/lib/api';
 
-import { track } from '@/lib/analytics';
-
 // `limited` is the API's rate limit, which lifts after a minute.
 export type FeedbackState = 'idle' | 'sending' | 'sent' | 'limited' | 'failed';
 
 /**
- * Sends the goodbye page's survey to the styles API, and its reasons to
- * Plausible too, so the reasons chart there keeps counting.
+ * Sends the goodbye page's survey to the styles API.
  */
 export function useUninstallFeedback() {
   const [state, setState] = useState<FeedbackState>('idle');
@@ -33,7 +30,6 @@ export function useUninstallFeedback() {
       return;
     }
 
-    feedback.reasons.forEach((reason) => track('Uninstall reason', { reason }));
     setState('sent');
   };
 

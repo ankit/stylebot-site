@@ -18,7 +18,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint .",
-    "deploy": "astro build && gh-pages -d dist -b gh-pages -t",
+    "deploy": "astro build && cd dist && wrangler pages deploy . --project-name stylebot-www --branch main",
     "extract:messages": "node scripts/extract-messages.ts",
     "sync:extension-strings": "node scripts/sync-extension-strings.ts"
   },
@@ -42,7 +42,6 @@
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-simple-import-sort": "^14.0.0",
-    "gh-pages": "^6.3.0",
     "globals": "^17.13.0",
     "prettier": "^3.9.9",
     "prettier-plugin-astro": "^1.1.0",

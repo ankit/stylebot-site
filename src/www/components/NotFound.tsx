@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'preact/hooks';
 
-import { track } from '@/lib/analytics';
-
 import {
   DEFAULT_LOCALE,
   htmlLang,
@@ -32,7 +30,6 @@ export default function NotFound({
       setPath(location.pathname);
     }
 
-    track('404', { path: location.pathname });
     const found = localeOf(location.pathname);
 
     if (found !== DEFAULT_LOCALE) {

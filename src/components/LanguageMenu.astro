@@ -37,8 +37,6 @@ const path = unlocalizedPath(Astro.url.pathname);
 </div>
 
 <script>
-  import { track } from '@/lib/analytics';
-
   import { localeOf, localizePath, unlocalizedPath } from '@/i18n/locales';
 
   const menu = document.querySelector<HTMLElement>('.lang-menu')!;
@@ -71,10 +69,6 @@ const path = unlocalizedPath(Astro.url.pathname);
       const locale = localeOf(new URL(link.href).pathname);
       const path = unlocalizedPath(location.pathname);
 
-      track('Language change', {
-        from: document.documentElement.lang,
-        to: link.hreflang,
-      });
       link.href = localizePath(locale, path) + location.search + location.hash;
     }
   });

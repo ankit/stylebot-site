@@ -4,4 +4,4 @@ Source for [stylebot.dev](https://stylebot.dev/), the website of the [Stylebot](
 
 - [Development](docs/development.md): running and building both sites
 - [The extension](docs/extension.md): the wording and screenshots borrowed from the extension's repo
-- [Deployment](docs/deployment.md): publishing stylebot.dev and the gallery, and launching the gallery
+- [Deployment](docs/deployment.md): publishing stylebot.dev and the gallery

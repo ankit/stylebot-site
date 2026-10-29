@@ -4,8 +4,8 @@ The [stylebot.dev](https://stylebot.dev) site for the Stylebot browser extension
 
 ## Structure
 
-- `src/www/` — the stylebot.dev site: its `pages/[...lang]/` (every page, once per locale; English has no prefix), the components, lib and styles only it uses (`components/demo` and `components/cli` are the landing page's demos), and `public/`, copied as is (`CNAME` keeps the stylebot.dev domain on GitHub Pages)
-- `functions/` — Cloudflare Pages Functions for gallery.stylebot.dev, whose Pages project builds `yarn build:gallery` into `dist-gallery/` (stylebot.dev, on GitHub Pages, doesn't use them): they serve the sitemaps and give the sites, site, style and author pages their own title, description and preview image from the styles API, for crawlers that don't run the app. The `_routes.json` the gallery build writes sends only those paths to them. They have their own `tsconfig.json`, with the Workers types; `yarn preview:pages` builds the gallery and serves it with them through `wrangler pages dev`
+- `src/www/` — the stylebot.dev site: its `pages/[...lang]/` (every page, once per locale; English has no prefix), the components, lib and styles only it uses (`components/demo` and `components/cli` are the landing page's demos), and `public/`, copied as is
+- `functions/` — Cloudflare Pages Functions for gallery.stylebot.dev, whose Pages project builds `yarn build:gallery` into `dist-gallery/` (stylebot.dev, the `stylebot-www` project, doesn't use them): they serve the sitemaps and give the sites, site, style and author pages their own title, description and preview image from the styles API, for crawlers that don't run the app. The `_routes.json` the gallery build writes sends only those paths to them. They have their own `tsconfig.json`, with the Workers types; `yarn preview:pages` builds the gallery and serves it with them through `wrangler pages dev`
 - `src/components/`, `src/layouts/`, `src/styles/`, `src/lib/` — pieces shared by every site: the header, footer, base layout, tokens and links
 - `src/theme/` — the site themes: their tokens, the menu that switches them, and the head script that applies the saved one before first paint
 - `src/i18n/` — `t()`, the locales and the middleware that puts them on `Astro.locals`; `catalogs/<locale>.json` holds each locale's translations keyed by the English text, and `source.json`, generated, lists every message with its note and the files that use it
@@ -20,8 +20,8 @@ The [stylebot.dev](https://stylebot.dev) site for the Stylebot browser extension
 - `yarn format` — format everything with Prettier; `yarn format:check` checks it, as CI does
 - `yarn lint` — ESLint, as CI runs it; `yarn lint --fix` fixes what it can, such as import order
 - `yarn build` — build into `dist/`
-- `yarn deploy` — build and publish to the `gh-pages` branch, which serves stylebot.dev
-- `yarn deploy:gallery` — build the gallery and upload it to its Cloudflare Pages project; it tells search engines to skip it until `GALLERY_PUBLIC=true` (see docs/deployment.md)
+- `yarn deploy` — build and upload `dist/` to the `stylebot-www` Cloudflare Pages project, which serves stylebot.dev
+- `yarn deploy:gallery` — build the gallery and upload it to its Cloudflare Pages project; it tells search engines to skip it until `GALLERY_PUBLIC=true`
 
 ## i18n
 
