@@ -7,8 +7,8 @@
 }
 
 .prose h1 {
-  font: 700 clamp(32px, 4.4vw, 46px) / 1.08 var(--font-display);
-  letter-spacing: -0.03em;
+  font: 600 clamp(30px, 3.6vw, 40px) / 1.1 var(--font-display);
+  letter-spacing: -0.025em;
   color: var(--fg);
   margin: 0 0 12px;
   text-wrap: balance;
