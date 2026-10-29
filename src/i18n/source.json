@@ -269,7 +269,7 @@
     ]
   },
   {
-    "text": "Also on {first} and {second}",
+    "text": "Also on {first}, {second} and {third}",
     "files": [
       "src/www/pages/[...lang]/index.astro"
     ]
@@ -1195,9 +1195,14 @@
     ]
   },
   {
+    "text": "For Chrome or Edge. The command line doesn't work on Firefox or Safari yet.",
+    "files": [
+      "src/www/pages/[...lang]/cli.astro"
+    ]
+  },
+  {
     "text": "For Chrome or Edge. The command line doesn't work on Firefox yet.",
     "files": [
-      "src/www/pages/[...lang]/cli.astro",
       "src/www/pages/[...lang]/releases/4.0.astro"
     ]
   },
@@ -1398,7 +1403,7 @@
     ]
   },
   {
-    "text": "In Chrome and Edge the editor opens in the side panel. Use <strong>Position</strong> in its <strong>⋯</strong> menu to open it in a separate window or dock it in the page. Firefox has no side panel.",
+    "text": "In Chrome and Edge the editor opens in the side panel. Use <strong>Position</strong> in its <strong>⋯</strong> menu to open it in a separate window or dock it in the page. Firefox and Safari have no side panel.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
     ]
@@ -1983,7 +1988,7 @@
     ]
   },
   {
-    "text": "Point at something on a page and change it. Stylebot writes the CSS and loads it every time you come back. Free and open source for Chrome, Firefox and Edge.",
+    "text": "Point at something on a page and change it. Stylebot writes the CSS and loads it every time you come back. Free and open source for Chrome, Firefox, Safari and Edge.",
     "files": [
       "src/layouts/Base.astro",
       "src/www/pages/[...lang]/index.astro"
@@ -2247,6 +2252,12 @@
   {
     "text": "Restyle",
     "note": "A single word, ideally short: the page cycles it through decorative fonts.",
+    "files": [
+      "src/www/pages/[...lang]/index.astro"
+    ]
+  },
+  {
+    "text": "Safari needs macOS 15 or later.",
     "files": [
       "src/www/pages/[...lang]/index.astro"
     ]
@@ -2690,7 +2701,7 @@
     ]
   },
   {
-    "text": "Stylebot runs on <strong>Chrome, Firefox and Edge</strong> on desktop.",
+    "text": "Stylebot runs on <strong>Chrome, Firefox, Safari and Edge</strong> on desktop.",
     "note": "Shown on phones in place of the store buttons.",
     "files": [
       "src/www/pages/[...lang]/index.astro"
@@ -2703,7 +2714,7 @@
     ]
   },
   {
-    "text": "Stylebot works in Chrome, Firefox and Edge on a computer.",
+    "text": "Stylebot works in Chrome, Firefox, Safari and Edge on a computer.",
     "files": [
       "src/gallery/components/GetStylebotCard.tsx",
       "src/gallery/components/PublishUnavailable.tsx"
@@ -2754,8 +2765,8 @@
     ]
   },
   {
-    "text": "Styles made with {stylebot}. Get it for {store1}, {store2} or {store3}.",
-    "note": "{stylebot} links to stylebot.dev; {store1}, {store2} and {store3} are Chrome, Firefox and Edge, each linking to its store.",
+    "text": "Styles made with {stylebot}. Get it for {store1}, {store2}, {store3} or {store4}.",
+    "note": "{stylebot} links to stylebot.dev; {store1} to {store4} are Chrome, Firefox, Safari and Edge, each linking to its store.",
     "files": [
       "src/gallery/components/GalleryFooter.astro"
     ]

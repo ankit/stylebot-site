@@ -7,6 +7,10 @@ export const STORES = {
     name: 'Firefox',
     href: 'https://addons.mozilla.org/firefox/addon/stylebot-web/',
   },
+  safari: {
+    name: 'Safari',
+    href: 'https://apps.apple.com/app/id6821400927',
+  },
   edge: {
     name: 'Edge',
     href: 'https://microsoftedge.microsoft.com/addons/detail/stylebot/mjolbpfednnbebfapicajpifliopnnai',
@@ -19,8 +23,8 @@ export const BROWSERS = Object.keys(STORES) as Array<Browser>;
 
 /**
  * The browser this page runs in, by its user agent, among those Stylebot is
- * made for: Firefox, Edge, or Chrome for any other Chromium browser. Null
- * where Stylebot doesn't run, such as Safari and phones or tablets.
+ * made for: Firefox, Safari on a Mac, Edge, or Chrome for any other Chromium
+ * browser. Null where Stylebot doesn't run, such as phones and tablets.
  */
 export function currentBrowser(): Browser | null {
   const ua = navigator.userAgent;
@@ -41,6 +45,11 @@ export function currentBrowser(): Browser | null {
 
   if (/Chrome\/|Chromium\//.test(ua)) {
     return 'chrome';
+  }
+
+  // Chromium browsers also say Safari, so this comes after them.
+  if (/Version\/.+Safari\//.test(ua)) {
+    return 'safari';
   }
 
   return null;

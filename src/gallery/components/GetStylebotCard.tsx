@@ -20,7 +20,11 @@ export default function GetStylebotCard({ locale, t }: Props) {
   if (!browser) {
     return (
       <div class="get-stylebot-card">
-        <p>{t('Stylebot works in Chrome, Firefox and Edge on a computer.')}</p>
+        <p>
+          {t(
+            'Stylebot works in Chrome, Firefox, Safari and Edge on a computer.',
+          )}
+        </p>
 
         <ButtonLink
           href={LINKS.site + localizePath(locale, '/')}

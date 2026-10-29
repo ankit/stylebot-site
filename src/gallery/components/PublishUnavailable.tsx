@@ -68,7 +68,9 @@ export default function PublishUnavailable({ locale, t }: Props) {
       {!browser && (
         <div class="publish-start-actions">
           <p>
-            {t('Stylebot works in Chrome, Firefox and Edge on a computer.')}
+            {t(
+              'Stylebot works in Chrome, Firefox, Safari and Edge on a computer.',
+            )}
           </p>
 
           <ButtonLink

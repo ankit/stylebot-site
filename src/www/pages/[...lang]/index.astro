@@ -338,11 +338,11 @@ const structuredData = {
   name: 'Stylebot',
   url: new URL(path('/'), Astro.site).href,
   description: t(
-    'Point at something on a page and change it. Stylebot writes the CSS and loads it every time you come back. Free and open source for Chrome, Firefox and Edge.',
+    'Point at something on a page and change it. Stylebot writes the CSS and loads it every time you come back. Free and open source for Chrome, Firefox, Safari and Edge.',
   ),
   inLanguage: lang,
   applicationCategory: 'BrowserApplication',
-  operatingSystem: 'Chrome, Firefox, Edge',
+  operatingSystem: 'Chrome, Firefox, Safari, Edge',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
   downloadUrl: Object.values(STORES).map((store) => store.href),
   sameAs: [LINKS.github, ...Object.values(STORES).map((store) => store.href)],
@@ -404,11 +404,13 @@ const structuredData = {
         <div class="cta-row">
           <StoreLink index={0} format="add" variant="primary" />
           <span class="cta-also">
-            {parts(t('Also on {first} and {second}')).map((part) =>
+            {parts(t('Also on {first}, {second} and {third}')).map((part) =>
               part === '{first}' ? (
                 <StoreLink index={1} format="name" class="ink-link" />
               ) : part === '{second}' ? (
                 <StoreLink index={2} format="name" class="ink-link" />
+              ) : part === '{third}' ? (
+                <StoreLink index={3} format="name" class="ink-link" />
               ) : (
                 part
               ),
@@ -421,7 +423,7 @@ const structuredData = {
             set:html={
               // i18n: Shown on phones in place of the store buttons.
               t(
-                'Stylebot runs on <strong>Chrome, Firefox and Edge</strong> on desktop.',
+                'Stylebot runs on <strong>Chrome, Firefox, Safari and Edge</strong> on desktop.',
               )
             }
           />
@@ -457,7 +459,9 @@ const structuredData = {
           <StoreLink index={0} format="add" variant="primary" />
           <StoreLink index={1} format="name" variant="outline" />
           <StoreLink index={2} format="name" variant="outline" />
+          <StoreLink index={3} format="name" variant="outline" />
         </div>
+        <p class="install-note">{t('Safari needs macOS 15 or later.')}</p>
         <div class="install-cli">
           <span
             set:html={t(
@@ -687,6 +691,12 @@ const structuredData = {
     flex-wrap: wrap;
     gap: 10px;
     margin-top: 6px;
+  }
+
+  .install .install-note {
+    margin: 0;
+    font: 400 var(--text-sm)/1.4 var(--font-ui);
+    color: var(--fg-muted);
   }
 
   .install-cli {
