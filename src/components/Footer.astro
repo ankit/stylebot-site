@@ -6,9 +6,9 @@ import { LINKS } from '@/lib/links';
 const { path, t } = Astro.locals;
 
 const links = [
-  { label: t('Manual'), href: path(LINKS.manual) },
-  { label: t('CLI'), href: path(LINKS.cli) },
   { label: t('Gallery'), href: LINKS.gallery + path('/') },
+  { label: t('CLI'), href: path(LINKS.cli) },
+  { label: t('Manual'), href: path(LINKS.manual) },
   { label: t('Changelog'), href: LINKS.changelog },
 ];
 ---

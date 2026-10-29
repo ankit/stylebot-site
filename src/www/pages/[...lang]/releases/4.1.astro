@@ -3,10 +3,11 @@ import ButtonLink from '@/components/ButtonLink';
 import Base from '@/layouts/Base.astro';
 
 import GalleryMock from '@/www/components/GalleryMock.astro';
+import PublishMock from '@/www/components/PublishMock.astro';
 
 import { LINKS } from '@/lib/links';
 
-import { localeStaticPaths, rich } from '@/i18n';
+import { localeStaticPaths } from '@/i18n';
 
 export const getStaticPaths = localeStaticPaths;
 
@@ -17,31 +18,30 @@ const title = t("What's new in {version}", { version: '4.1' });
 <Base
   title={title}
   description={t(
-    'Stylebot 4.1 brings the Gallery: styles other people made for the sites you use, ready to install in a click.',
+    'Stylebot 4.1 adds the Gallery, where you can install styles for the sites you use and publish your own.',
   )}
 >
   <main class="release">
     <div class="release-intro">
       <h1>{title}</h1>
-      <p>
-        {t(
-          'Find styles other people made for the sites you use, and share your own.',
-        )}
-      </p>
+      <p>{t('Stylebot now has a Gallery where you can share your styles.')}</p>
     </div>
 
     <div class="release-body">
       <section id="gallery" class="release-split">
         <div class="release-text">
           <h2>{t('Gallery')}</h2>
-          <p>{t('Open Stylebot on a site to see styles made for it.')}</p>
+          <p>
+            {t(
+              'Open Stylebot on a site to see the styles people have published for it.',
+            )}
+          </p>
           <ul>
             {[
+              t('Preview a style on the page before you install it'),
               t(
-                'Try a style on the page, hold to compare, and install it in a click.',
+                'Installed styles update when their author publishes a new version, unless you’ve edited your copy',
               ),
-              t('Installed styles stay up to date until you edit them.'),
-              t('Publish your own from the popup or the editor.'),
             ].map((item) => (
               <li>{item}</li>
             ))}
@@ -52,65 +52,60 @@ const title = t("What's new in {version}", { version: '4.1' });
             </ButtonLink>
           </div>
           <p class="release-note">
-            {t(
-              'Stylebot only asks the Gallery about sites it has styles for. You can turn off suggestions in Options.',
-            )}
+            {t('You can turn off Gallery suggestions in Options.')}
           </p>
         </div>
         <div class="release-mock" aria-hidden="true">
-          <GalleryMock />
+          <GalleryMock previewing />
+        </div>
+      </section>
+
+      <hr />
+
+      <section id="share" class="release-split">
+        <div class="release-text">
+          <h2>{t('Share your styles')}</h2>
+          <p>
+            {t(
+              'The Gallery is new, so most sites don’t have styles yet. If you’ve hidden a site’s clutter, made it dark or fixed its fonts, someone else probably wants the same thing.',
+            )}
+          </p>
+          <ul>
+            {[
+              t('Publish a style to the Gallery from the popup or the editor'),
+              t(
+                'Your edits stay on your computer until you publish an update, and everyone who installed your style gets it',
+              ),
+              t('Rename or delete your styles on the Gallery at any time'),
+            ].map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </div>
+        <div class="release-mock" aria-hidden="true">
+          <PublishMock />
         </div>
       </section>
 
       <hr />
 
       <section id="more" class="release-more">
-        <h2>{t('Also new')}</h2>
+        <h2>{t('Other changes')}</h2>
         <ul>
           {[
             // i18n: "Basic" is a tab in Stylebot's editor; use the extension's own translation.
-            t('A font weight control in the editor’s Basic tab'),
+            t('Font weight in the editor’s Basic tab'),
             t(
-              'The code editor can fold blocks of CSS and keeps their selectors in view as you scroll. Its search and color picker are restyled too.',
+              'Foldable blocks in the code editor, with the current selector pinned as you scroll, and a restyled search and color picker',
             ),
-            t(
-              'Styles can come in light and dark versions. Pick one in the popup, or before installing from the Gallery.',
-            ),
-            t('Create, rename, edit or delete a profile from the popup'),
-          ].map((item) => (
-            <li>{item}</li>
-          ))}
-        </ul>
-      </section>
-
-      <hr />
-
-      <section id="fixes" class="release-more">
-        <h2>{t('Fixes')}</h2>
-        <ul>
-          {[
-            t(
-              'Sync signs in to the right Google account, and stops asking you to sign in again',
-            ),
+            t('Create, rename, edit and delete profiles from the popup'),
+            t('Sync uses the right Google account and keeps you signed in'),
             t('Sites’ text styles no longer leak into Stylebot’s panels'),
-            t('The editor forgets the selected element when its panel closes'),
-            t('Dropdown menus in the editor use the editor’s text size'),
-            t(
-              'No stray scrollbar beside the profile tabs in Options’ style editor',
-            ),
+            t('Closing the editor clears the selected element'),
           ].map((item) => (
             <li>{item}</li>
           ))}
         </ul>
-        <p
-          class="release-fixes"
-          set:html={rich(
-            t('See every change in the <a href="{changelog}">changelog</a>'),
-            {
-              changelog: LINKS.changelog,
-            },
-          )}
-        />
       </section>
     </div>
   </main>
@@ -133,7 +128,7 @@ const title = t("What's new in {version}", { version: '4.1' });
 
   .release-intro h1 {
     margin: 0;
-    font: 700 clamp(38px, 5.4vw, 60px) / 1.04 var(--font-display);
+    font: 700 clamp(34px, 4.6vw, 48px) / 1.05 var(--font-display);
     letter-spacing: -0.035em;
     color: var(--fg);
     text-wrap: balance;
@@ -256,14 +251,9 @@ const title = t("What's new in {version}", { version: '4.1' });
     gap: 18px;
   }
 
-  .release-fixes {
-    margin: 8px 0 0;
-    font: 600 var(--text-base)/1.5 var(--font-ui);
-    color: var(--fg);
-  }
-
-  .release-fixes a {
-    text-decoration: underline;
-    text-underline-offset: 0.15em;
+  .release-more > p {
+    margin: 0;
+    font: 400 17px/1.65 var(--font-ui);
+    text-wrap: pretty;
   }
 </style>

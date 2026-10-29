@@ -136,13 +136,6 @@
     ]
   },
   {
-    "text": "A font weight control in the editor’s Basic tab",
-    "note": "\"Basic\" is a tab in Stylebot's editor; use the extension's own translation.",
-    "files": [
-      "src/www/pages/[...lang]/releases/4.1.astro"
-    ]
-  },
-  {
     "text": "A moderator will take a look. Styles reported by several people are hidden until then.",
     "files": [
       "src/gallery/components/ReportDialog.tsx"
@@ -273,12 +266,6 @@
       "src/gallery/components/NotFound.tsx",
       "src/gallery/components/SitePage.tsx",
       "src/gallery/components/SitesPage.tsx"
-    ]
-  },
-  {
-    "text": "Also new",
-    "files": [
-      "src/www/pages/[...lang]/releases/4.1.astro"
     ]
   },
   {
@@ -622,6 +609,12 @@
     ]
   },
   {
+    "text": "Closing the editor clears the selected element",
+    "files": [
+      "src/www/pages/[...lang]/releases/4.1.astro"
+    ]
+  },
+  {
     "text": "Code",
     "files": [
       "src/www/components/demo/Demo.tsx"
@@ -858,11 +851,12 @@
   {
     "text": "Create profile",
     "files": [
+      "src/www/components/PublishMock.astro",
       "src/www/components/demo/Demo.tsx"
     ]
   },
   {
-    "text": "Create, rename, edit or delete a profile from the popup",
+    "text": "Create, rename, edit and delete profiles from the popup",
     "files": [
       "src/www/pages/[...lang]/releases/4.1.astro"
     ]
@@ -932,7 +926,8 @@
     "files": [
       "src/gallery/components/DeleteStyleDialog.tsx",
       "src/gallery/components/EditForm.tsx",
-      "src/gallery/components/MyStyleMenu.tsx"
+      "src/gallery/components/MyStyleMenu.tsx",
+      "src/www/components/PublishMock.astro"
     ]
   },
   {
@@ -1003,12 +998,6 @@
     ]
   },
   {
-    "text": "Dropdown menus in the editor use the editor’s text size",
-    "files": [
-      "src/www/pages/[...lang]/releases/4.1.astro"
-    ]
-  },
-  {
     "text": "Each field shows the element’s current computed value.",
     "files": [
       "src/www/components/demo/scenes.ts"
@@ -1021,7 +1010,8 @@
       "src/gallery/components/EditStyleButton.tsx",
       "src/gallery/components/MyStyleMenu.tsx",
       "src/gallery/components/PublishDetailsSummary.tsx",
-      "src/gallery/components/ScreenshotSlotMenu.tsx"
+      "src/gallery/components/ScreenshotSlotMenu.tsx",
+      "src/www/components/PublishMock.astro"
     ]
   },
   {
@@ -1173,13 +1163,7 @@
     ]
   },
   {
-    "text": "Find styles other people made for the sites you use, and share your own.",
-    "files": [
-      "src/www/pages/[...lang]/releases/4.1.astro"
-    ]
-  },
-  {
-    "text": "Fixes",
+    "text": "Foldable blocks in the code editor, with the current selector pinned as you scroll, and a restyled search and color picker",
     "files": [
       "src/www/pages/[...lang]/releases/4.1.astro"
     ]
@@ -1195,6 +1179,13 @@
     "text": "Font",
     "files": [
       "src/www/components/demo/Demo.tsx"
+    ]
+  },
+  {
+    "text": "Font weight in the editor’s Basic tab",
+    "note": "\"Basic\" is a tab in Stylebot's editor; use the extension's own translation.",
+    "files": [
+      "src/www/pages/[...lang]/releases/4.1.astro"
     ]
   },
   {
@@ -1446,7 +1437,8 @@
   {
     "text": "Install",
     "files": [
-      "src/components/Header.astro"
+      "src/components/Header.astro",
+      "src/www/components/GalleryMock.astro"
     ]
   },
   {
@@ -1484,7 +1476,7 @@
     ]
   },
   {
-    "text": "Installed styles stay up to date until you edit them.",
+    "text": "Installed styles update when their author publishes a new version, unless you’ve edited your copy",
     "files": [
       "src/www/pages/[...lang]/releases/4.1.astro"
     ]
@@ -1778,9 +1770,9 @@
     ]
   },
   {
-    "text": "No stray scrollbar beside the profile tabs in Options’ style editor",
+    "text": "No style",
     "files": [
-      "src/www/pages/[...lang]/releases/4.1.astro"
+      "src/www/components/PublishMock.astro"
     ]
   },
   {
@@ -1859,7 +1851,7 @@
     ]
   },
   {
-    "text": "Open Stylebot on a site to see styles made for it.",
+    "text": "Open Stylebot on a site to see the styles people have published for it.",
     "files": [
       "src/www/pages/[...lang]/releases/4.1.astro"
     ]
@@ -1922,6 +1914,12 @@
     "note": "A reason for reporting a style, explained in a text box below.",
     "files": [
       "src/gallery/components/ReportDialog.tsx"
+    ]
+  },
+  {
+    "text": "Other changes",
+    "files": [
+      "src/www/pages/[...lang]/releases/4.1.astro"
     ]
   },
   {
@@ -2024,6 +2022,12 @@
     ]
   },
   {
+    "text": "Preview a style on the page before you install it",
+    "files": [
+      "src/www/pages/[...lang]/releases/4.1.astro"
+    ]
+  },
+  {
     "text": "Preview on {site}",
     "files": [
       "src/gallery/components/PreviewCard.tsx"
@@ -2072,6 +2076,12 @@
     ]
   },
   {
+    "text": "Publish a style to the Gallery from the popup or the editor",
+    "files": [
+      "src/www/pages/[...lang]/releases/4.1.astro"
+    ]
+  },
+  {
     "text": "Publish as a new style",
     "files": [
       "src/gallery/components/PublishFlow.tsx"
@@ -2081,6 +2091,12 @@
     "text": "Publish from Stylebot",
     "files": [
       "src/gallery/components/PublishUnavailable.tsx"
+    ]
+  },
+  {
+    "text": "Publish to Gallery",
+    "files": [
+      "src/www/components/PublishMock.astro"
     ]
   },
   {
@@ -2095,12 +2111,6 @@
     "files": [
       "src/gallery/components/PublishForm.tsx",
       "src/gallery/components/PublishUpdateLink.tsx"
-    ]
-  },
-  {
-    "text": "Publish your own from the popup or the editor.",
-    "files": [
-      "src/www/pages/[...lang]/releases/4.1.astro"
     ]
   },
   {
@@ -2177,6 +2187,18 @@
     "text": "Remove this area",
     "files": [
       "src/gallery/components/ScreenshotBlur.tsx"
+    ]
+  },
+  {
+    "text": "Rename",
+    "files": [
+      "src/www/components/PublishMock.astro"
+    ]
+  },
+  {
+    "text": "Rename or delete your styles on the Gallery at any time",
+    "files": [
+      "src/www/pages/[...lang]/releases/4.1.astro"
     ]
   },
   {
@@ -2345,12 +2367,6 @@
     ]
   },
   {
-    "text": "See every change in the <a href=\"{changelog}\">changelog</a>",
-    "files": [
-      "src/www/pages/[...lang]/releases/4.1.astro"
-    ]
-  },
-  {
     "text": "Select the highlighted element",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
@@ -2398,6 +2414,12 @@
     "text": "Setup",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
+    "text": "Share your styles",
+    "files": [
+      "src/www/pages/[...lang]/releases/4.1.astro"
     ]
   },
   {
@@ -2544,6 +2566,12 @@
     ]
   },
   {
+    "text": "Stop preview",
+    "files": [
+      "src/www/components/GalleryMock.astro"
+    ]
+  },
+  {
     "text": "Style",
     "note": "Column heading over your styles' names on Your styles.",
     "files": [
@@ -2601,7 +2629,7 @@
     ]
   },
   {
-    "text": "Stylebot 4.1 brings the Gallery: styles other people made for the sites you use, ready to install in a click.",
+    "text": "Stylebot 4.1 adds the Gallery, where you can install styles for the sites you use and publish your own.",
     "files": [
       "src/www/pages/[...lang]/releases/4.1.astro"
     ]
@@ -2668,7 +2696,7 @@
     ]
   },
   {
-    "text": "Stylebot only asks the Gallery about sites it has styles for. You can turn off suggestions in Options.",
+    "text": "Stylebot now has a Gallery where you can share your styles.",
     "files": [
       "src/www/pages/[...lang]/releases/4.1.astro"
     ]
@@ -2722,12 +2750,6 @@
     "note": "The start of an author's description in link previews, followed by their style and install counts.",
     "files": [
       "functions/_lib/preview.ts"
-    ]
-  },
-  {
-    "text": "Styles can come in light and dark versions. Pick one in the popup, or before installing from the Gallery.",
-    "files": [
-      "src/www/pages/[...lang]/releases/4.1.astro"
     ]
   },
   {
@@ -2831,7 +2853,7 @@
     ]
   },
   {
-    "text": "Sync signs in to the right Google account, and stops asking you to sign in again",
+    "text": "Sync uses the right Google account and keeps you signed in",
     "files": [
       "src/www/pages/[...lang]/releases/4.1.astro"
     ]
@@ -2924,12 +2946,6 @@
     ]
   },
   {
-    "text": "The code editor can fold blocks of CSS and keeps their selectors in view as you scroll. Its search and color picker are restyled too.",
-    "files": [
-      "src/www/pages/[...lang]/releases/4.1.astro"
-    ]
-  },
-  {
     "text": "The CSS is the same as the latest version’s, so there’s no new version to publish. You can still save the name, description and screenshot; installs aren’t updated.",
     "files": [
       "src/gallery/components/CssUnchangedNotice.tsx"
@@ -2942,15 +2958,15 @@
     ]
   },
   {
-    "text": "The editor forgets the selected element when its panel closes",
-    "files": [
-      "src/www/pages/[...lang]/releases/4.1.astro"
-    ]
-  },
-  {
     "text": "The editor’s menu, with Position set to the side panel",
     "files": [
       "src/www/pages/[...lang]/releases/4.0.astro"
+    ]
+  },
+  {
+    "text": "The Gallery is new, so most sites don’t have styles yet. If you’ve hidden a site’s clutter, made it dark or fixed its fonts, someone else probably wants the same thing.",
+    "files": [
+      "src/www/pages/[...lang]/releases/4.1.astro"
     ]
   },
   {
@@ -3179,12 +3195,6 @@
     "text": "Travel · Long read",
     "files": [
       "src/www/components/demo/Demo.tsx"
-    ]
-  },
-  {
-    "text": "Try a style on the page, hold to compare, and install it in a click.",
-    "files": [
-      "src/www/pages/[...lang]/releases/4.1.astro"
     ]
   },
   {
@@ -3498,6 +3508,12 @@
     ]
   },
   {
+    "text": "You can turn off Gallery suggestions in Options.",
+    "files": [
+      "src/www/pages/[...lang]/releases/4.1.astro"
+    ]
+  },
+  {
     "text": "You haven’t published any styles yet.",
     "files": [
       "src/gallery/components/MyStyleList.tsx"
@@ -3507,6 +3523,12 @@
     "text": "You’ve been signed out. Sign in again to report it.",
     "files": [
       "src/gallery/components/ReportDialog.tsx"
+    ]
+  },
+  {
+    "text": "Your edits stay on your computer until you publish an update, and everyone who installed your style gets it",
+    "files": [
+      "src/www/pages/[...lang]/releases/4.1.astro"
     ]
   },
   {

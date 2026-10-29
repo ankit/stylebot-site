@@ -3,6 +3,7 @@ import DownloadIcon from '@/components/icons/DownloadIcon';
 import SyncIcon from '@/components/icons/SyncIcon';
 
 const { locale, t } = Astro.locals;
+const { previewing = false } = Astro.props;
 
 const compact = new Intl.NumberFormat(locale, { notation: 'compact' });
 const styles = [
@@ -35,8 +36,13 @@ const styles = [
       <span>{t('Browse all')}</span>
     </div>
 
-    {styles.map((style) => (
-      <div class="pop-suggestion">
+    {styles.map((style, i) => (
+      <div
+        class:list={[
+          'pop-suggestion',
+          { 'pop-previewing': previewing && i === 0 },
+        ]}
+      >
         <span class="pop-name">{style.name}</span>
         <span class="pop-installs">
           <DownloadIcon size={11} />
@@ -47,14 +53,24 @@ const styles = [
   </div>
 
   <div class="pop-action">
-    <span class="pop-button">{t('Style this page')}</span>
-    <div class="pop-sync">
-      <span>{t('Synced 2 minutes ago')}</span>
-      <span class="pop-sync-now">
-        <SyncIcon />
-        {t('Sync now')}
-      </span>
-    </div>
+    {previewing && (
+      <div class="pop-buttons">
+        <span class="pop-button pop-button-plain">{t('Stop preview')}</span>
+        <span class="pop-button">{t('Install')}</span>
+      </div>
+    )}
+
+    {!previewing && <span class="pop-button">{t('Style this page')}</span>}
+
+    {!previewing && (
+      <div class="pop-sync">
+        <span>{t('Synced 2 minutes ago')}</span>
+        <span class="pop-sync-now">
+          <SyncIcon />
+          {t('Sync now')}
+        </span>
+      </div>
+    )}
   </div>
 </div>
 
@@ -104,6 +120,12 @@ const styles = [
     padding: 8px 10px;
   }
 
+  .pop-previewing {
+    margin: 0 -6px;
+    padding: 8px 16px;
+    background: var(--bg-track);
+  }
+
   .pop-name {
     flex: 1;
     min-width: 0;
@@ -140,6 +162,23 @@ const styles = [
     text-align: center;
     font-size: 14px;
     font-weight: 600;
+  }
+
+  .pop-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .pop-buttons .pop-button {
+    flex: 1 1 auto;
+    padding: 9px 8px;
+    white-space: nowrap;
+  }
+
+  .pop-buttons .pop-button-plain {
+    border-color: transparent;
+    background: none;
   }
 
   .pop-sync {

@@ -445,7 +445,9 @@ const structuredData = {
 
     <section id="install" class="section">
       <div class="install">
-        <h2>{t('Install Stylebot', { context: 'heading' })}</h2>
+        <h2 class="section-title">
+          {t('Install Stylebot', { context: 'heading' })}
+        </h2>
         <p>
           {t(
             'Free and open source since 2011. No account and no tracking. Your styles live in your browser, and the code is on GitHub.',
@@ -671,12 +673,6 @@ const structuredData = {
     flex-direction: column;
     align-items: flex-start;
     gap: 18px;
-  }
-
-  .install h2 {
-    font: 700 var(--text-2xl) / 1.1 var(--font-display);
-    letter-spacing: -0.03em;
-    margin: 0;
   }
 
   .install p {
