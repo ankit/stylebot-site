@@ -21,8 +21,7 @@
   {
     "text": "{count} installs",
     "files": [
-      "src/gallery/components/MyStyleInstalls.tsx",
-      "src/www/components/FeaturedStyles.astro"
+      "src/gallery/components/MyStyleInstalls.tsx"
     ]
   },
   {
