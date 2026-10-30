@@ -8,6 +8,7 @@ import {
 import { type Locale, LOCALES, localizePath } from '@/i18n';
 
 import { api, type Env, listStyles, type Site, type Style } from './api';
+import { escape } from './html';
 
 // Each function call may make 50 requests; this leaves room for /sites.
 const MAX_PAGES = 45;
@@ -15,19 +16,6 @@ const PAGE_SIZE = 50;
 const TIMEOUT = 5000;
 
 const CACHE_CONTROL = 'public, max-age=3600';
-
-const escape = (text: string) =>
-  text.replace(
-    /[&<>"']/g,
-    (c) =>
-      ({
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        '"': '&quot;',
-        "'": '&apos;',
-      })[c]!,
-  );
 
 function xml(body: string) {
   return new Response(`<?xml version="1.0" encoding="UTF-8"?>\n${body}\n`, {
@@ -88,7 +76,21 @@ export async function localeSitemap(
     api<{ sites: Array<Site> }>(env, '/sites', TIMEOUT),
     allStyles(env),
   ]);
-  const authors = new Set(styles.map((s) => s.author.username));
+  const latest = (key: (style: Style) => string) => {
+    const times = new Map<string, number>();
+
+    for (const style of styles) {
+      times.set(
+        key(style),
+        Math.max(times.get(key(style)) ?? 0, style.updatedAt),
+      );
+    }
+
+    return times;
+  };
+  const bySite = latest((s) => s.site);
+  const byAuthor = latest((s) => s.author.username);
+  const newest = Math.max(0, ...bySite.values());
   const entry = (path: string, updatedAt?: number) => {
     const lastmod = updatedAt
       ? `<lastmod>${new Date(updatedAt).toISOString()}</lastmod>`
@@ -98,11 +100,13 @@ export async function localeSitemap(
   };
 
   const urls = [
-    entry(localizePath(locale, '/')),
-    entry(sitesHref(locale)),
-    ...(sites?.sites ?? []).map((s) => entry(siteHref(locale, s.site))),
+    entry(localizePath(locale, '/'), newest),
+    entry(sitesHref(locale), newest),
+    ...(sites?.sites ?? []).map((s) =>
+      entry(siteHref(locale, s.site), bySite.get(s.site)),
+    ),
     ...styles.map((s) => entry(styleHref(locale, s), s.updatedAt)),
-    ...[...authors].map((a) => entry(authorHref(locale, a))),
+    ...[...byAuthor].map(([a, time]) => entry(authorHref(locale, a), time)),
   ];
 
   return xml(

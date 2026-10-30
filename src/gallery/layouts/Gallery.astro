@@ -2,6 +2,8 @@
 import Header from '@/components/Header.astro';
 import GalleryFooter from '@/gallery/components/GalleryFooter.astro';
 
+import { homeTitle } from '@/gallery/lib/titles';
+
 import Base from '@/layouts/Base.astro';
 
 import './Gallery.css';
@@ -15,7 +17,7 @@ type Props = {
 
 const { t } = Astro.locals;
 const {
-  title = t('Browse Styles'),
+  title = homeTitle(t),
   description = t(
     'Styles people made with Stylebot for the sites they use. Pick one and install it in a click.',
   ),

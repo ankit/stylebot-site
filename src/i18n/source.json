@@ -33,6 +33,13 @@
     ]
   },
   {
+    "text": "{name} for {site}",
+    "note": "A style's page title in search results and tabs: its name, then the site it restyles, such as “Quiet Reel for YouTube”.",
+    "files": [
+      "src/gallery/lib/titles.ts"
+    ]
+  },
+  {
     "text": "{name} is live",
     "files": [
       "src/gallery/components/PublishedNotice.tsx"
@@ -58,6 +65,13 @@
     ]
   },
   {
+    "text": "{site} themes and styles",
+    "note": "A site's page title in search results and tabs, such as “YouTube themes and styles”.",
+    "files": [
+      "src/gallery/lib/titles.ts"
+    ]
+  },
+  {
     "text": "{title} - Stylebot",
     "files": [
       "src/layouts/Base.astro",
@@ -67,17 +81,12 @@
   {
     "text": "{title} | Stylebot",
     "files": [
-      "functions/_lib/preview.ts",
-      "src/gallery/components/AuthorPage.tsx",
-      "src/gallery/components/Browse.tsx",
       "src/gallery/components/EditPage.tsx",
       "src/gallery/components/MinePage.tsx",
       "src/gallery/components/NotFoundPage.tsx",
       "src/gallery/components/PublishPage.tsx",
-      "src/gallery/components/SitePage.tsx",
-      "src/gallery/components/SitesPage.tsx",
-      "src/gallery/components/StylePage.tsx",
-      "src/gallery/layouts/Gallery.astro"
+      "src/gallery/layouts/Gallery.astro",
+      "src/gallery/lib/titles.ts"
     ]
   },
   {
@@ -254,7 +263,7 @@
     "text": "All sites",
     "note": "Links to the page listing every site that has styles.",
     "files": [
-      "functions/_lib/preview.ts",
+      "functions/_lib/content.ts",
       "src/gallery/components/SitesPage.tsx",
       "src/gallery/components/TopSites.tsx"
     ]
@@ -348,6 +357,7 @@
   {
     "text": "Author",
     "files": [
+      "functions/_lib/content.ts",
       "src/gallery/components/StylePage.tsx"
     ]
   },
@@ -445,13 +455,6 @@
     "text": "Browse all",
     "files": [
       "src/www/components/GalleryMock.astro"
-    ]
-  },
-  {
-    "text": "Browse Styles",
-    "files": [
-      "src/gallery/components/Browse.tsx",
-      "src/gallery/layouts/Gallery.astro"
     ]
   },
   {
@@ -900,6 +903,13 @@
     ]
   },
   {
+    "text": "Dark modes, themes and cleaner layouts for sites like {sites}, made with Stylebot. Install one in a click.",
+    "note": "The gallery home page's description in search results. {sites} lists up to three sites, such as “YouTube, Gmail and GitHub”.",
+    "files": [
+      "functions/_lib/preview.ts"
+    ]
+  },
+  {
     "text": "Decoration",
     "files": [
       "src/www/components/demo/Demo.tsx"
@@ -1102,6 +1112,13 @@
     ]
   },
   {
+    "text": "Every site with Stylebot themes and styles, including {sites}.",
+    "note": "The description of the page listing every site, in search results. {sites} lists up to three, such as “YouTube, Gmail and GitHub”.",
+    "files": [
+      "functions/_lib/preview.ts"
+    ]
+  },
+  {
     "text": "Every site. Useful for styles you want everywhere.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
@@ -1234,6 +1251,7 @@
     "text": "Gallery",
     "note": "Column heading over where each of your styles stands in the Gallery. A short tag next to the Stylebot logo, naming this part of the site.",
     "files": [
+      "functions/_lib/content.ts",
       "src/components/Footer.astro",
       "src/components/Header.astro",
       "src/gallery/components/MyStyleList.tsx",
@@ -1489,12 +1507,14 @@
   {
     "text": "Installs",
     "files": [
+      "functions/_lib/content.ts",
       "src/gallery/components/StylePage.tsx"
     ]
   },
   {
     "text": "Installs: {count}",
     "files": [
+      "functions/_lib/content.ts",
       "functions/_lib/preview.ts",
       "src/gallery/components/AuthorPage.tsx",
       "src/gallery/components/InstallCount.tsx"
@@ -2328,6 +2348,7 @@
   {
     "text": "Screenshot of {name} on {site}",
     "files": [
+      "functions/_lib/content.ts",
       "src/gallery/components/EditForm.tsx",
       "src/gallery/components/PublishForm.tsx",
       "src/gallery/components/PublishedNotice.tsx",
@@ -2752,9 +2773,16 @@
     ]
   },
   {
+    "text": "Styles by {username}",
+    "note": "An author's page title in search results and tabs.",
+    "files": [
+      "src/gallery/lib/titles.ts"
+    ]
+  },
+  {
     "text": "Styles for {site}",
     "files": [
-      "functions/_lib/preview.ts",
+      "functions/_lib/content.ts",
       "src/gallery/components/SitePage.tsx"
     ]
   },
@@ -2778,13 +2806,6 @@
     ]
   },
   {
-    "text": "Styles people made with Stylebot for {site}.",
-    "note": "The start of a site's description in link previews, followed by its style and install counts.",
-    "files": [
-      "functions/_lib/preview.ts"
-    ]
-  },
-  {
     "text": "Styles people made with Stylebot for the sites they use. Pick one and install it in a click.",
     "files": [
       "src/gallery/layouts/Gallery.astro"
@@ -2793,6 +2814,7 @@
   {
     "text": "Styles: {count}",
     "files": [
+      "functions/_lib/content.ts",
       "functions/_lib/preview.ts",
       "src/gallery/components/AuthorPage.tsx",
       "src/gallery/components/SiteLink.tsx"
@@ -3056,6 +3078,27 @@
     ]
   },
   {
+    "text": "Themes and styles by site",
+    "note": "The title of the page listing every site with styles, in search results and tabs.",
+    "files": [
+      "src/gallery/lib/titles.ts"
+    ]
+  },
+  {
+    "text": "Themes and styles for {site}, made with Stylebot: {styles}.",
+    "note": "A site's description in search results and link previews. {styles} lists up to three style names, such as “Quiet Reel, Dark Tube and Focus”.",
+    "files": [
+      "functions/_lib/preview.ts"
+    ]
+  },
+  {
+    "text": "Themes, styles and dark modes for any website",
+    "note": "The gallery home page's title in search results and tabs.",
+    "files": [
+      "src/gallery/lib/titles.ts"
+    ]
+  },
+  {
     "text": "Then try it:",
     "files": [
       "src/www/pages/[...lang]/cli.astro"
@@ -3168,6 +3211,7 @@
   {
     "text": "Top sites",
     "files": [
+      "functions/_lib/content.ts",
       "src/gallery/components/TopSites.tsx"
     ]
   },
@@ -3249,6 +3293,7 @@
   {
     "text": "Updated",
     "files": [
+      "functions/_lib/content.ts",
       "src/gallery/components/StylePage.tsx"
     ]
   },

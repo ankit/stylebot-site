@@ -41,8 +41,8 @@ const routes = {
         next();
       });
     },
-    // On Cloudflare Pages, functions/ serves the sites, site, style and author
-    // pages and the sitemaps; rewrites, which keep the address, serve /mine,
+    // On Cloudflare Pages, functions/ serves the home, sites, site, style and
+    // author pages and the sitemaps; rewrites, which keep the address, serve /mine,
     // /publish and /edit.
     'astro:build:done': ({ dir }) => {
       const routes = {
@@ -51,6 +51,7 @@ const routes = {
           '/sitemap.xml',
           '/sitemap-*',
           ...PREFIXES.flatMap((p) => [
+            `${p}/`,
             `${p}/site/*`,
             `${p}/style/*`,
             `${p}/author/*`,
@@ -62,21 +63,18 @@ const routes = {
 
       writeFileSync(new URL('_routes.json', dir), JSON.stringify(routes));
 
-      // The functions add the same headers to the pages they serve. Until
-      // launch, search engines skip the static files too.
+      // The functions add the same headers to the pages they serve. The
+      // signed-in pages stay out of search results.
       const headers = [
-        "Content-Security-Policy: frame-ancestors 'none'",
-        'X-Content-Type-Options: nosniff',
+        "/*\n  Content-Security-Policy: frame-ancestors 'none'\n  X-Content-Type-Options: nosniff",
+        ...PREFIXES.flatMap((p) => [
+          `${p}/mine`,
+          `${p}/publish`,
+          `${p}/edit/*`,
+        ]).map((path) => `${path}\n  X-Robots-Tag: noindex`),
       ];
 
-      if (process.env.GALLERY_PUBLIC !== 'true') {
-        headers.push('X-Robots-Tag: noindex');
-      }
-
-      writeFileSync(
-        new URL('_headers', dir),
-        `/*\n${headers.map((h) => `  ${h}\n`).join('')}`,
-      );
+      writeFileSync(new URL('_headers', dir), `${headers.join('\n')}\n`);
 
       writeFileSync(
         new URL('_redirects', dir),

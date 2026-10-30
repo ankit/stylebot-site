@@ -1,6 +1,7 @@
 import { createPortal } from 'preact/compat';
 import { lazy, LocationProvider, Route, Router } from 'preact-iso';
 
+import { useRemoveStaticContent } from '@/gallery/hooks/useRemoveStaticContent';
 import { restoreScroll } from '@/gallery/lib/scroll';
 
 import {
@@ -49,6 +50,8 @@ export default function GalleryApp({ locale, strings }: Props) {
   const base = localizePath(locale, '/');
   const props = { locale, strings };
   const nav = document.getElementById('account-nav');
+
+  useRemoveStaticContent();
 
   return (
     <LocationProvider scope={localeScope(locale)}>

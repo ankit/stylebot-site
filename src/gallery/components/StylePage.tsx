@@ -6,6 +6,7 @@ import { useStyle } from '@/gallery/hooks/useStyle';
 import { fullNumber, timeAgo } from '@/gallery/lib/format';
 import { authorHref, siteHref } from '@/gallery/lib/paths';
 import { lightDark } from '@/gallery/lib/styleOptions';
+import { pageTitle, styleTitle } from '@/gallery/lib/titles';
 
 import { type Locale } from '@/i18n/locales';
 import { type Catalog, translator } from '@/i18n/t';
@@ -36,13 +37,13 @@ export default function StylePage({ locale, strings }: Props) {
   const t = translator(strings);
   const { id, slug } = useRoute().params;
   const { style, missing, failed, reload } = useStyle(id);
-  let title = style?.name;
+  let title = style && styleTitle(t, style);
 
   if (missing) {
     title = t('Style not found');
   }
 
-  usePageMeta(title && t('{title} | Stylebot', { title }), {
+  usePageMeta(title && pageTitle(t, title), {
     noindex: missing,
   });
   useSlugRedirect(style, { id, slug }, locale);

@@ -62,8 +62,9 @@
   align-items: flex-start;
   gap: 10px;
   padding: 14px 16px;
+  border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  background: var(--bg-hover);
+  background: var(--bg-surface);
   color: var(--fg);
 }
 

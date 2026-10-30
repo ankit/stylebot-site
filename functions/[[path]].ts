@@ -5,7 +5,7 @@ import { preview } from './_lib/preview';
 import { cached, localeSitemap, sitemapIndex } from './_lib/sitemap';
 
 /**
- * The sitemaps and the sites, site, style and author pages. _routes.json,
+ * The sitemaps and the home, sites, site, style and author pages. _routes.json,
  * written by the build, keeps every other request on the static files.
  */
 export const onRequestGet: PagesFunction<Env> = async (context) => {

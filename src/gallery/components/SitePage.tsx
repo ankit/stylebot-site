@@ -4,6 +4,8 @@ import { usePageMeta } from '@/gallery/hooks/usePageMeta';
 import { useSort } from '@/gallery/hooks/useSort';
 import { useStyles } from '@/gallery/hooks/useStyles';
 import { ApiError } from '@/gallery/lib/api';
+import { siteName } from '@/gallery/lib/siteNames';
+import { pageTitle, siteTitle } from '@/gallery/lib/titles';
 
 import { type Locale, localizePath } from '@/i18n/locales';
 import { type Catalog, translator } from '@/i18n/t';
@@ -32,13 +34,15 @@ export default function SitePage({ locale, strings }: Props) {
   const invalid = feed.error instanceof ApiError && feed.error.status === 400;
   const empty = !feed.loading && !feed.error && !feed.items.length;
   const missing = invalid || empty;
-  let heading = t('Styles for {site}', { site });
+  let heading = t('Styles for {site}', { site: siteName(site) });
+  let title = siteTitle(t, site);
 
   if (missing) {
     heading = t('No styles for {site} yet', { site });
+    title = heading;
   }
 
-  usePageMeta(t('{title} | Stylebot', { title: heading }), {
+  usePageMeta(pageTitle(t, title), {
     noindex: missing,
   });
 

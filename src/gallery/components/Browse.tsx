@@ -2,6 +2,7 @@ import { usePageMeta } from '@/gallery/hooks/usePageMeta';
 import { useSearch } from '@/gallery/hooks/useSearch';
 import { useSort } from '@/gallery/hooks/useSort';
 import { useStyles } from '@/gallery/hooks/useStyles';
+import { homeTitle, pageTitle } from '@/gallery/lib/titles';
 
 import { type Locale } from '@/i18n/locales';
 import { type Catalog, translator } from '@/i18n/t';
@@ -23,9 +24,9 @@ export default function Browse({ locale, strings }: Props) {
   const [sort, setSort] = useSort();
   const feed = useStyles({ search, sort });
   const empty = !feed.loading && !feed.error && feed.items.length === 0;
-  const title = t('Browse Styles');
+  const title = homeTitle(t);
 
-  usePageMeta(t('{title} | Stylebot', { title }));
+  usePageMeta(pageTitle(t, title));
 
   return (
     <>

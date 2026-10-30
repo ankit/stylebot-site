@@ -8,6 +8,7 @@ import { useSort } from '@/gallery/hooks/useSort';
 import { useStyles } from '@/gallery/hooks/useStyles';
 import { compactNumber, fullNumber } from '@/gallery/lib/format';
 import { authorHref } from '@/gallery/lib/paths';
+import { authorTitle, pageTitle } from '@/gallery/lib/titles';
 
 import { type Locale, localizePath } from '@/i18n/locales';
 import { type Catalog, translator } from '@/i18n/t';
@@ -35,14 +36,14 @@ export default function AuthorPage({ locale, strings }: Props) {
   const own = author && session?.account.username === author.username;
   const [sort, setSort] = useSort();
   const feed = useStyles({ search: '', sort, author: username });
-  let title = username;
+  let title = authorTitle(t, username);
 
   if (missing) {
     // i18n: The title of the page for an author who doesn't exist or has no published styles.
     title = t('Author not found');
   }
 
-  usePageMeta(t('{title} | Stylebot', { title }), { noindex: missing });
+  usePageMeta(pageTitle(t, title), { noindex: missing });
 
   useEffect(() => {
     if (author && author.username !== username) {

@@ -2,17 +2,18 @@ export type Env = {
   ASSETS: Fetcher;
   // Another styles API, such as a local one at http://localhost:8787.
   STYLES_API?: string;
-  // 'true' once the gallery launches; until then search engines are told to
-  // skip it.
-  GALLERY_PUBLIC?: string;
 };
 
 export type Style = {
   id: number;
   slug: string;
+  site: string;
   name: string;
   description: string | null;
   author: { username: string };
+  installs: number;
+  version: number;
+  createdAt: number;
   updatedAt: number;
   // The first is its cover.
   screenshots: Array<string>;

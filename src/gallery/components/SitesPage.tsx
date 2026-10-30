@@ -5,6 +5,7 @@ import { useRevealed } from '@/gallery/hooks/useRevealed';
 import { useSites } from '@/gallery/hooks/useSites';
 import { useSiteSort } from '@/gallery/hooks/useSiteSort';
 import { fullNumber } from '@/gallery/lib/format';
+import { pageTitle, sitesTitle } from '@/gallery/lib/titles';
 
 import { type Locale, localizePath } from '@/i18n/locales';
 import { type Catalog, translator } from '@/i18n/t';
@@ -37,7 +38,7 @@ export default function SitesPage({ locale, strings }: Props) {
   const empty = Boolean(sites) && found.length === 0;
   const title = t('All sites');
 
-  usePageMeta(t('{title} | Stylebot', { title }));
+  usePageMeta(pageTitle(t, sitesTitle(t)));
 
   return (
     <div class="sites-page">
