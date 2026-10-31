@@ -1,6 +1,6 @@
 import ButtonLink from '@/components/ButtonLink';
 
-import { currentBrowser, LINKS, STORES } from '@/lib/links';
+import { currentBrowser, LINKS, storeHref, STORES } from '@/lib/links';
 
 import { type Locale, localizePath } from '@/i18n/locales';
 import { type Translate } from '@/i18n/t';
@@ -42,7 +42,7 @@ export default function GetStylebotCard({ locale, t }: Props) {
     <div class="get-stylebot-card">
       <p>{t('Get Stylebot to install this style.')}</p>
 
-      <ButtonLink href={store.href}>
+      <ButtonLink href={storeHref(browser, 'get-stylebot')}>
         {t('Add Stylebot to {store}', { store: store.name })}
       </ButtonLink>
     </div>

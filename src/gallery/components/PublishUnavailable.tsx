@@ -2,7 +2,7 @@ import { useStylebotAvailability } from '@/gallery/hooks/useStylebotAvailability
 
 import ButtonLink from '@/components/ButtonLink';
 
-import { currentBrowser, LINKS, STORES } from '@/lib/links';
+import { currentBrowser, LINKS, storeHref, STORES } from '@/lib/links';
 
 import { type Locale, localizePath } from '@/i18n/locales';
 import { type Translate } from '@/i18n/t';
@@ -59,7 +59,7 @@ export default function PublishUnavailable({ locale, t }: Props) {
 
       {browser && (
         <div class="publish-start-actions">
-          <ButtonLink href={STORES[browser].href}>
+          <ButtonLink href={storeHref(browser, 'publish')}>
             {t('Add Stylebot to {store}', { store: STORES[browser].name })}
           </ButtonLink>
         </div>

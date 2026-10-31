@@ -402,15 +402,35 @@ const structuredData = {
       </p>
       <div class="cta">
         <div class="cta-row">
-          <StoreLink index={0} format="add" variant="primary" />
+          <StoreLink
+            index={0}
+            format="add"
+            placement="hero"
+            variant="primary"
+          />
           <span class="cta-also">
             {parts(t('Also on {first}, {second} and {third}')).map((part) =>
               part === '{first}' ? (
-                <StoreLink index={1} format="name" class="ink-link" />
+                <StoreLink
+                  index={1}
+                  format="name"
+                  placement="hero"
+                  class="ink-link"
+                />
               ) : part === '{second}' ? (
-                <StoreLink index={2} format="name" class="ink-link" />
+                <StoreLink
+                  index={2}
+                  format="name"
+                  placement="hero"
+                  class="ink-link"
+                />
               ) : part === '{third}' ? (
-                <StoreLink index={3} format="name" class="ink-link" />
+                <StoreLink
+                  index={3}
+                  format="name"
+                  placement="hero"
+                  class="ink-link"
+                />
               ) : (
                 part
               ),
@@ -456,10 +476,30 @@ const structuredData = {
           )}
         </p>
         <div class="install-buttons">
-          <StoreLink index={0} format="add" variant="primary" />
-          <StoreLink index={1} format="name" variant="outline" />
-          <StoreLink index={2} format="name" variant="outline" />
-          <StoreLink index={3} format="name" variant="outline" />
+          <StoreLink
+            index={0}
+            format="add"
+            placement="install"
+            variant="primary"
+          />
+          <StoreLink
+            index={1}
+            format="name"
+            placement="install"
+            variant="outline"
+          />
+          <StoreLink
+            index={2}
+            format="name"
+            placement="install"
+            variant="outline"
+          />
+          <StoreLink
+            index={3}
+            format="name"
+            placement="install"
+            variant="outline"
+          />
         </div>
         <p class="install-note">{t('Safari needs macOS 15 or later.')}</p>
         <div class="install-cli">

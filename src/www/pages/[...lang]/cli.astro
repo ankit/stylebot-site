@@ -5,7 +5,7 @@ import Base from '@/layouts/Base.astro';
 import CliCommand from '@/www/components/cli/CliCommand.astro';
 
 import { CLI_EXAMPLES, CLI_INSTALL } from '@/www/lib/cli';
-import { STORES } from '@/lib/links';
+import { STORES, storeHref } from '@/lib/links';
 
 import { localeStaticPaths, rich } from '@/i18n';
 
@@ -53,10 +53,10 @@ const examples = CLI_EXAMPLES.map(({ id, command }) => [
             )}
           </p>
           <div class="cli-stores">
-            <ButtonLink href={STORES.chrome.href} variant="outline">
+            <ButtonLink href={storeHref('chrome', 'cli')} variant="outline">
               {t('Add to {store}', { store: STORES.chrome.name })}
             </ButtonLink>
-            <ButtonLink href={STORES.edge.href} variant="outline">
+            <ButtonLink href={storeHref('edge', 'cli')} variant="outline">
               {t('Add to {store}', { store: STORES.edge.name })}
             </ButtonLink>
           </div>

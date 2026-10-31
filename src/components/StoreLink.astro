@@ -1,6 +1,6 @@
 ---
 import ButtonLink from '@/components/ButtonLink';
-import { BROWSERS, STORES } from '@/lib/links';
+import { BROWSERS, type Placement, STORES, storeHref } from '@/lib/links';
 
 import { fmt } from '@/i18n';
 
@@ -8,13 +8,23 @@ import { fmt } from '@/i18n';
 type Props = {
   index: 0 | 1 | 2 | 3;
   format: 'add' | 'name' | 'reinstall';
+  placement: Placement;
   variant?: 'primary' | 'outline';
   size?: 'md' | 'sm';
   class?: string;
 };
 
-const { index, format, variant, size, class: className } = Astro.props;
-const store = STORES[BROWSERS[index]];
+const {
+  index,
+  format,
+  placement,
+  variant,
+  size,
+  class: className,
+} = Astro.props;
+const browser = BROWSERS[index];
+const store = STORES[browser];
+const href = storeHref(browser, placement);
 const { t } = Astro.locals;
 const template = {
   add: t('Add to {store}'),
@@ -26,29 +36,37 @@ const label = fmt(template, { store: store.name });
 
 {variant && (
   <ButtonLink
-    href={store.href}
+    href={href}
     variant={variant}
     size={size}
     class={className}
     data-store-slot={index}
     data-store-label={template}
+    data-store-placement={placement}
   >
     {label}
   </ButtonLink>
 )}
 {!variant && (
   <a
-    href={store.href}
+    href={href}
     class={className}
     data-store-slot={index}
     data-store-label={template}
+    data-store-placement={placement}
   >
     {label}
   </a>
 )}
 
 <script>
-  import { BROWSERS, currentBrowser, STORES } from '@/lib/links';
+  import {
+    BROWSERS,
+    currentBrowser,
+    type Placement,
+    storeHref,
+    STORES,
+  } from '@/lib/links';
 
   import { fmt } from '@/i18n/format';
 
@@ -59,9 +77,12 @@ const label = fmt(template, { store: store.name });
   document
     .querySelectorAll<HTMLAnchorElement>('[data-store-slot]')
     .forEach((link) => {
-      const store = STORES[order[Number(link.dataset.storeSlot)]];
+      const browser = order[Number(link.dataset.storeSlot)];
+      const placement = link.dataset.storePlacement as Placement;
 
-      link.href = store.href;
-      link.textContent = fmt(link.dataset.storeLabel!, { store: store.name });
+      link.href = storeHref(browser, placement);
+      link.textContent = fmt(link.dataset.storeLabel!, {
+        store: STORES[browser].name,
+      });
     });
 </script>

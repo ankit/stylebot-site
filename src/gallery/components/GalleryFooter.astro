@@ -1,12 +1,15 @@
 ---
-import { BROWSERS, LINKS, STORES } from '@/lib/links';
+import { BROWSERS, LINKS, STORES, storeHref } from '@/lib/links';
 
 import { parts } from '@/i18n';
 
 const { path, t } = Astro.locals;
 
 const stores = Object.fromEntries(
-  BROWSERS.map((browser, i) => [`{store${i + 1}}`, STORES[browser]]),
+  BROWSERS.map((browser, i) => [
+    `{store${i + 1}}`,
+    { name: STORES[browser].name, href: storeHref(browser, 'footer') },
+  ]),
 );
 ---
 
