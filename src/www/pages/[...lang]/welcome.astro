@@ -2,9 +2,7 @@
 import Base from '@/layouts/Base.astro';
 
 import Demo from '@/www/components/demo/Demo';
-import CliCommand from '@/www/components/cli/CliCommand.astro';
 
-import { CLI_INSTALL } from '@/www/lib/cli';
 import { LINKS } from '@/lib/links';
 
 import { localeStaticPaths } from '@/i18n';
@@ -51,59 +49,17 @@ const { path, strings, t } = Astro.locals;
         </div>
       </Demo>
     </div>
-    <section class="agent">
-      <div class="agent-inner">
-        <div class="agent-text">
-          <h2>{t('Using a coding agent?')}</h2>
-          <p>
-            {t(
-              'You can also add the Stylebot CLI, so your agent can restyle sites for you.',
-            )}
-          </p>
-          <div class="agent-setup">
-            <CliCommand lines={[CLI_INSTALL]} boxed />
-            <a href={path(LINKS.cli)} class="agent-guide">
-              {t('Set up the CLI →')}
-            </a>
-          </div>
-        </div>
-        <div class="agent-term" aria-hidden="true">
-          <div class="agent-term-title">
-            {
-              // i18n: An animation of a coding agent restyling a made-up news site's article.
-              t('Terminal · coding agent')
-            }
-          </div>
-          <div class="agent-term-body">
-            <div class="agent-term-ask">
-              <span class="agent-term-dim">&gt;</span>
-              <span>
-                {
-                  // i18n: What the person asks their coding agent; Everforest is a color theme's name
-                  t('give this site an Everforest theme with nicer fonts')
-                }
-              </span>
-            </div>
-            <div class="agent-term-run">
-              <span class="agent-term-cmd">stylebot outline 54432929</span>
-              <span class="agent-term-dim">article › h1, p.dek, p ×12</span>
-            </div>
-            <div class="agent-term-run">
-              <span class="agent-term-cmd">
-                stylebot css set harbourpost.example &lt; everforest.css
-              </span>
-              <span class="agent-term-dim">Saved · applied to 1 tab</span>
-            </div>
-            <div class="agent-term-reply">
-              {
-                // i18n: The coding agent's reply; Lora and Newsreader are font names
-                t('Switched to Everforest colors with Lora and Newsreader.')
-              }
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <div class="agent">
+      <p class="agent-inner">
+        <strong>{t('Works with your coding agent')}</strong>
+        <span>
+          {t(
+            'Stylebot has a CLI, so any agent that can run commands can restyle a site.',
+          )}
+        </span>
+        <a href={path(LINKS.cli)}>{t('Set up the CLI →')}</a>
+      </p>
+    </div>
   </main>
 </Base>
 
@@ -212,112 +168,35 @@ const { path, strings, t } = Astro.locals;
   .agent {
     max-width: var(--width-page);
     margin: 0 auto;
-    padding: 0 var(--gutter) 24px;
+    padding: 16px var(--gutter) 48px;
   }
 
   .agent-inner {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
-    gap: 28px 56px;
-    align-items: center;
-    padding-top: 40px;
+    margin: 0;
+    padding: 24px 22px 0;
     border-top: 1px solid var(--border);
-  }
-
-  .agent-text {
     display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-
-  .agent-text h2 {
-    font: 700 clamp(24px, 2.6vw, 30px) / 1.15 var(--font-display);
-    letter-spacing: -0.025em;
-    margin: 0;
-    color: var(--fg);
-    text-wrap: balance;
-  }
-
-  .agent-text p {
-    font: 400 var(--text-base)/1.6 var(--font-ui);
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 12px;
+    font: 400 var(--text-sm)/1.5 var(--font-ui);
     color: var(--fg-muted);
-    margin: 0;
-    max-width: var(--width-subtitle);
     text-wrap: pretty;
   }
 
-  .agent-setup {
-    max-width: 440px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .agent-guide {
-    align-self: flex-start;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 10px 16px;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--border-strong);
-    background: var(--bg-surface);
-    font: 600 var(--text-sm)/1 var(--font-ui);
+  .agent-inner strong {
+    font-weight: 600;
     color: var(--fg);
   }
 
-  .agent-guide:hover {
-    background: var(--bg-hover);
+  .agent-inner a {
+    font-weight: 600;
+    color: var(--fg-muted);
+    white-space: nowrap;
+  }
+
+  .agent-inner a:hover {
     color: var(--fg);
-  }
-
-  .agent-term {
-    min-width: 0;
-    border-radius: 12px;
-    background: #15171c;
-    box-shadow: 0 18px 40px rgba(10, 14, 22, 0.22);
-    overflow: hidden;
-  }
-
-  .agent-term-title {
-    padding: 11px 16px;
-    border-bottom: 1px solid #262a32;
-    font: 500 12px/1 var(--font-ui);
-    color: #8b92a0;
-  }
-
-  .agent-term-body {
-    padding: 16px 18px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    font: 400 13px/1.55 var(--font-mono);
-    color: #e7e9ee;
-    overflow-wrap: anywhere;
-  }
-
-  .agent-term-ask {
-    display: flex;
-    gap: 8px;
-  }
-
-  .agent-term-run {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .agent-term-cmd {
-    color: #8fb4ff;
-  }
-
-  .agent-term-dim {
-    color: #8b92a0;
-  }
-
-  .agent-term-reply {
-    color: #c9cdd6;
-    text-wrap: pretty;
   }
 
   @media (min-width: 1100px) {
@@ -345,6 +224,10 @@ const { path, strings, t } = Astro.locals;
 
     .demo-wrap {
       padding-top: 32px;
+    }
+
+    .agent-inner a {
+      margin-left: auto;
     }
   }
 </style>

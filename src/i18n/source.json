@@ -1289,13 +1289,6 @@
     ]
   },
   {
-    "text": "give this site an Everforest theme with nicer fonts",
-    "note": "What the person asks their coding agent; Everforest is a color theme's name",
-    "files": [
-      "src/www/pages/[...lang]/welcome.astro"
-    ]
-  },
-  {
     "text": "Global",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
@@ -2687,7 +2680,8 @@
   {
     "text": "Stylebot has a CLI, so any agent that can run commands can restyle a site.",
     "files": [
-      "src/www/components/cli/CliSection.astro"
+      "src/www/components/cli/CliSection.astro",
+      "src/www/pages/[...lang]/welcome.astro"
     ]
   },
   {
@@ -2840,13 +2834,6 @@
     ]
   },
   {
-    "text": "Switched to Everforest colors with Lora and Newsreader.",
-    "note": "The coding agent's reply; Lora and Newsreader are font names",
-    "files": [
-      "src/www/pages/[...lang]/welcome.astro"
-    ]
-  },
-  {
     "text": "Sync",
     "files": [
       "src/www/components/Features.astro",
@@ -2889,8 +2876,7 @@
     "text": "Terminal · coding agent",
     "note": "An animation of a coding agent restyling a made-up news site's article.",
     "files": [
-      "src/www/components/cli/CliDemo.tsx",
-      "src/www/pages/[...lang]/welcome.astro"
+      "src/www/components/cli/CliDemo.tsx"
     ]
   },
   {
@@ -3351,12 +3337,6 @@
     ]
   },
   {
-    "text": "Using a coding agent?",
-    "files": [
-      "src/www/pages/[...lang]/welcome.astro"
-    ]
-  },
-  {
     "text": "Using a coding agent? Add the <a href=\"#cli\">CLI</a>:",
     "files": [
       "src/www/pages/[...lang]/index.astro"
@@ -3517,7 +3497,8 @@
   {
     "text": "Works with your coding agent",
     "files": [
-      "src/www/components/cli/CliSection.astro"
+      "src/www/components/cli/CliSection.astro",
+      "src/www/pages/[...lang]/welcome.astro"
     ]
   },
   {
@@ -3530,12 +3511,6 @@
     "text": "Yesterday, Sep 24",
     "files": [
       "src/www/components/HistoryMock.astro"
-    ]
-  },
-  {
-    "text": "You can also add the Stylebot CLI, so your agent can restyle sites for you.",
-    "files": [
-      "src/www/pages/[...lang]/welcome.astro"
     ]
   },
   {
