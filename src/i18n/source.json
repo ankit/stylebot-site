@@ -228,15 +228,15 @@
     ]
   },
   {
-    "text": "Add the Claude Code plugin",
-    "files": [
-      "src/www/pages/[...lang]/cli.astro"
-    ]
-  },
-  {
     "text": "Add the Stylebot plugin and ask for a change with <code>/stylebot</code>, such as a dark theme for a site.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
+    "text": "Add the Stylebot skill to your agent",
+    "files": [
+      "src/www/pages/[...lang]/cli.astro"
     ]
   },
   {
@@ -280,12 +280,6 @@
     "text": "Also on {first}, {second} and {third}",
     "files": [
       "src/www/pages/[...lang]/index.astro"
-    ]
-  },
-  {
-    "text": "An agent runs these for you, but you can run them yourself too. <code>stylebot --help</code> lists them all.",
-    "files": [
-      "src/www/pages/[...lang]/cli.astro"
     ]
   },
   {
@@ -345,6 +339,13 @@
     "files": [
       "src/www/components/Features.astro",
       "src/www/components/demo/Demo.tsx"
+    ]
+  },
+  {
+    "text": "Ask your agent to watch the page using Stylebot, then click <strong>[connect]</strong> on your tab.",
+    "note": "[connect] is a button in Stylebot's CLI mode terminal; use the extension's own translation.",
+    "files": [
+      "src/www/pages/[...lang]/cli.astro"
     ]
   },
   {
@@ -655,15 +656,15 @@
     ]
   },
   {
-    "text": "Commands",
-    "files": [
-      "src/www/pages/[...lang]/cli.astro"
-    ]
-  },
-  {
     "text": "Conflicts",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
+    "text": "Connect a tab",
+    "files": [
+      "src/www/pages/[...lang]/cli.astro"
     ]
   },
   {
@@ -676,12 +677,6 @@
     "text": "Connect Google Drive in Options. Your styles, including profiles, sync every 30 minutes and right after you edit. Stylebot only sees the files it creates in your Drive, and there is no Stylebot server.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
-    ]
-  },
-  {
-    "text": "Connect it to your browsers",
-    "files": [
-      "src/www/pages/[...lang]/cli.astro"
     ]
   },
   {
@@ -699,7 +694,6 @@
   {
     "text": "Control Stylebot from the command line, or let a coding agent like Claude Code, Codex or Cursor do it. The agent restyles sites right in your browser, using your own subscription instead of an API key.",
     "files": [
-      "src/www/pages/[...lang]/cli.astro",
       "src/www/pages/[...lang]/releases/4.0.astro"
     ]
   },
@@ -1007,6 +1001,12 @@
     ]
   },
   {
+    "text": "Drag over the page to mark it, then type a note and press Enter.",
+    "files": [
+      "src/www/pages/[...lang]/cli.astro"
+    ]
+  },
+  {
     "text": "Each field shows the element’s current computed value.",
     "files": [
       "src/www/components/demo/scenes.ts"
@@ -1072,6 +1072,13 @@
     "text": "Either domain, or any of their subdomains.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
+    "text": "Enable <strong>Basics › Allow command line access</strong> in Stylebot’s options.",
+    "note": "\"Basics\" and \"Allow command line access\" are a section and a setting in Stylebot's Options page; use the extension's own translations.",
+    "files": [
+      "src/www/pages/[...lang]/cli.astro"
     ]
   },
   {
@@ -1208,12 +1215,6 @@
     "text": "Fonts",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
-    ]
-  },
-  {
-    "text": "For Chrome or Edge. The command line doesn't work on Firefox or Safari yet.",
-    "files": [
-      "src/www/pages/[...lang]/cli.astro"
     ]
   },
   {
@@ -1419,14 +1420,13 @@
     ]
   },
   {
-    "text": "In Claude Code, run:",
+    "text": "In Claude Code:",
     "files": [
       "src/www/pages/[...lang]/cli.astro"
     ]
   },
   {
-    "text": "In Stylebot's options, under Basics, turn on <strong>Allow command line access</strong> and allow what the browser asks for.",
-    "note": "\"Basics\" and the bolded setting are labels in Stylebot's Options page; use the extension's own translation.",
+    "text": "In Cursor, Copilot in VS Code or another agent, copy <a href=\"{skill}\">the skill’s folder</a> into the agent’s skills folder, such as <code>~/.cursor/skills/</code>.",
     "files": [
       "src/www/pages/[...lang]/cli.astro"
     ]
@@ -1464,14 +1464,13 @@
     ]
   },
   {
-    "text": "Install Stylebot",
-    "context": "step",
+    "text": "Install Stylebot for Chrome or Edge",
     "files": [
       "src/www/pages/[...lang]/cli.astro"
     ]
   },
   {
-    "text": "Install the CLI",
+    "text": "Install the CLI and connect it",
     "files": [
       "src/www/pages/[...lang]/cli.astro"
     ]
@@ -1525,7 +1524,7 @@
     ]
   },
   {
-    "text": "It needs Node 20 or later.",
+    "text": "It teaches your agent to restyle pages with the CLI.",
     "files": [
       "src/www/pages/[...lang]/cli.astro"
     ]
@@ -1592,6 +1591,12 @@
     ]
   },
   {
+    "text": "Let a coding agent like Claude Code, Codex or Cursor restyle sites right in your browser.",
+    "files": [
+      "src/www/pages/[...lang]/cli.astro"
+    ]
+  },
+  {
     "text": "Light",
     "files": [
       "src/theme/ThemeMenu.tsx"
@@ -1655,6 +1660,12 @@
     "text": "Manual sections",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
+    "text": "Mark what to change",
+    "files": [
+      "src/www/pages/[...lang]/cli.astro"
     ]
   },
   {
@@ -1888,7 +1899,6 @@
   {
     "text": "Opens the page in a window behind yours and prints its tab id.",
     "files": [
-      "src/www/pages/[...lang]/cli.astro",
       "src/www/pages/[...lang]/releases/4.0.astro"
     ]
   },
@@ -1921,6 +1931,12 @@
     ]
   },
   {
+    "text": "Or skip marking and just ask your agent for a look, such as “give Hacker News a dark theme”.",
+    "files": [
+      "src/www/pages/[...lang]/cli.astro"
+    ]
+  },
+  {
     "text": "Or write CSS by hand.",
     "files": [
       "src/www/components/demo/scenes.ts"
@@ -1931,6 +1947,12 @@
     "note": "A reason for reporting a style, explained in a text box below.",
     "files": [
       "src/gallery/components/ReportDialog.tsx"
+    ]
+  },
+  {
+    "text": "Other agents",
+    "files": [
+      "src/www/pages/[...lang]/cli.astro"
     ]
   },
   {
@@ -2053,7 +2075,6 @@
   {
     "text": "Prints the page’s visible elements as an outline.",
     "files": [
-      "src/www/pages/[...lang]/cli.astro",
       "src/www/pages/[...lang]/releases/4.0.astro"
     ]
   },
@@ -2312,14 +2333,12 @@
   {
     "text": "Saves a picture of the tab.",
     "files": [
-      "src/www/pages/[...lang]/cli.astro",
       "src/www/pages/[...lang]/releases/4.0.astro"
     ]
   },
   {
     "text": "Saves the CSS as the site’s style, applies it, and checks the page.",
     "files": [
-      "src/www/pages/[...lang]/cli.astro",
       "src/www/pages/[...lang]/releases/4.0.astro"
     ]
   },
@@ -2376,6 +2395,12 @@
     "text": "See all",
     "files": [
       "src/gallery/components/MoreForSite.tsx"
+    ]
+  },
+  {
+    "text": "See each change",
+    "files": [
+      "src/www/pages/[...lang]/cli.astro"
     ]
   },
   {
@@ -2653,6 +2678,12 @@
     ]
   },
   {
+    "text": "Stylebot CLI mode",
+    "files": [
+      "src/www/pages/[...lang]/cli.astro"
+    ]
+  },
+  {
     "text": "Stylebot didn’t hear that it’s published, so publishing from it again would make a second style. Keep this tab open and try again.",
     "files": [
       "src/gallery/components/PublishedNotice.tsx"
@@ -2750,6 +2781,18 @@
     "text": "Stylebot's shortcuts now live in your browser's shortcut settings. In Chrome and Edge, any you changed are back to their defaults, so set them again there.",
     "files": [
       "src/www/pages/[...lang]/releases/4.0.astro"
+    ]
+  },
+  {
+    "text": "Stylebot's terminal offering to connect the tab, with a [connect] button",
+    "files": [
+      "src/www/pages/[...lang]/cli.astro"
+    ]
+  },
+  {
+    "text": "Stylebot's terminal with two marks and a note about them",
+    "files": [
+      "src/www/pages/[...lang]/cli.astro"
     ]
   },
   {
@@ -3045,6 +3088,19 @@
     ]
   },
   {
+    "text": "The terminal showing the note, the commands the agent ran with an undo, and its answer",
+    "files": [
+      "src/www/pages/[...lang]/cli.astro"
+    ]
+  },
+  {
+    "text": "The terminal shows what your agent did, with an <strong>[undo]</strong> for each save.",
+    "note": "[undo] is a button in Stylebot's CLI mode terminal; use the extension's own translation.",
+    "files": [
+      "src/www/pages/[...lang]/cli.astro"
+    ]
+  },
+  {
     "text": "The Wikipedia article on Mathematics in the Readability view, with Reading settings open",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
@@ -3084,12 +3140,6 @@
     ]
   },
   {
-    "text": "Then try it:",
-    "files": [
-      "src/www/pages/[...lang]/cli.astro"
-    ]
-  },
-  {
     "text": "These extensions can see and change information on this site.",
     "files": [
       "src/www/components/demo/Demo.tsx"
@@ -3117,12 +3167,6 @@
     "text": "This page doesn't exist.",
     "files": [
       "src/www/pages/404.astro"
-    ]
-  },
-  {
-    "text": "This registers the CLI with Chrome and Edge, so Stylebot can reach it.",
-    "files": [
-      "src/www/pages/[...lang]/cli.astro"
     ]
   },
   {
@@ -3535,6 +3579,12 @@
     "text": "You’ve been signed out. Sign in again to report it.",
     "files": [
       "src/gallery/components/ReportDialog.tsx"
+    ]
+  },
+  {
+    "text": "Your agent",
+    "files": [
+      "src/www/pages/[...lang]/cli.astro"
     ]
   },
   {

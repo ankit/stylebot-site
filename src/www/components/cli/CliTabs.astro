@@ -1,0 +1,109 @@
+---
+type Props = {
+  tabs: Array<{ id: string; label: string }>;
+  label: string;
+};
+
+const { tabs, label } = Astro.props;
+---
+
+<div class="cli-tabs">
+  <div class="cli-tabs-list" role="tablist" aria-label={label}>
+    {tabs.map(({ id, label }, i) => (
+      <button
+        type="button"
+        role="tab"
+        id={`${id}-tab`}
+        aria-controls={id}
+        aria-selected={i === 0}
+      >
+        {label}
+      </button>
+    ))}
+  </div>
+  <slot />
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.cli-tabs').forEach((root) => {
+    const tabs = [...root.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+
+    const select = (tab: HTMLButtonElement) => {
+      for (const other of tabs) {
+        const selected = other === tab;
+
+        other.setAttribute('aria-selected', String(selected));
+        other.tabIndex = -1;
+
+        if (selected) {
+          other.tabIndex = 0;
+        }
+
+        document.getElementById(other.getAttribute('aria-controls')!)!.hidden =
+          !selected;
+      }
+    };
+
+    select(tabs[0]);
+
+    tabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => select(tab));
+      tab.addEventListener('keydown', (event) => {
+        const step = { ArrowRight: 1, ArrowLeft: -1 }[event.key];
+
+        if (!step) {
+          return;
+        }
+
+        const next = tabs[(i + step + tabs.length) % tabs.length];
+
+        select(next);
+        next.focus();
+      });
+    });
+  });
+</script>
+
+<style>
+  .cli-tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .cli-tabs-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  [role='tab'] {
+    padding: 6px 0 8px;
+    border: none;
+    background: none;
+    font: 400 var(--text-sm) / 1.2 var(--font-ui);
+    color: var(--fg-muted);
+    cursor: pointer;
+  }
+
+  [role='tab']:hover {
+    color: var(--fg);
+  }
+
+  [role='tab'][aria-selected='true'] {
+    font-weight: 600;
+    color: var(--fg);
+    box-shadow: inset 0 -2px 0 var(--fg);
+  }
+
+  .cli-tabs :global([role='tabpanel']) {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .cli-tabs :global([role='tabpanel'][hidden]) {
+    display: none;
+  }
+</style>

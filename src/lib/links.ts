@@ -88,6 +88,8 @@ export const LINKS = {
   siteGithub: 'https://github.com/ankit/stylebot-site',
   issues: 'https://github.com/ankit/stylebot/issues',
   changelog: 'https://github.com/ankit/stylebot/releases',
+  skill:
+    'https://github.com/ankit/stylebot/tree/main/tools/agent-plugin/skills/stylebot',
   donate: 'https://ko-fi.com/stylebot',
   manual: '/manual',
   gallery: 'https://gallery.stylebot.dev',

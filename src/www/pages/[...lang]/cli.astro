@@ -2,28 +2,89 @@
 import ButtonLink from '@/components/ButtonLink';
 import Base from '@/layouts/Base.astro';
 
+import ZoomableImage from '@/components/ZoomableImage';
 import CliCommand from '@/www/components/cli/CliCommand.astro';
+import CliTabs from '@/www/components/cli/CliTabs.astro';
 
-import { CLI_EXAMPLES, CLI_INSTALL } from '@/www/lib/cli';
-import { STORES, storeHref } from '@/lib/links';
+import { CLI_INSTALL } from '@/www/lib/cli';
+import { LINKS, STORES, storeHref } from '@/lib/links';
+import { screenshot } from '@/www/lib/screenshots';
 
 import { localeStaticPaths, rich } from '@/i18n';
 
+import connect from '@/assets/cli/connect.webp';
+import mark from '@/assets/cli/mark.webp';
+import reply from '@/assets/cli/reply.webp';
+
 export const getStaticPaths = localeStaticPaths;
 
-const { t } = Astro.locals;
+const { strings, t } = Astro.locals;
 
-const examples = CLI_EXAMPLES.map(({ id, command }) => [
-  command,
+const AGENTS = [
   {
-    open: t('Opens the page in a window behind yours and prints its tab id.'),
-    outline: t('Prints the page’s visible elements as an outline.'),
-    css: t(
-      'Saves the CSS as the site’s style, applies it, and checks the page.',
+    id: 'agent-claude',
+    name: 'Claude Code',
+    commands: [
+      'claude plugin marketplace add ankit/stylebot',
+      'claude plugin install stylebot',
+    ],
+  },
+  {
+    id: 'agent-codex',
+    name: 'Codex',
+    commands: [
+      'codex plugin marketplace add ankit/stylebot',
+      'codex plugin add stylebot@stylebot',
+    ],
+  },
+  {
+    id: 'agent-copilot',
+    name: 'Copilot CLI',
+    commands: [
+      'copilot plugin marketplace add ankit/stylebot',
+      'copilot plugin install stylebot@stylebot',
+    ],
+  },
+];
+
+const zoomStrings = strings('components/ZoomableImage.tsx');
+const shots = {
+  connect: await screenshot(connect, 247),
+  mark: await screenshot(mark, 440),
+  reply: await screenshot(reply, 440),
+};
+
+const steps = [
+  {
+    title: t('Connect a tab'),
+    // i18n: [connect] is a button in Stylebot's CLI mode terminal; use the extension's own translation.
+    body: t(
+      'Ask your agent to watch the page using Stylebot, then click <strong>[connect]</strong> on your tab.',
     ),
-    screenshot: t('Saves a picture of the tab.'),
-  }[id],
-]);
+    command: '/stylebot watch',
+    shot: shots.connect,
+    alt: t(
+      "Stylebot's terminal offering to connect the tab, with a [connect] button",
+    ),
+  },
+  {
+    title: t('Mark what to change'),
+    body: t('Drag over the page to mark it, then type a note and press Enter.'),
+    shot: shots.mark,
+    alt: t("Stylebot's terminal with two marks and a note about them"),
+  },
+  {
+    title: t('See each change'),
+    // i18n: [undo] is a button in Stylebot's CLI mode terminal; use the extension's own translation.
+    body: t(
+      'The terminal shows what your agent did, with an <strong>[undo]</strong> for each save.',
+    ),
+    shot: shots.reply,
+    alt: t(
+      'The terminal showing the note, the commands the agent ran with an undo, and its answer',
+    ),
+  },
+];
 ---
 
 <Base
@@ -37,7 +98,7 @@ const examples = CLI_EXAMPLES.map(({ id, command }) => [
       <h1>{t('Stylebot from your terminal')}</h1>
       <p>
         {t(
-          'Control Stylebot from the command line, or let a coding agent like Claude Code, Codex or Cursor do it. The agent restyles sites right in your browser, using your own subscription instead of an API key.',
+          'Let a coding agent like Claude Code, Codex or Cursor restyle sites right in your browser.',
         )}
       </p>
     </div>
@@ -46,12 +107,7 @@ const examples = CLI_EXAMPLES.map(({ id, command }) => [
       <h2>{t('Set it up')}</h2>
       <ol class="cli-steps">
         <li>
-          <h3>{t('Install Stylebot', { context: 'step' })}</h3>
-          <p>
-            {t(
-              "For Chrome or Edge. The command line doesn't work on Firefox or Safari yet.",
-            )}
-          </p>
+          <h3>{t('Install Stylebot for Chrome or Edge')}</h3>
           <div class="cli-stores">
             <ButtonLink href={storeHref('chrome', 'cli')} variant="outline">
               {t('Add to {store}', { store: STORES.chrome.name })}
@@ -62,65 +118,84 @@ const examples = CLI_EXAMPLES.map(({ id, command }) => [
           </div>
         </li>
         <li>
-          <h3>{t('Install the CLI')}</h3>
-          <p>{t('It needs Node 20 or later.')}</p>
-          <CliCommand lines={[CLI_INSTALL]} />
-        </li>
-        <li>
-          <h3>{t('Connect it to your browsers')}</h3>
-          <p>
-            {t(
-              'This registers the CLI with Chrome and Edge, so Stylebot can reach it.',
-            )}
-          </p>
-          <CliCommand lines={['stylebot install']} />
+          <h3>{t('Install the CLI and connect it')}</h3>
+          <CliCommand lines={[CLI_INSTALL, 'stylebot install']} />
         </li>
         <li>
           <h3>{t('Turn on command line access')}</h3>
           <p
             set:html={rich(
-              // i18n: "Basics" and the bolded setting are labels in Stylebot's Options page; use the extension's own translation.
+              // i18n: "Basics" and "Allow command line access" are a section and a setting in Stylebot's Options page; use the extension's own translations.
               t(
-                "In Stylebot's options, under Basics, turn on <strong>Allow command line access</strong> and allow what the browser asks for.",
+                'Enable <strong>Basics › Allow command line access</strong> in Stylebot’s options.',
               ),
             )}
           />
         </li>
         <li>
           <h3>
-            {t('Add the Claude Code plugin')}{' '}
+            {t('Add the Stylebot skill to your agent')}{' '}
             <span class="cli-optional">{t('Optional')}</span>
           </h3>
-          <p>{t('In Claude Code, run:')}</p>
-          <CliCommand lines={['/plugin marketplace add ankit/stylebot']} />
-          <CliCommand lines={['/plugin install stylebot@stylebot']} />
-          <p>{t('Then try it:')}</p>
-          <CliCommand
-            lines={['/stylebot news.ycombinator.com give it a dark theme']}
-          />
+          <p>{t('It teaches your agent to restyle pages with the CLI.')}</p>
+          <CliTabs
+            label={t('Your agent')}
+            tabs={[
+              ...AGENTS.map(({ id, name }) => ({ id, label: name })),
+              { id: 'agent-other', label: t('Other agents') },
+            ]}
+          >
+            {AGENTS.map(({ id, commands }) => (
+              <div role="tabpanel" id={id} hidden={id !== AGENTS[0].id}>
+                <CliCommand lines={commands} />
+              </div>
+            ))}
+            <div role="tabpanel" id="agent-other" hidden>
+              <p
+                set:html={rich(
+                  t(
+                    'In Cursor, Copilot in VS Code or another agent, copy <a href="{skill}">the skill’s folder</a> into the agent’s skills folder, such as <code>~/.cursor/skills/</code>.',
+                  ),
+                  { skill: LINKS.skill },
+                )}
+              />
+            </div>
+          </CliTabs>
         </li>
       </ol>
     </section>
 
     <section>
-      <h2>{t('Commands')}</h2>
-      <p
-        set:html={rich(
-          t(
-            'An agent runs these for you, but you can run them yourself too. <code>stylebot --help</code> lists them all.',
-          ),
-        )}
-      />
-      <dl class="cli-examples">
-        {examples.map(([command, what]) => (
-          <div>
-            <dt>
-              <CliCommand lines={[command]} copy={false} />
-            </dt>
-            <dd>{what}</dd>
-          </div>
+      <h2>{t('Stylebot CLI mode')}</h2>
+      <ol class="cli-steps">
+        {steps.map((step) => (
+          <li>
+            <h3>{step.title}</h3>
+            <p set:html={rich(step.body)} />
+
+            {step.command && (
+              <div class="cli-step-command">
+                <p>{t('In Claude Code:')}</p>
+                <CliCommand lines={[step.command]} />
+              </div>
+            )}
+
+            <ZoomableImage
+              client:visible
+              class="cli-shot"
+              strings={zoomStrings}
+              {...step.shot}
+              alt={step.alt}
+            />
+          </li>
         ))}
-      </dl>
+      </ol>
+
+      <p>
+        {t(
+          'Or skip marking and just ask your agent for a look, such as “give Hacker News a dark theme”.',
+        )}
+      </p>
     </section>
 
     <section>
@@ -178,7 +253,7 @@ const examples = CLI_EXAMPLES.map(({ id, command }) => [
   }
 
   h2 {
-    margin: 0;
+    margin: 0 0 12px;
     font: 600 26px/1.2 var(--font-display);
     letter-spacing: -0.02em;
     color: var(--fg);
@@ -205,7 +280,8 @@ const examples = CLI_EXAMPLES.map(({ id, command }) => [
     border-radius: var(--radius-sm);
     background: var(--bg-muted);
     border: 1px solid var(--border);
-    font: 400 0.88em/1.5 var(--font-mono);
+    font: 500 0.88em/1.5 var(--font-mono);
+    color: var(--fg);
   }
 
   .cli-steps {
@@ -215,12 +291,12 @@ const examples = CLI_EXAMPLES.map(({ id, command }) => [
     counter-reset: step;
     display: flex;
     flex-direction: column;
-    gap: 28px;
+    gap: 40px;
   }
 
   .cli-steps li {
     position: relative;
-    padding-left: 38px;
+    padding-left: 42px;
     counter-increment: step;
     display: flex;
     flex-direction: column;
@@ -231,17 +307,26 @@ const examples = CLI_EXAMPLES.map(({ id, command }) => [
     content: counter(step);
     position: absolute;
     top: -1px;
-    left: 0;
+    left: 1px;
     width: 24px;
     height: 24px;
-    border-radius: var(--radius-lg);
-    background: var(--bg-surface);
-    border: 1px solid var(--border-strong);
+    border-radius: 50%;
+    background: var(--bg-badge);
     display: flex;
     align-items: center;
     justify-content: center;
     font: 600 var(--text-xs)/1 var(--font-ui);
-    color: var(--fg);
+    color: var(--fg-secondary);
+  }
+
+  .cli-steps li:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 30px;
+    bottom: -34px;
+    left: 12.5px;
+    width: 1px;
+    background: var(--border);
   }
 
   .cli-steps p {
@@ -254,10 +339,20 @@ const examples = CLI_EXAMPLES.map(({ id, command }) => [
     color: var(--fg);
   }
 
+  .cli-step-command {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .cli-step-command p {
+    font-size: var(--text-sm);
+  }
+
   .cli-optional {
-    padding: 3px 7px;
+    padding: 4px 8px;
     border-radius: var(--radius-sm);
-    border: 1px solid var(--border);
+    background: var(--bg-badge);
     font: 500 var(--text-xs)/1 var(--font-ui);
     color: var(--fg-muted);
   }
@@ -268,21 +363,14 @@ const examples = CLI_EXAMPLES.map(({ id, command }) => [
     gap: 10px;
   }
 
-  .cli-examples {
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
+  p :global(a) {
+    color: var(--fg);
   }
 
-  .cli-examples dt {
-    min-width: 0;
-  }
-
-  .cli-examples dd {
-    margin: 8px 0 0 12px;
-    font: 400 var(--text-sm)/1.5 var(--font-ui);
-    color: var(--fg-muted);
+  .cli-steps :global(img) {
+    display: block;
+    max-width: 100%;
+    height: auto;
   }
 
   @media (max-width: 760px) {
