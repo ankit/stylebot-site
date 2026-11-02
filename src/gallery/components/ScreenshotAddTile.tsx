@@ -11,7 +11,7 @@ type Props = {
 };
 
 /**
- * The tile beside the cover's thumbnail that adds a second screenshot, picked
+ * The tile after the thumbnails that adds another screenshot, picked
  * or dropped on it.
  */
 export default function ScreenshotAddTile({ onAdd, t }: Props) {

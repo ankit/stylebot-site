@@ -18,21 +18,23 @@ type Props = {
 
 /**
  * The screenshots to publish: one shown large with an Edit menu, thumbnails to
- * switch between the cover and an optional second, and a prompt to blur.
+ * switch between the cover and the others, and a prompt to blur.
  */
 export default function ScreenshotPicker({ choices, alt, t }: Props) {
-  const { cover, second, shown } = choices;
+  const { cover, listed, shown } = choices;
   const [zoomed, setZoomed] = useState(false);
   // i18n: The label above the images published with a style.
   const label = t('Screenshots');
-  let choice = cover;
-  let number: 1 | 2 = 1;
+  const isCover = shown.id === cover.id;
+  let number = listed.indexOf(shown) + 1;
   let emptyLabel = t('Upload an image');
 
-  if (shown === 1) {
-    choice = second;
-    number = 2;
-    // i18n: Adds a second screenshot beside the cover.
+  if (number === 0) {
+    number = listed.length + 1;
+  }
+
+  if (!isCover) {
+    // i18n: Adds another screenshot beside the cover.
     emptyLabel = t('Add image');
   }
 
@@ -41,20 +43,20 @@ export default function ScreenshotPicker({ choices, alt, t }: Props) {
       <div class="screenshot-picker-head">
         <span aria-hidden="true">{label}</span>
 
-        {choice.preview && (
+        {shown.preview && (
           <ScreenshotSlotMenu
-            choice={choice}
+            choice={shown}
             number={number}
             onBlur={() => setZoomed(true)}
             t={t}
           >
-            {shown === 1 && (
+            {!isCover && (
               <>
                 <button
                   type="button"
                   role="menuitem"
                   class="menu-item"
-                  onClick={choices.swap}
+                  onClick={() => choices.makeCover(shown.id)}
                 >
                   {
                     // i18n: Makes this screenshot the style's first, the one
@@ -67,10 +69,10 @@ export default function ScreenshotPicker({ choices, alt, t }: Props) {
                   type="button"
                   role="menuitem"
                   class="menu-item"
-                  onClick={second.remove}
+                  onClick={shown.remove}
                 >
                   {
-                    // i18n: Removes the second screenshot from the style.
+                    // i18n: Removes a screenshot other than the cover from the style.
                     t('Remove')
                   }
                 </button>
@@ -81,8 +83,8 @@ export default function ScreenshotPicker({ choices, alt, t }: Props) {
       </div>
 
       <ScreenshotSlot
-        key={shown}
-        choice={choice}
+        key={shown.id}
+        choice={shown}
         alt={alt}
         emptyLabel={emptyLabel}
         zoomed={zoomed}
@@ -92,7 +94,7 @@ export default function ScreenshotPicker({ choices, alt, t }: Props) {
 
       {cover.preview && <ScreenshotThumbnails choices={choices} t={t} />}
 
-      {choice.canBlur && choice.original && (
+      {shown.canBlur && shown.original && (
         <button
           type="button"
           class="screenshot-picker-blur"

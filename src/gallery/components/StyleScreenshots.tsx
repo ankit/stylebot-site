@@ -29,7 +29,7 @@ type Props = {
 
 /**
  * A style's screenshot large, which zooms, with small ones under it to switch
- * between when it has two, as the arrow keys do while it's zoomed.
+ * between when it has more than one, as the arrow keys do while it's zoomed.
  */
 export default function StyleScreenshots({
   screenshots,
@@ -65,7 +65,7 @@ export default function StyleScreenshots({
               type="button"
               class="style-screenshots-thumb"
               aria-pressed={i === shown}
-              // i18n: A small screenshot under the large one; {number} is 1 or 2.
+              // i18n: A small screenshot under the large one; {number} is 1 to 4.
               aria-label={t('Show screenshot {number}', { number: i + 1 })}
               onClick={() => setShown(i)}
             >

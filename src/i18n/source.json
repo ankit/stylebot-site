@@ -214,7 +214,7 @@
   },
   {
     "text": "Add image",
-    "note": "Adds a second screenshot beside the cover.",
+    "note": "Adds another screenshot beside the cover.",
     "files": [
       "src/gallery/components/ScreenshotAddTile.tsx",
       "src/gallery/components/ScreenshotPicker.tsx"
@@ -1053,7 +1053,7 @@
   },
   {
     "text": "Edit screenshot {number}",
-    "note": "The Edit button under a screenshot, for screen readers; {number} is 1 for the cover or 2.",
+    "note": "The Edit button under a screenshot, for screen readers; {number} is 1 for the cover, up to 4.",
     "files": [
       "src/gallery/components/ScreenshotSlotMenu.tsx"
     ]
@@ -2247,7 +2247,7 @@
   },
   {
     "text": "Remove",
-    "note": "Removes the second screenshot from the style.",
+    "note": "Removes a screenshot other than the cover from the style.",
     "files": [
       "src/gallery/components/ScreenshotPicker.tsx"
     ]
@@ -2517,7 +2517,7 @@
   },
   {
     "text": "Show screenshot {number}",
-    "note": "A small screenshot under the large one; {number} is 1 or 2.",
+    "note": "A small screenshot under the large one; {number} is 1 to 4.",
     "files": [
       "src/gallery/components/ScreenshotThumbnails.tsx",
       "src/gallery/components/StyleScreenshots.tsx"

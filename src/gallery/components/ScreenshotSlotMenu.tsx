@@ -11,7 +11,7 @@ import './ScreenshotSlotMenu.css';
 
 type Props = {
   choice: ScreenshotChoice;
-  number: 1 | 2;
+  number: number;
   onBlur: () => void;
   // Items after Replace.
   children?: ComponentChildren;
@@ -38,7 +38,7 @@ export default function ScreenshotSlotMenu({
         listClass="screenshot-slot-menu-list"
         label={
           // i18n: The Edit button under a screenshot, for screen readers;
-          // {number} is 1 for the cover or 2.
+          // {number} is 1 for the cover, up to 4.
           t('Edit screenshot {number}', { number })
         }
         button={
