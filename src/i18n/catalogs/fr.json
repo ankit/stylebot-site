@@ -80,6 +80,7 @@
   "Choose <strong>Publish to Gallery</strong> from a style’s <strong>⋯</strong> menu in the popup, or from the editor’s <strong>⋯</strong> menu, and sign in with Google. Your edits stay on your computer until you publish an update.": "Choisissez <strong>Publier dans la Galerie</strong> dans le menu <strong>⋯</strong> d’un style, dans la fenêtre pop-up, ou dans le menu <strong>⋯</strong> de l’éditeur, puis connectez-vous avec Google. Vos modifications restent sur votre ordinateur jusqu’à ce que vous publiiez une mise à jour.",
   "Choose a PNG, JPEG or WebP image.": "Choisissez une image PNG, JPEG ou WebP.",
   "Choose an image under 1 MB.": "Choisissez une image de moins de 1 Mo.",
+  "Choose in Stylebot’s popup.": "Choisissez dans la fenêtre pop-up de Stylebot.",
   "Choose Publish in Stylebot’s editor or popup.": "Choisissez Publier dans l’éditeur ou la fenêtre pop-up de Stylebot.",
   "Clear search": "Effacer la recherche",
   "CLI": "CLI",
@@ -142,6 +143,7 @@
   "Decoration": "Décoration",
   "Default": {
     "font": "Par défaut",
+    "option": "Par défaut",
     "profile": "Par défaut"
   },
   "Delete": "Supprimer",
@@ -290,6 +292,8 @@
   "None": "Aucun",
   "Not set; assign in your browser": "Non défini, à attribuer dans le navigateur",
   "Nothing to publish": "Rien à publier",
+  "Off by default": "Désactivé par défaut",
+  "On by default": "Activé par défaut",
   "Once it's on, click <strong>Sync Now</strong> in the popup or the Options page to sync your browser's styles with the ones backed up on Google Drive.": "Une fois activée, cliquez sur <strong>Synchroniser maintenant</strong> dans la fenêtre pop-up ou la page Options pour synchroniser les styles de votre navigateur avec ceux sauvegardés sur Google Drive.",
   "Only moderators see reports. Each account counts once.": "Seuls les modérateurs voient les signalements. Chaque compte compte une fois.",
   "Open any site and press the shortcut. Nothing changes until you do.": "Ouvrez n’importe quel site et appuyez sur le raccourci. Rien ne change tant que vous ne l’avez pas fait.",
@@ -300,6 +304,9 @@
   "Opened in a new tab. If you like it, install it from there.": "Ouvert dans un nouvel onglet. Si le style vous plaît, installez-le depuis cet onglet.",
   "Opens the page in a window behind yours and prints its tab id.": "Ouvre la page dans une fenêtre derrière la vôtre et affiche l’identifiant de son onglet.",
   "Optional": "Facultatif",
+  "Options": {
+    "style": "Options"
+  },
   "Options, connected to Google Drive and synced": "Les options, connectées à Google Drive et synchronisées",
   "or": "ou",
   "Or press {keys} to open it directly.": "Ou appuyez sur {keys} pour l’ouvrir directement.",

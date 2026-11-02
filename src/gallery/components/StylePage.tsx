@@ -5,7 +5,7 @@ import { useSlugRedirect } from '@/gallery/hooks/useSlugRedirect';
 import { useStyle } from '@/gallery/hooks/useStyle';
 import { fullNumber, timeAgo } from '@/gallery/lib/format';
 import { authorHref, siteHref } from '@/gallery/lib/paths';
-import { lightDark } from '@/gallery/lib/styleOptions';
+import { lightDark, styleOptions } from '@/gallery/lib/styleOptions';
 import { pageTitle, styleTitle } from '@/gallery/lib/titles';
 
 import { type Locale } from '@/i18n/locales';
@@ -20,6 +20,7 @@ import NotFound from './NotFound';
 import PreviewCard from './PreviewCard';
 import ReportStyleButton from './ReportStyleButton';
 import StyleCss from './StyleCss';
+import StyleOptions from './StyleOptions';
 import StylePageSkeleton from './StylePageSkeleton';
 import StyleScreenshots from './StyleScreenshots';
 import StyleVersions from './StyleVersions';
@@ -74,6 +75,9 @@ export default function StylePage({ locale, strings }: Props) {
   }
 
   const modes = lightDark(style.css);
+  const options = styleOptions(style.css).filter(
+    ({ name }) => name !== 'scheme',
+  );
 
   return (
     <div class="style-page">
@@ -135,6 +139,8 @@ export default function StylePage({ locale, strings }: Props) {
             <dt>{t('Version')}</dt>
             <dd>{style.version}</dd>
           </dl>
+
+          {options.length > 0 && <StyleOptions options={options} t={t} />}
 
           <ReportStyleButton style={style} t={t} />
         </div>

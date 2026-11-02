@@ -80,6 +80,7 @@
   "Choose <strong>Publish to Gallery</strong> from a style’s <strong>⋯</strong> menu in the popup, or from the editor’s <strong>⋯</strong> menu, and sign in with Google. Your edits stay on your computer until you publish an update.": "在彈出式視窗中，從樣式的 <strong>⋯</strong> 選單，或從編輯器的 <strong>⋯</strong> 選單中選擇<strong>發布到藝廊</strong>，然後用 Google 帳戶登入。發布更新之前，你的編輯只會保留在你的電腦上。",
   "Choose a PNG, JPEG or WebP image.": "請選擇 PNG、JPEG 或 WebP 圖片。",
   "Choose an image under 1 MB.": "請選擇小於 1 MB 的圖片。",
+  "Choose in Stylebot’s popup.": "在 Stylebot 彈出式視窗中選擇。",
   "Choose Publish in Stylebot’s editor or popup.": "在 Stylebot 的編輯器或彈出式視窗選擇「發布」。",
   "Clear search": "清除搜尋",
   "CLI": "CLI",
@@ -142,6 +143,7 @@
   "Decoration": "文字修飾",
   "Default": {
     "font": "預設",
+    "option": "預設",
     "profile": "預設"
   },
   "Delete": "刪除",
@@ -290,6 +292,8 @@
   "None": "無",
   "Not set; assign in your browser": "未設定，請在瀏覽器中指定",
   "Nothing to publish": "沒有可發布的內容",
+  "Off by default": "預設關閉",
+  "On by default": "預設開啟",
   "Once it's on, click <strong>Sync Now</strong> in the popup or the Options page to sync your browser's styles with the ones backed up on Google Drive.": "開啟後，在彈出式視窗或選項頁面中按一下 <strong>立即同步</strong>，即可將瀏覽器中的樣式與 Google Drive 上備份的樣式同步。",
   "Only moderators see reports. Each account counts once.": "只有版主能看到檢舉。每個帳號只計一次。",
   "Open any site and press the shortcut. Nothing changes until you do.": "開啟任何網站，按下快速鍵。在你動手之前，什麼都不會改變。",
@@ -300,6 +304,9 @@
   "Opened in a new tab. If you like it, install it from there.": "已在新分頁中開啟。喜歡的話，可以在那裡安裝。",
   "Opens the page in a window behind yours and prints its tab id.": "在你目前視窗後方的視窗中開啟頁面，並印出其分頁 ID。",
   "Optional": "選用",
+  "Options": {
+    "style": "設定"
+  },
   "Options, connected to Google Drive and synced": "已連線至 Google Drive 並完成同步的選項頁面",
   "or": "或",
   "Or press {keys} to open it directly.": "或按 {keys} 直接開啟。",

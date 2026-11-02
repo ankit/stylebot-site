@@ -80,6 +80,7 @@
   "Choose <strong>Publish to Gallery</strong> from a style’s <strong>⋯</strong> menu in the popup, or from the editor’s <strong>⋯</strong> menu, and sign in with Google. Your edits stay on your computer until you publish an update.": "在弹出式窗口中，从样式的 <strong>⋯</strong> 菜单，或从编辑器的 <strong>⋯</strong> 菜单中选择<strong>发布到画廊</strong>，然后用 Google 账号登录。发布更新之前，你的修改只保存在你的电脑上。",
   "Choose a PNG, JPEG or WebP image.": "请选择 PNG、JPEG 或 WebP 图片。",
   "Choose an image under 1 MB.": "请选择小于 1 MB 的图片。",
+  "Choose in Stylebot’s popup.": "在 Stylebot 弹出式窗口中选择。",
   "Choose Publish in Stylebot’s editor or popup.": "在 Stylebot 的编辑器或弹出式窗口中选择“发布”。",
   "Clear search": "清除搜索",
   "CLI": "CLI",
@@ -142,6 +143,7 @@
   "Decoration": "文本修饰",
   "Default": {
     "font": "默认",
+    "option": "默认",
     "profile": "默认"
   },
   "Delete": "删除",
@@ -290,6 +292,8 @@
   "None": "无",
   "Not set; assign in your browser": "未设置；请在浏览器中指定",
   "Nothing to publish": "没有可发布的内容",
+  "Off by default": "默认关闭",
+  "On by default": "默认开启",
   "Once it's on, click <strong>Sync Now</strong> in the popup or the Options page to sync your browser's styles with the ones backed up on Google Drive.": "开启后，在弹出式窗口或设置页面中点击<strong>立即同步</strong>，即可将浏览器中的样式与 Google Drive 上备份的样式同步。",
   "Only moderators see reports. Each account counts once.": "只有版主能看到举报。每个账号只计一次。",
   "Open any site and press the shortcut. Nothing changes until you do.": "打开任意网站，按下快捷键。在你动手之前，什么都不会改变。",
@@ -300,6 +304,9 @@
   "Opened in a new tab. If you like it, install it from there.": "已在新标签页中打开。喜欢的话，可以在那里安装。",
   "Opens the page in a window behind yours and prints its tab id.": "在你当前窗口后方的窗口中打开页面，并输出其标签页 ID。",
   "Optional": "可选",
+  "Options": {
+    "style": "设置"
+  },
   "Options, connected to Google Drive and synced": "设置页面，已连接到 Google Drive 并完成同步",
   "or": "或",
   "Or press {keys} to open it directly.": "也可以按 {keys} 直接打开。",

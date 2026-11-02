@@ -80,6 +80,7 @@
   "Choose <strong>Publish to Gallery</strong> from a style’s <strong>⋯</strong> menu in the popup, or from the editor’s <strong>⋯</strong> menu, and sign in with Google. Your edits stay on your computer until you publish an update.": "팝업에서 스타일의 <strong>⋯</strong> 메뉴나 편집기의 <strong>⋯</strong> 메뉴에서 <strong>갤러리에 게시</strong>를 선택하고 Google로 로그인하세요. 수정한 내용은 업데이트를 게시하기 전까지 내 컴퓨터에만 저장됩니다.",
   "Choose a PNG, JPEG or WebP image.": "PNG, JPEG 또는 WebP 이미지를 선택하세요.",
   "Choose an image under 1 MB.": "1MB 미만의 이미지를 선택하세요.",
+  "Choose in Stylebot’s popup.": "Stylebot 팝업에서 선택하세요.",
   "Choose Publish in Stylebot’s editor or popup.": "Stylebot 편집기나 팝업에서 게시를 선택합니다.",
   "Clear search": "검색어 지우기",
   "CLI": "CLI",
@@ -142,6 +143,7 @@
   "Decoration": "글자 꾸미기",
   "Default": {
     "font": "기본값",
+    "option": "기본값",
     "profile": "기본"
   },
   "Delete": "삭제",
@@ -290,6 +292,8 @@
   "None": "없음",
   "Not set; assign in your browser": "설정 안 됨. 브라우저에서 지정하세요",
   "Nothing to publish": "게시할 항목 없음",
+  "Off by default": "기본적으로 꺼짐",
+  "On by default": "기본적으로 켜짐",
   "Once it's on, click <strong>Sync Now</strong> in the popup or the Options page to sync your browser's styles with the ones backed up on Google Drive.": "동기화를 켠 후 팝업이나 옵션 페이지에서 <strong>지금 동기화</strong>를 클릭하면 브라우저의 스타일이 Google Drive에 백업된 스타일과 동기화됩니다.",
   "Only moderators see reports. Each account counts once.": "신고는 관리자만 볼 수 있습니다. 계정마다 한 번만 집계됩니다.",
   "Open any site and press the shortcut. Nothing changes until you do.": "아무 사이트나 열고 단축키를 누르세요. 그 전까지는 아무것도 바뀌지 않습니다.",
@@ -300,6 +304,9 @@
   "Opened in a new tab. If you like it, install it from there.": "새 탭에서 열었습니다. 마음에 들면 그 탭에서 설치하세요.",
   "Opens the page in a window behind yours and prints its tab id.": "현재 창 뒤에 있는 창에서 페이지를 열고 탭 ID를 출력합니다.",
   "Optional": "선택 사항",
+  "Options": {
+    "style": "옵션"
+  },
   "Options, connected to Google Drive and synced": "옵션에서 Google Drive에 연결되어 동기화된 모습",
   "or": "또는",
   "Or press {keys} to open it directly.": "또는 {keys}을 눌러 바로 여세요.",

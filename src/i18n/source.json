@@ -528,6 +528,13 @@
     ]
   },
   {
+    "text": "Choose in Stylebot’s popup.",
+    "note": "Under a style's options on its gallery page.",
+    "files": [
+      "src/gallery/components/StyleOptions.tsx"
+    ]
+  },
+  {
     "text": "Choose Publish in Stylebot’s editor or popup.",
     "files": [
       "src/gallery/components/PublishUnavailable.tsx"
@@ -914,6 +921,14 @@
     "note": "The font picker's value when no font is set",
     "files": [
       "src/www/components/demo/Demo.tsx"
+    ]
+  },
+  {
+    "text": "Default",
+    "context": "option",
+    "note": "Marks the choice a style option starts with.",
+    "files": [
+      "src/gallery/components/StyleOptionChoices.tsx"
     ]
   },
   {
@@ -1849,6 +1864,20 @@
     ]
   },
   {
+    "text": "Off by default",
+    "note": "A style option that's a switch, turned off unless the user turns it on.",
+    "files": [
+      "src/gallery/components/StyleOptionChoices.tsx"
+    ]
+  },
+  {
+    "text": "On by default",
+    "note": "A style option that's a switch, turned on unless the user turns it off.",
+    "files": [
+      "src/gallery/components/StyleOptionChoices.tsx"
+    ]
+  },
+  {
     "text": "Once it's on, click <strong>Sync Now</strong> in the popup or the Options page to sync your browser's styles with the ones backed up on Google Drive.",
     "files": [
       "src/www/pages/[...lang]/releases/3.1.astro"
@@ -1908,6 +1937,14 @@
     "files": [
       "src/gallery/components/PublishField.tsx",
       "src/www/pages/[...lang]/cli.astro"
+    ]
+  },
+  {
+    "text": "Options",
+    "context": "style",
+    "note": "Heading over the settings a style offers, such as its accent color, chosen in Stylebot's popup.",
+    "files": [
+      "src/gallery/components/StyleOptions.tsx"
     ]
   },
   {

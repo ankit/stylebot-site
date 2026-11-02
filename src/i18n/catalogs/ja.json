@@ -80,6 +80,7 @@
   "Choose <strong>Publish to Gallery</strong> from a style’s <strong>⋯</strong> menu in the popup, or from the editor’s <strong>⋯</strong> menu, and sign in with Google. Your edits stay on your computer until you publish an update.": "ポップアップでスタイルの <strong>⋯</strong> メニュー、またはエディタの <strong>⋯</strong> メニューから<strong>ギャラリーに公開</strong>を選び、Google でログインします。編集内容は、更新を公開するまでパソコン内にとどまります。",
   "Choose a PNG, JPEG or WebP image.": "PNG、JPEG、WebP の画像を選んでください。",
   "Choose an image under 1 MB.": "1 MB 未満の画像を選んでください。",
+  "Choose in Stylebot’s popup.": "Stylebot のポップアップで選択します。",
   "Choose Publish in Stylebot’s editor or popup.": "Stylebot のエディタまたはポップアップで「公開」を選びます。",
   "Clear search": "検索をクリア",
   "CLI": "CLI",
@@ -142,6 +143,7 @@
   "Decoration": "装飾",
   "Default": {
     "font": "デフォルト",
+    "option": "デフォルト",
     "profile": "デフォルト"
   },
   "Delete": "削除",
@@ -290,6 +292,8 @@
   "None": "なし",
   "Not set; assign in your browser": "未設定（ブラウザで割り当て）",
   "Nothing to publish": "公開するものがありません",
+  "Off by default": "デフォルトでオフ",
+  "On by default": "デフォルトでオン",
   "Once it's on, click <strong>Sync Now</strong> in the popup or the Options page to sync your browser's styles with the ones backed up on Google Drive.": "オンにしたら、ポップアップかオプションページで<strong>今すぐ同期</strong>をクリックすると、ブラウザのスタイルと Google Drive にバックアップされたスタイルが同期されます。",
   "Only moderators see reports. Each account counts once.": "報告はモデレーターだけが見られます。各アカウントは 1 回だけ数えられます。",
   "Open any site and press the shortcut. Nothing changes until you do.": "好きなサイトを開いて、ショートカットを押してください。押すまでは何も変わりません。",
@@ -300,6 +304,9 @@
   "Opened in a new tab. If you like it, install it from there.": "新しいタブで開きました。気に入ったら、そのタブからインストールできます。",
   "Opens the page in a window behind yours and prints its tab id.": "ページを背面のウィンドウで開き、そのタブ ID を出力します。",
   "Optional": "任意",
+  "Options": {
+    "style": "オプション"
+  },
   "Options, connected to Google Drive and synced": "Google Drive に接続して同期済みのオプション画面",
   "or": "または",
   "Or press {keys} to open it directly.": "{keys} を押して直接開くこともできます。",

@@ -80,6 +80,7 @@
   "Choose <strong>Publish to Gallery</strong> from a style’s <strong>⋯</strong> menu in the popup, or from the editor’s <strong>⋯</strong> menu, and sign in with Google. Your edits stay on your computer until you publish an update.": "Escolha <strong>Publicar na Galeria</strong> no menu <strong>⋯</strong> de um estilo no pop-up, ou no menu <strong>⋯</strong> do editor, e inicie sessão com o Google. As suas edições ficam no seu computador até publicar uma atualização.",
   "Choose a PNG, JPEG or WebP image.": "Escolha uma imagem PNG, JPEG ou WebP.",
   "Choose an image under 1 MB.": "Escolha uma imagem com menos de 1 MB.",
+  "Choose in Stylebot’s popup.": "Escolha no pop-up do Stylebot.",
   "Choose Publish in Stylebot’s editor or popup.": "Escolha Publicar no editor ou no pop-up do Stylebot.",
   "Clear search": "Limpar pesquisa",
   "CLI": "CLI",
@@ -142,6 +143,7 @@
   "Decoration": "Decoração",
   "Default": {
     "font": "Padrão",
+    "option": "Padrão",
     "profile": "Padrão"
   },
   "Delete": "Eliminar",
@@ -290,6 +292,8 @@
   "None": "Nenhum",
   "Not set; assign in your browser": "Não definido; atribua-o no navegador",
   "Nothing to publish": "Nada para publicar",
+  "Off by default": "Desativado por predefinição",
+  "On by default": "Ativado por predefinição",
   "Once it's on, click <strong>Sync Now</strong> in the popup or the Options page to sync your browser's styles with the ones backed up on Google Drive.": "Depois de ativada, clique em <strong>Sincronizar agora</strong> no pop-up ou na página de Opções para sincronizar os estilos do navegador com os que estão guardados no Google Drive.",
   "Only moderators see reports. Each account counts once.": "Só os moderadores veem as denúncias. Cada conta conta uma vez.",
   "Open any site and press the shortcut. Nothing changes until you do.": "Abra qualquer site e prima o atalho. Nada muda até o fazer.",
@@ -300,6 +304,9 @@
   "Opened in a new tab. If you like it, install it from there.": "Aberto num novo separador. Se gostar, instale-o a partir daí.",
   "Opens the page in a window behind yours and prints its tab id.": "Abre a página numa janela por trás da sua e mostra o ID do separador.",
   "Optional": "Opcional",
+  "Options": {
+    "style": "Opções"
+  },
   "Options, connected to Google Drive and synced": "Opções, ligado ao Google Drive e sincronizado",
   "or": "ou",
   "Or press {keys} to open it directly.": "Ou prima {keys} para o abrir diretamente.",

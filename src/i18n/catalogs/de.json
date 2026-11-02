@@ -80,6 +80,7 @@
   "Choose <strong>Publish to Gallery</strong> from a style’s <strong>⋯</strong> menu in the popup, or from the editor’s <strong>⋯</strong> menu, and sign in with Google. Your edits stay on your computer until you publish an update.": "Wählen Sie im Popup im Menü <strong>⋯</strong> eines Stils oder im Menü <strong>⋯</strong> des Editors <strong>In der Galerie veröffentlichen</strong> und melden Sie sich mit Google an. Ihre Änderungen bleiben auf Ihrem Computer, bis Sie ein Update veröffentlichen.",
   "Choose a PNG, JPEG or WebP image.": "Wählen Sie ein PNG-, JPEG- oder WebP-Bild.",
   "Choose an image under 1 MB.": "Wählen Sie ein Bild unter 1 MB.",
+  "Choose in Stylebot’s popup.": "Wählen Sie im Popup von Stylebot.",
   "Choose Publish in Stylebot’s editor or popup.": "Wählen Sie im Editor oder Popup von Stylebot „Veröffentlichen“.",
   "Clear search": "Suche löschen",
   "CLI": "CLI",
@@ -142,6 +143,7 @@
   "Decoration": "Textdekoration",
   "Default": {
     "font": "Standard",
+    "option": "Standard",
     "profile": "Standard"
   },
   "Delete": "Löschen",
@@ -290,6 +292,8 @@
   "None": "Keiner",
   "Not set; assign in your browser": "Nicht festgelegt; im Browser zuweisen",
   "Nothing to publish": "Nichts zu veröffentlichen",
+  "Off by default": "Standardmäßig aus",
+  "On by default": "Standardmäßig an",
   "Once it's on, click <strong>Sync Now</strong> in the popup or the Options page to sync your browser's styles with the ones backed up on Google Drive.": "Danach klicken Sie im Popup oder auf der Optionsseite auf <strong>Jetzt synchronisieren</strong>, um die Stile Ihres Browsers mit denen in Google Drive abzugleichen.",
   "Only moderators see reports. Each account counts once.": "Nur Moderatoren sehen Meldungen. Jedes Konto zählt einmal.",
   "Open any site and press the shortcut. Nothing changes until you do.": "Öffnen Sie eine beliebige Website und drücken Sie die Tastenkombination. Bis dahin ändert sich nichts.",
@@ -300,6 +304,9 @@
   "Opened in a new tab. If you like it, install it from there.": "In einem neuen Tab geöffnet. Wenn er Ihnen gefällt, installieren Sie ihn dort.",
   "Opens the page in a window behind yours and prints its tab id.": "Öffnet die Seite in einem Fenster hinter Ihrem und gibt ihre Tab-ID aus.",
   "Optional": "Optional",
+  "Options": {
+    "style": "Optionen"
+  },
   "Options, connected to Google Drive and synced": "Optionen, mit Google Drive verbunden und synchronisiert",
   "or": "oder",
   "Or press {keys} to open it directly.": "Oder drücken Sie {keys}, um ihn direkt zu öffnen.",

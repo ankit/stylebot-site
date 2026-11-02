@@ -80,6 +80,7 @@
   "Choose <strong>Publish to Gallery</strong> from a style’s <strong>⋯</strong> menu in the popup, or from the editor’s <strong>⋯</strong> menu, and sign in with Google. Your edits stay on your computer until you publish an update.": "Elige <strong>Publicar en la Galería</strong> en el menú <strong>⋯</strong> de un estilo, en la ventana emergente, o en el menú <strong>⋯</strong> del editor, e inicia sesión con Google. Tus cambios se quedan en tu ordenador hasta que publiques una actualización.",
   "Choose a PNG, JPEG or WebP image.": "Elige una imagen PNG, JPEG o WebP.",
   "Choose an image under 1 MB.": "Elige una imagen de menos de 1 MB.",
+  "Choose in Stylebot’s popup.": "Elige en la ventana emergente de Stylebot.",
   "Choose Publish in Stylebot’s editor or popup.": "Elige Publicar en el editor o la ventana emergente de Stylebot.",
   "Clear search": "Borrar búsqueda",
   "CLI": "CLI",
@@ -142,6 +143,7 @@
   "Decoration": "Decoración",
   "Default": {
     "font": "Predeterminado",
+    "option": "Predeterminado",
     "profile": "Predeterminado"
   },
   "Delete": "Eliminar",
@@ -290,6 +292,8 @@
   "None": "Ninguno",
   "Not set; assign in your browser": "Sin asignar; asígnalo en tu navegador",
   "Nothing to publish": "Nada que publicar",
+  "Off by default": "Desactivado por defecto",
+  "On by default": "Activado por defecto",
   "Once it's on, click <strong>Sync Now</strong> in the popup or the Options page to sync your browser's styles with the ones backed up on Google Drive.": "Una vez activada, haz clic en <strong>Sincronizar ahora</strong> en la ventana emergente o en la página de Opciones para sincronizar los estilos de tu navegador con los que tienes respaldados en Google Drive.",
   "Only moderators see reports. Each account counts once.": "Solo los moderadores ven las denuncias. Cada cuenta cuenta una vez.",
   "Open any site and press the shortcut. Nothing changes until you do.": "Abre cualquier sitio y pulsa el atajo. Nada cambia hasta que lo hagas.",
@@ -300,6 +304,9 @@
   "Opened in a new tab. If you like it, install it from there.": "Se abrió en una pestaña nueva. Si te gusta, instálalo desde allí.",
   "Opens the page in a window behind yours and prints its tab id.": "Abre la página en una ventana detrás de la tuya y muestra el id de su pestaña.",
   "Optional": "Opcional",
+  "Options": {
+    "style": "Opciones"
+  },
   "Options, connected to Google Drive and synced": "Opciones, conectado a Google Drive y sincronizado",
   "or": "o",
   "Or press {keys} to open it directly.": "O pulsa {keys} para abrirlo directamente.",

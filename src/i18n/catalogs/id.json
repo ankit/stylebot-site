@@ -80,6 +80,7 @@
   "Choose <strong>Publish to Gallery</strong> from a style’s <strong>⋯</strong> menu in the popup, or from the editor’s <strong>⋯</strong> menu, and sign in with Google. Your edits stay on your computer until you publish an update.": "Pilih <strong>Publikasikan ke Galeri</strong> dari menu <strong>⋯</strong> sebuah gaya di popup, atau dari menu <strong>⋯</strong> editor, lalu login dengan Google. Hasil edit Anda tetap di komputer Anda sampai Anda memublikasikan pembaruan.",
   "Choose a PNG, JPEG or WebP image.": "Pilih gambar PNG, JPEG, atau WebP.",
   "Choose an image under 1 MB.": "Pilih gambar di bawah 1 MB.",
+  "Choose in Stylebot’s popup.": "Pilih di popup Stylebot.",
   "Choose Publish in Stylebot’s editor or popup.": "Pilih Publikasikan di editor atau popup Stylebot.",
   "Clear search": "Hapus pencarian",
   "CLI": "CLI",
@@ -142,6 +143,7 @@
   "Decoration": "Dekorasi",
   "Default": {
     "font": "Default",
+    "option": "Default",
     "profile": "Default"
   },
   "Delete": "Hapus",
@@ -290,6 +292,8 @@
   "None": "Tidak ada",
   "Not set; assign in your browser": "Belum diatur; tetapkan di browser",
   "Nothing to publish": "Tidak ada yang dipublikasikan",
+  "Off by default": "Nonaktif secara default",
+  "On by default": "Aktif secara default",
   "Once it's on, click <strong>Sync Now</strong> in the popup or the Options page to sync your browser's styles with the ones backed up on Google Drive.": "Setelah aktif, klik <strong>Sinkronkan sekarang</strong> di popup atau halaman Opsi untuk menyinkronkan gaya di browser Anda dengan yang dicadangkan di Google Drive.",
   "Only moderators see reports. Each account counts once.": "Hanya moderator yang melihat laporan. Setiap akun dihitung sekali.",
   "Open any site and press the shortcut. Nothing changes until you do.": "Buka situs mana pun dan tekan pintasannya. Tidak ada yang berubah sampai Anda melakukannya.",
@@ -300,6 +304,9 @@
   "Opened in a new tab. If you like it, install it from there.": "Dibuka di tab baru. Jika Anda suka, pasang dari sana.",
   "Opens the page in a window behind yours and prints its tab id.": "Membuka halaman di jendela di belakang jendela Anda dan menampilkan ID tabnya.",
   "Optional": "Opsional",
+  "Options": {
+    "style": "Opsi"
+  },
   "Options, connected to Google Drive and synced": "Opsi, terhubung ke Google Drive dan sudah disinkronkan",
   "or": "atau",
   "Or press {keys} to open it directly.": "Atau tekan {keys} untuk langsung membukanya.",
