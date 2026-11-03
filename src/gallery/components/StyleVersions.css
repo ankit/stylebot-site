@@ -13,9 +13,7 @@
   ol {
     margin: 0;
     padding: 0;
+    max-width: var(--width-text);
     list-style: none;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    background: var(--bg-surface);
   }
 }

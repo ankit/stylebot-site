@@ -1,0 +1,9 @@
+.version-diff-note {
+  margin: 0;
+  font: 400 var(--text-sm) / 1.5 var(--font-ui);
+  color: var(--fg-muted);
+
+  &.is-error {
+    color: var(--danger);
+  }
+}

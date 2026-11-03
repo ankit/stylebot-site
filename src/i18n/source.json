@@ -510,6 +510,12 @@
     ]
   },
   {
+    "text": "Changes in version {version}",
+    "files": [
+      "src/gallery/components/VersionDiff.tsx"
+    ]
+  },
+  {
     "text": "Choose <strong>Publish to Gallery</strong> from a style’s <strong>⋯</strong> menu in the popup, or from the editor’s <strong>⋯</strong> menu, and sign in with Google. Your edits stay on your computer until you publish an update.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
@@ -755,6 +761,12 @@
     ]
   },
   {
+    "text": "Couldn’t load the changes.",
+    "files": [
+      "src/gallery/components/VersionDiff.tsx"
+    ]
+  },
+  {
     "text": "Couldn’t load the sites.",
     "files": [
       "src/gallery/components/SitesPage.tsx"
@@ -880,7 +892,6 @@
   {
     "text": "Current",
     "files": [
-      "src/gallery/components/VersionItem.tsx",
       "src/www/components/HistoryMock.astro"
     ]
   },
@@ -1635,6 +1646,12 @@
     "note": "The label above the address of a published style, to share.",
     "files": [
       "src/gallery/components/PublishedNotice.tsx"
+    ]
+  },
+  {
+    "text": "Loading changes…",
+    "files": [
+      "src/gallery/components/VersionDiff.tsx"
     ]
   },
   {
@@ -2512,7 +2529,8 @@
   {
     "text": "Show changes",
     "files": [
-      "src/gallery/components/PublishCssDialog.tsx"
+      "src/gallery/components/PublishCssDialog.tsx",
+      "src/gallery/components/VersionItem.tsx"
     ]
   },
   {
@@ -3026,6 +3044,12 @@
     ]
   },
   {
+    "text": "The CSS didn’t change.",
+    "files": [
+      "src/gallery/components/VersionDiff.tsx"
+    ]
+  },
+  {
     "text": "The CSS is the same as the latest version’s, so there’s no new version to publish. You can still save the name, description and screenshot; installs aren’t updated.",
     "files": [
       "src/gallery/components/CssUnchangedNotice.tsx"
@@ -3266,6 +3290,12 @@
     "text": "Toggle styling",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
+    "text": "Too many changes to show here.",
+    "files": [
+      "src/gallery/components/VersionDiff.tsx"
     ]
   },
   {

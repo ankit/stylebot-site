@@ -31,7 +31,9 @@ export default function StyleVersions({ styleId, locale, t }: Props) {
         {versions.map((version, i) => (
           <VersionItem
             key={version.version}
+            styleId={styleId}
             version={version}
+            previous={versions[i + 1]?.version}
             current={i === 0}
             locale={locale}
             t={t}
