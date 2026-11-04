@@ -29,9 +29,9 @@ const { path, t } = Astro.locals;
 const toc = Object.entries({
   start: t('Getting started'),
   profiles: t('Profiles'),
-  sync: t('Sync and history'),
   gallery: t('Gallery'),
   cli: t('CLI'),
+  sync: t('Sync and history'),
   presets: t('Presets'),
   shortcuts: t('Keyboard shortcuts'),
   urls: t('URL rules'),
@@ -193,40 +193,6 @@ const shortcutGroups = [
           />
         </section>
 
-        <section id="sync">
-          <h2>{t('Sync and history')}</h2>
-          <Shot
-            label={t('Options, connected to Google Drive and synced')}
-            src={syncShot}
-            dark={syncDarkShot}
-          />
-          <Terms>
-            <Term term={t('Google Drive sync')}>
-              {t(
-                'Connect Google Drive in Options. Your styles, including profiles, sync every 30 minutes and shortly after you edit. Stylebot only sees the files it creates in your Drive, and there is no Stylebot server.',
-              )}
-            </Term>
-            <Term term={t('Conflicts')}>
-              {t(
-                'If a style changed on two computers, your newer edit is kept and the other version is saved in a comment, so nothing is lost.',
-              )}
-            </Term>
-            <Term term={t('Backup')}>
-              {t('Export and import all your styles as JSON from Options.')}
-            </Term>
-            <Term term={t('Version history')}>
-              {t(
-                'Every change on this computer is kept in Options, including ones that arrive through sync. Restore any earlier version, for some sites or all of them.',
-              )}
-            </Term>
-          </Terms>
-          <Shot
-            label={t('Version history in Options, newest change first')}
-            src={historyShot}
-            dark={historyDarkShot}
-          />
-        </section>
-
         <section id="gallery">
           <h2>{t('Gallery')}</h2>
           <p
@@ -269,6 +235,40 @@ const shortcutGroups = [
                 cli: path(LINKS.cli),
               },
             )}
+          />
+        </section>
+
+        <section id="sync">
+          <h2>{t('Sync and history')}</h2>
+          <Shot
+            label={t('Options, connected to Google Drive and synced')}
+            src={syncShot}
+            dark={syncDarkShot}
+          />
+          <Terms>
+            <Term term={t('Google Drive sync')}>
+              {t(
+                'Connect Google Drive in Options. Your styles, including profiles, sync every 30 minutes and shortly after you edit. Stylebot only sees the files it creates in your Drive, and there is no Stylebot server.',
+              )}
+            </Term>
+            <Term term={t('Conflicts')}>
+              {t(
+                'If a style changed on two computers, your newer edit is kept and the other version is saved in a comment, so nothing is lost.',
+              )}
+            </Term>
+            <Term term={t('Backup')}>
+              {t('Export and import all your styles as JSON from Options.')}
+            </Term>
+            <Term term={t('Version history')}>
+              {t(
+                'Every change on this computer is kept in Options, including ones that arrive through sync. Restore any earlier version, for some sites or all of them.',
+              )}
+            </Term>
+          </Terms>
+          <Shot
+            label={t('Version history in Options, newest change first')}
+            src={historyShot}
+            dark={historyDarkShot}
           />
         </section>
 
