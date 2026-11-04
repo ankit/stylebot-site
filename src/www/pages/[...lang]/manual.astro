@@ -38,6 +38,18 @@ const toc = Object.entries({
   help: t('Help and support'),
 });
 
+const steps = [
+  t(
+    'Click the Stylebot icon in the toolbar, then <strong>Style this page</strong>.',
+  ),
+  t(
+    'Click the picker, hover the page and click an element. Press [[↑]] before clicking to select its parent instead.',
+  ),
+  t(
+    'Change it in <strong>Basic</strong>, or write CSS in <strong>Code</strong>.',
+  ),
+];
+
 const wildcards = [
   ['**', t('Matches any character sequence.')],
   ['*', t('Matches any character sequence until a / is found.')],
@@ -52,11 +64,6 @@ const examples = [
   [
     'docs.google.com',
     t('The domain docs.google.com or any of its subdomains.'),
-  ],
-  ['docs**', t('Any URL containing docs, such as example.com/docs.')],
-  [
-    'docs*.google.com',
-    t('docs.google.com, docs1.google.com, docs2.google.com and so on.'),
   ],
   ['*.ycombinator.com', t('news.ycombinator.com and apps.ycombinator.com.')],
   [
@@ -118,37 +125,28 @@ const shortcutGroups = [
       <main class="sections">
         <section id="start">
           <h2>{t('Getting started')}</h2>
-          <p
-            set:html={rich(
-              t(
-                'Click the Stylebot icon in the toolbar, then <strong>Style this page</strong>. Or press [[alt+shift+M]] on any tab, or right-click an element and choose <strong>Stylebot → Style Element</strong>.',
-              ),
+          <ol class="steps">
+            {steps.map((step) => (
+              <li set:html={rich(step)} />
+            ))}
+          </ol>
+          <p>
+            {t(
+              'Changes save as you make them and load every time you visit the site.',
             )}
-          />
+          </p>
           <Shot
             label={t('The Basic tab, picking a link in a Wikipedia article')}
             src={basicShot}
             dark={basicDarkShot}
           />
-          <p
-            set:html={rich(
-              t(
-                'Click the picker, hover the page and click an element. Press [[↑]] before clicking to select its parent instead. Then change it in <strong>Basic</strong>, or write CSS in <strong>Code</strong>. Changes save as you make them and load every time you visit the site.',
-              ),
-            )}
-          />
           <Terms>
-            <Term term={t('Fonts')}>
+            <Term term={t('Other ways to open it')}>
               <Fragment
-                set:html={t(
-                  'Search 400 <a href="https://fonts.google.com/">Google Fonts</a> and Stylebot loads the one you pick, or type any font installed on your computer.',
-                )}
-              />
-            </Term>
-            <Term term={t('Editor position')}>
-              <Fragment
-                set:html={t(
-                  'The editor opens docked on the right of the page. Use <strong>Position</strong> in its <strong>⋯</strong> menu to dock it on the left or open it in a separate window. Chrome and Edge can also open it in the side panel.',
+                set:html={rich(
+                  t(
+                    'Press [[alt+shift+M]] on any tab, or right-click an element and choose <strong>Stylebot → Style Element</strong>.',
+                  ),
                 )}
               />
             </Term>
@@ -262,35 +260,16 @@ const shortcutGroups = [
               ),
             )}
           />
-          <Terms>
-            <Term term={t('Setup')}>
-              <Fragment
-                set:html={rich(
-                  // i18n: The bolded setting is a label in Stylebot's Options page; use the extension's own translation.
-                  t(
-                    'Install the CLI, connect it to your browsers, then turn on <strong>Allow command line access</strong> in Options. The <a href="{cli}">CLI page</a> walks through each step. Chrome, Edge and other Chromium browsers only for now.',
-                  ),
-                  {
-                    cli: path(LINKS.cli),
-                  },
-                )}
-              />
-            </Term>
-            <Term term="Claude Code">
-              <Fragment
-                set:html={rich(
-                  t(
-                    'Add the Stylebot plugin and ask for a change with <code>/stylebot</code>, such as a dark theme for a site.',
-                  ),
-                )}
-              />
-            </Term>
-            <Term term={t('Privacy', { context: 'section' })}>
-              {t(
-                'CLI access is off until you turn it on. Stylebot and the CLI talk only to each other, on this computer; an agent sends what it reads to its own provider.',
-              )}
-            </Term>
-          </Terms>
+          <p
+            set:html={rich(
+              t(
+                'It works in Chrome, Edge and other Chromium browsers. The <a href="{cli}">CLI page</a> walks through setup.',
+              ),
+              {
+                cli: path(LINKS.cli),
+              },
+            )}
+          />
         </section>
 
         <section id="presets">
@@ -513,6 +492,41 @@ const shortcutGroups = [
     font: 400 var(--text-base)/1.65 var(--font-ui);
     color: var(--fg-secondary);
     text-wrap: pretty;
+  }
+
+  .steps {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: step;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .steps li {
+    position: relative;
+    padding-left: 36px;
+    counter-increment: step;
+    font: 400 var(--text-base)/1.65 var(--font-ui);
+    color: var(--fg-secondary);
+    text-wrap: pretty;
+  }
+
+  .steps li::before {
+    content: counter(step);
+    position: absolute;
+    top: 1px;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--bg-badge);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font: 600 var(--text-xs)/1 var(--font-ui);
+    color: var(--fg-secondary);
   }
 
   .sections :global(strong) {

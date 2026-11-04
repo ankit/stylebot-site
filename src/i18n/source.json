@@ -223,12 +223,6 @@
     ]
   },
   {
-    "text": "Add the Stylebot plugin and ask for a change with <code>/stylebot</code>, such as a dark theme for a site.",
-    "files": [
-      "src/www/pages/[...lang]/manual.astro"
-    ]
-  },
-  {
     "text": "Add the Stylebot skill to your agent",
     "files": [
       "src/www/pages/[...lang]/cli.astro"
@@ -295,12 +289,6 @@
     "text": "And more",
     "files": [
       "src/www/pages/[...lang]/releases/4.0.astro"
-    ]
-  },
-  {
-    "text": "Any URL containing docs, such as example.com/docs.",
-    "files": [
-      "src/www/pages/[...lang]/manual.astro"
     ]
   },
   {
@@ -486,6 +474,12 @@
     ]
   },
   {
+    "text": "Change it in <strong>Basic</strong>, or write CSS in <strong>Code</strong>.",
+    "files": [
+      "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
     "text": "Change username",
     "files": [
       "src/gallery/components/ChangeUsernameDialog.tsx",
@@ -508,6 +502,12 @@
     "text": "Changes in version {version}",
     "files": [
       "src/gallery/components/VersionDiff.tsx"
+    ]
+  },
+  {
+    "text": "Changes save as you make them and load every time you visit the site.",
+    "files": [
+      "src/www/pages/[...lang]/manual.astro"
     ]
   },
   {
@@ -555,12 +555,6 @@
     ]
   },
   {
-    "text": "CLI access is off until you turn it on. Stylebot and the CLI talk only to each other, on this computer; an agent sends what it reads to its own provider.",
-    "files": [
-      "src/www/pages/[...lang]/manual.astro"
-    ]
-  },
-  {
     "text": "Click the icon, or press {keys}.",
     "note": "{keys} is the keyboard shortcut, shown as Alt+Shift+M or ⌥⇧M",
     "files": [
@@ -568,13 +562,13 @@
     ]
   },
   {
-    "text": "Click the picker, hover the page and click an element. Press [[↑]] before clicking to select its parent instead. Then change it in <strong>Basic</strong>, or write CSS in <strong>Code</strong>. Changes save as you make them and load every time you visit the site.",
+    "text": "Click the picker, hover the page and click an element. Press [[↑]] before clicking to select its parent instead.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
     ]
   },
   {
-    "text": "Click the Stylebot icon in the toolbar, then <strong>Style this page</strong>. Or press [[alt+shift+M]] on any tab, or right-click an element and choose <strong>Stylebot → Style Element</strong>.",
+    "text": "Click the Stylebot icon in the toolbar, then <strong>Style this page</strong>.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
     ]
@@ -1003,12 +997,6 @@
     ]
   },
   {
-    "text": "docs.google.com, docs1.google.com, docs2.google.com and so on.",
-    "files": [
-      "src/www/pages/[...lang]/manual.astro"
-    ]
-  },
-  {
     "text": "Done",
     "note": "Closes the full-size screenshot, keeping the areas marked to blur.",
     "files": [
@@ -1075,12 +1063,6 @@
     "text": "Edited",
     "files": [
       "src/www/components/HistoryMock.astro"
-    ]
-  },
-  {
-    "text": "Editor position",
-    "files": [
-      "src/www/pages/[...lang]/manual.astro"
     ]
   },
   {
@@ -1243,12 +1225,6 @@
     "note": "\"Basic\" is a tab in Stylebot's editor; use the extension's own translation.",
     "files": [
       "src/www/pages/[...lang]/releases/4.1.astro"
-    ]
-  },
-  {
-    "text": "Fonts",
-    "files": [
-      "src/www/pages/[...lang]/manual.astro"
     ]
   },
   {
@@ -1516,13 +1492,6 @@
     ]
   },
   {
-    "text": "Install the CLI, connect it to your browsers, then turn on <strong>Allow command line access</strong> in Options. The <a href=\"{cli}\">CLI page</a> walks through each step. Chrome, Edge and other Chromium browsers only for now.",
-    "note": "The bolded setting is a label in Stylebot's Options page; use the extension's own translation.",
-    "files": [
-      "src/www/pages/[...lang]/manual.astro"
-    ]
-  },
-  {
     "text": "Installed",
     "files": [
       "src/gallery/components/InstalledBadge.tsx",
@@ -1567,6 +1536,12 @@
     "text": "It teaches your agent to restyle pages with the CLI.",
     "files": [
       "src/www/pages/[...lang]/cli.astro"
+    ]
+  },
+  {
+    "text": "It works in Chrome, Edge and other Chromium browsers. The <a href=\"{cli}\">CLI page</a> walks through setup.",
+    "files": [
+      "src/www/pages/[...lang]/manual.astro"
     ]
   },
   {
@@ -2036,6 +2011,12 @@
     ]
   },
   {
+    "text": "Other ways to open it",
+    "files": [
+      "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
     "text": "Page not found",
     "files": [
       "src/gallery/components/NotFoundPage.tsx",
@@ -2117,6 +2098,12 @@
     ]
   },
   {
+    "text": "Press [[alt+shift+M]] on any tab, or right-click an element and choose <strong>Stylebot → Style Element</strong>.",
+    "files": [
+      "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
     "text": "Press / to search",
     "files": [
       "src/gallery/components/SearchBox.tsx"
@@ -2163,8 +2150,7 @@
     "text": "Privacy",
     "context": "section",
     "files": [
-      "src/www/pages/[...lang]/cli.astro",
-      "src/www/pages/[...lang]/manual.astro"
+      "src/www/pages/[...lang]/cli.astro"
     ]
   },
   {
@@ -2448,12 +2434,6 @@
     ]
   },
   {
-    "text": "Search 400 <a href=\"https://fonts.google.com/\">Google Fonts</a> and Stylebot loads the one you pick, or type any font installed on your computer.",
-    "files": [
-      "src/www/pages/[...lang]/manual.astro"
-    ]
-  },
-  {
     "text": "Search sites and styles",
     "files": [
       "src/gallery/components/SearchBox.tsx"
@@ -2519,12 +2499,6 @@
       "src/www/components/cli/CliSection.astro",
       "src/www/pages/[...lang]/releases/4.0.astro",
       "src/www/pages/[...lang]/welcome.astro"
-    ]
-  },
-  {
-    "text": "Setup",
-    "files": [
-      "src/www/pages/[...lang]/manual.astro"
     ]
   },
   {
@@ -3090,12 +3064,6 @@
   },
   {
     "text": "The domain docs.google.com or any of its subdomains.",
-    "files": [
-      "src/www/pages/[...lang]/manual.astro"
-    ]
-  },
-  {
-    "text": "The editor opens docked on the right of the page. Use <strong>Position</strong> in its <strong>⋯</strong> menu to dock it on the left or open it in a separate window. Chrome and Edge can also open it in the side panel.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
     ]
