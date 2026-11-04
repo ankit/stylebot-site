@@ -2952,7 +2952,7 @@
     ]
   },
   {
-    "text": "Sync and version history",
+    "text": "Sync and history",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
     ]
