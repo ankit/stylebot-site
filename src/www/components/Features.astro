@@ -1,9 +1,8 @@
 ---
-import SyncIcon from '@/components/icons/SyncIcon';
-
 import CarouselNav from './CarouselNav.astro';
 import GalleryMock from './GalleryMock.astro';
 import HistoryMock from './HistoryMock.astro';
+import SyncMock from './SyncMock.astro';
 
 const { t } = Astro.locals;
 ---
@@ -37,35 +36,7 @@ const { t } = Astro.locals;
 
       <article class="feature">
         <div class="feature-mock" aria-hidden="true">
-          <div data-ed class="mock-card">
-            <div class="sync-head">
-              <span class="mock-title">{t('Connected to Google Drive')}</span>
-              <span class="sync-pill">
-                <span class="dot" />
-                {t('Synced 2 minutes ago')}
-              </span>
-            </div>
-            <div class="sync-grid">
-              <span class="muted">{t('Saved to')}</span>
-              <span class="sync-path">
-                you@gmail.com <span class="faint">›</span>
-                <span class="sync-file">
-                  stylebot/stylebot_v3_backup.json ↗
-                </span>
-              </span>
-              <span class="muted">{t('Schedule')}</span>
-              <span>
-                {t('Every 30 minutes, and right after you edit a style')}
-              </span>
-            </div>
-            <div class="sync-foot">
-              <span class="mock-btn">
-                <SyncIcon />
-                {t('Sync now')}
-              </span>
-              <span class="mock-link">{t('Disconnect')}</span>
-            </div>
-          </div>
+          <SyncMock />
         </div>
         <div class="feature-text">
           <h3>{t('Sync')}</h3>
@@ -230,101 +201,7 @@ const { t } = Astro.locals;
     color: var(--fg);
   }
 
-  .mock-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    padding: 8px 13px;
-    border-radius: 8px;
-    border: 1px solid var(--border-strong);
-    background: var(--bg-surface);
-    font: 600 12.5px/1 var(--font-ui);
-    color: var(--fg);
-  }
-
-  .mock-link {
-    font: 600 12.5px/1 var(--font-ui);
-    color: var(--accent);
-  }
-
-  .muted {
-    color: var(--fg-muted);
-  }
-
-  .faint {
-    color: var(--fg-subtle);
-    flex: none;
-  }
-
   .acc {
-    color: var(--accent);
-  }
-
-  .sync-head {
-    padding: 14px 16px;
-    background: var(--bg-muted);
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .sync-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 4px 9px;
-    border-radius: 12px;
-    border: 1px solid #bfe3cc;
-    background: #eef8f1;
-    font: 600 11.5px/1 var(--font-ui);
-    color: #1f7a45;
-  }
-
-  .dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 3px;
-    background: #1f8a4c;
-  }
-
-  :global(:root:is([data-theme='dark'], [data-theme='late-edition']))
-    .sync-pill {
-    border-color: #24563a;
-    background: #173a24;
-    color: #6fdd8b;
-  }
-
-  :global(:root:is([data-theme='dark'], [data-theme='late-edition'])) .dot {
-    background: #4ac26b;
-  }
-
-  .sync-grid {
-    padding: 14px 16px;
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    gap: 10px 18px;
-  }
-
-  .sync-path {
-    min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  .sync-foot {
-    padding: 0 16px 14px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-  }
-
-  .sync-file {
-    margin-left: 0.3em;
-    font: 400 11.5px/1.4 var(--font-mono);
     color: var(--accent);
   }
 
