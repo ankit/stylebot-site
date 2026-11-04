@@ -3,7 +3,11 @@ import { type Translate } from '@/i18n/t';
 import { siteName } from './siteNames';
 
 export const pageTitle = (t: Translate, title: string) =>
-  t('{title} | Stylebot', { title });
+  t('{title} | Stylebot Gallery', { title });
+
+export const homePageTitle = (t: Translate) =>
+  // i18n: The gallery home page's full title in search results and tabs. The name comes first because tabs cut off the end.
+  t('Stylebot Gallery | {title}', { title: homeTitle(t) });
 
 const namesSite = (name: string, site: string) =>
   new RegExp(

@@ -3,7 +3,7 @@ import { authorHref, styleHref } from '@/gallery/lib/paths';
 import { byPopularity, siteName } from '@/gallery/lib/siteNames';
 import {
   authorTitle,
-  homeTitle,
+  homePageTitle,
   pageTitle,
   sitesTitle,
   siteTitle,
@@ -240,7 +240,7 @@ const homePage: Lookup = async (env, content) => {
   }
 
   return {
-    title: pageTitle(t, homeTitle(t)),
+    title: homePageTitle(t),
     description,
     ...homeContent(content, page?.styles ?? [], sites),
   };

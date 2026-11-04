@@ -2,6 +2,7 @@ import { usePageMeta } from '@/gallery/hooks/usePageMeta';
 import { usePublishDraft } from '@/gallery/hooks/usePublishDraft';
 import { useQueryParam } from '@/gallery/hooks/useQueryParam';
 import { useSession } from '@/gallery/hooks/useSession';
+import { pageTitle } from '@/gallery/lib/titles';
 
 import { type Locale } from '@/i18n/locales';
 import { type Catalog, translator } from '@/i18n/t';
@@ -26,7 +27,7 @@ export default function PublishPage({ locale, strings }: Props) {
   const session = useSession();
   const title = t('Publish to the Gallery');
 
-  usePageMeta(t('{title} | Stylebot', { title }), { noindex: true });
+  usePageMeta(pageTitle(t, title), { noindex: true });
 
   if (draft && session) {
     return (

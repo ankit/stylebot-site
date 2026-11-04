@@ -1,4 +1,5 @@
 import { usePageMeta } from '@/gallery/hooks/usePageMeta';
+import { pageTitle } from '@/gallery/lib/titles';
 
 import { type Locale } from '@/i18n/locales';
 import { type Catalog, translator } from '@/i18n/t';
@@ -11,7 +12,7 @@ export default function NotFoundPage({ locale, strings }: Props) {
   const t = translator(strings);
   const title = t('Page not found');
 
-  usePageMeta(t('{title} | Stylebot', { title }), { noindex: true });
+  usePageMeta(pageTitle(t, title), { noindex: true });
 
   return <NotFound title={title} locale={locale} t={t} />;
 }

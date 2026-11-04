@@ -1,5 +1,6 @@
 import { usePageMeta } from '@/gallery/hooks/usePageMeta';
 import { useSession } from '@/gallery/hooks/useSession';
+import { pageTitle } from '@/gallery/lib/titles';
 
 import { type Locale } from '@/i18n/locales';
 import { type Catalog, translator } from '@/i18n/t';
@@ -19,7 +20,7 @@ export default function MinePage({ locale, strings }: Props) {
   const session = useSession();
   const title = t('Your styles');
 
-  usePageMeta(t('{title} | Stylebot', { title }), { noindex: true });
+  usePageMeta(pageTitle(t, title), { noindex: true });
 
   return (
     <div class="mine-page">

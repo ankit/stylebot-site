@@ -78,13 +78,8 @@
     ]
   },
   {
-    "text": "{title} | Stylebot",
+    "text": "{title} | Stylebot Gallery",
     "files": [
-      "src/gallery/components/EditPage.tsx",
-      "src/gallery/components/MinePage.tsx",
-      "src/gallery/components/NotFoundPage.tsx",
-      "src/gallery/components/PublishPage.tsx",
-      "src/gallery/layouts/Gallery.astro",
       "src/gallery/lib/titles.ts"
     ]
   },
@@ -2755,6 +2750,13 @@
     "files": [
       "src/www/pages/[...lang]/cli.astro",
       "src/www/pages/[...lang]/releases/4.0.astro"
+    ]
+  },
+  {
+    "text": "Stylebot Gallery | {title}",
+    "note": "The gallery home page's full title in search results and tabs. The name comes first because tabs cut off the end.",
+    "files": [
+      "src/gallery/lib/titles.ts"
     ]
   },
   {

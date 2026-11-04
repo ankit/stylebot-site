@@ -2,7 +2,7 @@
 import Header from '@/components/Header.astro';
 import GalleryFooter from '@/gallery/components/GalleryFooter.astro';
 
-import { homeTitle } from '@/gallery/lib/titles';
+import { homePageTitle, pageTitle } from '@/gallery/lib/titles';
 
 import Base from '@/layouts/Base.astro';
 
@@ -17,19 +17,25 @@ type Props = {
 
 const { t } = Astro.locals;
 const {
-  title = homeTitle(t),
+  title,
   description = t(
     'Styles people made with Stylebot for the sites they use. Pick one and install it in a click.',
   ),
   noindex,
   alternates,
 } = Astro.props;
+
+let fullTitle = homePageTitle(t);
+
+if (title) {
+  fullTitle = pageTitle(t, title);
+}
 ---
 
 <Base
   footer={false}
   description={description}
-  fullTitle={t('{title} | Stylebot', { title })}
+  fullTitle={fullTitle}
   noindex={noindex}
   alternates={alternates}
 >
