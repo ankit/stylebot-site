@@ -29,12 +29,12 @@ const { path, t } = Astro.locals;
 const toc = Object.entries({
   start: t('Getting started'),
   profiles: t('Profiles'),
-  presets: t('Presets'),
   sync: t('Sync and version history'),
   gallery: t('Gallery'),
-  urls: t('URL rules'),
   cli: t('CLI'),
+  presets: t('Presets'),
   shortcuts: t('Keyboard shortcuts'),
+  urls: t('URL rules'),
   help: t('Help and support'),
 });
 
@@ -195,24 +195,6 @@ const shortcutGroups = [
           />
         </section>
 
-        <section id="presets">
-          <h2>{t('Presets')}</h2>
-          <p
-            set:html={rich(
-              t(
-                "The Presets tab has two, and both stack with your own changes. <strong>Readability</strong> turns a site's articles into a clean reading view, with a choice of theme, font, size and width; it leaves pages that aren't articles alone. <strong>Grayscale</strong> removes color from the site, at any strength.",
-              ),
-            )}
-          />
-          <Shot
-            label={t(
-              'The Wikipedia article on Mathematics in the Readability view, with Reading settings open',
-            )}
-            src={readabilityShot}
-            dark={readabilityDarkShot}
-          />
-        </section>
-
         <section id="sync">
           <h2>{t('Sync and version history')}</h2>
           <Shot
@@ -271,34 +253,6 @@ const shortcutGroups = [
           </Terms>
         </section>
 
-        <section id="urls">
-          <h2>{t('URL rules')}</h2>
-          <p>
-            {t(
-              "By default, Stylebot matches styles to websites by domain name. Edit a style's URL in Options and use these patterns for anything more specific.",
-            )}
-          </p>
-          <div class="table">
-            {wildcards.map(([pattern, meaning]) => (
-              <div class="table-row">
-                <span class="wildcard">
-                  <code>{pattern}</code>
-                </span>
-                <span>{meaning}</span>
-              </div>
-            ))}
-          </div>
-          <h3>{t('Examples')}</h3>
-          <Terms>
-            {examples.map(([pattern, meaning]) => (
-              <Term>
-                <code slot="term">{pattern}</code>
-                {meaning}
-              </Term>
-            ))}
-          </Terms>
-        </section>
-
         <section id="cli">
           <h2>{t('CLI')}</h2>
           <p
@@ -339,6 +293,24 @@ const shortcutGroups = [
           </Terms>
         </section>
 
+        <section id="presets">
+          <h2>{t('Presets')}</h2>
+          <p
+            set:html={rich(
+              t(
+                "The Presets tab has two, and both stack with your own changes. <strong>Readability</strong> turns a site's articles into a clean reading view, with a choice of theme, font, size and width; it leaves pages that aren't articles alone. <strong>Grayscale</strong> removes color from the site, at any strength.",
+              ),
+            )}
+          />
+          <Shot
+            label={t(
+              'The Wikipedia article on Mathematics in the Readability view, with Reading settings open',
+            )}
+            src={readabilityShot}
+            dark={readabilityDarkShot}
+          />
+        </section>
+
         <section id="shortcuts">
           <h2>{t('Keyboard shortcuts')}</h2>
           <p
@@ -365,6 +337,34 @@ const shortcutGroups = [
               ))}
             </div>
           ))}
+        </section>
+
+        <section id="urls">
+          <h2>{t('URL rules')}</h2>
+          <p>
+            {t(
+              "By default, Stylebot matches styles to websites by domain name. Edit a style's URL in Options and use these patterns for anything more specific.",
+            )}
+          </p>
+          <div class="table">
+            {wildcards.map(([pattern, meaning]) => (
+              <div class="table-row">
+                <span class="wildcard">
+                  <code>{pattern}</code>
+                </span>
+                <span>{meaning}</span>
+              </div>
+            ))}
+          </div>
+          <h3>{t('Examples')}</h3>
+          <Terms>
+            {examples.map(([pattern, meaning]) => (
+              <Term>
+                <code slot="term">{pattern}</code>
+                {meaning}
+              </Term>
+            ))}
+          </Terms>
         </section>
 
         <section id="help">
