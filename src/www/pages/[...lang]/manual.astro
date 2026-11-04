@@ -1,8 +1,11 @@
 ---
 import Base from '@/layouts/Base.astro';
 
+import GalleryMock from '@/www/components/GalleryMock.astro';
+import SyncMock from '@/www/components/SyncMock.astro';
 import Callout from '@/www/components/manual/Callout.astro';
 import Keys from '@/www/components/manual/Keys.astro';
+import ProfilesMock from '@/www/components/manual/ProfilesMock.astro';
 import Shot from '@/www/components/manual/Shot.astro';
 import Term from '@/www/components/manual/Term.astro';
 import Terms from '@/www/components/manual/Terms.astro';
@@ -11,16 +14,8 @@ import { LINKS } from '@/lib/links';
 
 import { localeStaticPaths, rich } from '@/i18n';
 
-import basicShot from '@/assets/manual/basic-editor.webp';
-import basicDarkShot from '@/assets/manual/basic-editor-dark.webp';
-import popupProfilesShot from '@/assets/manual/popup-profiles.png';
-import popupProfilesDarkShot from '@/assets/manual/popup-profiles-dark.png';
-import syncShot from '@/assets/manual/sync.png';
-import syncDarkShot from '@/assets/manual/sync-dark.png';
-import historyShot from '@/assets/manual/history.png';
-import historyDarkShot from '@/assets/manual/history-dark.png';
-import readabilityShot from '@/assets/manual/readability.webp';
-import readabilityDarkShot from '@/assets/manual/readability-dark.webp';
+import basicShot from '@/assets/manual/editor-detail.png';
+import basicDarkShot from '@/assets/manual/editor-detail-dark.png';
 
 export const getStaticPaths = localeStaticPaths;
 
@@ -28,14 +23,14 @@ const { path, t } = Astro.locals;
 
 const toc = Object.entries({
   start: t('Getting started'),
-  profiles: t('Profiles'),
   gallery: t('Gallery'),
-  cli: t('CLI'),
+  cli: t('Command line'),
+  profiles: t('Profiles'),
   sync: t('Sync and history'),
   presets: t('Presets'),
   shortcuts: t('Keyboard shortcuts'),
-  urls: t('URL rules'),
-  help: t('Help and support'),
+  urls: t('Where styles apply'),
+  help: t('Support'),
 });
 
 const steps = [
@@ -50,28 +45,22 @@ const steps = [
   ),
 ];
 
-const wildcards = [
-  ['**', t('Matches any character sequence.')],
-  ['*', t('Matches any character sequence until a / is found.')],
+const patterns = [
+  ['docs.google.com', t('That domain and its subdomains.')],
   [
-    ',',
-    t('Separates a list of patterns. A URL matches if any pattern matches.'),
+    'docs.google.com, drive.google.com',
+    t('Either site. Separate patterns with a comma.'),
   ],
-  ['^', t('At the start of a URL, turns it into a regular expression.')],
-];
-
-const examples = [
+  ['*.ycombinator.com', t('Any subdomain. * matches anything up to a /.')],
   [
-    'docs.google.com',
-    t('The domain docs.google.com or any of its subdomains.'),
+    'example.com/docs/**',
+    t('Everything under a path. ** matches anything, including /.'),
   ],
-  ['*.ycombinator.com', t('news.ycombinator.com and apps.ycombinator.com.')],
+  ['*', t('Every site.')],
   [
-    'docs.google.com, spreadsheets.google.com',
-    t('Either domain, or any of their subdomains.'),
+    '^https://www\\.reddit\\.com/$',
+    t('A regular expression, here only the Reddit homepage. Start it with ^.'),
   ],
-  ['^https://www\\.reddit\\.com/$', t('The Reddit homepage only.')],
-  ['*', t('Every site. Useful for styles you want everywhere.')],
 ];
 
 type Shortcut = [string, Array<string> | null, string?];
@@ -104,9 +93,7 @@ const shortcutGroups = [
   <div class="manual">
     <div class="manual-intro">
       <h1>{t('Manual')}</h1>
-      <p>
-        {t('How Stylebot works, from your first style to profiles and sync.')}
-      </p>
+      <p>{t('How to restyle websites with Stylebot.')}</p>
     </div>
 
     <div class="manual-body">
@@ -167,32 +154,6 @@ const shortcutGroups = [
           </Callout>
         </section>
 
-        <section id="profiles">
-          <h2>{t('Profiles')}</h2>
-          <p>
-            {t(
-              'A profile is a separate stylesheet for the same site, so you can keep more than one look and switch between them. Only one is applied at a time, and every site starts with Default.',
-            )}
-          </p>
-          <Shot
-            label={
-              // i18n: Newspaper, Modern, Newspaper Dark and Night Shift are profile names shown in the screenshot.
-              t(
-                'The popup on Hacker News with four profiles: Newspaper, Modern, Newspaper Dark and Night Shift',
-              )
-            }
-            src={popupProfilesShot}
-            dark={popupProfilesDarkShot}
-          />
-          <p
-            set:html={rich(
-              t(
-                "Create, rename, delete and switch profiles in the popup, where <strong>No style</strong> turns styling off for the site. Or click the profile name next to the site in the editor's header, which can also duplicate them. New profiles start empty.",
-              ),
-            )}
-          />
-        </section>
-
         <section id="gallery">
           <h2>{t('Gallery')}</h2>
           <p
@@ -201,7 +162,15 @@ const shortcutGroups = [
               { gallery: LINKS.gallery },
             )}
           />
+          <div class="mock" aria-hidden="true">
+            <GalleryMock />
+          </div>
           <Terms>
+            <Term term={t('Installed styles')}>
+              {t(
+                'The popup suggests popular styles for the site you’re on. An installed style updates on its own until you edit it.',
+              )}
+            </Term>
             <Term term={t('Publishing a style')}>
               <Fragment
                 set:html={t(
@@ -218,18 +187,11 @@ const shortcutGroups = [
         </section>
 
         <section id="cli">
-          <h2>{t('CLI')}</h2>
+          <h2>{t('Command line')}</h2>
           <p
             set:html={rich(
               t(
-                'The <code>stylebot</code> command lets a coding agent like Claude Code, Codex or Cursor restyle sites right in your browser, using your own subscription instead of an API key. You can run the commands yourself too.',
-              ),
-            )}
-          />
-          <p
-            set:html={rich(
-              t(
-                'It works in Chrome, Edge and other Chromium browsers. The <a href="{cli}">CLI page</a> walks through setup.',
+                'The <code>stylebot</code> command lets a coding agent like Claude Code, Codex or Cursor restyle sites right in your browser. It works in Chrome, Edge and other Chromium browsers. The <a href="{cli}">CLI page</a> walks through setup.',
               ),
               {
                 cli: path(LINKS.cli),
@@ -238,17 +200,44 @@ const shortcutGroups = [
           />
         </section>
 
+        <section id="profiles">
+          <h2>{t('Profiles')}</h2>
+          <p
+            set:html={rich(
+              t(
+                'Profiles let you keep more than one look for a site and switch between them in the popup. To turn styling off for the site, choose <strong>No style</strong>.',
+              ),
+            )}
+          />
+          <div class="mock" aria-hidden="true">
+            <ProfilesMock />
+          </div>
+          <Terms>
+            <Term term={t('Style options')}>
+              <Fragment
+                set:html={t(
+                  'Some styles offer choices in the popup, such as light or dark mode. Add them to your own styles with <code>@var</code>, as the <a href="{guide}">style options guide</a> explains.',
+                  { guide: LINKS.styleOptions },
+                )}
+              />
+            </Term>
+          </Terms>
+        </section>
+
         <section id="sync">
           <h2>{t('Sync and history')}</h2>
-          <Shot
-            label={t('Options, connected to Google Drive and synced')}
-            src={syncShot}
-            dark={syncDarkShot}
-          />
+          <p>
+            {t(
+              'Keep your styles on all your computers with Google Drive, and go back to any earlier version.',
+            )}
+          </p>
+          <div class="mock" aria-hidden="true">
+            <SyncMock />
+          </div>
           <Terms>
             <Term term={t('Google Drive sync')}>
               {t(
-                'Connect Google Drive in Options. Your styles, including profiles, sync every 30 minutes and shortly after you edit. Stylebot only sees the files it creates in your Drive, and there is no Stylebot server.',
+                'Connect Google Drive in Options. Your styles, including profiles, sync every 30 minutes and shortly after you edit. Stylebot only sees the files it creates in your Drive.',
               )}
             </Term>
             <Term term={t('Conflicts')}>
@@ -265,29 +254,22 @@ const shortcutGroups = [
               )}
             </Term>
           </Terms>
-          <Shot
-            label={t('Version history in Options, newest change first')}
-            src={historyShot}
-            dark={historyDarkShot}
-          />
         </section>
 
         <section id="presets">
           <h2>{t('Presets')}</h2>
-          <p
-            set:html={rich(
-              t(
-                "The Presets tab has two, and both stack with your own changes. <strong>Readability</strong> turns a site's articles into a clean reading view, with a choice of theme, font, size and width; it leaves pages that aren't articles alone. <strong>Grayscale</strong> removes color from the site, at any strength.",
-              ),
-            )}
-          />
-          <Shot
-            label={t(
-              'The Wikipedia article on Mathematics in the Readability view, with Reading settings open',
-            )}
-            src={readabilityShot}
-            dark={readabilityDarkShot}
-          />
+          <ul class="bullets">
+            <li
+              set:html={t(
+                "<strong>Readability</strong> turns a site's articles into a clean reading view, with a choice of theme, font, size and width; it leaves pages that aren't articles alone.",
+              )}
+            />
+            <li
+              set:html={t(
+                '<strong>Grayscale</strong> removes color from the site, at any strength.',
+              )}
+            />
+          </ul>
         </section>
 
         <section id="shortcuts">
@@ -319,41 +301,33 @@ const shortcutGroups = [
         </section>
 
         <section id="urls">
-          <h2>{t('URL rules')}</h2>
+          <h2>{t('Where styles apply')}</h2>
           <p>
             {t(
-              "By default, Stylebot matches styles to websites by domain name. Edit a style's URL in Options and use these patterns for anything more specific.",
+              'By default, a style applies to its domain and subdomains. To change that, edit its URL in Options using these patterns.',
             )}
           </p>
-          <div class="table">
-            {wildcards.map(([pattern, meaning]) => (
-              <div class="table-row">
-                <span class="wildcard">
+          <dl class="patterns">
+            {patterns.map(([pattern, meaning]) => (
+              <>
+                <dt>
                   <code>{pattern}</code>
-                </span>
-                <span>{meaning}</span>
-              </div>
+                </dt>
+                <dd>{meaning}</dd>
+              </>
             ))}
-          </div>
-          <h3>{t('Examples')}</h3>
-          <Terms>
-            {examples.map(([pattern, meaning]) => (
-              <Term>
-                <code slot="term">{pattern}</code>
-                {meaning}
-              </Term>
-            ))}
-          </Terms>
+          </dl>
         </section>
 
         <section id="help">
-          <h2>{t('Help and support')}</h2>
+          <h2>{t('Support')}</h2>
           <p
             set:html={rich(
               t(
-                'Found a bug or have an idea? Open an issue on <a href="{issues}">GitHub</a>. Stylebot is free and open source, maintained since 2011. If it\'s useful to you, you can support it by <a href="{donate}">buying me a coffee</a>.',
+                'Found a bug or have an idea? <a href="{feedback}">Send feedback</a> or open an issue on <a href="{issues}">GitHub</a>. Stylebot is free and open source, maintained since 2011. If it\'s useful to you, you can support it by <a href="{donate}">buying me a coffee</a>.',
               ),
               {
+                feedback: path(LINKS.feedback),
                 issues: LINKS.issues,
                 donate: LINKS.donate,
               },
@@ -481,12 +455,6 @@ const shortcutGroups = [
     color: var(--fg);
   }
 
-  h3 {
-    margin: 10px 0 0;
-    font: 600 var(--text-base)/1.3 var(--font-ui);
-    color: var(--fg);
-  }
-
   p {
     margin: 0;
     font: 400 var(--text-base)/1.65 var(--font-ui);
@@ -527,6 +495,20 @@ const shortcutGroups = [
     justify-content: center;
     font: 600 var(--text-xs)/1 var(--font-ui);
     color: var(--fg-secondary);
+  }
+
+  .bullets {
+    margin: 0;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .bullets li {
+    font: 400 var(--text-base)/1.65 var(--font-ui);
+    color: var(--fg-secondary);
+    text-wrap: pretty;
   }
 
   .sections :global(strong) {
@@ -600,6 +582,18 @@ const shortcutGroups = [
     box-shadow: var(--shadow-lg);
   }
 
+  .mock {
+    color: var(--fg);
+  }
+
+  .sections :global(.mock-card) {
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    background: var(--bg-surface);
+    box-shadow: var(--shadow-lg);
+  }
+
   .sections :global(.terms) {
     margin: 0;
     display: flex;
@@ -661,9 +655,36 @@ const shortcutGroups = [
     border-top: 1px solid var(--border);
   }
 
-  .wildcard {
-    width: 44px;
-    flex: none;
+  .patterns {
+    margin: 0;
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    border-top: 1px solid var(--border);
+  }
+
+  .patterns dt,
+  .patterns dd {
+    margin: 0;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .patterns dt {
+    padding-right: 24px;
+  }
+
+  .patterns dt code {
+    white-space: nowrap;
+  }
+
+  .patterns dd {
+    font: 400 var(--text-base)/1.55 var(--font-ui);
+    color: var(--fg-secondary);
+    text-wrap: pretty;
+  }
+
+  .patterns > :nth-last-child(-n + 2) {
+    border-bottom: none;
   }
 
   .shortcut {
@@ -703,6 +724,28 @@ const shortcutGroups = [
     .toc a {
       border: 1px solid var(--border);
       background: var(--bg-surface);
+    }
+
+    .patterns {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .patterns dt {
+      padding: 14px 0 4px;
+      border-bottom: none;
+    }
+
+    .patterns dt code {
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+
+    .patterns dd {
+      padding-top: 0;
+    }
+
+    .patterns dd:last-child {
+      padding-bottom: 0;
     }
 
     .sections :global(.term) {

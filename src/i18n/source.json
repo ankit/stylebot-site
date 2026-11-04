@@ -91,6 +91,18 @@
     ]
   },
   {
+    "text": "<strong>Grayscale</strong> removes color from the site, at any strength.",
+    "files": [
+      "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
+    "text": "<strong>Readability</strong> turns a site's articles into a clean reading view, with a choice of theme, font, size and width; it leaves pages that aren't articles alone.",
+    "files": [
+      "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
     "text": "✨ Just make it nice",
     "files": [
       "src/www/components/NotFound.tsx"
@@ -157,12 +169,6 @@
     ]
   },
   {
-    "text": "A profile is a separate stylesheet for the same site, so you can keep more than one look and switch between them. Only one is applied at a time, and every site starts with Default.",
-    "files": [
-      "src/www/pages/[...lang]/manual.astro"
-    ]
-  },
-  {
     "text": "A redesigned editor",
     "files": [
       "src/www/pages/[...lang]/releases/4.0.astro"
@@ -178,6 +184,12 @@
     "text": "A redesigned Readability mode",
     "files": [
       "src/www/pages/[...lang]/releases/3.2.astro"
+    ]
+  },
+  {
+    "text": "A regular expression, here only the Reddit homepage. Start it with ^.",
+    "files": [
+      "src/www/pages/[...lang]/manual.astro"
     ]
   },
   {
@@ -292,6 +304,12 @@
     ]
   },
   {
+    "text": "Any subdomain. * matches anything up to a /.",
+    "files": [
+      "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
     "text": "Anyone can now install it on {site}.",
     "files": [
       "src/gallery/components/PublishedNotice.tsx"
@@ -329,12 +347,6 @@
     "note": "[connect] is a button in Stylebot's CLI mode terminal; use the extension's own translation.",
     "files": [
       "src/www/pages/[...lang]/cli.astro"
-    ]
-  },
-  {
-    "text": "At the start of a URL, turns it into a regular expression.",
-    "files": [
-      "src/www/pages/[...lang]/manual.astro"
     ]
   },
   {
@@ -454,7 +466,7 @@
     ]
   },
   {
-    "text": "By default, Stylebot matches styles to websites by domain name. Edit a style's URL in Options and use these patterns for anything more specific.",
+    "text": "By default, a style applies to its domain and subdomains. To change that, edit its URL in Options using these patterns.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
     ]
@@ -550,8 +562,7 @@
   {
     "text": "CLI",
     "files": [
-      "src/components/Footer.astro",
-      "src/www/pages/[...lang]/manual.astro"
+      "src/components/Footer.astro"
     ]
   },
   {
@@ -641,6 +652,7 @@
     "text": "Command line",
     "files": [
       "src/www/pages/[...lang]/cli.astro",
+      "src/www/pages/[...lang]/manual.astro",
       "src/www/pages/[...lang]/privacy.astro",
       "src/www/pages/[...lang]/releases/4.0.astro"
     ]
@@ -670,7 +682,7 @@
     ]
   },
   {
-    "text": "Connect Google Drive in Options. Your styles, including profiles, sync every 30 minutes and shortly after you edit. Stylebot only sees the files it creates in your Drive, and there is no Stylebot server.",
+    "text": "Connect Google Drive in Options. Your styles, including profiles, sync every 30 minutes and shortly after you edit. Stylebot only sees the files it creates in your Drive.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
     ]
@@ -678,7 +690,7 @@
   {
     "text": "Connected to Google Drive",
     "files": [
-      "src/www/components/Features.astro"
+      "src/www/components/SyncMock.astro"
     ]
   },
   {
@@ -850,13 +862,8 @@
     "text": "Create profile",
     "files": [
       "src/www/components/PublishMock.astro",
-      "src/www/components/demo/Demo.tsx"
-    ]
-  },
-  {
-    "text": "Create, rename, delete and switch profiles in the popup, where <strong>No style</strong> turns styling off for the site. Or click the profile name next to the site in the editor's header, which can also duplicate them. New profiles start empty.",
-    "files": [
-      "src/www/pages/[...lang]/manual.astro"
+      "src/www/components/demo/Demo.tsx",
+      "src/www/components/manual/ProfilesMock.astro"
     ]
   },
   {
@@ -945,7 +952,8 @@
       "src/gallery/components/DeleteStyleDialog.tsx",
       "src/gallery/components/EditForm.tsx",
       "src/gallery/components/MyStyleMenu.tsx",
-      "src/www/components/PublishMock.astro"
+      "src/www/components/PublishMock.astro",
+      "src/www/components/manual/ProfilesMock.astro"
     ]
   },
   {
@@ -993,7 +1001,7 @@
   {
     "text": "Disconnect",
     "files": [
-      "src/www/components/Features.astro"
+      "src/www/components/SyncMock.astro"
     ]
   },
   {
@@ -1029,7 +1037,8 @@
       "src/gallery/components/MyStyleMenu.tsx",
       "src/gallery/components/PublishDetailsSummary.tsx",
       "src/gallery/components/ScreenshotSlotMenu.tsx",
-      "src/www/components/PublishMock.astro"
+      "src/www/components/PublishMock.astro",
+      "src/www/components/manual/ProfilesMock.astro"
     ]
   },
   {
@@ -1072,7 +1081,7 @@
     ]
   },
   {
-    "text": "Either domain, or any of their subdomains.",
+    "text": "Either site. Separate patterns with a comma.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
     ]
@@ -1099,7 +1108,7 @@
   {
     "text": "Every 30 minutes, and right after you edit a style",
     "files": [
-      "src/www/components/Features.astro"
+      "src/www/components/SyncMock.astro"
     ]
   },
   {
@@ -1134,7 +1143,7 @@
     ]
   },
   {
-    "text": "Every site. Useful for styles you want everywhere.",
+    "text": "Every site.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
     ]
@@ -1146,7 +1155,7 @@
     ]
   },
   {
-    "text": "Examples",
+    "text": "Everything under a path. ** matches anything, including /.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
     ]
@@ -1234,7 +1243,7 @@
     ]
   },
   {
-    "text": "Found a bug or have an idea? Open an issue on <a href=\"{issues}\">GitHub</a>. Stylebot is free and open source, maintained since 2011. If it's useful to you, you can support it by <a href=\"{donate}\">buying me a coffee</a>.",
+    "text": "Found a bug or have an idea? <a href=\"{feedback}\">Send feedback</a> or open an issue on <a href=\"{issues}\">GitHub</a>. Stylebot is free and open source, maintained since 2011. If it's useful to you, you can support it by <a href=\"{donate}\">buying me a coffee</a>.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
     ]
@@ -1368,12 +1377,6 @@
     ]
   },
   {
-    "text": "Help and support",
-    "files": [
-      "src/www/pages/[...lang]/manual.astro"
-    ]
-  },
-  {
     "text": "Hidden after reports",
     "note": "A badge on one of your styles that was hidden after people reported it.",
     "files": [
@@ -1400,15 +1403,15 @@
     ]
   },
   {
-    "text": "How Stylebot works, from your first style to profiles and sync.",
-    "files": [
-      "src/www/pages/[...lang]/manual.astro"
-    ]
-  },
-  {
     "text": "How Stylebot works, start to finish, in about a minute.",
     "files": [
       "src/www/pages/[...lang]/welcome.astro"
+    ]
+  },
+  {
+    "text": "How to restyle websites with Stylebot.",
+    "files": [
+      "src/www/pages/[...lang]/manual.astro"
     ]
   },
   {
@@ -1505,6 +1508,12 @@
     ]
   },
   {
+    "text": "Installed styles",
+    "files": [
+      "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
     "text": "Installed styles update when their author publishes a new version, unless you’ve edited your copy",
     "files": [
       "src/www/pages/[...lang]/releases/4.1.astro"
@@ -1545,12 +1554,6 @@
     ]
   },
   {
-    "text": "It works in Chrome, Edge and other Chromium browsers. The <a href=\"{cli}\">CLI page</a> walks through setup.",
-    "files": [
-      "src/www/pages/[...lang]/manual.astro"
-    ]
-  },
-  {
     "text": "It’s hidden from the Gallery until a moderator has looked at its screenshot.",
     "files": [
       "src/gallery/components/EditForm.tsx",
@@ -1579,6 +1582,12 @@
     "text": "Keep the current screenshot",
     "files": [
       "src/gallery/components/ScreenshotSlot.tsx"
+    ]
+  },
+  {
+    "text": "Keep your styles on all your computers with Google Drive, and go back to any earlier version.",
+    "files": [
+      "src/www/pages/[...lang]/manual.astro"
     ]
   },
   {
@@ -1703,18 +1712,6 @@
     ]
   },
   {
-    "text": "Matches any character sequence until a / is found.",
-    "files": [
-      "src/www/pages/[...lang]/manual.astro"
-    ]
-  },
-  {
-    "text": "Matches any character sequence.",
-    "files": [
-      "src/www/pages/[...lang]/manual.astro"
-    ]
-  },
-  {
     "text": "Message",
     "files": [
       "src/www/components/SendFeedback.tsx"
@@ -1784,12 +1781,6 @@
     ]
   },
   {
-    "text": "news.ycombinator.com and apps.ycombinator.com.",
-    "files": [
-      "src/www/pages/[...lang]/manual.astro"
-    ]
-  },
-  {
     "text": "Newspaper",
     "note": "The name the visitor types for the profile they create, for a newspaper-like look",
     "files": [
@@ -1833,7 +1824,8 @@
   {
     "text": "No style",
     "files": [
-      "src/www/components/PublishMock.astro"
+      "src/www/components/PublishMock.astro",
+      "src/www/components/manual/ProfilesMock.astro"
     ]
   },
   {
@@ -1968,7 +1960,6 @@
   {
     "text": "Options, connected to Google Drive and synced",
     "files": [
-      "src/www/pages/[...lang]/manual.astro",
       "src/www/pages/[...lang]/releases/4.0.astro"
     ]
   },
@@ -2168,6 +2159,12 @@
     ]
   },
   {
+    "text": "Profiles let you keep more than one look for a site and switch between them in the popup. To turn styling off for the site, choose <strong>No style</strong>.",
+    "files": [
+      "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
     "text": "Publish",
     "files": [
       "src/gallery/components/PublishForm.tsx"
@@ -2194,7 +2191,8 @@
   {
     "text": "Publish to Gallery",
     "files": [
-      "src/www/components/PublishMock.astro"
+      "src/www/components/PublishMock.astro",
+      "src/www/components/manual/ProfilesMock.astro"
     ]
   },
   {
@@ -2290,7 +2288,8 @@
   {
     "text": "Rename",
     "files": [
-      "src/www/components/PublishMock.astro"
+      "src/www/components/PublishMock.astro",
+      "src/www/components/manual/ProfilesMock.astro"
     ]
   },
   {
@@ -2393,7 +2392,7 @@
   {
     "text": "Saved to",
     "files": [
-      "src/www/components/Features.astro"
+      "src/www/components/SyncMock.astro"
     ]
   },
   {
@@ -2419,7 +2418,7 @@
   {
     "text": "Schedule",
     "files": [
-      "src/www/components/Features.astro"
+      "src/www/components/SyncMock.astro"
     ]
   },
   {
@@ -2479,12 +2478,6 @@
     "text": "Send feedback",
     "files": [
       "src/www/components/FeedbackForm.tsx"
-    ]
-  },
-  {
-    "text": "Separates a list of patterns. A URL matches if any pattern matches.",
-    "files": [
-      "src/www/pages/[...lang]/manual.astro"
     ]
   },
   {
@@ -2628,6 +2621,12 @@
     ]
   },
   {
+    "text": "Some styles offer choices in the popup, such as light or dark mode. Add them to your own styles with <code>@var</code>, as the <a href=\"{guide}\">style options guide</a> explains.",
+    "files": [
+      "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
     "text": "Something else",
     "files": [
       "src/www/components/GoodbyeFeedback.tsx"
@@ -2681,6 +2680,12 @@
     "files": [
       "functions/_lib/preview.ts",
       "src/gallery/components/StylePage.tsx"
+    ]
+  },
+  {
+    "text": "Style options",
+    "files": [
+      "src/www/pages/[...lang]/manual.astro"
     ]
   },
   {
@@ -2919,6 +2924,12 @@
     ]
   },
   {
+    "text": "Support",
+    "files": [
+      "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
     "text": "Switch between them anytime.",
     "note": "\"them\" is the two profiles",
     "files": [
@@ -2960,8 +2971,8 @@
   {
     "text": "Sync now",
     "files": [
-      "src/www/components/Features.astro",
-      "src/www/components/GalleryMock.astro"
+      "src/www/components/GalleryMock.astro",
+      "src/www/components/SyncMock.astro"
     ]
   },
   {
@@ -2973,8 +2984,8 @@
   {
     "text": "Synced 2 minutes ago",
     "files": [
-      "src/www/components/Features.astro",
-      "src/www/components/GalleryMock.astro"
+      "src/www/components/GalleryMock.astro",
+      "src/www/components/SyncMock.astro"
     ]
   },
   {
@@ -3009,6 +3020,12 @@
     ]
   },
   {
+    "text": "That domain and its subdomains.",
+    "files": [
+      "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
     "text": "That username is reserved.",
     "files": [
       "src/gallery/components/UsernameStatus.tsx"
@@ -3033,7 +3050,7 @@
     ]
   },
   {
-    "text": "The <code>stylebot</code> command lets a coding agent like Claude Code, Codex or Cursor restyle sites right in your browser, using your own subscription instead of an API key. You can run the commands yourself too.",
+    "text": "The <code>stylebot</code> command lets a coding agent like Claude Code, Codex or Cursor restyle sites right in your browser. It works in Chrome, Edge and other Chromium browsers. The <a href=\"{cli}\">CLI page</a> walks through setup.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
     ]
@@ -3060,12 +3077,6 @@
     "text": "The CSS is the same as the latest version’s, so there’s no new version to publish. You can still save the name, description and screenshot; installs aren’t updated.",
     "files": [
       "src/gallery/components/CssUnchangedNotice.tsx"
-    ]
-  },
-  {
-    "text": "The domain docs.google.com or any of its subdomains.",
-    "files": [
-      "src/www/pages/[...lang]/manual.astro"
     ]
   },
   {
@@ -3099,14 +3110,7 @@
     ]
   },
   {
-    "text": "The popup on Hacker News with four profiles: Newspaper, Modern, Newspaper Dark and Night Shift",
-    "note": "Newspaper, Modern, Newspaper Dark and Night Shift are profile names shown in the screenshot.",
-    "files": [
-      "src/www/pages/[...lang]/manual.astro"
-    ]
-  },
-  {
-    "text": "The Presets tab has two, and both stack with your own changes. <strong>Readability</strong> turns a site's articles into a clean reading view, with a choice of theme, font, size and width; it leaves pages that aren't articles alone. <strong>Grayscale</strong> removes color from the site, at any strength.",
+    "text": "The popup suggests popular styles for the site you’re on. An installed style updates on its own until you edit it.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
     ]
@@ -3116,12 +3120,6 @@
     "files": [
       "src/www/components/cli/CliDemo.tsx",
       "src/www/components/demo/Demo.tsx"
-    ]
-  },
-  {
-    "text": "The Reddit homepage only.",
-    "files": [
-      "src/www/pages/[...lang]/manual.astro"
     ]
   },
   {
@@ -3166,12 +3164,6 @@
     "note": "[undo] is a button in Stylebot's CLI mode terminal; use the extension's own translation.",
     "files": [
       "src/www/pages/[...lang]/cli.astro"
-    ]
-  },
-  {
-    "text": "The Wikipedia article on Mathematics in the Readability view, with Reading settings open",
-    "files": [
-      "src/www/pages/[...lang]/manual.astro"
     ]
   },
   {
@@ -3413,12 +3405,6 @@
     ]
   },
   {
-    "text": "URL rules",
-    "files": [
-      "src/www/pages/[...lang]/manual.astro"
-    ]
-  },
-  {
     "text": "Use {username}",
     "files": [
       "src/gallery/components/UsernameStatus.tsx"
@@ -3483,7 +3469,6 @@
   {
     "text": "Version history in Options, newest change first",
     "files": [
-      "src/www/pages/[...lang]/manual.astro",
       "src/www/pages/[...lang]/releases/4.0.astro"
     ]
   },
@@ -3592,6 +3577,12 @@
     "text": "What’s wrong with it?",
     "files": [
       "src/gallery/components/ReportDialog.tsx"
+    ]
+  },
+  {
+    "text": "Where styles apply",
+    "files": [
+      "src/www/pages/[...lang]/manual.astro"
     ]
   },
   {

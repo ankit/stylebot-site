@@ -1,0 +1,109 @@
+---
+import MoreIcon from '@/components/icons/MoreIcon';
+
+const { t } = Astro.locals;
+---
+
+<div data-ed class="mock-card profiles">
+  <div class="profiles-head">
+    <b>news.ycombinator.com</b>
+  </div>
+
+  <div class="profiles-list">
+    <span class="profiles-row">{t('No style')}</span>
+
+    <span class="profiles-row profiles-active">
+      Newspaper
+      <MoreIcon size={16} />
+    </span>
+
+    <span class="profiles-row">Modern</span>
+
+    <span class="profiles-row">Newspaper Dark</span>
+
+    <span class="profiles-row">Night Shift</span>
+
+    <span class="profiles-row profiles-muted">{t('Create profile')}</span>
+
+    <div class="profiles-menu">
+      <span>{t('Edit')}</span>
+      <span>{t('Rename')}</span>
+      <span>{t('Publish to Gallery')}</span>
+      <hr />
+      <span>{t('Delete')}</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .profiles {
+    width: min(100%, 300px);
+    font: 400 var(--text-sm)/1.2 var(--font-ui);
+  }
+
+  .profiles-head {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .profiles-head b {
+    font-weight: 600;
+    color: var(--fg);
+  }
+
+  .profiles-list {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px 6px;
+  }
+
+  .profiles-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 36px;
+    padding: 8px 10px;
+    border-radius: var(--radius-md);
+    color: var(--fg);
+  }
+
+  .profiles-active {
+    background: var(--bg-muted);
+    font-weight: 600;
+  }
+
+  .profiles-muted {
+    color: var(--fg-muted);
+  }
+
+  .profiles-menu {
+    position: absolute;
+    top: 80px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 170px;
+    padding: 5px;
+    border: 1px solid var(--border-strong);
+    border-radius: 10px;
+    background: var(--bg-surface);
+    box-shadow: var(--shadow-card);
+  }
+
+  .profiles-menu span {
+    padding: 8px 10px;
+    border-radius: var(--radius-sm);
+    color: var(--fg);
+  }
+
+  .profiles-menu hr {
+    width: 100%;
+    height: 1px;
+    margin: 2px 0;
+    border: none;
+    background: var(--border);
+  }
+</style>
