@@ -1424,6 +1424,12 @@
     ]
   },
   {
+    "text": "If a style stops working after a site updates, pick the element again.",
+    "files": [
+      "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
     "text": "If you’d like a reply, please provide your email address",
     "files": [
       "src/www/components/SendFeedback.tsx"
@@ -2619,12 +2625,6 @@
     "text": "Smoother loading animation",
     "files": [
       "src/www/pages/[...lang]/releases/3.2.astro"
-    ]
-  },
-  {
-    "text": "Some sites use auto-generated class names that change when the site updates. If a style stops working, pick the element again to get a fresh selector.",
-    "files": [
-      "src/www/pages/[...lang]/manual.astro"
     ]
   },
   {
