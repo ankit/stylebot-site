@@ -18,14 +18,17 @@ const links = [
     {links.map((link) => (
       <a href={link.href}>{link.label}</a>
     ))}
+  </div>
+  <div class="site-footer-links">
+    <a href={path(LINKS.feedback)}>{t('Feedback')}</a>
     <a href={LINKS.donate} class="coffee">
       <CoffeeIcon />
       {t('Buy me a coffee')}
     </a>
+    <span>
+      © {new Date().getFullYear()} <a href={LINKS.author}>Ankit Ahuja</a>
+    </span>
   </div>
-  <span>
-    © {new Date().getFullYear()} <a href={LINKS.author}>Ankit Ahuja</a>
-  </span>
 </footer>
 
 <style>

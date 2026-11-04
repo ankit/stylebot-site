@@ -20,7 +20,10 @@ const { lang, strings, t } = Astro.locals;
     <h1>{t('Thanks for using Stylebot.')}</h1>
     <GoodbyeFeedback
       client:visible
-      strings={strings('www/components/GoodbyeFeedback.tsx')}
+      strings={strings(
+        'www/components/GoodbyeFeedback.tsx',
+        'www/components/FeedbackForm.tsx',
+      )}
       locale={lang}
     />
     <div class="gb-reinstall">

@@ -96,6 +96,18 @@ export type UninstallFeedback = {
   locale?: string;
 };
 
+export type FeedbackSource = 'editor' | 'options';
+
+// The feedback page's note. `email` is only there if they want a reply.
+export type GeneralFeedback = {
+  note: string;
+  email?: string;
+  source?: FeedbackSource;
+  browser?: Browser;
+  version?: string;
+  locale?: string;
+};
+
 export type Sort = 'popular' | 'new';
 
 export type StyleQuery = {
@@ -288,6 +300,12 @@ export const sendUninstallFeedback = (feedback: UninstallFeedback) =>
   request<void>('/feedback', {
     method: 'POST',
     body: JSON.stringify({ kind: 'uninstall', ...feedback }),
+  });
+
+export const sendFeedback = (feedback: GeneralFeedback) =>
+  request<void>('/feedback', {
+    method: 'POST',
+    body: JSON.stringify({ kind: 'general', ...feedback }),
   });
 
 function toFormData(

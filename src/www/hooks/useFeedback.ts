@@ -1,25 +1,22 @@
 import { useState } from 'preact/hooks';
 
-import {
-  ApiError,
-  sendUninstallFeedback,
-  type UninstallFeedback,
-} from '@/gallery/lib/api';
+import { ApiError } from '@/gallery/lib/api';
 
 // `limited` is the API's rate limit, which lifts after a minute.
 export type FeedbackState = 'idle' | 'sending' | 'sent' | 'limited' | 'failed';
 
 /**
- * Sends the goodbye page's survey to the styles API.
+ * Sends feedback with `post`, tracking whether it's on its way, sent, or
+ * turned away so it can be tried again.
  */
-export function useUninstallFeedback() {
+export function useFeedback<T>(post: (feedback: T) => Promise<void>) {
   const [state, setState] = useState<FeedbackState>('idle');
 
-  const send = async (feedback: UninstallFeedback) => {
+  const send = async (feedback: T) => {
     setState('sending');
 
     try {
-      await sendUninstallFeedback(feedback);
+      await post(feedback);
     } catch (error) {
       if (error instanceof ApiError && error.status === 429) {
         setState('limited');

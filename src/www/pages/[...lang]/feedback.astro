@@ -1,0 +1,47 @@
+---
+import Base from '@/layouts/Base.astro';
+
+import SendFeedback from '@/www/components/SendFeedback';
+
+import { localeStaticPaths } from '@/i18n';
+
+export const getStaticPaths = localeStaticPaths;
+
+const { lang, strings, t } = Astro.locals;
+---
+
+<Base title={t('Feedback')} description={t('Get in touch')} noindex>
+  <main class="fb-page">
+    <h1>{t('Get in touch')}</h1>
+    <SendFeedback
+      client:visible
+      strings={strings(
+        'www/components/SendFeedback.tsx',
+        'www/components/FeedbackDetails.tsx',
+        'www/components/FeedbackForm.tsx',
+      )}
+      locale={lang}
+    />
+  </main>
+</Base>
+
+<style is:global>
+  .fb-page {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 56px var(--gutter) 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .fb-page h1 {
+    margin: 14px 0 0;
+    font: 700 var(--text-2xl) / 1.1 var(--font-display);
+    letter-spacing: -0.03em;
+    color: var(--fg);
+    text-wrap: balance;
+  }
+</style>

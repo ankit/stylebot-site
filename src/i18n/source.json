@@ -829,7 +829,7 @@
   {
     "text": "Couldn’t send your feedback. Try again.",
     "files": [
-      "src/www/components/GoodbyeFeedback.tsx"
+      "src/www/components/FeedbackForm.tsx"
     ]
   },
   {
@@ -1096,6 +1096,12 @@
     ]
   },
   {
+    "text": "Email (optional)",
+    "files": [
+      "src/www/components/SendFeedback.tsx"
+    ]
+  },
+  {
     "text": "Enable <strong>Basics › Allow command line access</strong> in Stylebot’s options.",
     "note": "\"Basics\" and \"Allow command line access\" are a section and a setting in Stylebot's Options page; use the extension's own translations.",
     "files": [
@@ -1195,6 +1201,13 @@
     ]
   },
   {
+    "text": "Feedback",
+    "files": [
+      "src/components/Footer.astro",
+      "src/www/pages/[...lang]/feedback.astro"
+    ]
+  },
+  {
     "text": "Feedback is anonymous",
     "files": [
       "src/www/components/GoodbyeFeedback.tsx"
@@ -1282,6 +1295,12 @@
       "src/www/pages/[...lang]/manual.astro",
       "src/www/pages/[...lang]/privacy.astro",
       "src/www/pages/[...lang]/releases/4.1.astro"
+    ]
+  },
+  {
+    "text": "Get in touch",
+    "files": [
+      "src/www/pages/[...lang]/feedback.astro"
     ]
   },
   {
@@ -1426,6 +1445,12 @@
     "text": "If a style changed on two computers, your newer edit is kept and the other version is saved in a comment, so nothing is lost.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
+    "text": "If you’d like a reply, please provide your email address",
+    "files": [
+      "src/www/components/SendFeedback.tsx"
     ]
   },
   {
@@ -1712,6 +1737,12 @@
     "text": "Matches any character sequence.",
     "files": [
       "src/www/pages/[...lang]/manual.astro"
+    ]
+  },
+  {
+    "text": "Message",
+    "files": [
+      "src/www/components/SendFeedback.tsx"
     ]
   },
   {
@@ -2467,7 +2498,7 @@
   {
     "text": "Send feedback",
     "files": [
-      "src/www/components/GoodbyeFeedback.tsx"
+      "src/www/components/FeedbackForm.tsx"
     ]
   },
   {
@@ -2816,6 +2847,12 @@
     ]
   },
   {
+    "text": "Stylebot version",
+    "files": [
+      "src/www/components/FeedbackDetails.tsx"
+    ]
+  },
+  {
     "text": "Stylebot works in Chrome, Firefox, Safari and Edge on a computer.",
     "files": [
       "src/gallery/components/GetStylebotCard.tsx",
@@ -2994,7 +3031,7 @@
   {
     "text": "Thanks for submitting the feedback.",
     "files": [
-      "src/www/components/GoodbyeFeedback.tsx"
+      "src/www/components/FeedbackForm.tsx"
     ]
   },
   {
@@ -3018,7 +3055,7 @@
   {
     "text": "That’s a lot of feedback at once. Try again in a minute.",
     "files": [
-      "src/www/components/GoodbyeFeedback.tsx"
+      "src/www/components/FeedbackForm.tsx"
     ]
   },
   {

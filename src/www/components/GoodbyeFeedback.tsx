@@ -1,20 +1,18 @@
 import { useState } from 'preact/hooks';
 
-import {
-  type FeedbackState,
-  useUninstallFeedback,
-} from '@/www/hooks/useUninstallFeedback';
+import FeedbackForm from '@/www/components/FeedbackForm';
+import { useFeedback } from '@/www/hooks/useFeedback';
+import { extensionVersion } from '@/www/lib/feedback';
 
 import {
+  sendUninstallFeedback,
   type UninstallFeedback,
   type UninstallReason,
 } from '@/gallery/lib/api';
 
-import Button from '@/components/Button';
-
 import { currentBrowser } from '@/lib/links';
 
-import { type Catalog, type Translate, translator } from '@/i18n/t';
+import { type Catalog, translator } from '@/i18n/t';
 
 import './GoodbyeFeedback.css';
 
@@ -64,22 +62,15 @@ export default function GoodbyeFeedback({ strings, locale }: Props) {
   const [site, setSite] = useState('');
   const [feature, setFeature] = useState('');
   const [note, setNote] = useState('');
-  const { state, send } = useUninstallFeedback();
+  const { state, send } = useFeedback(sendUninstallFeedback);
   const ready = picked.length > 0 || note.trim().length > 0;
-  const sending = state === 'sending';
 
   const toggle = (reason: UninstallReason) =>
     setPicked((p) =>
       p.includes(reason) ? p.filter((r) => r !== reason) : [...p, reason],
     );
 
-  const submit = (e: Event) => {
-    e.preventDefault();
-
-    if (!ready || sending) {
-      return;
-    }
-
+  const submit = () => {
     const feedback: UninstallFeedback = {
       reasons: picked,
       note: note.trim() || undefined,
@@ -99,20 +90,19 @@ export default function GoodbyeFeedback({ strings, locale }: Props) {
     send(feedback);
   };
 
-  if (state === 'sent') {
-    return (
-      <div class="gb-thanks">{t('Thanks for submitting the feedback.')}</div>
-    );
-  }
-
   const prompt = [...picked]
     .reverse()
     .map((key) => reasons.find((r) => r.key === key)?.prompt)
     .find(Boolean);
-  const error = errorMessage(state, t);
 
   return (
-    <form class="gb-form" onSubmit={submit}>
+    <FeedbackForm
+      state={state}
+      ready={ready}
+      hint={t('Feedback is anonymous')}
+      onSend={submit}
+      t={t}
+    >
       <fieldset class="gb-reasons">
         <legend class="gb-q">{t('Why did you uninstall?')}</legend>
 
@@ -130,7 +120,7 @@ export default function GoodbyeFeedback({ strings, locale }: Props) {
       </fieldset>
 
       {picked.includes('broke-a-site') && (
-        <label class="gb-field">
+        <label class="fb-field">
           {t('Which site did it break?')}
           <input
             type="text"
@@ -146,7 +136,7 @@ export default function GoodbyeFeedback({ strings, locale }: Props) {
       )}
 
       {picked.includes('missing-feature') && (
-        <label class="gb-field">
+        <label class="fb-field">
           {t('What were you looking for?')}
           <input
             type="text"
@@ -157,7 +147,7 @@ export default function GoodbyeFeedback({ strings, locale }: Props) {
         </label>
       )}
 
-      <label class="gb-field">
+      <label class="fb-field">
         {prompt ?? t('Anything else? (optional)')}
         <textarea
           rows={3}
@@ -166,21 +156,7 @@ export default function GoodbyeFeedback({ strings, locale }: Props) {
           onInput={(e) => setNote(e.currentTarget.value)}
         />
       </label>
-
-      {error && (
-        <p class="gb-error" role="alert">
-          {error}
-        </p>
-      )}
-
-      <div class="gb-send">
-        <Button type="submit" disabled={!ready || sending}>
-          {t('Send feedback')}
-        </Button>
-
-        <span class="gb-hint">{t('Feedback is anonymous')}</span>
-      </div>
-    </form>
+    </FeedbackForm>
   );
 }
 
@@ -206,26 +182,4 @@ function hostname(typed: string) {
   }
 
   return undefined;
-}
-
-// The extension can add its version to the goodbye page's URL.
-function extensionVersion() {
-  const version = new URLSearchParams(location.search).get('version');
-
-  if (version && /^[0-9]+(\.[0-9]+)*$/.test(version)) {
-    return version;
-  }
-
-  return undefined;
-}
-
-function errorMessage(state: FeedbackState, t: Translate) {
-  switch (state) {
-    case 'limited':
-      return t('That’s a lot of feedback at once. Try again in a minute.');
-    case 'failed':
-      return t('Couldn’t send your feedback. Try again.');
-    default:
-      return null;
-  }
 }

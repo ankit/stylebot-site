@@ -96,4 +96,5 @@ export const LINKS = {
   author: 'https://ankitahuja.com',
   feedbackEmail: 'stylebot+ahuja.ankit@gmail.com',
   cli: '/cli',
+  feedback: '/feedback',
 };

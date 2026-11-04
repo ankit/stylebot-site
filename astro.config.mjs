@@ -10,7 +10,7 @@ import {
   unlocalizedPath,
 } from './src/i18n/locales.ts';
 
-const UNLISTED = ['/welcome/', '/goodbye/', '/404/'];
+const UNLISTED = ['/welcome/', '/goodbye/', '/feedback/', '/404/'];
 
 const REDIRECTS = { '/help': '/manual/' };
 
