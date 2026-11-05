@@ -35,13 +35,6 @@ export default function StyleOptions({ options, t }: Props) {
           </Fragment>
         ))}
       </dl>
-
-      <p>
-        {
-          // i18n: Under a style's options on its gallery page.
-          t('Choose in Stylebot’s popup.')
-        }
-      </p>
     </section>
   );
 }

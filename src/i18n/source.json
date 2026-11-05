@@ -548,13 +548,6 @@
     ]
   },
   {
-    "text": "Choose in Stylebot’s popup.",
-    "note": "Under a style's options on its gallery page.",
-    "files": [
-      "src/gallery/components/StyleOptions.tsx"
-    ]
-  },
-  {
     "text": "Clear search",
     "files": [
       "src/gallery/components/SearchBox.tsx"

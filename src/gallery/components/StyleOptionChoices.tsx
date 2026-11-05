@@ -1,6 +1,7 @@
 import { type StyleOption } from '@/gallery/lib/styleOptions';
 
-import CheckIcon from '@/components/icons/CheckIcon';
+import StarIcon from '@/components/icons/StarIcon';
+import Tooltip from '@/components/Tooltip';
 
 import { type Translate } from '@/i18n/t';
 
@@ -8,8 +9,31 @@ import './StyleOptionChoices.css';
 
 type Props = { option: StyleOption; t: Translate };
 
+type ChoiceProps = { label: string; isDefault: boolean; t: Translate };
+
+function Choice({ label, isDefault, t }: ChoiceProps) {
+  if (!isDefault) {
+    return <li>{label}</li>;
+  }
+
+  // i18n: Marks the choice a style option starts with.
+  const defaultLabel = t('Default', { context: 'option' });
+
+  return (
+    <li class="is-default">
+      {label}
+
+      <span role="img" aria-label={defaultLabel}>
+        <StarIcon size={10} />
+
+        <Tooltip>{defaultLabel}</Tooltip>
+      </span>
+    </li>
+  );
+}
+
 /**
- * A select's choices, with the default checked, or whether a checkbox starts
+ * A select's choices, with the default marked, or whether a checkbox starts
  * on or off.
  */
 export default function StyleOptionChoices({ option, t }: Props) {
@@ -26,21 +50,12 @@ export default function StyleOptionChoices({ option, t }: Props) {
   return (
     <ul class="style-option-choices">
       {option.choices.map((choice) => (
-        <li key={choice.value}>
-          {choice.label}
-
-          {choice.value === option.default && (
-            <span
-              role="img"
-              aria-label={
-                // i18n: Marks the choice a style option starts with.
-                t('Default', { context: 'option' })
-              }
-            >
-              <CheckIcon size={11} />
-            </span>
-          )}
-        </li>
+        <Choice
+          key={choice.value}
+          label={choice.label}
+          isDefault={choice.value === option.default}
+          t={t}
+        />
       ))}
     </ul>
   );

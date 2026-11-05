@@ -1,24 +1,22 @@
 .style-option-choices {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px 0;
   margin: 0;
   padding: 0;
   list-style: none;
+  color: var(--fg-muted);
+  text-wrap: balance;
 
   li {
-    display: inline-flex;
-    align-items: center;
+    display: inline-block;
+    margin-right: 12px;
     white-space: nowrap;
   }
 
-  li:not(:last-child)::after {
-    content: '\00a0·';
-    margin-right: 6px;
-    color: var(--fg-muted);
+  .is-default {
+    color: var(--fg);
   }
 
   span[role='img'] {
+    position: relative;
     display: inline-flex;
     margin-left: 4px;
     color: var(--fg-muted);
