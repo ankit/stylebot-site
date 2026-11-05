@@ -5,16 +5,15 @@ import { useSession } from '@/gallery/hooks/useSession';
 import { type Locale, localizePath } from '@/i18n/locales';
 import { type Catalog, translator } from '@/i18n/t';
 
+import AccountNavLinks from './AccountNavLinks';
 import SignInButton from './SignInButton';
 import UserMenu from './UserMenu';
-
-import './AccountNav.css';
 
 type Props = { locale: Locale; strings: Catalog };
 
 /**
- * Sign in, or the links between browsing and the account's own styles, and
- * the account's menu.
+ * How to publish a style, with sign in, or the links between browsing and the
+ * account's own styles and the account's menu.
  */
 export default function AccountNav({ locale, strings }: Props) {
   const t = translator(strings);
@@ -25,35 +24,33 @@ export default function AccountNav({ locale, strings }: Props) {
     return null;
   }
 
+  const publish = {
+    href: localizePath(locale, '/publish'),
+    // i18n: A header link to how to publish a style to the gallery.
+    label: t('Publish a style'),
+  };
+
   if (!session) {
-    return <SignInButton t={t} />;
+    return (
+      <>
+        <AccountNavLinks links={[publish]} current={path} />
+
+        <SignInButton t={t} />
+      </>
+    );
   }
 
   const links = [
     // i18n: A header link to the gallery's list of styles.
     { href: localizePath(locale, '/'), label: t('Browse') },
     { href: localizePath(locale, '/mine'), label: t('Your styles') },
+    publish,
   ];
-  let current = links[0].href;
-
-  if (path === links[1].href) {
-    current = links[1].href;
-  }
+  const current = links.find((link) => link.href === path) ?? links[0];
 
   return (
     <>
-      <nav class="account-nav">
-        {links.map((link) => (
-          <a
-            key={link.href}
-            class="account-nav-link"
-            href={link.href}
-            aria-current={link.href === current}
-          >
-            {link.label}
-          </a>
-        ))}
-      </nav>
+      <AccountNavLinks links={links} current={current.href} />
 
       <UserMenu session={session} locale={locale} t={t} />
     </>

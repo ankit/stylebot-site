@@ -1,6 +1,7 @@
 import { useStylebotAvailability } from '@/gallery/hooks/useStylebotAvailability';
 
 import ButtonLink from '@/components/ButtonLink';
+import PublishMock from '@/components/PublishMock';
 
 import { currentBrowser, LINKS, storeHref, STORES } from '@/lib/links';
 
@@ -9,13 +10,14 @@ import { type Translate } from '@/i18n/t';
 
 import './PublishUnavailable.css';
 
-type Props = { locale: Locale; t: Translate };
+type Props = { expired: boolean; locale: Locale; t: Translate };
 
 /**
- * Why there's nothing to publish: publishing starts in Stylebot, which this
- * browser doesn't have, or the draft it opened has expired or been published.
+ * How publishing starts in Stylebot, with how to get it if this browser
+ * doesn't have it, or, when `expired`, that the draft Stylebot opened has
+ * expired or been published.
  */
-export default function PublishUnavailable({ locale, t }: Props) {
+export default function PublishUnavailable({ expired, locale, t }: Props) {
   const availability = useStylebotAvailability();
   const browser = currentBrowser();
 
@@ -23,7 +25,7 @@ export default function PublishUnavailable({ locale, t }: Props) {
     return null;
   }
 
-  if (availability === 'available') {
+  if (availability === 'available' && expired) {
     return (
       <section class="publish-start">
         <h2>{t('Nothing to publish')}</h2>
@@ -44,43 +46,59 @@ export default function PublishUnavailable({ locale, t }: Props) {
   }
 
   return (
-    <section class="publish-start">
-      <h2>{t('Publish from Stylebot')}</h2>
+    <div class="publish-start-layout">
+      <section class="publish-start">
+        <h2>{t('Publish from Stylebot')}</h2>
 
-      <ol class="publish-start-steps">
-        <li>{t('Style a site with Stylebot.')}</li>
+        <ol class="publish-start-steps">
+          <li>{t('Style a site with Stylebot.')}</li>
 
-        <li>{t('Choose Publish in Stylebot’s editor or popup.')}</li>
+          <li>
+            <span
+              dangerouslySetInnerHTML={{
+                __html:
+                  // i18n: "Publish to Gallery" is the menu item's name in the extension.
+                  t(
+                    'Choose <strong>Publish to Gallery</strong> from Stylebot’s popup.',
+                  ),
+              }}
+            />
+          </li>
 
-        <li>
-          {t('Name your style, check its screenshot and publish it here.')}
-        </li>
-      </ol>
+          <li>
+            {t('Name your style, check its screenshot and publish it here.')}
+          </li>
+        </ol>
 
-      {browser && (
-        <div class="publish-start-actions">
-          <ButtonLink href={storeHref(browser, 'publish')}>
-            {t('Add Stylebot to {store}', { store: STORES[browser].name })}
-          </ButtonLink>
-        </div>
-      )}
+        {availability === 'unavailable' && browser && (
+          <div class="publish-start-actions">
+            <ButtonLink href={storeHref(browser, 'publish')}>
+              {t('Add Stylebot to {store}', { store: STORES[browser].name })}
+            </ButtonLink>
+          </div>
+        )}
 
-      {!browser && (
-        <div class="publish-start-actions">
-          <p>
-            {t(
-              'Stylebot works in Chrome, Firefox, Safari and Edge on a computer.',
-            )}
-          </p>
+        {availability === 'unavailable' && !browser && (
+          <div class="publish-start-actions">
+            <p>
+              {t(
+                'Stylebot works in Chrome, Firefox, Safari and Edge on a computer.',
+              )}
+            </p>
 
-          <ButtonLink
-            href={LINKS.site + localizePath(locale, '/')}
-            variant="outline"
-          >
-            {t('About Stylebot')}
-          </ButtonLink>
-        </div>
-      )}
-    </section>
+            <ButtonLink
+              href={LINKS.site + localizePath(locale, '/')}
+              variant="outline"
+            >
+              {t('About Stylebot')}
+            </ButtonLink>
+          </div>
+        )}
+      </section>
+
+      <div class="publish-start-mock" aria-hidden="true">
+        <PublishMock t={t} />
+      </div>
+    </div>
   );
 }

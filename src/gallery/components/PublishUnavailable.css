@@ -1,3 +1,32 @@
+.publish-start-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+
+  .publish-start {
+    flex: 1;
+  }
+
+  @media (max-width: 899px) {
+    flex-direction: column;
+
+    .publish-start {
+      flex: none;
+      width: 100%;
+    }
+  }
+}
+
+.publish-start-mock {
+  flex: none;
+  width: 300px;
+  max-width: 100%;
+
+  .pub {
+    width: 100%;
+  }
+}
+
 .publish-start {
   max-width: 600px;
   display: flex;

@@ -3,7 +3,8 @@ import ButtonLink from '@/components/ButtonLink';
 import Base from '@/layouts/Base.astro';
 
 import GalleryMock from '@/www/components/GalleryMock.astro';
-import PublishMock from '@/www/components/PublishMock.astro';
+
+import PublishMock from '@/components/PublishMock';
 
 import { LINKS } from '@/lib/links';
 
@@ -83,7 +84,7 @@ const title = t("What's new in {version}", { version: '4.1' });
           </ul>
         </div>
         <div class="release-mock" aria-hidden="true">
-          <PublishMock />
+          <PublishMock t={t} />
         </div>
       </section>
 

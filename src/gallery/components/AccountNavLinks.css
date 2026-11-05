@@ -22,7 +22,7 @@
   color: var(--fg);
 }
 
-@media (max-width: 639px) {
+@media (max-width: 899px) {
   .account-nav {
     display: none;
   }

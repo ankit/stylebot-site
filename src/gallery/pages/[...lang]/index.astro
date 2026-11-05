@@ -14,7 +14,11 @@ const { locale, strings } = Astro.locals;
     <GalleryApp
       client:only="preact"
       locale={locale}
-      strings={strings('gallery/components/', 'components/ZoomableImage.tsx')}
+      strings={strings(
+        'gallery/components/',
+        'components/PublishMock.tsx',
+        'components/ZoomableImage.tsx',
+      )}
     />
   </div>
 </Gallery>

@@ -529,6 +529,13 @@
     ]
   },
   {
+    "text": "Choose <strong>Publish to Gallery</strong> from Stylebot’s popup.",
+    "note": "\"Publish to Gallery\" is the menu item's name in the extension.",
+    "files": [
+      "src/gallery/components/PublishUnavailable.tsx"
+    ]
+  },
+  {
     "text": "Choose a PNG, JPEG or WebP image.",
     "files": [
       "src/gallery/components/ScreenshotSlot.tsx"
@@ -545,12 +552,6 @@
     "note": "Under a style's options on its gallery page.",
     "files": [
       "src/gallery/components/StyleOptions.tsx"
-    ]
-  },
-  {
-    "text": "Choose Publish in Stylebot’s editor or popup.",
-    "files": [
-      "src/gallery/components/PublishUnavailable.tsx"
     ]
   },
   {
@@ -861,7 +862,7 @@
   {
     "text": "Create profile",
     "files": [
-      "src/www/components/PublishMock.astro",
+      "src/components/PublishMock.tsx",
       "src/www/components/demo/Demo.tsx",
       "src/www/components/manual/ProfilesMock.astro"
     ]
@@ -949,10 +950,10 @@
   {
     "text": "Delete",
     "files": [
+      "src/components/PublishMock.tsx",
       "src/gallery/components/DeleteStyleDialog.tsx",
       "src/gallery/components/EditForm.tsx",
       "src/gallery/components/MyStyleMenu.tsx",
-      "src/www/components/PublishMock.astro",
       "src/www/components/manual/ProfilesMock.astro"
     ]
   },
@@ -1033,11 +1034,11 @@
     "text": "Edit",
     "note": "Under a screenshot, opens Blur areas, Replace and so on.",
     "files": [
+      "src/components/PublishMock.tsx",
       "src/gallery/components/EditStyleButton.tsx",
       "src/gallery/components/MyStyleMenu.tsx",
       "src/gallery/components/PublishDetailsSummary.tsx",
       "src/gallery/components/ScreenshotSlotMenu.tsx",
-      "src/www/components/PublishMock.astro",
       "src/www/components/manual/ProfilesMock.astro"
     ]
   },
@@ -1824,7 +1825,7 @@
   {
     "text": "No style",
     "files": [
-      "src/www/components/PublishMock.astro",
+      "src/components/PublishMock.tsx",
       "src/www/components/manual/ProfilesMock.astro"
     ]
   },
@@ -2171,6 +2172,13 @@
     ]
   },
   {
+    "text": "Publish a style",
+    "note": "A header link to how to publish a style to the gallery.",
+    "files": [
+      "src/gallery/components/AccountNav.tsx"
+    ]
+  },
+  {
     "text": "Publish a style to the Gallery from the popup or the editor",
     "files": [
       "src/www/pages/[...lang]/releases/4.1.astro"
@@ -2191,7 +2199,7 @@
   {
     "text": "Publish to Gallery",
     "files": [
-      "src/www/components/PublishMock.astro",
+      "src/components/PublishMock.tsx",
       "src/www/components/manual/ProfilesMock.astro"
     ]
   },
@@ -2288,7 +2296,7 @@
   {
     "text": "Rename",
     "files": [
-      "src/www/components/PublishMock.astro",
+      "src/components/PublishMock.tsx",
       "src/www/components/manual/ProfilesMock.astro"
     ]
   },
@@ -3255,8 +3263,8 @@
     ]
   },
   {
-    "text": "To publish a style, open Stylebot on its site and choose <strong>Publish to Gallery</strong> from the ⋯ menu.",
-    "note": "\"Publish to Gallery\" is the menu item's name in the extension, and \"⋯\" its menu button.",
+    "text": "To publish a style, open Stylebot on the site you styled and choose <strong>Publish to Gallery</strong>.",
+    "note": "\"Publish to Gallery\" is the menu item's name in the extension.",
     "files": [
       "src/gallery/components/MyStyleList.tsx"
     ]

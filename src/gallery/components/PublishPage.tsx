@@ -47,7 +47,9 @@ export default function PublishPage({ locale, strings }: Props) {
     <div class="publish-page">
       <PublishHead draft={draft} t={t} />
 
-      {draft === null && <PublishUnavailable locale={locale} t={t} />}
+      {draft === null && (
+        <PublishUnavailable expired={Boolean(nonce)} locale={locale} t={t} />
+      )}
 
       {draft && session === null && (
         <div class="g-empty">

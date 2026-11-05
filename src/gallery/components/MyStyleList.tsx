@@ -98,9 +98,9 @@ export default function MyStyleList({ session, username, locale, t }: Props) {
           class="my-style-note"
           dangerouslySetInnerHTML={{
             __html:
-              // i18n: "Publish to Gallery" is the menu item's name in the extension, and "⋯" its menu button.
+              // i18n: "Publish to Gallery" is the menu item's name in the extension.
               t(
-                'To publish a style, open Stylebot on its site and choose <strong>Publish to Gallery</strong> from the ⋯ menu.',
+                'To publish a style, open Stylebot on the site you styled and choose <strong>Publish to Gallery</strong>.',
               ),
           }}
         />
