@@ -2,6 +2,7 @@
 import Base from '@/layouts/Base.astro';
 
 import Demo from '@/www/components/demo/Demo';
+import FeaturedStyles from '@/www/components/FeaturedStyles.astro';
 
 import { LINKS } from '@/lib/links';
 
@@ -49,6 +50,9 @@ const { path, strings, t } = Astro.locals;
         </div>
       </Demo>
     </div>
+
+    <FeaturedStyles />
+
     <div class="agent">
       <p class="agent-inner">
         <strong>{t('Works with your coding agent')}</strong>
